@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Logging</title>
+	<link type="text/css" rel="stylesheet" href="file:///usr/local/share/doc/css/doc.css"/>
+	<link type="text/css" rel="stylesheet" href="file:///usr/local/share/doc/css/numbered.css"/>
+	<link type="text/css" rel="stylesheet" href="file:///usr/local/share/doc/css/highlight/default.css"/>
+<script src="file:///usr/local/share/doc/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+#
+<h1 id="logging">Logging</h1>
+#
+<h2 id="introduction">Introduction</h2>
+#
+<p>Almost every program produces at least <em>some</em> output, and for most
+programs, that output may be categorised as either:</p>
+#
+<ul>
+<li>functional output (e.g. the results from some calculation)</li>
+<li>diagnostic output (e.g. progress indicators, error messages, etc.)</li>
+</ul>
+#
+<p>On most POSIX systems, these outputs are typically separated into
+separate <em>file descriptors</em>: <code>stdout</code> (1) and <code>stderr</code> (2). Often, these
+descriptors refer to the same place, i.e. the &#8220;terminal&#8221;, but it&#8217;s
+quite common and convenient to redirect these:</p>
+#
+<pre><code class="bash">$ my-command &gt;my-command.log 2&gt;my-command.err
+</code></pre>
+#
+<p>There&#8217;s more to it than that: <code>stderr</code> is usually line-buffered (complete lines
+are printed immediately), while <code>stdout</code> may be block buffered, and text is
+only printed when a full buffer is flushed.</p>
+#
+<p>Furthermore, programs that run in the background (e.g. Unix &#8220;daemons&#8221;) may not
+have these file descriptors open at all. Instead of printing to <code>stderr</code>,
+daemons send diagnostic messages to the <strong>syslog</strong> service.</p>
+#
+<h2 id="designgoals">Design Goals</h2>
+#
+<ul>
+<li>messages are &#8220;atomic&#8221;: they don&#8217;t get mixed up in a single line</li>
+<li>selective output: controlled/specified by the user at runtime</li>
+<li>compile-time exclusion: logging code can be removed entirely</li>
+<li>assert handling, NDEBUG etc.</li>
+<li>custom output handling: at a minimum, syslog, stderr.</li>
+</ul>
+#
+<h2 id="example">Example</h2>
+#
+<p>The basics.</p>
+#
+<pre><code class="c">#include &quot;log.h&quot;
+#
+int main()
+{
+    info(&quot;hello world&quot;);
+}
+</code></pre>
+#
+<p>Note that the text doesn&#8217;t end with a newline (&#8220;\n&#8221;) character. The
+logger will add this as needed, depending on how the output is handled.</p>
+#
+<p>The logging functions can print more than a simple string; they
+accept <code>printf</code> style arguments:</p>
+#
+<pre><code class="c">#include &quot;log.h&quot;
+#
+int main(int argc, char *argv[])
+{
+    info(&quot;hello %s&quot;, argv[1]);
+}
+</code></pre>
+#
+<p>The <code>log_msg</code> function is the workhorse of the logging system;
+The function <code>info</code> is a convenience function that calls <code>log_msg</code>
+with a particular priority.</p>
+#
+<pre><code class="c">#include &quot;log.h&quot;
+#
+int main()
+{
+    log_msg(LOG_INFO, &quot;hello world&quot;);
+    info(&quot;hello world&quot;);
+}
+</code></pre>
+#
+<p>The priorities are derived from syslog.
+So, there&#8217;s a few more logging convenience functions: <code>debug</code>, <code>info</code>,
+<code>notice</code>, <code>warning</code>, <code>err</code>, <code>crit</code>, <code>alert</code>, and <code>emerg</code>.</p>
+#
+<h2 id="per-modulelogging">Per-Module Logging</h2>
+#
+<pre><code>struct LogModule { char *name, int printable };
+getenv(&quot;LOG_GROUPS&quot;);
+LOG_GROUPS=&quot;alpha,beta,gamma&quot;
+LOG_GROUPS=&quot;!delta,epsilon&quot;
+#
+#include &quot;log-group.h&quot;
+static LogGroup foo = { &quot;foo&quot; };
+#
+int foo(void)
+{
+    group_info(&amp;foo, &quot;That's %s, folks&quot;, &quot;all&quot;);
+    group_notice(&amp;foo, &quot;%s: That's %s, folks&quot;, foo.name, &quot;all&quot;);
+}
+</code></pre>
+#
+</body>
+</html>

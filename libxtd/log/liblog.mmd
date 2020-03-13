@@ -1,0 +1,105 @@
+title: Logging
+css: file:///usr/local/share/doc/css/plain.css
+html header: <link type="text/css" rel="stylesheet" href="/usr/local/share/doc/css/numbered.css"/>
+    <link type="text/css" rel="stylesheet" href="/usr/local/share/doc/js/styles/default.css"/>
+    <script src="/usr/local/share/doc/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+#
+# [%title%]
+#
+## Introduction
+Almost every program produces at least *some* output, and for most
+programs, that output may be categorised as either:
+#
+* functional output (e.g. the results from some calculation)
+* diagnostic output (e.g. progress indicators, error messages, etc.)
+#
+On most POSIX systems, these outputs are typically separated into
+separate *file descriptors*: `stdout` (1) and `stderr` (2).  Often, these
+descriptors refer to the same place, i.e. the "terminal", but it's
+quite common and convenient to redirect these:
+#
+```shell
+$ my-command >my-command.log 2>my-command.err
+```
+#
+There's more to it than that: `stderr` is usually line-buffered (complete lines
+are printed immediately), while `stdout` may be block buffered, and text is
+only printed when a full buffer is flushed.
+#
+Furthermore, programs that run in the background (e.g. Unix "daemons") may not
+have these file descriptors open at all.  Instead of printing to `stderr`,
+daemons send diagnostic messages to the **syslog** service.
+#
+## Design Goals
+* the API is concise: logging does not clutter the code logic
+* messages are atomic: they don't get mixed up in a single line
+* selective output: controlled/specified by the user at runtime
+* compile-time exclusion: logging code can be removed entirely
+* assert handling, NDEBUG etc.
+* custom output handling: at a minimum, syslog, stderr.
+#
+## Example
+#
+The basics.
+#
+```c
+#include <log.h>
+#
+int main()
+{
+    info("hello world");
+}
+```
+#
+Note that the text doesn't end with a newline ("\\n") character.  The
+logger will add this as needed, depending on how the output is handled.
+#
+The logging functions can print more than a simple string;  they
+accept `printf` style arguments:
+#
+```c
+#include <log.h>
+#
+int main(int argc, char *argv[])
+{
+    info("hello %s", argv[1]);
+}
+```
+#
+#
+The `log_msg` function is the workhorse of the logging system;
+The function `info` is a convenience function that calls `log_msg`
+with a particular priority.
+#
+```c
+#include <log.h>
+#
+int main()
+{
+    log_msg(LOG_INFO, "hello world");
+    info("hello world");
+}
+```
+#
+The priorities are derived from syslog.
+So, there's a few more logging convenience functions: `debug`, `info`,
+`notice`, `warning`, `err`, `crit`, `alert`, and `emerg`.
+#
+#
+## Per-Module Logging
+```c
+struct LogModule { char *name, int printable };
+getenv("LOG_DOMAINS");
+LOG_DOMAINS="alpha,beta,gamma"
+LOG_DOMAINS="!delta,epsilon"
+#
+#include <log-group.h>
+static LogGroup foo = { "foo" };
+#
+int foo(void)
+{
+    group_info(&foo, "That's %s, folks", "all");
+    group_notice(&foo, "%s: That's %s, folks", foo.name, "all");
+}
+```

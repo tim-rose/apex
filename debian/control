@@ -1,0 +1,7 @@
+Package: xtd
+Section: misc
+Priority: extra
+Maintainer: Tim Rose <tim.rose@acm.org>
+Architecture: i386
+Version: 0.0.0
+Description: A library of xtd (i.e. suitable) extensions to the C library.
