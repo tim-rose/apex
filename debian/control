@@ -1,4 +1,4 @@
-Package: xtd
+Package: libxtd
 Section: misc
 Priority: extra
 Maintainer: Tim Rose <tim.rose@acm.org>
