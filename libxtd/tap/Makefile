@@ -16,6 +16,6 @@ LOCAL.C_WARN_FLAGS = -Wno-format-nonliteral
 C_SRC = tap.c
 H_SRC = tap.h test.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 install: install-lib-include
 uninstall: uninstall-lib-include

@@ -16,7 +16,7 @@ H_SRC = gnuattr.h xtd.h
 
 MK_SRC = target-depend.mk
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 include target-depend.mk
 
 install: install-lib

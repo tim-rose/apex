@@ -5,4 +5,4 @@
 language = sh
 SH_SRC = postinst.sh
 
-include devkit.mk
+include makeshift.mk

@@ -8,7 +8,7 @@ C_SRC = estring.c memswap.c stredit.c strlist.c strparse.c \
     textbuf.c
 H_SRC = estring.h strparse.h textbuf.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

@@ -7,7 +7,7 @@ LIB_ROOT = ..
 C_SRC = binsearch.c sysenum.c
 H_SRC = binsearch.h sysenum.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

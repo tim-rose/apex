@@ -4,7 +4,7 @@
 PACKAGE	= libxtd
 package-type = rpm deb
 
-include devkit.mk version.mk package.mk
+include makeshift.mk version.mk package.mk
 
 build@test:	build@libxtd
 build@cmd:	build@libxtd

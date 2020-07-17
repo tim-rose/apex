@@ -9,7 +9,7 @@ LOCAL.C_WARN_FLAGS = -Wno-format-nonliteral
 C_SRC = csv.c
 H_SRC = csv.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

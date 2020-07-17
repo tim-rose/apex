@@ -177,7 +177,7 @@ char *vstrcat(char *dst, const char *src, ... /* NULL */ )
  * dst      --the destination string buffer
  * delim    --the delimiter character
  * n        --the number of strings
- * src,...  --the strings to be copied
+ * src,...  --the strings to be joined
  *
  * Returns: (char *)
  * The end of the copied strings.

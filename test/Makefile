@@ -18,7 +18,7 @@ C_MAIN_SRC = test-binsearch.c test-convert.c test-csv.c \
     test-systools.c test-tfile.c test-url.c test-vector.c \
     test-xtd.c
 
-include devkit.mk test/tap.mk
+include makeshift.mk test/tap.mk
 
 $(C_MAIN):	-lxtd
 

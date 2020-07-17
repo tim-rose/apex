@@ -8,7 +8,7 @@ LOCAL.C_WARN_FLAGS = -Wno-switch-enum
 C_SRC = symbol.c
 H_SRC = symbol.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

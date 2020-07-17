@@ -8,7 +8,7 @@ LOCAL.C_WARN_FLAGS	= -Wno-cast-align
 C_SRC = vector.c
 H_SRC = vector.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

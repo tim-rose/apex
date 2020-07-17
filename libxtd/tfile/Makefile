@@ -7,7 +7,7 @@ LIB_ROOT = ..
 C_SRC = tfile.c
 H_SRC = tfile.h
 
-include devkit.mk library.mk
+include makeshift.mk library.mk
 
 install: install-lib-include
 uninstall: uninstall-lib-include

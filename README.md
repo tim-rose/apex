@@ -48,7 +48,7 @@ TBD
 
 ## Requirements
 
-* [devkit](https://github.com/tim-rose/devkit)
+* [makeshift](https://github.com/tim-rose/makeshift)
 
 ## Installation
 

@@ -11,6 +11,7 @@
  * textbuf_gets()    --Get the next line from a textbuffer.
  *
  * TODO: implement textbuf_tell()
+ * TODO: replace this with funopen()!
  */
 
 #include <string.h>
