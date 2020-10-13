@@ -196,27 +196,34 @@ int config_load_ini(const char *file, const char *UNUSED(section),
                     Option opts[])
 {
     char config_file[FILENAME_MAX];
+    char config_path[FILENAME_MAX];
     IniPtr ini = NULL;
+    int status = 1;                     /* OK so far... */
+
+    vstrcat(config_file, file, ".conf", (char *) NULL);
 
     if (*file != '.' && *file != '/')
     {                                  /*  relative path: simply open it */
         const char *dir;
 
-        vstrcat(config_file, file, ".conf", (char *) NULL);
         if ((dir = resolve_path(get_config_path(), config_file)) == NULL)
         {
+            debug("cannot find configuration \"%s\"", config_file);
             return 0;                  /* error: can't find file? */
         }
-        vstrcat(config_file, dir, "/", file, ".conf", (char *) NULL);
-        file = config_file;
+        vstrcat(config_path, dir, "/", config_file, (char *) NULL);
     }
-    info("loading configuration from \"%s\"", file);
-    if ((ini = ini_fopen(file)) != NULL)
+    debug("loading configuration \"%s\"", config_path);
+    if ((ini = ini_fopen(config_path)) != NULL)
     {
         int status = ini_parse(ini, opt_ini_, opts);
 
         ini_close(ini);
-        return status;                 /* success/fail */
     }
-    return 0;                          /* error: no such file? */
+    else
+    {
+        debug("cannot load configuration \"%s\"", config_file);
+        status = 0;
+    }
+    return status;
 }
