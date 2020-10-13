@@ -15,7 +15,7 @@ extern "C"
     char *get_env_variable(const char *name, char *default_value);
     void create_pidfile(const char *path);
     void unlink_pidfile(void);
-    int wait_input(TimeValuePtr tv, size_t n_fd, int fd[]);
+    int wait_input(fd_set *input_set, fd_set *err_set, TimeValuePtr tv, size_t n_fd, int fd[]);
     const char *path_basename(const char *path);
     const char *path_dirname(const char *path, size_t n, char dir_buf[]);
     int make_path(const char *path);

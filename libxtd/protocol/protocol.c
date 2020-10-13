@@ -4,8 +4,8 @@
  * Contents:
  * open_connect()   --Open a socket, and "connect" to it.
  * open_listen()    --Open a socket, bind and "listen" to it.
- * readn()          --Read some bytes from a descriptor.
- * writen()         --Write some bytes to a descriptor.
+ * fdread()          --Read some bytes from a descriptor.
+ * fdwrite()         --Write some bytes to a descriptor.
  * pack()           --Pack a value into a memory buffer.
  * unpack()         --Unpack a value from a memory buffer.
  * _setup_address() --setup the sockaddr structure for a socket.
@@ -106,7 +106,7 @@ int open_listen(const char *address, int domain, int type)
 }
 
 /*
- * readn() --Read some bytes from a descriptor.
+ * fdread() --Read some bytes from a descriptor.
  *
  * Parameters:
  * fd   --the descriptor to read from
@@ -120,9 +120,9 @@ int open_listen(const char *address, int domain, int type)
  *  This routine provides a primitive buffering/retry layer over
  *  raw read() calls.
  *
- *  readn() has been adapted from: Unix Network Programming (Stevens)
+ *  fdread() has been adapted from: Unix Network Programming (Stevens)
  */
-ssize_t readn(int fd, void *vptr, size_t n)
+ssize_t fdread(int fd, void *vptr, size_t n)
 {
     char *ptr = vptr;
     size_t nleft = n;
@@ -153,7 +153,7 @@ ssize_t readn(int fd, void *vptr, size_t n)
 }
 
 /*
- * writen() --Write some bytes to a descriptor.
+ * fdwrite() --Write some bytes to a descriptor.
  *
  * Parameters:
  * fd   --the descriptor to write from
@@ -164,9 +164,9 @@ ssize_t readn(int fd, void *vptr, size_t n)
  *  Success: the number of bytes written; Failure: -1.
  *
  *  Remarks:
- *  writen() has been adapted from: Unix Network Programming (Stevens)
+ *  fdwrite() has been adapted from: Unix Network Programming (Stevens)
  */
-ssize_t writen(int fd, void *vptr, size_t n)
+ssize_t fdwrite(int fd, void *vptr, size_t n)
 {
     const char *ptr = vptr;
     size_t nleft = n;
