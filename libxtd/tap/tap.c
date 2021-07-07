@@ -103,15 +103,15 @@ static void tap_init_(void)
     }
     if (isatty(1))
     {                                  /* coloured output to stdout */
-        pass_style = "\033[32m";	/* green */
-        fail_style = "\033[1;31m";	/* bold red */
-        todo_style = "\033[36m";	/* cyan */
-        plan_style = "\033[1m";		/* bold */
+        pass_style = "\033[32m";       /* green */
+        fail_style = "\033[1;31m";     /* bold red */
+        todo_style = "\033[36m";       /* cyan */
+        plan_style = "\033[1m";        /* bold */
         end_style = "\033[m";
     }
     if (isatty(2))
     {                                  /* coloured output to stderr */
-        diag_style = "\033[3m";		/* dim */
+        diag_style = "\033[3m";        /* dim */
     }
 }
 
@@ -362,7 +362,7 @@ void diag(const char *fmt, ...)
     va_start(arglist, fmt);
     end += tap_format_(end, CHARS_REMAINING(text, end), fmt, arglist);
     va_end(arglist);
-    fprintf(stderr, "%s%s%s\n", diag_style, text, end_style);
+    fprintf(stdout, "%s%s%s\n", diag_style, text, end_style);
 }
 
 /*
