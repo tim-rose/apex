@@ -33,56 +33,56 @@ int adjust_ut(time_t * t, int delta, char *unit)
     {
     case 's':
     case 'S':
-        if (vstrcasematch(unit, "s", "second", "seconds", NULL) >= 0)
+        if (vstrcasematch(unit, "s", "second", "seconds", NULLPTR) >= 0)
         {
             field = &t_tm.tm_sec;
         }
         break;
     case 'M':
-        if (vstrcasematch(unit, "m", "month", "months", NULL) >= 0)
+        if (vstrcasematch(unit, "m", "month", "months", NULLPTR) >= 0)
         {
             goto unit_month;
         }
       unit_minute:
-        if (vstrcasematch(unit, "m", "minute", "minutes", NULL) >= 0)
+        if (vstrcasematch(unit, "m", "minute", "minutes", NULLPTR) >= 0)
         {
             field = &t_tm.tm_min;
         }
         break;
     case 'h':
     case 'H':
-        if (vstrcasematch(unit, "h", "hour", "hours", NULL) >= 0)
+        if (vstrcasematch(unit, "h", "hour", "hours", NULLPTR) >= 0)
         {
             field = &t_tm.tm_hour;
         }
         break;
     case 'd':
-        if (vstrcasematch(unit, "d", "day", "days", NULL) >= 0)
+        if (vstrcasematch(unit, "d", "day", "days", NULLPTR) >= 0)
         {
             field = &t_tm.tm_mday;
         }
         break;
     case 'w':
-        if (vstrcasematch(unit, "w", "week", "weeks", NULL) >= 0)
+        if (vstrcasematch(unit, "w", "week", "weeks", NULLPTR) >= 0)
         {
             field = &t_tm.tm_mday;
         }
         delta *= 7;
         break;
     case 'm':
-        if (vstrcasematch(unit, "m", "minute", "minutes", NULL) >= 0)
+        if (vstrcasematch(unit, "m", "minute", "minutes", NULLPTR) >= 0)
         {
             goto unit_minute;
         }
       unit_month:
-        if (vstrcasematch(unit, "m", "month", "months", NULL) >= 0)
+        if (vstrcasematch(unit, "m", "month", "months", NULLPTR) >= 0)
         {
             field = &t_tm.tm_mon;
         }
         break;
     case 'y':
     case 'Y':
-        if (vstrcasematch(unit, "y", "year", "years", NULL) >= 0)
+        if (vstrcasematch(unit, "y", "year", "years", NULLPTR) >= 0)
         {
             field = &t_tm.tm_year;
         }
@@ -91,7 +91,7 @@ int adjust_ut(time_t * t, int delta, char *unit)
         return 0;                      /* error: bad delta unit */
         break;                         /* NOTREACHED */
     }
-    if (field != NULL)
+    if (field != NULLPTR)
     {
         *field += delta;
         t_tm.tm_isdst = -1;            /* dst may be different now */
