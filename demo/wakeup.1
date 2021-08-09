@@ -1,0 +1,63 @@
+.\" WAKEUP.1 --Manual page for "wakeup"
+.\"
+.\" $Id: wakeup.1 2643 2011-05-05 01:22:56Z tar $
+.\"
+.TH WAKEUP 1 "14 Dec 2011" "Xtd" "Extended commands"
+.SH NAME 
+wakeup \- a restricted version of kill(1)
+.SH SYNOPSIS
+.SY wakeup
+.OP -r run-dir
+.OP -s signal
+.OP process ...
+.YS
+.SH DESCRIPTION
+The 
+.B wakeup
+command sends a SIGALRM signal to the specified process(es).  It is
+usually installed as setuid
+.IR root ,
+so it can be used by lesser privileged programs to trigger actions in
+more privileged ones.
+
+Processes may be specified by their number, or by name.  If a name is
+used, 
+.B wakeup
+looks for the process ID in a "pidfile", as is typically stored in "/var/run".
+.SH OPTIONS
+.TP
+.BI \-r\  directory
+.TQ
+.BI \-\-rundir\fR= directory
+Look for named processes by their pid files in 
+.IR directory .
+The default path is "/var/run".
+.TP
+.BI \-s\  signal
+.TQ
+.BI \-\-signal\fR= signal
+Send a different signal.  
+.B wakeup
+is intentionally restricted in the signals it will allow:
+.RS
+.PD 0
+.TP 12
+.B SIGHUP
+hangup
+.TP
+.B SIGALRM
+alarm
+.TP
+.B SIGUSR1
+user-defined signal 1
+.TP
+.B SIGUSR2
+user-defined signal 2
+.RE
+.PD
+.SH "EXIT STATUS"
+.B wakeup
+returns 2 if there was an error in the command line
+arguments, 1 if there were other processing errors.
+.SH SEE ALSO
+.BR kill (1).
