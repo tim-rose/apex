@@ -5,7 +5,7 @@
 #ifndef CLINK_H
 #define CLINK_H
 
-#include <link.h>                      /* for Link, CompareProc, VisitProc */
+#include <slink.h>                      /* for Link, CompareProc, VisitProc */
 
 #ifdef __cplusplus
 extern "C"

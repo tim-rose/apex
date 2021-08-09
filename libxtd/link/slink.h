@@ -1,5 +1,5 @@
 /*
- * LINK.H --Definitions for singly-linked lists.
+ * SLINK.H --Definitions for singly-linked lists.
  *
  */
 #ifndef LINK_H
@@ -25,7 +25,7 @@ extern "C"
     /*
      * VisitProc --Visitor function for LinkVisit().
      */
-    typedef void *(*VisitProc) (void *data, void *closure);
+    typedef void *(*VisitProc)(void *data, void *closure);
 
     /*
      * Link --Singly-linked list node structure.
