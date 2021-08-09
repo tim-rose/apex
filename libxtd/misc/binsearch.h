@@ -15,10 +15,10 @@ extern "C"
     /*
      * CompareProc --Comparison function for ordered items.
      */
-    typedef int (*CompareProc) (const void *data, const void *key);
+    typedef int (*CompareProc)(const void *data, const void *key);
 
     size_t binsearch(void *key, void *base, size_t n_elements, size_t size,
-                     CompareProc compare, bool * status);
+                     CompareProc compare, bool *status);
 
 #ifdef __cplusplus
 }

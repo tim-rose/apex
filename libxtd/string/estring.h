@@ -37,7 +37,7 @@ extern "C"
     char *strtrunc(char *str, size_t len, char *text_buffer);
     char *estrtolower(char *str);
     char *estrtoupper(char *str);
-    char *estrmap(char *dst, const char *src, int (*func) (int ch));
+    char *estrmap(char *dst, const char *src, int (*func)(int ch));
     char *estrsub(char *str, int match, int replace, bool global);
     char *estrtr(char *str, const char *match, const char *replace);
     size_t strsplit(char *str, int delimter);

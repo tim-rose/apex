@@ -47,7 +47,7 @@ static int csv_copy_file(const char *path1, const char *path2)
 {
     CSVFilePtr in;
     CSVFilePtr out;
-    Atom value[100];
+    Atom value[100];                   /* REVISIT: magic numbers */
     char bytes[4096];
 
     if ((in = csv_open(path1, "r")) == NULL)

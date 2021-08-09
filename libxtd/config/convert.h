@@ -11,7 +11,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef double (*ConvertProc) (double data, void *caller_data);
+    typedef double (*ConvertProc)(double data, void *caller_data);
 
     typedef struct Conversion_t
     {

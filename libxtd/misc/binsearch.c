@@ -31,7 +31,7 @@
  * past the end of the array.  You have been warned.
  */
 size_t binsearch(void *key, void *base, size_t n_elements, size_t size,
-                 CompareProc compare, bool * status)
+                 CompareProc compare, bool *status)
 {
     size_t mid;
     int low, high, cmp;

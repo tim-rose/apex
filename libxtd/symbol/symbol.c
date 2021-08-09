@@ -405,7 +405,7 @@ int print_sym_path(AtomPtr path)
 /*
  * enum_cmp() --Compare two Enums for sorting.
  */
-int enum_cmp(EnumPtr a, EnumPtr b)
+int enum_cmp(const Enum * a, const Enum * b)
 {
     return strcmp(a->name, b->name);
 }

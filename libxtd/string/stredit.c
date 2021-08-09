@@ -195,7 +195,7 @@ char *estrtr(char *str, const char *match, const char *replace)
  * Returns: (char *)
  * The end of the output string.
  */
-char *estrmap(char *dst, const char *src, int (*func) (int c))
+char *estrmap(char *dst, const char *src, int (*func)(int c))
 {
     int c;
 

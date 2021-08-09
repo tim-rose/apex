@@ -198,7 +198,7 @@ int config_load_ini(const char *file, const char *UNUSED(section),
     char config_file[FILENAME_MAX];
     char config_path[FILENAME_MAX];
     IniPtr ini = NULL;
-    int status = 1;                     /* OK so far... */
+    int status = 1;                    /* OK so far... */
 
     vstrcat(config_file, file, ".conf", (char *) NULL);
 

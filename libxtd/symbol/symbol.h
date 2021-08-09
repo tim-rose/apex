@@ -67,8 +67,8 @@ extern "C"
         double real;
         SYMBOL_INT integer;
         char *string;
-        struct Atom_t *list;             /* vector of values */
-        struct Symbol_t *field;          /* vector of fields */
+        struct Atom_t *list;           /* vector of values */
+        struct Symbol_t *field;        /* vector of fields */
     } Value, *ValuePtr;
 
     /*
@@ -128,7 +128,7 @@ extern "C"
     int fprint_sym_path(FILE * fp, AtomPtr path);
     int print_sym_path(AtomPtr path);
 
-    int enum_cmp(EnumPtr a, EnumPtr b);
+    int enum_cmp(const Enum * a, const Enum * b);
 
     Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * value_ptr);
     Type sym_get_value(SymbolPtr symtab, AtomPtr path, ValuePtr value);

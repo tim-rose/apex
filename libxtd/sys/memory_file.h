@@ -14,9 +14,9 @@
  */
 typedef struct MemoryFile_t
 {
-    fpos_t position;                    /* current position in data[] */
-    fpos_t size;                        /* size of data[] in bytes */
-    char *data;                         /* pointer to data[] */
+    fpos_t position;                   /* current position in data[] */
+    fpos_t size;                       /* size of data[] in bytes */
+    char *data;                        /* pointer to data[] */
 } MemoryFile, *MemoryFilePtr;
 #ifdef __cplusplus
 extern "C"

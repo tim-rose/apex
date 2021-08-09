@@ -5,7 +5,7 @@
 #define VECTOR_H
 
 #include <xtd.h>
-#include <link.h>                      /* VisitProc */
+#include <slink.h>                      /* VisitProc */
 
 #ifdef __cplusplus
 extern "C"
@@ -29,7 +29,7 @@ extern "C"
     int vector_len(void *vp);
     void *visit_vector(void *vector, VisitProc visit, void *user_data);
     size_t search_vector(void *vector, void *el, CompareProc el_cmp,
-                         bool * statusp);
+                         bool *statusp);
     void *vector_add(void *vector, size_t n_el, void *new_el) WARN_UNUSED;
     void *vector_insert(void *vector, size_t offset, size_t n_el,
                         void *new_el) WARN_UNUSED;

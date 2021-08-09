@@ -45,8 +45,8 @@ extern "C"
      * before a section stanza has been seen, the supplied section
      * argument will be NULL.
      */
-    typedef int (*IniProc) (IniPtr ini, const char *section, const char *name,
-                            const char *value, void *data);
+    typedef int (*IniProc)(IniPtr ini, const char *section, const char *name,
+                           const char *value, void *data);
 
     void ini_err(IniPtr c, const char *fmt, ...);
     int ini_parse(IniPtr ini, IniProc proc, void *data);

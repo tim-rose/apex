@@ -88,9 +88,9 @@ extern "C"
      *
      *  Custom handlers can be defined by log_config(), log_handler().
      */
-    typedef int (*LogOutputProc) (LogConfigPtr config, LogContextPtr caller,
-                                  int sys_errno, size_t priority,
-                                  const char *fmt, va_list args);
+    typedef int (*LogOutputProc)(LogConfigPtr config, LogContextPtr caller,
+                                 int sys_errno, size_t priority,
+                                 const char *fmt, va_list args);
     /*
      * Built-in log handlers...
      */

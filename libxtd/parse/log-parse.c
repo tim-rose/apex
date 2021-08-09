@@ -64,7 +64,7 @@ LogRecordPtr log_parse_r(LogRecordPtr log_record, const char *str,
  * Returns: (LogRecordPtr)
  * Success: an initialised log record; Failure: NULL.
  */
-LogRecordPtr log_parse(const char *str, struct tm * tm_base)
+LogRecordPtr log_parse(const char *str, struct tm *tm_base)
 {
     static LogRecord log_record;
 
@@ -85,8 +85,7 @@ LogRecordPtr log_parse(const char *str, struct tm * tm_base)
  * Remarks:
  * This function conflates the error cases for fgets() and decode_syslog_().
  */
-LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp,
-                       struct tm * tm_base)
+LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp, struct tm *tm_base)
 {
     if (fgets(log_record->text, sizeof(log_record->text), fp) != NULL)
     {

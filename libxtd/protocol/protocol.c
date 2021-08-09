@@ -4,8 +4,8 @@
  * Contents:
  * open_connect()   --Open a socket, and "connect" to it.
  * open_listen()    --Open a socket, bind and "listen" to it.
- * fdread()          --Read some bytes from a descriptor.
- * fdwrite()         --Write some bytes to a descriptor.
+ * fdread()         --Read some bytes from a descriptor.
+ * fdwrite()        --Write some bytes to a descriptor.
  * pack()           --Pack a value into a memory buffer.
  * unpack()         --Unpack a value from a memory buffer.
  * _setup_address() --setup the sockaddr structure for a socket.

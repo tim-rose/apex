@@ -27,8 +27,7 @@ extern "C"
      * Returns: (int)
      * Success: 1; Failure: 0.
      */
-    typedef int (*OptionProc) (const char *name, const char *text,
-                               void *data);
+    typedef int (*OptionProc)(const char *name, const char *text, void *data);
 
     typedef struct Option_t
     {

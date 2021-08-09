@@ -84,9 +84,9 @@ static const char *logrec_sprint_(LogRecordPtr lr)
 int main(void)
 {
     LogRecordPtr l;
-    struct tm base_tm = {.tm_isdst = -1 }, feb_tm =
-    {
-    .tm_isdst = -1};
+    struct tm base_tm = {.tm_isdst = -1 }, feb_tm = {
+        .tm_isdst = -1
+    };
     time_t feb_ut, now_ut;
 
     /* setup reference timestamp as an epoch */

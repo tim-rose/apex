@@ -20,7 +20,7 @@ extern "C"
      * The value returned by this function will be remaindered with the
      * hash table size.
      */
-    typedef unsigned long (*HashProc) (char *data);
+    typedef unsigned long (*HashProc)(char *data);
 
     /*
      * Hash     --Fixed size hash table structure.

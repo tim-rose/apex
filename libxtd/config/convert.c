@@ -7,7 +7,7 @@
  * convert_duration[]   --Convert time/duration to SI: seconds.
  * convert_temperature[] --Convert temperature to SI(ish): Celsius.
  * convert_mass[]       --Convert mass to SI: kg.
- * str_convert()        --Parse a string and convert to some units.
+ * str_convert()        --Parse a string as a (double) and convert to SI units.
  * str_convertn()       --Parse a string and convert to some units.
  * scale()              --Simple scaling conversion function.
  * linear()             --Simple linear (y = mx + c) conversion function.
@@ -43,8 +43,7 @@ static double u_factor = 1 / 1000000.0;
 /*
  * convert_velocity[] --Convert velocity/speed to SI: m/s.
  */
-Conversion convert_velocity[] =
-{
+Conversion convert_velocity[] = {
     {"kph", (ConvertProc) scale, (void *) &kph_factor},
     {"km/h", (ConvertProc) scale, (void *) &kph_factor},
     {"mph", (ConvertProc) scale, (void *) &mph_factor},
@@ -57,8 +56,7 @@ Conversion convert_velocity[] =
 /*
  * convert_length[] --Convert length to SI: metres.
  */
-Conversion convert_length[] =
-{
+Conversion convert_length[] = {
     {"m", (ConvertProc) scale, (void *) &unity_factor},
     {"metre", (ConvertProc) scale, (void *) &unity_factor},
     {"metres", (ConvertProc) scale, (void *) &unity_factor},
@@ -83,8 +81,7 @@ Conversion convert_length[] =
  *
  * REVISIT: store duration as a timeval.
  */
-Conversion convert_duration[] =
-{
+Conversion convert_duration[] = {
     {"s", (ConvertProc) scale, (void *) &unity_factor},
     {"ms", (ConvertProc) scale, (void *) &m_factor},
     {"us", (ConvertProc) scale, (void *) &u_factor},
@@ -97,13 +94,11 @@ Conversion convert_duration[] =
  * Strictly speaking Kelvin is the SI unit, but Celsius is
  * more common, even in scientific contexts.
  */
-static LinearConvertArg fahrenheit_arg =
-{
+static LinearConvertArg fahrenheit_arg = {
     .m = 5.0 / 9.0,.c = -32.0 * 5.0 / 9.0
 };
 
-static LinearConvertArg kelvin_arg =
-{
+static LinearConvertArg kelvin_arg = {
     .m = 1.0,.c = -273.15
 };
 
@@ -157,8 +152,7 @@ int str_convert(const char *opt, double *value_ptr, Conversion conversions[])
         if (strcmp(end, conversion->name) == 0)
         {
             *value_ptr =
-                conversion->convert(
-                    *value_ptr, conversion->caller_data);
+                conversion->convert(*value_ptr, conversion->caller_data);
             return 1;                  /* success: apply conversion */
         }
     }
@@ -202,8 +196,7 @@ int str_convertn(const char *opt, double *value_ptr, size_t n_conversion,
         if (strcmp(end, conversion->name) == 0)
         {
             *value_ptr =
-                conversion->convert(
-                    *value_ptr, conversion->caller_data);
+                conversion->convert(*value_ptr, conversion->caller_data);
             return 1;                  /* success: apply conversion */
         }
     }

@@ -62,7 +62,7 @@ static const char *date_time_list[] = {
  */
 static time_t timegm_(struct tm *tm)
 {
-    time_t t = mktime(tm);
+    time_t t = 0;
 
 #ifdef xxx__Windows_NT__               /* Windows doesn't have gmtoff */
     {
@@ -79,6 +79,7 @@ static time_t timegm_(struct tm *tm)
         tzset();
     }
 #else
+    t = mktime(tm);
     t += tm->tm_gmtoff;
 #endif /* Windows_NT */
     return t;
