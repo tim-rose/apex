@@ -71,10 +71,11 @@ char *get_env_variable(const char *name, char *default_value)
  * This is a convenience function for the common case of using
  * select to wait for one or more inputs.
  */
-int wait_input(fd_set *input_set, fd_set *err_set, TimeValuePtr tv, size_t n_fd, int fd[])
+int wait_input(fd_set * input_set, fd_set * err_set, TimeValuePtr tv,
+               size_t n_fd, int fd[])
 {
     int max_fd = -1;
-    TimeValue timeout = *tv;            /* copy, because select() mutates */
+    TimeValue timeout = *tv;           /* copy, because select() mutates */
 
     if (tv->tv_sec < 0)
     {                                  /* avoid EINVAL... */
@@ -90,7 +91,7 @@ int wait_input(fd_set *input_set, fd_set *err_set, TimeValuePtr tv, size_t n_fd,
         FD_SET(fd[i], err_set);
         max_fd = MAX(max_fd, fd[i]);
     }
-    return select(max_fd + 1, input_set, NULL, NULL, &timeout);
+    return select(max_fd + 1, input_set, NULL, err_set, &timeout);
 }
 
 /*
