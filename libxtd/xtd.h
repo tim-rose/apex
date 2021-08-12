@@ -108,10 +108,10 @@
  */
 #ifdef TEMP_FAILURE_RETRY
 #define SYS_RETRY(result_, expression_) \
-    _result_ = TEMP_FAILURE_RETRY(expression_)
+    result_ = TEMP_FAILURE_RETRY(expression_)
 #else
 #define SYS_RETRY(result_, expression_) \
-    do { _result_ = (expression_); } \
-    while (_result_ == -1 && (errno == EINTR || errno == EAGAIN))
+    do { result_ = (expression_); } \
+    while (result_ == -1 && (errno == EINTR || errno == EAGAIN))
 #endif /* TEMP_FAILURE_RETRY */
 #endif /* XTD_H */

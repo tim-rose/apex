@@ -5,7 +5,7 @@ language = c
 LIB_ROOT = ..
 
 C_SRC = clink.c linkalloc.c
-H_SRC = clink.h link.h
+H_SRC = clink.h slink.h
 
 include makeshift.mk library.mk
 install: install-lib-include
