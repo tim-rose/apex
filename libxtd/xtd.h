@@ -32,7 +32,14 @@
 #include <stdlib.h>
 #include <gnuattr.h>
 
-#define NULLPTR ((void *) NULL)
+#ifdef __WINNT__
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#endif /* __WINNT__ */
+
+#define NULLPTR ((void *) NULL) /* pointer-sized NULL (for stdarg) */
 
 #ifndef NAME_MAX
 #define NAME_MAX 256
