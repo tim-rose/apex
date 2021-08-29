@@ -12,5 +12,5 @@ C_SRC = log-demo.c wakeup.c
 include makeshift.mk 
 
 $(C_MAIN):      -lxtd
-install:	install-all
-uninstall:	uninstall-all
+#install:	install-all
+#uninstall:	uninstall-all
