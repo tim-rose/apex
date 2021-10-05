@@ -11,14 +11,12 @@
  * sprint_sym_path() --Format a path to a string.
  * fprint_sym_path() --Print a path to file.
  * print_sym_path()  --Print a path to stdout.
- * enum_cmp()        --Compare two Enums for sorting.
  * list_get_()       --Find a list item specified by a (compiled) symbol path.
  * sym_get()         --Find the a symbol's value by a (compiled) symbol path.
  * sym_get_value()   --Find the value of a symbol by a (compiled) symbol path.
  * sym_get_int()     --Return a symbol's value coerced to an int.
  * sym_get_real()    --Return a symbol's value coerced to a real.
  * sym_get_str()     --Return a symbol's value coerced to a string.
- * str_enum()        --Set an enum opts value.
  *
  * Remarks:
  * TBD
@@ -403,15 +401,6 @@ int print_sym_path(AtomPtr path)
 }
 
 /*
- * enum_cmp() --Compare two Enums for sorting.
- */
-int enum_cmp(const Enum * a, const Enum * b)
-{
-    return strcmp(a->name, b->name);
-}
-
-
-/*
  * list_get_() --Find a list item specified by a (compiled) symbol path.
  *
  * Parameters:
@@ -614,40 +603,6 @@ int sym_get_str(SymbolPtr symtab, AtomPtr path, char **value)
     {
         *value = v.string;
         return 1;
-    }
-    return 0;
-}
-
-/*
- * str_enum() --Set an enum opts value.
- *
- * Parameters:
- * opt  --the string option to be parsed
- * n_item, item     --the enum items to match against "opt"
- * valp    --returns the selected item's value
- *
- * Returns: (int)
- * Success: 1; Failure: 0.
- *
- * Remarks:
- * Although the n_items parameter must be specified, note that this
- * code will bail at the first "empty" item slot anyway, so it's OK to
- * supply a "sufficiently large" value, as long as there's an empty
- * slot at the end.
- */
-int str_enum(const char *opt, size_t n_items, Enum item[], int *valp)
-{
-    for (size_t i = 0; i < n_items; ++i)
-    {
-        if (item[i].name == NULL)
-        {
-            break;                     /* whoops: end of enum list */
-        }
-        if (strcasecmp(opt, item[i].name) == 0)
-        {
-            *valp = item[i].value;
-            return 1;
-        }
     }
     return 0;
 }
