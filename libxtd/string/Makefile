@@ -4,9 +4,8 @@
 language = c
 LIB_ROOT = ..
 
-C_SRC = estring.c memswap.c stredit.c strlist.c strparse.c \
-    textbuf.c
-H_SRC = estring.h strparse.h textbuf.h
+C_SRC = estring.c memswap.c stredit.c strlist.c strparse.c
+H_SRC = estring.h strparse.h
 
 include makeshift.mk library.mk
 
