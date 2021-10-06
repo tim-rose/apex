@@ -42,7 +42,7 @@ int enum_cmp(const Enum * a, const Enum * b)
  * supply a "sufficiently large" value, as long as there's an empty
  * slot at the end.
  */
-int str_enum(const char *opt, size_t n_items, Enum item[], int *valp)
+int str_enum(const char *name, size_t n_items, Enum item[], int *valp)
 {
     for (size_t i = 0; i < n_items; ++i)
     {
@@ -50,7 +50,7 @@ int str_enum(const char *opt, size_t n_items, Enum item[], int *valp)
         {
             break;                     /* whoops: end of enum list */
         }
-        if (strcmp(opt, item[i].name) == 0)
+        if (strcmp(name, item[i].name) == 0)
         {
             *valp = item[i].value;
             return 1;
@@ -62,7 +62,7 @@ int str_enum(const char *opt, size_t n_items, Enum item[], int *valp)
 /*
  * enum_value() --Return the value for an Enum name.
  */
-int enum_value(const EnumPtr item, const char *name)
+int enum_value(const char *name, const EnumPtr item)
 {
     int value = -1;
 
@@ -72,15 +72,23 @@ int enum_value(const EnumPtr item, const char *name)
 
 /*
  * enum_name() --Return the name of an Enum value.
+ *
+ * Parameters:
+ * value   --the enum element value
+ * item --the table of Enums, NULL terminated
+ *
+ * Returns:
+ * Success: the module_state name; Failure: NULL.
+ *
+ * Remarks:
+ * This does a simple linear scan, because the tables are known to be
+ * small.  binsearch() could work for larger tables.  I'm not assuming
+ * the IDs are consecutive ints, so direct addressing is not used.
  */
-const char *enum_name(EnumPtr item, int value)
+const char *enum_name(int value, EnumPtr item)
 {
-    for (size_t i = 0; ; ++i)
+    for (size_t i = 0; item[i].name != NULL; ++i)
     {
-        if (item[i].name == NULL)
-        {
-            return NULL;                /* failure: end of list */
-        }
         if (item[i].value == value)
         {
             return item[i].name;        /* success: found (first) value */

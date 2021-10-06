@@ -1,4 +1,3 @@
-
 /*
  * ESTRING.H --Definitions for some extended C-string functions.
  *

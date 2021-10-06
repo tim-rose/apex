@@ -136,9 +136,9 @@ extern "C"
     int sym_get_enum(SymbolPtr symtab, size_t n_enum, EnumPtr enums, AtomPtr path, int **value);    /* not implemented yet! */
 
     int enum_cmp(const Enum * a, const Enum * b);
-    int str_enum(const char *opt, size_t n_items, Enum item[], int *valp);
-    int enum_value(const EnumPtr item, const char *name);
-    const char *enum_name(const EnumPtr item, int value);
+    int str_enum(const char *name, size_t n_items, Enum item[], int *valp);
+    int enum_value(const char *name, const EnumPtr item);
+    const char *enum_name(int value, const EnumPtr item);
 
 #ifdef __cplusplus
 }
