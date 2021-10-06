@@ -1,0 +1,14 @@
+#
+# .gitignore --Project-specific rules for ignoring files in git.
+#
+
+# Ignore the include folder. It is generated.
+include/
+
+# Ignore folders used for generated output files.
+darwin-*/
+linux-*/
+mingw64_nt-*/
+cygwin_nt-*/
+yocto-*/
+freertos-*/
