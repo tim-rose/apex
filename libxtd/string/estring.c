@@ -292,7 +292,7 @@ int vstrcasematch(const char *target, const char *candidate, ...)
  * asprintf() --Duplicate a printf-formatted string.
  *
  * Parameters:
- * str	--(address of) the copy destination string
+ * str  --(address of) the copy destination string
  * fmt  --a printf-style string format
  * ...  --printf arguments for this format
  *
@@ -318,7 +318,7 @@ int asprintf(char **str, const char *fmt, ...)
  * vasprintf() --Duplicate a formatted string (stdarg version).
  *
  * Parameters:
- * str	--(address of) the copy destination string
+ * str  --(address of) the copy destination string
  * fmt  --a printf-style string format
  * args --a stdarg va_list
  *

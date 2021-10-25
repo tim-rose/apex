@@ -24,7 +24,8 @@ extern "C"
     } Stack, *StackPtr;
 
     StackPtr stack_alloc(void);
-    StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size, void *items);
+    StackPtr stack_init(StackPtr stack, size_t n_items,
+                        size_t item_size, void *items);
 
     int stack_push(StackPtr stack, const void *item);
     int stack_pop(StackPtr stack, void *item);
