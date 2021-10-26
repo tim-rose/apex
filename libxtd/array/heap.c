@@ -1,110 +1,105 @@
 /*
- * HEAP.C --Routines for managing implicit (array) heap data structures.
- *
- * Contents:
- * heap_sift_up()   --Sift a value from the bottom of the heap to the top.
- * heap_sift_down() --Sift a value from the top to its "correct" position.
- * heap_ok()        --Check the heap condition.
- *
- * Remarks:
- * The heap data structure is a semi-ordered tree that maintains the
- * property that a parent is greater/equal than ALL its descendents,
- * with no ordering specified between siblings.  It is commonly
- * modelled as an "implicit" binary tree, and implemented as a simple
- * array.  An array implementation is possible because binary-tree
- * heaps are inherently "balanced" (maybe "full" is a better term
- * here), so there are no "holes" in the tree.
- *
+ * HEAP.C --A simple heap container, with caller provided item storage.
  */
-
-#include <string.h>
+#include <memory.h>
 #include <heap.h>
-#include <estring.h>
 
 /*
- * heap_sift_up() --Sift a value from the bottom of the heap to the top.
+ * heap_alloc() --Allocate some space for a heap structure.
+ *
+ * Returns: (HeapPtr)
+ * Success: the allocated memory; Failure: NULL.
+ */
+/* LCOV_EXCL_START */
+HeapPtr heap_alloc()
+{
+    return malloc(sizeof(Heap));
+}
+/* LCOV_EXCL_STOP */
+
+/*
+ * heap_init() --Initialise a heap structure.
  *
  * Parameters:
+ * heap --specifies and returns the initialised heap
+ * cmp --item comparison function
+ * n_items --the number of heap items
+ * item_size --the size of each item
+ * items --the storage for the heap (n_items*item_size)
+ *
+ * Returns:
+ * Success: The heap; Failure: NULL.
  *
  * Remarks:
- * A heap "sift-up" is usually used after an insertion: the item is
- * appended to the end of the list and then the sift-up re-creates the
- * heap condition.
+ * The heap storage is not allocated by this module, it must be provided
+ * by the caller.
  */
-void heap_sift_up(void *base, size_t n_items, size_t item_size, CompareProc cmp)
+HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items, size_t item_size, void *items)
 {
-    char *parent, *node;
-
-    for (size_t i = n_items - 1; i > 0; i = (i - 1) / 2)
+    if (heap != NULL && items != NULL)
     {
-        node = (char *) base + i * item_size;
-        parent = (char *) base + (i - 1) / 2 * item_size;
-        if (cmp(node, parent) < 0)
-        {
-            memswap(parent, node, item_size);
-        }
+        heap->container.n_items = n_items;
+        heap->container.item_size = item_size;
+        heap->container.items = (char *) items;
+        heap->n_used = 0;
+        heap->cmp = cmp;
+        return heap;
     }
+    return NULL;
 }
 
 /*
- * heap_sift_down() --Sift a value from the top to its "correct" position.
+ * heap_insert() --Insert an item onto the heap.
  *
  * Parameters:
+ * heap --the heap
+ * item --the item to insert
  *
- * Remarks:
- * A heap "sift-down" is usually used after a deletion: the first item
- * is removed, and the last item is swapped into its place.  The
- * sift-down re-creates the heap condition.
+ * Returns: (int)
+ * Success: 1; Failure: 0.
  */
-void heap_sift_down(void *base, size_t n_items, size_t item_size, CompareProc cmp)
+int heap_insert(HeapPtr heap, const void *item)
 {
-    size_t level;
-    char *node, *child, *alt_child, *end;
-
-    end = (char *) base + n_items * item_size;
-    for (level = 1, node = base; node < end; node = child, level *= 2)
+    if (heap != NULL)
     {
-        child = (char *) node + level * item_size; /* left child */
-        if (child >= end)
-        {
-            break;
-        }
-        alt_child = child + item_size;    /* right child */
-        if (alt_child < end && cmp(child, alt_child) > 0)
-        {                              /* choose smallest child */
-            child = alt_child;
-        }
-        if (cmp(child, node) > 0)
-        {
-            break;
-        }
-        memswap(node, child, item_size);
     }
+    return 0;                           /* failure: no heap, or overflow */
 }
 
 /*
- * heap_ok() --Check the heap condition.
+ * heap_remove() --Remove an item from the heap.
  *
  * Parameters:
- * name --the name of the function to define
- * type --the type of elements being managed in the heap
- * compare --the comparison function (or macro!)
+ * heap --the heap
+ * item --returns the removeped item
+ *
+ * Returns: (int)
+ * Success: 1; Failure: 0.
+ */
+int heap_remove(HeapPtr heap, void *item)
+{
+    if (heap != NULL)
+    {
+    }
+    return 0;                           /* failure: no heap, or underflow */
+}
+
+/*
+ * heap_peek() --Peek at the top item in the heap.
+ *
+ * Parameters:
+ * heap --the heap
+ *
+ * Returns: (void *)
+ * Success: a pointer to the top of heap; Failure: NULL.
  *
  * Remarks:
- * This function is used for unit testing.
+ * Consider allowing peek at lower heap items too?
  */
-int heap_ok(void *base, size_t n_items, size_t item_size, CompareProc cmp)
+void *heap_peek(HeapPtr heap)
 {
-    char *node, *parent;
-
-    for (size_t i = n_items - 1; i > 0; --i)
+    if (heap != NULL)
     {
-        node = (char *) base + i * item_size;
-        parent = (char *) base + (i - 1) / 2 * item_size;
-        if (cmp(node, parent) < 0)
-        {
-            return 0;
-        }
     }
-    return 1;
+    return NULL;                           /* failure: no heap, or empty */
 }

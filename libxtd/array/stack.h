@@ -4,7 +4,6 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <xtd.h>
 #include <array.h>
 
 #ifdef __cplusplus
