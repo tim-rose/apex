@@ -5,18 +5,12 @@
 #define STACK_H
 
 #include <xtd.h>
+#include <array.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct ArrayContainer_t
-    {
-        size_t n_items;
-        size_t item_size;
-        char *items;
-    } ArrayContainer, *ArrayContainerPtr;
-
     typedef struct Stack_t
     {
         ArrayContainer container;

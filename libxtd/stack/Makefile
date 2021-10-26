@@ -5,7 +5,7 @@ language = c
 LIB_ROOT = ..
 
 C_SRC = stack.c
-H_SRC = stack.h
+H_SRC = array.h stack.h
 
 include makeshift.mk library.mk
 
