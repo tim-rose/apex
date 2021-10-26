@@ -31,17 +31,17 @@
  * appended to the end of the list and then the sift-up re-creates the
  * heap condition.
  */
-void heap_sift_up(void *base, size_t nel, size_t elsize, CompareProc cmp)
+void heap_sift_up(void *base, size_t n_items, size_t item_size, CompareProc cmp)
 {
     char *parent, *node;
 
-    for (size_t i = nel - 1; i > 0; i = (i - 1) / 2)
+    for (size_t i = n_items - 1; i > 0; i = (i - 1) / 2)
     {
-        node = (char *) base + i * elsize;
-        parent = (char *) base + (i - 1) / 2 * elsize;
+        node = (char *) base + i * item_size;
+        parent = (char *) base + (i - 1) / 2 * item_size;
         if (cmp(node, parent) < 0)
         {
-            memswap(parent, node, elsize);
+            memswap(parent, node, item_size);
         }
     }
 }
@@ -56,20 +56,20 @@ void heap_sift_up(void *base, size_t nel, size_t elsize, CompareProc cmp)
  * is removed, and the last item is swapped into its place.  The
  * sift-down re-creates the heap condition.
  */
-void heap_sift_down(void *base, size_t nel, size_t elsize, CompareProc cmp)
+void heap_sift_down(void *base, size_t n_items, size_t item_size, CompareProc cmp)
 {
     size_t level;
     char *node, *child, *alt_child, *end;
 
-    end = (char *) base + nel * elsize;
+    end = (char *) base + n_items * item_size;
     for (level = 1, node = base; node < end; node = child, level *= 2)
     {
-        child = (char *) node + level * elsize; /* left child */
+        child = (char *) node + level * item_size; /* left child */
         if (child >= end)
         {
             break;
         }
-        alt_child = child + elsize;    /* right child */
+        alt_child = child + item_size;    /* right child */
         if (alt_child < end && cmp(child, alt_child) > 0)
         {                              /* choose smallest child */
             child = alt_child;
@@ -78,7 +78,7 @@ void heap_sift_down(void *base, size_t nel, size_t elsize, CompareProc cmp)
         {
             break;
         }
-        memswap(node, child, elsize);
+        memswap(node, child, item_size);
     }
 }
 
@@ -93,14 +93,14 @@ void heap_sift_down(void *base, size_t nel, size_t elsize, CompareProc cmp)
  * Remarks:
  * This function is used for unit testing.
  */
-int heap_ok(void *base, size_t nel, size_t elsize, CompareProc cmp)
+int heap_ok(void *base, size_t n_items, size_t item_size, CompareProc cmp)
 {
     char *node, *parent;
 
-    for (size_t i = nel - 1; i > 0; --i)
+    for (size_t i = n_items - 1; i > 0; --i)
     {
-        node = (char *) base + i * elsize;
-        parent = (char *) base + (i - 1) / 2 * elsize;
+        node = (char *) base + i * item_size;
+        parent = (char *) base + (i - 1) / 2 * item_size;
         if (cmp(node, parent) < 0)
         {
             return 0;
