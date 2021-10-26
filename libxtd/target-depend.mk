@@ -9,8 +9,8 @@ build@csv: build@string
 build@csv: build@symbol
 build@csv: build@vector
 build@hash: build@link
-build@heap: build@misc
-build@heap: build@string
+build@array: build@misc
+build@array: build@string
 build@link: build@misc
 build@log: build@misc
 build@log: build@string

@@ -4,8 +4,8 @@
 language = c
 LIB_ROOT = ..
 
-C_SRC = stack.c
-H_SRC = array.h stack.h
+C_SRC = heap.c stack.c
+H_SRC = array.h heap-template.h heap.h stack.h
 
 include makeshift.mk library.mk
 
