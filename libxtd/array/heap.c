@@ -53,15 +53,22 @@ HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items, size_t item_siz
  *
  * Parameters:
  * heap --the heap
- * item --the item to insert
+ * item --address of the item to insert
  *
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
 int heap_insert(HeapPtr heap, const void *item)
 {
-    if (heap != NULL)
+    if (heap != NULL && heap->n_used < heap->container.n_items)
     {
+        memcpy(heap->container.items +
+               heap->n_used*heap->container.item_size,
+               item, heap->container.item_size);
+        ++heap->n_used;
+        heap_sift_up(heap->container.items,
+                     heap->container.n_items, heap->container.item_size,
+                     heap->cmp);
     }
     return 0;                           /* failure: no heap, or overflow */
 }
@@ -71,15 +78,25 @@ int heap_insert(HeapPtr heap, const void *item)
  *
  * Parameters:
  * heap --the heap
- * item --returns the removeped item
+ * item --returns the removed item
  *
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
 int heap_remove(HeapPtr heap, void *item)
 {
-    if (heap != NULL)
+    if (heap != NULL && heap->n_used > 0)
     {
+        memcpy(item, heap->container.items, heap->container.item_size);
+        --heap->n_used;
+        memcpy(heap->container.items,
+               heap->container.items +
+               heap->n_used*heap->container.item_size,
+               heap->container.item_size);
+        heap_sift_down(heap->container.items,
+                       heap->container.n_items, heap->container.item_size,
+                       heap->cmp);
+        return 1;
     }
     return 0;                           /* failure: no heap, or underflow */
 }
@@ -98,8 +115,9 @@ int heap_remove(HeapPtr heap, void *item)
  */
 void *heap_peek(HeapPtr heap)
 {
-    if (heap != NULL)
+    if (heap != NULL && heap->n_used > 0)
     {
+        return heap->container.items;
     }
     return NULL;                           /* failure: no heap, or empty */
 }
