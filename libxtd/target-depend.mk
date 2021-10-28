@@ -12,7 +12,6 @@ build@csv: build@symbol
 build@csv: build@vector
 build@hash: build@link
 build@link: build@misc
-build@log: build@misc
 build@log: build@string
 build@misc: build@log
 build@parse: build@log
