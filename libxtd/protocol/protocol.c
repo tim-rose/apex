@@ -166,7 +166,7 @@ ssize_t fdread(int fd, void *vptr, size_t n)
  *  Remarks:
  *  fdwrite() has been adapted from: Unix Network Programming (Stevens)
  */
-ssize_t fdwrite(int fd, void *vptr, size_t n)
+ssize_t fdwrite(int fd, const void *vptr, size_t n)
 {
     const char *ptr = vptr;
     size_t nleft = n;
