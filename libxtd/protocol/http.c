@@ -186,7 +186,7 @@ HTTPResponsePtr http_request(const char *method,
     while (fgets(buf, NEL(buf) - 1, fp) != NULL
            && (strcmp(buf, rfc_eol) != 0 && *buf != '\n'))
     {
-        Symbol sym = {.type = STRING };
+        Symbol sym = {.type = STRING_TYPE };
 
         if (r->header == NULL
             && (r->header = NEW_VECTOR(Symbol, 0, NULL)) == NULL)

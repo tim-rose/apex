@@ -31,25 +31,25 @@
  * > }
  */
 Atom a_list[] = {
-    {.type = INTEGER,.value.integer = 1},
-    {.type = REAL,.value.real = 2.0},
-    {.type = STRING,.value.string = (char *) "foobar"},
+    {.type = INTEGER_TYPE,.value.integer = 1},
+    {.type = REAL_TYPE,.value.real = 2.0},
+    {.type = STRING_TYPE,.value.string = (char *) "foobar"},
     NULL_ATOM
 };
 
 Symbol a_struct[] = {
-    {.name = (char *) "a",.type = INTEGER,.value.integer = 1},
-    {.name = (char *) "b",.type = REAL,.value.real = 2.0},
-    {.name = (char *) "c",.type = STRING,.value.string = (char *) "foobar"},
+    {.name = (char *) "a",.type = INTEGER_TYPE,.value.integer = 1},
+    {.name = (char *) "b",.type = REAL_TYPE,.value.real = 2.0},
+    {.name = (char *) "c",.type = STRING_TYPE,.value.string = (char *) "foobar"},
     NULL_SYMBOL
 };
 
 Symbol test_dom[] = {
-    {.name = (char *) "a",.type = INTEGER,.value.integer = 1},
-    {.name = (char *) "b",.type = REAL,.value.real = 2.0},
-    {.name = (char *) "c",.type = STRING,.value.string = (char *) "foobar"},
-    {.name = (char *) "a_list",.type = LIST,.value.list = a_list},
-    {.name = (char *) "a_struct",.type = STRUCT,.value.field = a_struct},
+    {.name = (char *) "a",.type = INTEGER_TYPE,.value.integer = 1},
+    {.name = (char *) "b",.type = REAL_TYPE,.value.real = 2.0},
+    {.name = (char *) "c",.type = STRING_TYPE,.value.string = (char *) "foobar"},
+    {.name = (char *) "a_list",.type = LIST_TYPE,.value.list = a_list},
+    {.name = (char *) "a_struct",.type = STRUCT_TYPE,.value.field = a_struct},
     NULL_SYMBOL
 };
 
@@ -74,18 +74,18 @@ static void sym_test(SymbolPtr dom, const char *pathname,
        sym_get_value(dom, path, &val) == t, "sym_get: %s type", comment);
     switch (t)
     {
-    case INTEGER:
+    case INTEGER_TYPE:
         cmp = val.integer == v.integer;
         break;
-    case REAL:
+    case REAL_TYPE:
         cmp = val.real == v.real;
         break;
-    case STRING:
+    case STRING_TYPE:
         cmp = strcmp(val.string, v.string) == 0;
         break;
-    case VOID:
-    case LIST:
-    case STRUCT:
+    case VOID_TYPE:
+    case LIST_TYPE:
+    case STRUCT_TYPE:
     default:
         cmp = 1;
         break;
@@ -108,7 +108,7 @@ int main(void)
     do
     {
         Atom ref_path[] = {
-            {.type = STRING,.value.string = (char *) "a"},
+            {.type = STRING_TYPE,.value.string = (char *) "a"},
             NULL_ATOM
         };
         AtomPtr path = new_sym_path("a");
@@ -121,9 +121,9 @@ int main(void)
     do
     {
         Atom ref_path[] = {
-            {.type = STRING,.value.string = (char *) "a"},
-            {.type = STRING,.value.string = (char *) "b"},
-            {.type = STRING,.value.string = (char *) "c"},
+            {.type = STRING_TYPE,.value.string = (char *) "a"},
+            {.type = STRING_TYPE,.value.string = (char *) "b"},
+            {.type = STRING_TYPE,.value.string = (char *) "c"},
             NULL_ATOM
         };
         AtomPtr path = new_sym_path("a.b.c");
@@ -136,7 +136,7 @@ int main(void)
     do
     {
         Atom ref_path[] = {
-            {.type = INTEGER,.value.integer = 1}
+            {.type = INTEGER_TYPE,.value.integer = 1}
             ,
             NULL_ATOM
         };
@@ -150,8 +150,8 @@ int main(void)
     do
     {
         Atom ref_path[] = {
-            {.type = STRING,.value.string = (char *) "foo"},
-            {.type = INTEGER,.value.integer = 100},
+            {.type = STRING_TYPE,.value.string = (char *) "foo"},
+            {.type = INTEGER_TYPE,.value.integer = 100},
             NULL_ATOM
         };
         AtomPtr path = new_sym_path("foo[100]");
@@ -164,9 +164,9 @@ int main(void)
     do
     {
         Atom ref_path[] = {
-            {.type = STRING,.value.string = (char *) "foo"},
-            {.type = INTEGER,.value.integer = 100},
-            {.type = STRING,.value.string = (char *) "bar"},
+            {.type = STRING_TYPE,.value.string = (char *) "foo"},
+            {.type = INTEGER_TYPE,.value.integer = 100},
+            {.type = STRING_TYPE,.value.string = (char *) "bar"},
             NULL_ATOM
         };
         AtomPtr path = new_sym_path("foo[100].bar");
@@ -177,25 +177,25 @@ int main(void)
     } while (0);
 
     v.integer = 1;
-    sym_test((SymbolPtr) & test_dom, "a", INTEGER, v, "simple path to int");
-    sym_test((SymbolPtr) & test_dom, "a_list[0]", INTEGER, v,
+    sym_test((SymbolPtr) & test_dom, "a", INTEGER_TYPE, v, "simple path to int");
+    sym_test((SymbolPtr) & test_dom, "a_list[0]", INTEGER_TYPE, v,
              "array syntax to int");
-    sym_test((SymbolPtr) & test_dom, "a_struct.a", INTEGER, v,
+    sym_test((SymbolPtr) & test_dom, "a_struct.a", INTEGER_TYPE, v,
              "struct syntax to int");
 
     v.real = 2.0;
-    sym_test((SymbolPtr) & test_dom, "b", REAL, v, "simple path to real");
-    sym_test((SymbolPtr) & test_dom, "a_list[1]", REAL, v,
+    sym_test((SymbolPtr) & test_dom, "b", REAL_TYPE, v, "simple path to real");
+    sym_test((SymbolPtr) & test_dom, "a_list[1]", REAL_TYPE, v,
              "array syntax to real");
-    sym_test((SymbolPtr) & test_dom, "a_struct.b", REAL, v,
+    sym_test((SymbolPtr) & test_dom, "a_struct.b", REAL_TYPE, v,
              "struct syntax to real");
 
     v.string = (char *) "foobar";
-    sym_test((SymbolPtr) & test_dom, "c", STRING, v, "simple path to string");
+    sym_test((SymbolPtr) & test_dom, "c", STRING_TYPE, v, "simple path to string");
     v.string = (char *) "foobar";
-    sym_test((SymbolPtr) & test_dom, "a_list[2]", STRING, v,
+    sym_test((SymbolPtr) & test_dom, "a_list[2]", STRING_TYPE, v,
              "array syntax to string");
-    sym_test((SymbolPtr) & test_dom, "a_struct.c", STRING, v,
+    sym_test((SymbolPtr) & test_dom, "a_struct.c", STRING_TYPE, v,
              "struct syntax to string");
     return exit_status();
 }

@@ -40,11 +40,11 @@ static int load_(IniPtr ini, const char *section, const char *name,
                  const char *value, void *data)
 {
     SymbolPtr *sym_ptr = (SymbolPtr *) data;
-    static Atom path[] = { {.type = STRING}, {.value.integer = 0} };
+    static Atom path[] = { {.type = STRING_TYPE}, {.value.integer = 0} };
     Type node_type;
     ValuePtr node_vptr;
     ValuePtr section_vptr;
-    Symbol node = {.type = STRING };
+    Symbol node = {.type = STRING_TYPE };
 
     if (*sym_ptr == NULL)
     {                                  /* first time(?): create symbol table */
@@ -59,7 +59,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
 
         switch (node_type = sym_get(*sym_ptr, path, &section_vptr))
         {
-        case VOID:                    /* new section: insert it */
+        case VOID_TYPE:                    /* new section: insert it */
             do
             {
                 size_t slot = (size_t) vector_len(*sym_ptr) - 1;
@@ -69,7 +69,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
                 {
                     return 0;          /* error: strdup failed */
                 }
-                node.type = STRUCT;
+                node.type = STRUCT_TYPE;
                 if ((node.value.field =
                      NEW_VECTOR(Symbol, 1, &null_symbol)) == NULL)
                 {
@@ -82,7 +82,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
             }
             while (0);
             break;
-        case STRUCT:
+        case STRUCT_TYPE:
             sym_ptr = &section_vptr->field;
             break;
         default:
@@ -95,7 +95,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
     path[0].value.string = (char *) name;
     switch (node_type = sym_get(*sym_ptr, path, &node_vptr))
     {
-    case VOID:                        /* new value */
+    case VOID_TYPE:                        /* new value */
         do
         {
             size_t slot = (size_t) vector_len(*sym_ptr) - 1;
@@ -104,7 +104,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
             {
                 return 0;              /* error: strdup failed */
             }
-            node.type = STRING;
+            node.type = STRING_TYPE;
             node.value.string = strdup(value);
             if ((*sym_ptr = vector_insert(*sym_ptr, slot, 1, &node)) == NULL)
             {
@@ -113,7 +113,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
         }
         while (0);
         break;
-    case STRING:                      /* replace existing */
+    case STRING_TYPE:                      /* replace existing */
         free(node_vptr->string);
         node_vptr->string = strdup(value);
         break;
@@ -157,7 +157,7 @@ SymbolPtr ini_load(IniPtr ini, SymbolPtr sym)
  * value    --returns the requested value
  *
  * Returns: (Type)
- * Success: the type of the found value; Failure: VOID.
+ * Success: the type of the found value; Failure: VOID_TYPE.
  *
  * Remarks:
  * This routine relies on assumptions about being an INI-style
@@ -170,34 +170,34 @@ Type ini_sym_get(SymbolPtr sym, const char *section,
 {
     Type type;
     Atom path[3] = {
-        {.type = STRING},
-        {.type = STRING},
-        {.type = VOID}
+        {.type = STRING_TYPE},
+        {.type = STRING_TYPE},
+        {.type = VOID_TYPE}
     };
 
     path[0].value.string = (char *) section;
     path[1].value.string = (char *) name;
 
-    if ((type = sym_get_value(sym, path, value)) != VOID)
+    if ((type = sym_get_value(sym, path, value)) != VOID_TYPE)
     {
         return type;
     }
     path[0].value.string = (char *) "default";  /* REVISIT: hardcoded default? */
-    if ((type = sym_get_value(sym, path, value)) != VOID)
+    if ((type = sym_get_value(sym, path, value)) != VOID_TYPE)
     {
         return type;
     }
     if (default_value != NULL)
     {
         value->string = default_value;
-        return STRING;
+        return STRING_TYPE;
     }
-    return VOID;
+    return VOID_TYPE;
 }
 
 void ini_sym_free(SymbolPtr sym)
 {
     Value value = {.field = sym };
 
-    sym_free_value(STRUCT, value);
+    sym_free_value(STRUCT_TYPE, value);
 }

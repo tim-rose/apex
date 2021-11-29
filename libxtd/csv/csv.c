@@ -92,7 +92,7 @@ static size_t csv_mk_header_(char *header, CSVFieldPtr * csv_fld)
     size_t n;
     CSVFieldPtr field = NULL;
     static CSVField default_field = {
-        {.type = STRING},
+        {.type = STRING_TYPE},
         .scan_fmt = (char *) csv_str_fmt,
         .print_fmt = (char *) csv_str_fmt
     };

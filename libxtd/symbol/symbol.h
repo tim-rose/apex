@@ -42,21 +42,21 @@ extern "C"
      * null_symbol, defined below).  However, they are also (more!)
      * useful as terminators for lists of atoms, symbols etc.
      */
-#define NULL_ATOM {.type = VOID}
+#define NULL_ATOM {.type = VOID_TYPE}
 #define NULL_ENUM {.name = NULL}
-#define NULL_SYMBOL {.type = VOID}
+#define NULL_SYMBOL {.type = VOID_TYPE}
 
     /*
      * Type --The various types understood by the SYMBOL ADT.
      */
     typedef enum Type_t
     {
-        VOID = 0,
-        REAL = 1,
-        INTEGER = 2,
-        STRING = 3,
-        LIST = 4,
-        STRUCT = 5
+        VOID_TYPE = 0,
+        REAL_TYPE = 1,
+        INTEGER_TYPE = 2,
+        STRING_TYPE = 3,
+        LIST_TYPE = 4,
+        STRUCT_TYPE = 5
     } Type, *TypePtr;
 
     /*

@@ -52,19 +52,19 @@ void sym_free_value(Type type, Value value)
     {
     default:
         break;
-    case STRING:
+    case STRING_TYPE:
         free(value.string);
         break;
-    case STRUCT:
-        for (SymbolPtr symbol = value.field; symbol->type != VOID; ++symbol)
+    case STRUCT_TYPE:
+        for (SymbolPtr symbol = value.field; symbol->type != VOID_TYPE; ++symbol)
         {
             free(symbol->name);
             sym_free_value(symbol->type, symbol->value);
         }
         free_vector(value.field);
         break;
-    case LIST:
-        for (AtomPtr atom = value.list; atom->type != VOID; ++atom)
+    case LIST_TYPE:
+        for (AtomPtr atom = value.list; atom->type != VOID_TYPE; ++atom)
         {
             sym_free_value(atom->type, atom->value);
         }
@@ -104,7 +104,7 @@ static AtomPtr sym_add_node_(AtomPtr sym_path, AtomPtr node,
         err("%s: unrecognised path element \"%s\"", path, name);
         error = 1;
         break;
-    case STRING:
+    case STRING_TYPE:
         if (strcmp(name, sym_match_any_name) == 0)
         {                              /* wild-card match */
             node->value.string = (char *) sym_match_any_name;
@@ -118,7 +118,7 @@ static AtomPtr sym_add_node_(AtomPtr sym_path, AtomPtr node,
             node->value.string = strdup(name);
         }
         break;
-    case INTEGER:
+    case INTEGER_TYPE:
         if (strcmp(name, sym_match_any_name) == 0)
         {                              /* wild-card match */
             node->value.integer = -1;
@@ -166,8 +166,8 @@ AtomPtr new_sym_path(const char *path)
     const char *str = path;
     char name_buf[NAME_MAX + 1] = { 0 }, *name = name_buf;
     AtomPtr sym;
-    Atom node = {.type = STRING, {.integer = 0} };
-    Atom sentinel = {.type = VOID, {.integer = 0} };
+    Atom node = {.type = STRING_TYPE, {.integer = 0} };
+    Atom sentinel = {.type = VOID_TYPE, {.integer = 0} };
     int c;
 
     if (path == NULL)
@@ -195,15 +195,15 @@ AtomPtr new_sym_path(const char *path)
         case '[':
             *name++ = '\0';
             sym = sym_add_node_(sym, &node, name_buf, path);
-            node.type = INTEGER;
+            node.type = INTEGER_TYPE;
             *(name = name_buf) = '\0';
             break;
         case ']':
             *name++ = '\0';
-            node.type = INTEGER;
+            node.type = INTEGER_TYPE;
             sym = sym_add_node_(sym, &node, name_buf, path);
             *(name = name_buf) = '\0';
-            node.type = STRING;
+            node.type = STRING_TYPE;
             break;
         default:
             *name++ = c;
@@ -234,7 +234,7 @@ void free_sym_path(AtomPtr path)
     {
         for (size_t i = 0; i < n; ++i)
         {
-            if (path[i].type == STRING
+            if (path[i].type == STRING_TYPE
                 && path[i].value.string != sym_match_any_name)
             {
                 free(path[i].value.string);
@@ -264,15 +264,15 @@ int sym_path_equal(AtomPtr ref_path, AtomPtr test_path)
         }
         switch (ref_path->type)
         {
-        case VOID:
+        case VOID_TYPE:
             return 1;                  /* all previous items matched... */
-        case INTEGER:
+        case INTEGER_TYPE:
             if (ref_path->value.integer != test_path->value.integer)
             {
                 return 0;              /* indices don't match */
             }
             break;
-        case STRING:
+        case STRING_TYPE:
             if (strcmp(ref_path->value.string, test_path->value.string) != 0)
             {
                 return 0;              /* path elements don't match */
@@ -320,7 +320,7 @@ int sym_path_match(AtomPtr ref_path, size_t ref_path_len,
         }
         switch (r->type)
         {
-        case INTEGER:
+        case INTEGER_TYPE:
             if (r->value.integer == -1)
             {                          /* always match! */
                 break;
@@ -330,7 +330,7 @@ int sym_path_match(AtomPtr ref_path, size_t ref_path_len,
                 return 0;              /* indices don't match */
             }
             break;
-        case STRING:
+        case STRING_TYPE:
             if (r->value.string == sym_match_any_name)
             {                          /* wildcard match */
                 break;
@@ -354,9 +354,9 @@ int sprint_sym_path(char *str, AtomPtr path)
 {
     char *start = str;
 
-    for (size_t i = 0; path[i].type != VOID; ++i)
+    for (size_t i = 0; path[i].type != VOID_TYPE; ++i)
     {
-        if (path[i].type == INTEGER)
+        if (path[i].type == INTEGER_TYPE)
         {
             str += sprintf(str, "[" SYMBOL_INT_FORMAT "]",
                            path[i].value.integer);
@@ -377,9 +377,9 @@ int fprint_sym_path(FILE * fp, AtomPtr path)
 {
     int n = 0;
 
-    for (size_t i = 0; path[i].type != VOID; ++i)
+    for (size_t i = 0; path[i].type != VOID_TYPE; ++i)
     {
-        if (path[i].type == INTEGER)
+        if (path[i].type == INTEGER_TYPE)
         {
             n += fprintf(fp, "[" SYMBOL_INT_FORMAT "]",
                          path[i].value.integer);
@@ -409,30 +409,30 @@ int print_sym_path(AtomPtr path)
  * value    --returns the symbol's value
  *
  * Returns: (Type)
- * Success: the type of symbol; Failure: VOID.
+ * Success: the type of symbol; Failure: VOID_TYPE.
  */
 static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
 {
-    if (path->type == INTEGER)
+    if (path->type == INTEGER_TYPE)
     {
         AtomPtr element = &list[path->value.integer];
 
-        if (path[1].type == VOID)
+        if (path[1].type == VOID_TYPE)
         {                              /* plugh! return the slot's value */
             *vptr = &element->value;
             return element->type;
         }
         switch (element->type)
         {
-        case STRUCT:
+        case STRUCT_TYPE:
             return sym_get(element->value.field, path + 1, vptr);
-        case LIST:
+        case LIST_TYPE:
             return list_get_(element->value.list, path + 1, vptr);
         default:
-            return VOID;               /* error: at a leaf! */
+            return VOID_TYPE;               /* error: at a leaf! */
         }
     }
-    return VOID;                       /* error: path isn't an index */
+    return VOID_TYPE;                       /* error: path isn't an index */
 }
 
 /*
@@ -444,7 +444,7 @@ static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
  * value    --returns a pointer to the value in the symbol table
  *
  * Returns: (Type)
- * Success: the type of symbol; Failure: VOID.
+ * Success: the type of symbol; Failure: VOID_TYPE.
  *
  * Remarks:
  * Note that this routine returns a pointer to the symbol table's
@@ -452,33 +452,33 @@ static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
  */
 Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
 {
-    if (path->type != STRING)
+    if (path->type != STRING_TYPE)
     {
-        return VOID;                   /* error: path isn't a name */
+        return VOID_TYPE;                   /* error: path isn't a name */
     }
-    for (size_t i = 0; symtab[i].type != VOID; ++i)
+    for (size_t i = 0; symtab[i].type != VOID_TYPE; ++i)
     {
         SymbolPtr sym = &symtab[i];
 
         if (strcmp(sym->name, path->value.string) == 0)
         {
-            if (path[1].type == VOID)
+            if (path[1].type == VOID_TYPE)
             {                          /* plugh! you're at end of road again */
                 *vptr = &sym->value;
                 return sym->type;
             }
             switch (sym->type)
             {
-            case STRUCT:
+            case STRUCT_TYPE:
                 return sym_get(sym->value.field, path + 1, vptr);
-            case LIST:
+            case LIST_TYPE:
                 return list_get_(sym->value.list, path + 1, vptr);
             default:
-                return VOID;           /* error: at a leaf */
+                return VOID_TYPE;           /* error: at a leaf */
             }
         }
     }
-    return VOID;                       /* UNREACHED */
+    return VOID_TYPE;                       /* UNREACHED */
 }
 
 /*
@@ -490,14 +490,14 @@ Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
  * value    --returns the symbol's value
  *
  * Returns: (Type)
- * Success: the type of symbol; Failure: VOID.
+ * Success: the type of symbol; Failure: VOID_TYPE.
  */
 Type sym_get_value(SymbolPtr symtab, AtomPtr path, ValuePtr value)
 {
     ValuePtr vptr;
     Type type = sym_get(symtab, path, &vptr);
 
-    if (type != VOID)
+    if (type != VOID_TYPE)
     {
         *value = *vptr;
     }
@@ -522,13 +522,13 @@ int sym_get_int(SymbolPtr symtab, AtomPtr path, SYMBOL_INT * value)
     {
     default:
         break;
-    case REAL:
+    case REAL_TYPE:
         *value = (int) v.real;
         return 1;
-    case INTEGER:
+    case INTEGER_TYPE:
         *value = (int) v.integer;
         return 1;
-    case STRING:
+    case STRING_TYPE:
     {
         char *end;
         SYMBOL_INT i = SYMBOL_STRTOINT(v.string, &end, 0);
@@ -562,13 +562,13 @@ int sym_get_real(SymbolPtr symtab, AtomPtr path, double *value)
     {
     default:
         break;
-    case REAL:
+    case REAL_TYPE:
         *value = v.real;
         return 1;
-    case INTEGER:
+    case INTEGER_TYPE:
         *value = (double) v.integer;
         return 1;
-    case STRING:
+    case STRING_TYPE:
     {
         char *end;
         double r = strtod(v.string, &end);
@@ -599,7 +599,7 @@ int sym_get_str(SymbolPtr symtab, AtomPtr path, char **value)
 {
     Value v;
 
-    if (sym_get_value(symtab, path, &v) == STRING)
+    if (sym_get_value(symtab, path, &v) == STRING_TYPE)
     {
         *value = v.string;
         return 1;
