@@ -1,5 +1,5 @@
 /*
- * STACK.H --A simple stack container, with caller provided item storage.
+ * STACK.H --A simple stack array, with caller provided item storage.
  */
 #ifndef STACK_H
 #define STACK_H
@@ -12,7 +12,7 @@ extern "C"
 #endif                                 /* C++ */
     typedef struct Stack_t
     {
-        ArrayContainer container;
+        ArrayContainer array;
         size_t position;
     } Stack, *StackPtr;
 

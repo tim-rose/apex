@@ -1,5 +1,12 @@
 /*
- * STACK.C --A simple stack container, with caller provided item storage.
+ * STACK.C --A simple stack array, with caller provided item storage.
+ *
+ * Contents:
+ * stack_alloc() --Allocate some space for a stack structure.
+ * stack_init()  --Initialise a stack structure.
+ * stack_push()  --Push an item onto the stack.
+ * stack_pop()   --Pop an item from the stack.
+ * stack_peek()  --Peek at the top item in the stack.
  */
 #include <memory.h>
 #include <stack.h>
@@ -15,6 +22,7 @@ StackPtr stack_alloc()
 {
     return malloc(sizeof(Stack));
 }
+
 /* LCOV_EXCL_STOP */
 
 /*
@@ -33,13 +41,14 @@ StackPtr stack_alloc()
  * The stack storage is not allocated by this module, it is provided
  * by the caller.
  */
-StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size, void *items)
+StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size,
+                    void *items)
 {
     if (stack != NULL && items != NULL)
     {
-        stack->container.n_items = n_items;
-        stack->container.item_size = item_size;
-        stack->container.items = (char *) items;
+        stack->array.n_items = n_items;
+        stack->array.item_size = item_size;
+        stack->array.items = (char *) items;
         stack->position = 0;
         return stack;
     }
@@ -60,17 +69,17 @@ int stack_push(StackPtr stack, const void *item)
 {
     if (stack != NULL)
     {
-        if (stack->position < stack->container.n_items)
+        if (stack->position < stack->array.n_items)
         {
-            memcpy(stack->container.items +
-                   stack->position*stack->container.item_size,
-                   item, stack->container.item_size);
+            memcpy(stack->array.items +
+                   stack->position * stack->array.item_size,
+                   item, stack->array.item_size);
             ++stack->position;
-            return 1;                   /* success */
+            return 1;                  /* success */
         }
 
     }
-    return 0;                           /* failure: no stack, or overflow */
+    return 0;                          /* failure: no stack, or overflow */
 }
 
 /*
@@ -91,14 +100,14 @@ int stack_pop(StackPtr stack, void *item)
         {
             --stack->position;
             memcpy(item,
-                   stack->container.items +
-                   stack->position*stack->container.item_size,
-                   stack->container.item_size);
-            return 1;                   /* success */
+                   stack->array.items +
+                   stack->position * stack->array.item_size,
+                   stack->array.item_size);
+            return 1;                  /* success */
         }
 
     }
-    return 0;                           /* failure: no stack, or underflow */
+    return 0;                          /* failure: no stack, or underflow */
 }
 
 /*
@@ -119,9 +128,9 @@ void *stack_peek(StackPtr stack)
     {
         if (stack->position > 0)
         {
-            return stack->container.items + /* success: return pointer */
-                (stack->position-1)*stack->container.item_size;
+            return stack->array.items + /* success: return pointer */
+                (stack->position - 1) * stack->array.item_size;
         }
     }
-    return NULL;                           /* failure: no stack, or empty */
+    return NULL;                       /* failure: no stack, or empty */
 }
