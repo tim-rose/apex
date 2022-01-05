@@ -1,86 +1,101 @@
 /*
- * HEAP.C --heap library tests.
- *
+ * HEAP.C --Tests for heap fundamental operations.
  *
  * Remarks:
- * This is a bit of a scatter-gun approach to testing; I'm just running
- * some typical data through and hoping that this gives good code
- * coverage.  It PROBABLY does, but I'm sure I can whittle this down
- * to a much smaller set of more rigorous tests.
+ * I'm not sure how rigorous these tests are, but thry attempt
+ * to cover the basic cases by enumeration.
  */
 #include <stdio.h>
 #include <string.h>
 
 #include <tap.h>
 #include <heap.h>
+#include <compare.h>
 
-#define HEAP_MAX 10
-static int cmp_number(int *n1, int *n2)
-{
-    /* printf("# cmp_number: %d, %d\n", *n1, *n2); */
-    return *n1 - *n2;
-}
+static void test_heap_ok(void);
+static void test_sift_up(void);
+static void test_sift_down(void);
 
-static int heap_print(int value[], int n)
-{
-    printf("# heap:");
-    for (int i = 0; i < n; ++i)
-    {
-        printf(" %d", value[i]);
-    }
-    printf("\n");
-    return 1;
-}
 
 int main(void)
 {
-    int reverse[10] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
-    int sorted[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    int value[10];
+    plan_tests(18);
 
-    plan_tests(38);
-    for (size_t i = 0; i < HEAP_MAX; ++i)
-    {                                  /* insert in sorted order */
-        value[i] = sorted[i];
-        heap_sift_up(value, i + 1, sizeof(int), (CompareProc) cmp_number);
-        if (!ok(heap_ok(value, i + 1, sizeof(int), (CompareProc) cmp_number),
-                "insert sorted %d", i + 1))
-        {
-            heap_print(value, i + 1);
-        }
-    }
+    test_heap_ok();
+    test_sift_up();
+    test_sift_down();
 
-    for (size_t i = HEAP_MAX - 1; i > 0; --i)
-    {
-        value[0] = value[i];
-        heap_sift_down(value, i, sizeof(int), (CompareProc) cmp_number);
-        if (!ok(heap_ok(value, i, sizeof(int), (CompareProc) cmp_number),
-                "delete sorted %d", i))
-        {
-            heap_print(value, i);
-        }
-    }
-
-    for (size_t i = 0; i < HEAP_MAX; ++i)
-    {                                  /* insert in reverse order */
-        value[i] = reverse[i];
-        heap_sift_up(value, i + 1, sizeof(int), (CompareProc) cmp_number);
-        if (!ok(heap_ok(value, i + 1, sizeof(int), (CompareProc) cmp_number),
-                "insert reverse %d", i + 1))
-        {
-            heap_print(value, i + 1);
-        }
-    }
-
-    for (size_t i = HEAP_MAX - 1; i > 0; --i)
-    {
-        value[0] = value[i];
-        heap_sift_down(value, i, sizeof(int), (CompareProc) cmp_number);
-        if (!ok(heap_ok(value, i, sizeof(int), (CompareProc) cmp_number),
-                "delete reverse %d", i))
-        {
-            heap_print(value, i);
-        }
-    }
     return exit_status();
+}
+
+static void test_heap_ok(void)
+{
+    const char func[] = "heap_ok";
+    int trivial_heap[] = {1};
+    int ok_heap_2[] = {1, 2};
+    int bad_heap_2[] = {2, 1};
+    int ok_heap_3a[] = {1, 2, 3};
+    int ok_heap_3b[] = {1, 3, 2};
+    int bad_heap_3a[] = {2, 1, 3};
+    int bad_heap_3b[] = {2, 3, 1};
+    int bad_heap_3c[] = {3, 1, 2};
+    int bad_heap_3d[] = {3, 2, 1};
+
+#define HEAP_OK_CHECK(h) \
+    ok(heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
+       "%s %s %s", func, "accepts", #h)
+#define HEAP_ERR_CHECK(h) \
+    ok(!heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
+       "%s %s %s", func, "rejects", #h)
+
+    HEAP_OK_CHECK(trivial_heap);
+    HEAP_OK_CHECK(ok_heap_2);
+    HEAP_ERR_CHECK(bad_heap_2);
+
+    HEAP_OK_CHECK(ok_heap_3a);
+    HEAP_OK_CHECK(ok_heap_3b);
+    HEAP_ERR_CHECK(bad_heap_3a);
+    HEAP_ERR_CHECK(bad_heap_3b);
+    HEAP_ERR_CHECK(bad_heap_3c);
+    HEAP_ERR_CHECK(bad_heap_3d);
+}
+
+static void test_sift_up(void)
+{
+    const char func[] = "heap_sift_up";
+    int heap_2[] = {2, 1};
+    int heap_3a[] = {2, 3, 1};
+    int heap_3b[] = {3, 2, 1};
+    int heap_3c[] = {1, 2, 3};
+
+#define HEAP_SIFT_UP_CHECK(h) \
+    heap_sift_up(h, NEL(h), sizeof(h[0]), int_cmp);     \
+    ok(heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
+       "%s %s %s", func, "sifts up", #h)
+
+    HEAP_SIFT_UP_CHECK(heap_2);
+    HEAP_SIFT_UP_CHECK(heap_3a);
+    HEAP_SIFT_UP_CHECK(heap_3b);
+    HEAP_SIFT_UP_CHECK(heap_3c);
+}
+
+static void test_sift_down(void)
+{
+    const char func[] = "heap_sift_down";
+    int heap_1[] = {1};
+    int heap_2[] = {2, 1};
+    int heap_3a[] = {2, 3, 1};
+    int heap_3b[] = {1, 3, 2};
+    int heap_3c[] = {1, 2, 3};
+
+#define HEAP_SIFT_DOWN_CHECK(h) \
+    heap_sift_down(h, NEL(h), sizeof(h[0]), int_cmp);     \
+    ok(heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
+       "%s %s %s", func, "sifts down", #h)
+
+    HEAP_SIFT_DOWN_CHECK(heap_1);
+    HEAP_SIFT_DOWN_CHECK(heap_2);
+    HEAP_SIFT_DOWN_CHECK(heap_3a);
+    HEAP_SIFT_DOWN_CHECK(heap_3b);
+    HEAP_SIFT_DOWN_CHECK(heap_3c);
 }

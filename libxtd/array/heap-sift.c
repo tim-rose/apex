@@ -25,24 +25,23 @@
  * heap_sift_up() --Sift a value from the bottom of the heap to the top.
  *
  * Parameters:
- * heap	--specifies the heap array
- * n_items	--No. items in the heap
- * item_size	--size of each item
- * cmp	--comparison function
+ * heap --specifies the heap array
+ * n_items  --No. items in the heap
+ * item_size    --size of each item
+ * cmp  --comparison function
  *
  * Remarks:
  * A heap "sift-up" is usually used after an insertion: the item is
  * appended to the end of the list and then the sift-up re-creates the
  * heap condition.
  */
-void heap_sift_up(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
+void heap_sift_up(void *heap, size_t n_items, size_t item_size,
+                  CompareProc cmp)
 {
-    char *parent, *node;
-
     for (size_t i = n_items - 1; i > 0; i = (i - 1) / 2)
     {
-        node = (char *) heap + i * item_size;
-        parent = (char *) heap + (i - 1) / 2 * item_size;
+        char *node = (char *) heap + i * item_size;
+        char *parent = (char *) heap + (i - 1) / 2 * item_size;
         if (cmp(node, parent) < 0)
         {
             memswap(parent, node, item_size);
@@ -54,30 +53,31 @@ void heap_sift_up(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
  * heap_sift_down() --Sift a value from the top to its "correct" position.
  *
  * Parameters:
- * heap	--specifies the heap array
- * n_items	--No. items in the heap
- * item_size	--size of each item
- * cmp	--comparison function
+ * heap --specifies the heap array
+ * n_items  --No. items in the heap
+ * item_size    --size of each item
+ * cmp  --comparison function
  *
  * Remarks:
  * A heap "sift-down" is usually used after a deletion: the first item
  * is removed, and the last item is swapped into its place.  The
  * sift-down re-creates the heap condition.
  */
-void heap_sift_down(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
+void heap_sift_down(void *heap, size_t n_items, size_t item_size,
+                    CompareProc cmp)
 {
     size_t level;
-    char *node, *child, *alt_child, *end;
+    char *node, *child, *end;
 
     end = (char *) heap + n_items * item_size;
     for (level = 1, node = heap; node < end; node = child, level *= 2)
     {
-        child = (char *) node + level * item_size; /* left child */
+        child = (char *) node + level * item_size;  /* left child */
         if (child >= end)
         {
             break;
         }
-        alt_child = child + item_size;    /* right child */
+        char *alt_child = child + item_size;    /* right child */
         if (alt_child < end && cmp(child, alt_child) > 0)
         {                              /* choose smallest child */
             child = alt_child;
@@ -94,10 +94,10 @@ void heap_sift_down(void *heap, size_t n_items, size_t item_size, CompareProc cm
  * heap_ok() --Check the heap condition.
  *
  * Parameters:
- * heap	--specifies the heap array
- * n_items	--No. items in the heap
- * item_size	--size of each item
- * cmp	--comparison function
+ * heap --specifies the heap array
+ * n_items  --No. items in the heap
+ * item_size    --size of each item
+ * cmp  --comparison function
  *
  * Remarks:
  * This function is used for unit testing.
