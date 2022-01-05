@@ -78,27 +78,27 @@ int main(void)
     plan_tests(8);
     log_state = default_log_state;
     notice("test message");
-    string_is(log_state.text, "notice: test message",
+    string_eq(log_state.text, "notice: test message",
               "simple message is prefixed with priority");
-    int_is(log_state.priority, LOG_NOTICE, "%d",
+    int_eq(log_state.priority, LOG_NOTICE, "%d",
            "message is logged at eponymous priority");
-    int_is(log_state.sys_errno, 0, "%d",
+    int_eq(log_state.sys_errno, 0, "%d",
            "system error is not printed by default");
 
     log_state = default_log_state;
     debug("test message");
-    string_is(log_state.text, "", "low priority messages are not printed");
+    string_eq(log_state.text, "", "low priority messages are not printed");
 
     log_state = default_log_state;
     notice("%s test message", "dynamic");
-    string_is(log_state.text,
+    string_eq(log_state.text,
               "notice: dynamic test message",
               "log messages support printf() arg.s");
 
     log_state = default_log_state;
     notice("1234567890" "1234567890" "1234567890" "1234567890" "1234567890"
            "1234567890" "1234567890" "1234567890" "1234567890" "1234567890");
-    string_is(log_state.text,
+    string_eq(log_state.text,
               "notice: "
               "1234567890" "1234567890" "1234567890" "1234567890" "1234567890"
               "12",
@@ -107,9 +107,9 @@ int main(void)
     errno = 1;                         /* Operation not permitted */
     log_state = default_log_state;
     log_sys(LOG_NOTICE, "test message");
-    int_is(log_state.priority, LOG_NOTICE, "%d",
+    int_eq(log_state.priority, LOG_NOTICE, "%d",
            "log_sys() uses provided priority");
-    string_is(log_state.text,
+    string_eq(log_state.text,
               "notice: test message: Operation not permitted",
               "log_sys() applies a priority prefix, and appends the system error");
     return exit_status();

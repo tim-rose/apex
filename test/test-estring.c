@@ -17,23 +17,23 @@ int main(void)
 
     ok(!strempty(text), "strempty() non-empty string");
 
-    int_is(end - text, 11, "%d", "estrcpy() string length");
-    string_is(text, "hello world", "estrcpy() string comparison");
+    int_eq(end - text, 11, "%d", "estrcpy() string length");
+    string_eq(text, "hello world", "estrcpy() string comparison");
 
     end = vstrcat(text, "HELLO ", "WORLD", NULL);
-    int_is(end - text, 11, "%d", "vstrcat() string length");
-    string_is(text, "HELLO WORLD", "vstrcat() string comparison");
+    int_eq(end - text, 11, "%d", "vstrcat() string length");
+    string_eq(text, "HELLO WORLD", "vstrcat() string comparison");
     end = vstrcat(text, NULL);
-    int_is(end - text, 0, "%d", "vstrcat() empty list");
+    int_eq(end - text, 0, "%d", "vstrcat() empty list");
 
     (void) estrcpy(text, "hello world");
-    string_is(strtrunc(text, 11, NULL), "hello world",
+    string_eq(strtrunc(text, 11, NULL), "hello world",
               "strtrunc() no truncation");
 
-    string_is(strtrunc(text, 10, NULL), "hello w...",
+    string_eq(strtrunc(text, 10, NULL), "hello w...",
               "strtrunc() truncation");
 
-    string_is(strtrunc(text, 3, NULL), "hel",
+    string_eq(strtrunc(text, 3, NULL), "hel",
               "strtrunc() no room for ellipsis");
 
     (void) estrcpy(text, "HELLO WORLD ***");

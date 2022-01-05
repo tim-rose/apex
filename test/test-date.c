@@ -2,7 +2,7 @@
  * DATE.C --Unit tests for the date functions.
  *
  * Contents:
- * timestamp_is() --Test/report that timestamps are equal.
+ * timestamp_eq() --Test/report that timestamps are equal.
  * sprint_ut()    --Format a time_t value to a string.
  * parse_test()   --Run a single date-parsing test.
  * tv_tests()     --Tests for timeval operations.
@@ -15,10 +15,10 @@
 #include <timeval.h>
 
 /*
- *  timestamp_is() --Test/report that timestamps are equal.
+ *  timestamp_eq() --Test/report that timestamps are equal.
  */
-#define timestamp_is(_l, _l_ref, ...) \
-    object_is(_l, _l_ref, difftime, sprint_ut_, __VA_ARGS__)
+#define timestamp_eq(_l, _l_ref, ...) \
+    object_eq(_l, _l_ref, difftime, sprint_ut_, __VA_ARGS__)
 
 /*
  *  sprint_ut() --Format a time_t value to a string.
@@ -51,7 +51,7 @@ static void parse_test(const char *text, time_t * ref_t,
 
     ok(date_parse_timestamp(text, &t_tm, &t) == text + strlen(text),
        "%s: parse", description);
-    timestamp_is(t, *ref_t, "%s: values", description);
+    timestamp_eq(t, *ref_t, "%s: values", description);
 }
 
 /*
@@ -64,8 +64,8 @@ static void tv_tests(void)
         TimeValue t1 = { 1, 1500000 };
 
         tv_normalise(&t1);
-        int_is(t1.tv_sec, 2, "%d", "tv_normalise: adjust up (sec)");
-        int_is(t1.tv_usec, 500000, "%d", "tv_normalise: adjust up (usec)");
+        int_eq(t1.tv_sec, 2, "%d", "tv_normalise: adjust up (sec)");
+        int_eq(t1.tv_usec, 500000, "%d", "tv_normalise: adjust up (usec)");
     } while (0);
 
     do
@@ -73,8 +73,8 @@ static void tv_tests(void)
         TimeValue t1 = { 2, -1500000 };
 
         tv_normalise(&t1);
-        int_is(t1.tv_sec, 0, "%d", "tv_normalise: adjust down (sec)");
-        int_is(t1.tv_usec, 500000, "%d", "tv_normalise: adjust down (usec)");
+        int_eq(t1.tv_sec, 0, "%d", "tv_normalise: adjust down (sec)");
+        int_eq(t1.tv_usec, 500000, "%d", "tv_normalise: adjust down (usec)");
     } while (0);
 
     do
@@ -84,8 +84,8 @@ static void tv_tests(void)
         TimeValue t_diff;
 
         tv_diff_r(&t1, &t2, &t_diff);
-        int_is(t_diff.tv_sec, 1, "%d", "tv_diff: (sec)");
-        int_is(t_diff.tv_usec, 0, "%d", "tv_diff: (usec)");
+        int_eq(t_diff.tv_sec, 1, "%d", "tv_diff: (sec)");
+        int_eq(t_diff.tv_usec, 0, "%d", "tv_diff: (usec)");
     } while (0);
 
     do
@@ -95,8 +95,8 @@ static void tv_tests(void)
         TimeValue t_sum;
 
         tv_sum_r(&t1, &t2, &t_sum);
-        int_is(t_sum.tv_sec, 5, "%d", "tv_sum: (sec)");
-        int_is(t_sum.tv_usec, 0, "%d", "tv_sum: (usec)");
+        int_eq(t_sum.tv_sec, 5, "%d", "tv_sum: (sec)");
+        int_eq(t_sum.tv_usec, 0, "%d", "tv_sum: (usec)");
     } while (0);
 
     do
@@ -105,8 +105,8 @@ static void tv_tests(void)
         TimeValue t2 = { 1, 1000000 };
 
         tv_sum_r(&t1, &t2, &t1);
-        int_is(t1.tv_sec, 5, "%d", "tv_sum/t1==sum: (sec)");
-        int_is(t1.tv_usec, 0, "%d", "tv_sum/t1==sum: (usec)");
+        int_eq(t1.tv_sec, 5, "%d", "tv_sum/t1==sum: (sec)");
+        int_eq(t1.tv_usec, 0, "%d", "tv_sum/t1==sum: (usec)");
     } while (0);
 
     do
@@ -114,8 +114,8 @@ static void tv_tests(void)
         TimeValue t1 = { 1, 0000000 };
 
         tv_scale_r(&t1, 3.14159265, &t1);
-        int_is(t1.tv_sec, 3, "%d", "tv_mul: (sec)");
-        int_is(t1.tv_usec, 141592, "%d", "tv_sum: (usec)");
+        int_eq(t1.tv_sec, 3, "%d", "tv_mul: (sec)");
+        int_eq(t1.tv_usec, 141592, "%d", "tv_sum: (usec)");
     } while (0);
 }
 

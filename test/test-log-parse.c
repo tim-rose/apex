@@ -15,8 +15,8 @@
 #include <xtd.h>
 #include <log-parse.h>
 
-#define logrec_is(_l, _l_ref, ...) \
-    object_is(_l, _l_ref, logrec_cmp_, logrec_sprint_, __VA_ARGS__)
+#define logrec_eq(_l, _l_ref, ...) \
+    object_eq(_l, _l_ref, logrec_cmp_, logrec_sprint_, __VA_ARGS__)
 
 /*
  * logrec_cmp_() --Compare two log records for equality.
@@ -43,7 +43,7 @@ static int logrec_cmp_(LogRecordPtr lr1, LogRecordPtr lr2)
  *
  * Remarks:
  * This routine returns results in an alternating set of of static
- * buffers, because the object_is() macro will call this function
+ * buffers, because the object_eq() macro will call this function
  * twice, and must get distinct strings to feed to a subsequent
  * diag().
  */
@@ -110,7 +110,7 @@ int main(void)
                       &base_tm);
 
         ok(l != NULL, "valid record parses OK")
-            && logrec_is(l, &lr_base, "valid values");
+            && logrec_eq(l, &lr_base, "valid values");
     } while (0);
 
     do
@@ -122,7 +122,7 @@ int main(void)
         l = log_parse("Feb 01 00:00:00 : hello world", &base_tm);
 
         ok(l != NULL, "minimal record parses OK")
-            && logrec_is(l, &lr_base, "minimal record values");
+            && logrec_eq(l, &lr_base, "minimal record values");
     } while (0);
 
     do
@@ -134,7 +134,7 @@ int main(void)
         l = log_parse("Feb 01 00:00:00 host: hello world", &base_tm);
 
         ok(l != NULL, "hostname-only record parses OK")
-            && logrec_is(l, &lr_base, "hostname-only record values");
+            && logrec_eq(l, &lr_base, "hostname-only record values");
     } while (0);
 
     do
@@ -146,7 +146,7 @@ int main(void)
         l = log_parse("Feb 01 00:00:00 host tag: hello world", &base_tm);
 
         ok(l != NULL, "host+tag record parses OK")
-            && logrec_is(l, &lr_base, "host+tag record values");
+            && logrec_eq(l, &lr_base, "host+tag record values");
     } while (0);
 
     do
@@ -158,7 +158,7 @@ int main(void)
         l = log_parse("Feb 01 00:00:00 : not-a-priority: hello world",
                       &base_tm);
 
-        logrec_is(l, &lr_base, "ignore non-priority message prefix");
+        logrec_eq(l, &lr_base, "ignore non-priority message prefix");
     } while (0);
 
     /*

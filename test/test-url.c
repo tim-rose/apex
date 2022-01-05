@@ -40,17 +40,17 @@ static void test_str_url(void)
 
         ok(str_url(str, &url), "str_url(%s)", description);
 
-        str_field_is(url, scheme, "http", "str_url(%s) default", description);
-        str_field_is(url, user, NULL, "str_url(%s) unset", description);
-        str_field_is(url, password, NULL, "str_url(%s) unset", description);
-        str_field_is(url, domain, "domain", "str_url(%s)", description);
-        int_field_is(url, port, 80, "str_url(%s) default", description);
-        str_field_is(url, path, "path", "str_url(%s)", description);
-        str_field_is(url, query, NULL, "str_url(%s) unset", description);
-        str_field_is(url, anchor, NULL, "str_url(%s) unset", description);
+        str_field_eq(url, scheme, "http", "str_url(%s) default", description);
+        str_field_eq(url, user, NULL, "str_url(%s) unset", description);
+        str_field_eq(url, password, NULL, "str_url(%s) unset", description);
+        str_field_eq(url, domain, "domain", "str_url(%s)", description);
+        int_field_eq(url, port, 80, "str_url(%s) default", description);
+        str_field_eq(url, path, "path", "str_url(%s)", description);
+        str_field_eq(url, query, NULL, "str_url(%s) unset", description);
+        str_field_eq(url, anchor, NULL, "str_url(%s) unset", description);
 
         snprint_url(buf, NEL(buf), &url);
-        string_is(buf, "http://domain:80/path", "snprint_url(%s)",
+        string_eq(buf, "http://domain:80/path", "snprint_url(%s)",
                   description);
     } while (0);
 
@@ -62,17 +62,17 @@ static void test_str_url(void)
 
         ok(str_url(str, &url), "str_url(%s)", description);
 
-        str_field_is(url, scheme, "http", "str_url(%s)", description);
-        str_field_is(url, user, "user", "str_url(%s)", description);
-        str_field_is(url, password, "pass", "str_url(%s)", description);
-        str_field_is(url, domain, "domain", "str_url(%s)", description);
-        int_field_is(url, port, 80, "str_url(%s)", description);
-        str_field_is(url, path, "path", "str_url(%s)", description);
-        str_field_is(url, query, "query", "str_url(%s)", description);
-        str_field_is(url, anchor, "anchor", "str_url(%s)", description);
+        str_field_eq(url, scheme, "http", "str_url(%s)", description);
+        str_field_eq(url, user, "user", "str_url(%s)", description);
+        str_field_eq(url, password, "pass", "str_url(%s)", description);
+        str_field_eq(url, domain, "domain", "str_url(%s)", description);
+        int_field_eq(url, port, 80, "str_url(%s)", description);
+        str_field_eq(url, path, "path", "str_url(%s)", description);
+        str_field_eq(url, query, "query", "str_url(%s)", description);
+        str_field_eq(url, anchor, "anchor", "str_url(%s)", description);
 
         snprint_url(buf, NEL(buf), &url);
-        string_is(buf, "http://user:pass@domain:80/path?query#anchor",
+        string_eq(buf, "http://user:pass@domain:80/path?query#anchor",
                   "snprint_url(%s)", description);
     } while (0);
 
@@ -84,13 +84,13 @@ static void test_str_url(void)
 
         ok(str_url(str, &url), "str_url(%s)", description);
 
-        str_field_is(url, scheme, "mailto", "str_url(%s)", description);
-        str_field_is(url, user, "user", "str_url(%s)", description);
-        str_field_is(url, domain, "domain", "str_url(%s)", description);
-        int_field_is(url, port, 25, "str_url(%s)", description);
+        str_field_eq(url, scheme, "mailto", "str_url(%s)", description);
+        str_field_eq(url, user, "user", "str_url(%s)", description);
+        str_field_eq(url, domain, "domain", "str_url(%s)", description);
+        int_field_eq(url, port, 25, "str_url(%s)", description);
 
         snprint_url(buf, NEL(buf), &url);
-        string_is(buf, "mailto:user@domain:25", "snprint_url(%s)",
+        string_eq(buf, "mailto:user@domain:25", "snprint_url(%s)",
                   description);
     } while (0);
 
@@ -102,11 +102,11 @@ static void test_str_url(void)
 
         ok(str_url(str, &url), "str_url(%s)", description);
 
-        str_field_is(url, domain, "domain", "str_url(%s)", description);
-        int_field_is(url, port, 80, "str_url(%s)", description);
+        str_field_eq(url, domain, "domain", "str_url(%s)", description);
+        int_field_eq(url, port, 80, "str_url(%s)", description);
 
         snprint_url(buf, NEL(buf), &url);
-        string_is(buf, "domain:80", "snprint_url(%s)", description);
+        string_eq(buf, "domain:80", "snprint_url(%s)", description);
     } while (0);
 }
 
@@ -119,15 +119,15 @@ static void test_encode(void)
     const char *test = "The-quick-brown-fox-jumps-over-the-lazy-dog";
     size_t n = url_encode(test, NEL(buf), buf);
 
-    int_is(n, strlen(test), "%d", "url_encode(trivial): return value");
+    int_eq(n, strlen(test), "%d", "url_encode(trivial): return value");
 
     ok(buf[n] == '\0', "url_encode(trivial): terminates copied string");
-    string_is(test, buf, "url_encode(trivial): copied text");
+    string_eq(test, buf, "url_encode(trivial): copied text");
 
     n = url_encode("$&+,/:;=?@", NEL(buf), buf);
 
-    int_is(n, 30, "%d", "url_encode(reserved): return value");
-    string_is("%24%26%2b%2c%2f%3a%3b%3d%3f%40", buf,
+    int_eq(n, 30, "%d", "url_encode(reserved): return value");
+    string_eq("%24%26%2b%2c%2f%3a%3b%3d%3f%40", buf,
               "url_encode(reserved): copied text");
     /* REVISIT: boundary tests */
     /* REVISIT: error tests */
