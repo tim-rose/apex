@@ -69,7 +69,8 @@ int heap_push(HeapPtr heap, const void *item)
                item, heap->array.item_size);
         ++heap->n_used;
         heap_sift_up(heap->array.items,
-                     heap->array.n_items, heap->array.item_size, heap->cmp);
+                     heap->n_used, heap->array.item_size, heap->cmp);
+        return 1;                       /* success: item added to heap */
     }
     return 0;                          /* failure: no heap, or overflow */
 }
@@ -94,7 +95,7 @@ int heap_pop(HeapPtr heap, void *item)
                heap->array.items +
                heap->n_used * heap->array.item_size, heap->array.item_size);
         heap_sift_down(heap->array.items,
-                       heap->array.n_items, heap->array.item_size, heap->cmp);
+                       heap->n_used, heap->array.item_size, heap->cmp);
         return 1;
     }
     return 0;                          /* failure: no heap, or underflow */

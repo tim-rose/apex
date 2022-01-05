@@ -28,6 +28,20 @@ int main(void)
     return exit_status();
 }
 
+#if 0                                   /* debugging... */
+static void print_heap(int heap[], size_t n)
+{
+    char text[100];
+    char *str = text;
+
+    for (size_t i=0; i < n; ++i)
+    {
+        str += sprintf(str, " %d", heap[i]);
+    }
+    diag("heap:%s", text);
+}
+#endif  /* 0 */
+
 static void test_heap_ok(void)
 {
     const char func[] = "heap_ok";
