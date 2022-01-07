@@ -35,7 +35,7 @@ extern "C"
 
     int queue_push(AtomicQueuePtr queue, const void *item);
     int queue_pop(AtomicQueuePtr queue, void *item);
-    void *queue_peek(AtomicQueuePtr queue);
+    void *queue_peek(AtomicQueuePtr queue, void *item);
 
 #define new_queue(items) init_queue(queue_alloc(), items)
 #define init_queue(queue, items) queue_init(queue, NEL(items), sizeof(items[0]), items)

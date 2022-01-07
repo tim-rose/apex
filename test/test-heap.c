@@ -135,7 +135,8 @@ static void test_int(int n)
         }
         if (item != i+1)
         {
-            diag("heap_pop[%d] bad item", item);
+            diag("heap_pop[%d] bad value. Got %d, expected %d.",
+                 i, item, i+1);
             status = 0;
         }
     }
