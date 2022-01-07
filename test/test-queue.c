@@ -17,7 +17,7 @@ static void test_int(int n);
 
 int main(void)
 {
-    plan_tests(29);
+    plan_tests(28);
     test_mask();
     test_null();
     test_int(1);
@@ -61,9 +61,6 @@ static void test_mask(void)
     int status;
     size_t mask;
 
-    status = queue_mask(0, &mask);
-    int_eq(status, 0, "%d", "size 0 is not valid");
-
     status = queue_mask(1, &mask);
     int_eq(status, 1, "%d", "size 1 is valid");
     int_eq(mask, 0x00, "%d", "calculated mask is correct?");
@@ -99,17 +96,17 @@ static void test_int(int n)
     int storage[n];
     int item = n+1;
     AtomicQueue queue;
-    AtomicQueuePtr s = init_queue(&queue, storage);
+    AtomicQueuePtr q = init_queue(&queue, storage);
 
-    ok(s == &queue, "init_queue() returns first argument");
-    int_eq(queue_pop(s, &item), 0, "%d",
+    ok(q == &queue, "init_queue() returns first argument");
+    int_eq(queue_pop(q, &item), 0, "%d",
            "queue_pop() underflow: returns failure");
-    ok(queue_peek(s, NULL) == NULL,
+    ok(queue_peek(q, NULL) == NULL,
            "queue_peek() underflow: returns NULL");
 
     for (int i = 0; i < n; ++i)
     {                                   /* fully load up queue */
-        int push_ok = queue_push(s, &i);
+        int push_ok = queue_push(q, &i);
 
         if (!push_ok)
         {
@@ -119,23 +116,23 @@ static void test_int(int n)
     ok(status, "queue_push() all items");
     if (n > 0)
     {
-        void *address = queue_peek(s, NULL);
+        void *address = queue_peek(q, NULL);
         ok(address >= (void *) storage && address < (void*) (storage+n),
            "queue_peek() returns address from storage");
     }
     else
     {
-        ok(queue_peek(s, NULL) == NULL,
+        ok(queue_peek(q, NULL) == NULL,
            "queue_peek() underflow returns NULL");
     }
 
-    int_eq(queue_push(s, &item), 0, "%d",
+    int_eq(queue_push(q, &item), 0, "%d",
            "queue_push() overflow returns failure");
 
     status = 1;
     for (int i = 0; i < n; ++i)
     {                                   /* fully drain queue */
-        int pop_ok = queue_pop(s, &item);
+        int pop_ok = queue_pop(q, &item);
 
         if (!pop_ok)
         {
