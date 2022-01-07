@@ -12,6 +12,11 @@
 #include <xtd.h>                       /* for FEQUAL */
 #include <estring.h>                   /* for strequiv */
 
+#define ptr_eq(_have, _expected, ...)          \
+    (ok(((char *) _have)-(((char *) _expected)) == 0, __VA_ARGS__) ? 1 : \
+        (diag("%10s: 0x%p", "got", (_have)), \
+        diag("%10s: 0x%p", "expected", (_expected)), 0))
+
 #define int_eq(_have, _expected, _format, ...)          \
     (ok((_have)-(_expected) == 0, __VA_ARGS__) ? 1 :      \
         (diag("%10s: " _format, "got", (_have)), \
