@@ -67,7 +67,7 @@ static void test_null(void)
        "cannot push to a NULL heap");
     int_eq(heap_pop(NULL, &item), 0, "%d",
        "cannot pop from a NULL heap");
-    ok(heap_peek(NULL) == NULL,
+    ok(heap_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL heap");
 }
 
@@ -95,7 +95,7 @@ static void test_int(int n)
     ok(h == &heap, "init_heap() returns first argument");
     int_eq(heap_pop(h, &item), 0, "%d",
            "heap_pop() underflow returns failure");
-    ok(heap_peek(h) == NULL,
+    ok(heap_peek(h, NULL) == NULL,
            "heap_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
@@ -111,12 +111,12 @@ static void test_int(int n)
     ok(status, "heap_push() all items");
     if (n > 0)
     {
-        ok(heap_peek(h) == &storage[0],
+        ok(heap_peek(h, NULL) == &storage[0],
            "heap_peek() returns address in storage");
     }
     else
     {
-        ok(heap_peek(h) == NULL,
+        ok(heap_peek(h, NULL) == NULL,
            "heap_peek() underflow returns NULL");
     }
 

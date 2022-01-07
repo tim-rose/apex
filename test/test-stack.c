@@ -31,7 +31,7 @@ static void test_null(void)
        "cannot push to a NULL stack");
     int_eq(stack_pop(NULL, &item), 0, "%d",
        "cannot pop from a NULL stack");
-    ok(stack_peek(NULL) == NULL,
+    ok(stack_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL stack");
 }
 
@@ -55,7 +55,7 @@ static void test_char(int n)
     ok(s == &stack, "init_stack() returns first argument");
     int_eq(stack_pop(s, &item), 0, "%d",
            "stack_pop() underflow returns failure");
-    ok(stack_peek(s) == NULL,
+    ok(stack_peek(s, NULL) == NULL,
            "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
@@ -71,12 +71,12 @@ static void test_char(int n)
     ok(status, "stack_push() all items");
     if (n > 0)
     {
-        ok(stack_peek(s) == &storage[n-1],
+        ok(stack_peek(s, NULL) == &storage[n-1],
            "stack_peek() returns address in storage");
     }
     else
     {
-        ok(stack_peek(s) == NULL,
+        ok(stack_peek(s, NULL) == NULL,
            "stack_peek() underflow returns NULL");
     }
 
@@ -123,7 +123,7 @@ static void test_int(int n)
     ok(s == &stack, "init_stack() returns first argument");
     int_eq(stack_pop(s, &item), 0, "%d",
            "stack_pop() underflow returns failure");
-    ok(stack_peek(s) == NULL,
+    ok(stack_peek(s, NULL) == NULL,
            "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
@@ -139,12 +139,12 @@ static void test_int(int n)
     ok(status, "stack_push() all items");
     if (n > 0)
     {
-        ok(stack_peek(s) == &storage[n-1],
+        ok(stack_peek(s, NULL) == &storage[n-1],
            "stack_peek() returns address in storage");
     }
     else
     {
-        ok(stack_peek(s) == NULL,
+        ok(stack_peek(s, NULL) == NULL,
            "stack_peek() underflow returns NULL");
     }
 

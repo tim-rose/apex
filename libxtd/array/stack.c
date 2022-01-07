@@ -94,18 +94,10 @@ int stack_push(StackPtr stack, const void *item)
  */
 int stack_pop(StackPtr stack, void *item)
 {
-    if (stack != NULL)
+    if (stack_peek(stack, item))
     {
-        if (stack->position > 0)
-        {
-            --stack->position;
-            memcpy(item,
-                   stack->array.items +
-                   stack->position * stack->array.item_size,
-                   stack->array.item_size);
-            return 1;                  /* success */
-        }
-
+        --stack->position;
+        return 1;                       /* success */
     }
     return 0;                          /* failure: no stack, or underflow */
 }
@@ -115,22 +107,28 @@ int stack_pop(StackPtr stack, void *item)
  *
  * Parameters:
  * stack --the stack
+ * item --NULL, or the address to copy the top item.
  *
  * Returns: (void *)
  * Success: a pointer to the top of stack; Failure: NULL.
  *
  * Remarks:
- * Consider allowing peek at lower stack items too?
+ * REVISIT: Consider allowing peek at lower stack items too?
  */
-void *stack_peek(StackPtr stack)
+void *stack_peek(StackPtr stack, void *item)
 {
-    if (stack != NULL)
+    char *stack_item = NULL;
+
+    if (stack != NULL && stack->position > 0)
     {
-        if (stack->position > 0)
+        stack_item =
+            stack->array.items +
+            (stack->position-1) * stack->array.item_size;
+        if (item != NULL)
         {
-            return stack->array.items + /* success: return pointer */
-                (stack->position - 1) * stack->array.item_size;
+            memcpy(item, stack_item, stack->array.item_size);
         }
+        return stack_item;          /* success: return pointer */
     }
     return NULL;                       /* failure: no stack, or empty */
 }

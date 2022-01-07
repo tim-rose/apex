@@ -24,7 +24,7 @@ extern "C"
 
     int heap_push(HeapPtr heap, const void *item);
     int heap_pop(HeapPtr heap, void *item);
-    void *heap_peek(HeapPtr heap);
+    void *heap_peek(HeapPtr heap, void *item);
 
 #define new_heap(cmp, items) init_heap(heap_alloc(), cmp, items)
 #define init_heap(heap, cmp, items) heap_init(heap, cmp, NEL(items), sizeof(items[0]), items)

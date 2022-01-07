@@ -22,7 +22,7 @@ extern "C"
 
     int stack_push(StackPtr stack, const void *item);
     int stack_pop(StackPtr stack, void *item);
-    void *stack_peek(StackPtr stack);
+    void *stack_peek(StackPtr stack, void *item);
 
 #define new_stack(items) init_stack(stack_alloc(), items)
 #define init_stack(stack, items) stack_init(stack, NEL(items), sizeof(items[0]), items)

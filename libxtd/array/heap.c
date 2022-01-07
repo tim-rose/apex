@@ -87,16 +87,15 @@ int heap_push(HeapPtr heap, const void *item)
  */
 int heap_pop(HeapPtr heap, void *item)
 {
-    if (heap != NULL && heap->n_used > 0)
+    if (heap_peek(heap, item) != NULL)
     {
-        memcpy(item, heap->array.items, heap->array.item_size);
         --heap->n_used;
         memcpy(heap->array.items,
                heap->array.items +
                heap->n_used * heap->array.item_size, heap->array.item_size);
         heap_sift_down(heap->array.items,
                        heap->n_used, heap->array.item_size, heap->cmp);
-        return 1;
+        return 1;                       /* success */
     }
     return 0;                          /* failure: no heap, or underflow */
 }
@@ -106,15 +105,20 @@ int heap_pop(HeapPtr heap, void *item)
  *
  * Parameters:
  * heap --the heap
+ * item --NULL, or the address to copy the top item.
  *
  * Returns: (void *)
  * Success: a pointer to the top of heap; Failure: NULL.
  */
-void *heap_peek(HeapPtr heap)
+void *heap_peek(HeapPtr heap, void *item)
 {
     if (heap != NULL && heap->n_used > 0)
     {
-        return heap->array.items;
+        if (item != NULL)
+        {
+            memcpy(item, heap->array.items, heap->array.item_size);
+        }
+        return heap->array.items;       /* success */
     }
     return NULL;                       /* failure: no heap, or empty */
 }

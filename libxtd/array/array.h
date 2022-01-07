@@ -3,7 +3,7 @@
  *
  * Remarks:
  * This is used as a base structure/class for other array-based data
- * structures (stack, heap, map).
+ * structures (stack, heap, queue etc.).
  */
 #ifndef ARRAY_H
 #define ARRAY_H
