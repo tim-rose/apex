@@ -32,7 +32,7 @@ StackPtr stack_alloc()
  * stack --specifies and returns the initialised stack
  * n_items --the number of stack items
  * item_size --the size of each item
- * items --the storage for the stack (n_items*item_size)
+ * base --the storage for the stack (n_items*item_size)
  *
  * Returns:
  * The stack.
@@ -42,13 +42,11 @@ StackPtr stack_alloc()
  * by the caller.
  */
 StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size,
-                    void *items)
+                    void *base)
 {
-    if (stack != NULL && items != NULL)
+    if (stack != NULL && base != NULL)
     {
-        stack->array.n_items = n_items;
-        stack->array.item_size = item_size;
-        stack->array.items = (char *) items;
+        array_init(&stack->array, n_items, item_size, base);
         stack->position = 0;
         return stack;
     }
@@ -71,8 +69,7 @@ int stack_push(StackPtr stack, const void *item)
     {
         if (stack->position < stack->array.n_items)
         {
-            memcpy(stack->array.items +
-                   stack->position * stack->array.item_size,
+            memcpy(array_item(&stack->array, (ssize_t) stack->position),
                    item, stack->array.item_size);
             ++stack->position;
             return 1;                  /* success */
@@ -97,7 +94,7 @@ int stack_pop(StackPtr stack, void *item)
     if (stack_peek(stack, item))
     {
         --stack->position;
-        return 1;                       /* success */
+        return 1;                      /* success */
     }
     return 0;                          /* failure: no stack, or underflow */
 }
@@ -107,7 +104,7 @@ int stack_pop(StackPtr stack, void *item)
  *
  * Parameters:
  * stack --the stack
- * item --NULL, or the address to copy the top item.
+ * item --NULL, or returns a copy of the top item.
  *
  * Returns: (void *)
  * Success: a pointer to the top of stack; Failure: NULL.
@@ -121,14 +118,13 @@ void *stack_peek(StackPtr stack, void *item)
 
     if (stack != NULL && stack->position > 0)
     {
-        stack_item =
-            stack->array.items +
-            (stack->position-1) * stack->array.item_size;
+        stack_item = array_item(&stack->array, (ssize_t) stack->position - 1);
+
         if (item != NULL)
         {
             memcpy(item, stack_item, stack->array.item_size);
         }
-        return stack_item;          /* success: return pointer */
+        return stack_item;             /* success: return pointer */
     }
     return NULL;                       /* failure: no stack, or empty */
 }

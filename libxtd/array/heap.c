@@ -26,7 +26,7 @@ HeapPtr heap_alloc()
  * cmp --item comparison function
  * n_items --the number of heap items
  * item_size --the size of each item
- * items --the storage for the heap (n_items*item_size)
+ * base --the storage for the heap (n_items*item_size)
  *
  * Returns:
  * Success: The heap; Failure: NULL.
@@ -36,13 +36,11 @@ HeapPtr heap_alloc()
  * by the caller.
  */
 HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
-                  size_t item_size, void *items)
+                  size_t item_size, void *base)
 {
-    if (heap != NULL && items != NULL)
+    if (heap != NULL && base != NULL)
     {
-        heap->array.n_items = n_items;
-        heap->array.item_size = item_size;
-        heap->array.items = (char *) items;
+        array_init(&heap->array, n_items, item_size, base);
         heap->n_used = 0;
         heap->cmp = cmp;
         return heap;
@@ -64,13 +62,12 @@ int heap_push(HeapPtr heap, const void *item)
 {
     if (heap != NULL && heap->n_used < heap->array.n_items)
     {
-        memcpy(heap->array.items +
-               heap->n_used * heap->array.item_size,
+        memcpy(array_item(&heap->array, (ssize_t) heap->n_used),
                item, heap->array.item_size);
         ++heap->n_used;
-        heap_sift_up(heap->array.items,
+        heap_sift_up(heap->array.base,
                      heap->n_used, heap->array.item_size, heap->cmp);
-        return 1;                       /* success: item added to heap */
+        return 1;                      /* success: item added to heap */
     }
     return 0;                          /* failure: no heap, or overflow */
 }
@@ -90,12 +87,12 @@ int heap_pop(HeapPtr heap, void *item)
     if (heap_peek(heap, item) != NULL)
     {
         --heap->n_used;
-        memcpy(heap->array.items,
-               heap->array.items +
-               heap->n_used * heap->array.item_size, heap->array.item_size);
-        heap_sift_down(heap->array.items,
-                       heap->n_used, heap->array.item_size, heap->cmp);
-        return 1;                       /* success */
+        memcpy(heap->array.base,
+               array_item(&heap->array, (ssize_t) heap->n_used),
+               heap->array.item_size);
+        heap_sift_down(heap->array.base, heap->n_used, heap->array.item_size,
+                       heap->cmp);
+        return 1;                      /* success */
     }
     return 0;                          /* failure: no heap, or underflow */
 }
@@ -116,9 +113,9 @@ void *heap_peek(HeapPtr heap, void *item)
     {
         if (item != NULL)
         {
-            memcpy(item, heap->array.items, heap->array.item_size);
+            memcpy(item, heap->array.base, heap->array.item_size);
         }
-        return heap->array.items;       /* success */
+        return heap->array.base;       /* success */
     }
     return NULL;                       /* failure: no heap, or empty */
 }

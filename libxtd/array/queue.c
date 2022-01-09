@@ -24,6 +24,7 @@ AtomicQueuePtr queue_alloc()
 {
     return malloc(sizeof(AtomicQueue));
 }
+
 /* LCOV_EXCL_STOP */
 
 /*
@@ -52,7 +53,7 @@ int queue_mask(size_t n, size_t *mask)
  * queue    --The queue to be initialised (owned by caller).
  * n_items  --The number of items in the queue (must power of 2)
  * item_size    --The size of the queue items.
- * items    --The working storage of the queue.
+ * base    --The working storage of the queue.
  *
  * Returns:
  * queue.
@@ -64,21 +65,18 @@ int queue_mask(size_t n, size_t *mask)
  * power of 2.
  */
 AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
-                          size_t item_size, void *items)
+                          size_t item_size, void *base)
 {
-    if (queue == NULL || items == NULL || n_items == 0)
+    if (queue == NULL || base == NULL || n_items == 0)
     {
-        return NULL;                    /* failure: no queue, no items? */
+        return NULL;                   /* failure: no queue, no items? */
     }
     memset((void *) queue, 0, sizeof(*queue));
     if (!queue_mask(n_items, &queue->mask))
-    {                              /* REVISIT: assert? */
-        return NULL;               /* error: bad size */
+    {                                  /* REVISIT: assert? */
+        return NULL;                   /* error: bad size */
     }
-    queue->array.n_items = n_items;
-    queue->array.item_size = item_size;
-
-    queue->array.items = (char *) items;
+    array_init(&queue->array, n_items, item_size, base);
     return queue;                      /* success: queue is initialised */
 }
 
@@ -97,14 +95,14 @@ int queue_push(AtomicQueuePtr queue, const void *item)
 {
     if (queue == NULL || item == NULL)
     {
-        return 0;                       /* failure: no queue, or no item! */
+        return 0;                      /* failure: no queue, or no item! */
     }
     if (queue->n_write - queue->n_read > queue->mask)
     {
         queue->n_fail++;               /* remember failures */
         return 0;                      /* failure: queue is full */
     }
-    memcpy(queue->array.items
+    memcpy(queue->array.base
            + queue->array.item_size * (queue->n_write & queue->mask),
            item, queue->array.item_size);
     queue->n_write++;
@@ -149,18 +147,18 @@ void *queue_peek(AtomicQueuePtr queue, void *item)
 {
     void *queue_item = NULL;
 
-   if (queue == NULL)
+    if (queue == NULL)
     {
-        return NULL;              /* failure: no queue */
+        return NULL;                   /* failure: no queue */
     }
     if (queue->n_write != queue->n_read)
     {
-        queue_item = queue->array.items
+        queue_item = queue->array.base
             + queue->array.item_size * (queue->n_read & queue->mask);
         if (item != NULL)
         {
             memcpy(item, queue_item, queue->array.item_size);
         }
     }
-    return queue_item;              /* success: item, failure: NULL */
+    return queue_item;                 /* success: item, failure: NULL */
 }

@@ -46,7 +46,7 @@ PoolPtr pool_alloc()
  * pool --specifies and returns the initialised pool
  * n_items --the number of pool items
  * item_size --the size of each item
- * items --the storage for the pool (n_items*item_size)
+ * base --the storage for the pool (n_items*item_size)
  *
  * Returns: (Poolptr)
  * The pool.
@@ -55,20 +55,16 @@ PoolPtr pool_alloc()
  * The pool storage is not allocated by this module, it is provided
  * by the caller.
  */
-PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size,
-                    void *items)
+PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *base)
 {
-    if (pool != NULL && items != NULL
-        && n_items > 0
-        && item_size >= sizeof(LinkPtr))
+    if (pool != NULL && base != NULL
+        && n_items > 0 && item_size >= sizeof(LinkPtr))
     {
         memset(pool, 0, sizeof(*pool));
-        pool->array.n_items = n_items;
-        pool->array.item_size = item_size;
-        pool->array.items = (char *) items;
+        array_init(&pool->array, n_items, item_size, base);
         return pool;
     }
-    return NULL;                        /* failure: assert? */
+    return NULL;                       /* failure: assert? */
 }
 
 /*
@@ -87,16 +83,16 @@ void *pool_new(PoolPtr pool)
         if (pool->free != NULL)
         {
             LinkPtr head = (LinkPtr) pool->free;
+
             pool->free = head->next;
-            return (void *) head; /* success: return from free list */
+            return (void *) head;      /* success: return from free list */
         }
         if (pool->n_used < pool->array.n_items)
         {
-            return pool->array.items
-                + pool->array.item_size * pool->n_used++;
+            return pool->array.base + pool->array.item_size * pool->n_used++;
         }
     }
-    return NULL;                          /* failure: the pool is empty! */
+    return NULL;                       /* failure: the pool is empty! */
 }
 
 /*
