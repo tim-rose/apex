@@ -13,7 +13,7 @@ extern "C"
     typedef struct Stack_t
     {
         ArrayContainer array;
-        size_t position;
+        size_t top;                    /* current top of stack */
     } Stack, *StackPtr;
 
     StackPtr stack_alloc(void);
@@ -24,6 +24,10 @@ extern "C"
     int stack_pop(StackPtr stack, void *item);
     void *stack_peek(StackPtr stack, void *item);
 
+
+    /*
+     * Convenience functions for malloc and item-size aware initialisation.
+     */
 #define new_stack(items) init_stack(stack_alloc(), items)
 #define init_stack(stack, items) stack_init(stack, NEL(items), sizeof(items[0]), items)
 #ifdef __cplusplus

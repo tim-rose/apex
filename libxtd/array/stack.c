@@ -47,7 +47,7 @@ StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size,
     if (stack != NULL && base != NULL)
     {
         array_init(&stack->array, n_items, item_size, base);
-        stack->position = 0;
+        stack->top = 0;
         return stack;
     }
     return NULL;
@@ -67,11 +67,11 @@ int stack_push(StackPtr stack, const void *item)
 {
     if (stack != NULL)
     {
-        if (stack->position < stack->array.n_items)
+        if (stack->top < stack->array.n_items)
         {
-            memcpy(array_item(&stack->array, (ssize_t) stack->position),
+            memcpy(array_item(&stack->array, (ssize_t) stack->top),
                    item, stack->array.item_size);
-            ++stack->position;
+            ++stack->top;
             return 1;                  /* success */
         }
 
@@ -93,7 +93,7 @@ int stack_pop(StackPtr stack, void *item)
 {
     if (stack_peek(stack, item))
     {
-        --stack->position;
+        --stack->top;
         return 1;                      /* success */
     }
     return 0;                          /* failure: no stack, or underflow */
@@ -116,9 +116,9 @@ void *stack_peek(StackPtr stack, void *item)
 {
     char *stack_item = NULL;
 
-    if (stack != NULL && stack->position > 0)
+    if (stack != NULL && stack->top > 0)
     {
-        stack_item = array_item(&stack->array, (ssize_t) stack->position - 1);
+        stack_item = array_item(&stack->array, (ssize_t) stack->top - 1);
 
         if (item != NULL)
         {

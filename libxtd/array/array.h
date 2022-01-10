@@ -6,7 +6,7 @@
  * array_item() --Return the address of an array item.
  *
  * Remarks:
- * This is used as a base structure/class for other array-based data
+ * This is used as a base structure/class for other slab/array data
  * structures (stack, heap, queue etc.).
  */
 #ifndef ARRAY_H
@@ -22,11 +22,17 @@ extern "C"
     {
         size_t n_items;
         size_t item_size;
-        char *base;                    /* size: n_items*item_size */
+        char *base;                    /* size == n_items*item_size */
     } ArrayContainer, *ArrayContainerPtr;
 
     /*
      * array_init() --Initialise an array container.
+     *
+     * Parameters:
+     * array --the array container to be initialised
+     * n_items --the number of items in the container data
+     * item_size --the size of each contained item
+     * base --the base address of the array storage
      */
     inline void array_init(ArrayContainerPtr array,
                            size_t n_items, size_t item_size, void *base)
@@ -36,11 +42,17 @@ extern "C"
         array->base = (char *) base;
     }
 
-
     /*
      * array_item() --Return the address of an array item.
+     *
+     * Parameters:
+     * array --the array container
+     * offset --the index/slot of the item
+     *
+     * Returns: (void *)
+     * The address of item[offset].
      */
-    inline char *array_item(ArrayContainerPtr array, ssize_t offset)
+    inline void *array_item(ArrayContainerPtr array, ssize_t offset)
     {
         return array->base + offset * (long) array->item_size;
     }

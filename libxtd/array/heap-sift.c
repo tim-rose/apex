@@ -10,16 +10,15 @@
  * The heap data structure is a semi-ordered tree that maintains the
  * property that a parent is greater/equal than ALL its descendents,
  * with no ordering specified between siblings.  It is commonly
- * modelled as an "implicit" binary tree, and implemented as a simple
+ * modelled as an "implicit" binary tree, implemented as a simple
  * array.  An array implementation is possible because binary-tree
- * heaps are inherently "balanced" (maybe "full" is a better term
+ * heaps are inherently "balanced" (maybe "full-ish" is a better term
  * here), so there are no "holes" in the tree.
- *
  */
 
 #include <string.h>
 #include <heap.h>
-#include <estring.h>
+#include <estring.h>                   /* for memswap() */
 
 /*
  * heap_sift_up() --Sift a value from the bottom of the heap to the top.
@@ -32,8 +31,9 @@
  *
  * Remarks:
  * A heap "sift-up" is usually used after an insertion: the item is
- * appended to the end of the list and then the sift-up re-creates the
- * heap condition.
+ * appended to the end of the list, creating a heap that is valid
+ * *except* for this last leaf item. sift-up re-creates the heap
+ * condition by "floating" the value up the heap towards root.
  */
 void heap_sift_up(void *heap, size_t n_items, size_t item_size,
                   CompareProc cmp)
@@ -42,6 +42,7 @@ void heap_sift_up(void *heap, size_t n_items, size_t item_size,
     {
         char *node = (char *) heap + i * item_size;
         char *parent = (char *) heap + (i - 1) / 2 * item_size;
+
         if (cmp(node, parent) < 0)
         {
             memswap(parent, node, item_size);
@@ -60,8 +61,9 @@ void heap_sift_up(void *heap, size_t n_items, size_t item_size,
  *
  * Remarks:
  * A heap "sift-down" is usually used after a deletion: the first item
- * is removed, and the last item is swapped into its place.  The
- * sift-down re-creates the heap condition.
+ * is removed, and the last item is swapped into its place, reducing
+ * the heap by 1. The sift-down re-creates the heap condition by
+ * pushing the root down to the child slots.
  */
 void heap_sift_down(void *heap, size_t n_items, size_t item_size,
                     CompareProc cmp)
@@ -77,7 +79,9 @@ void heap_sift_down(void *heap, size_t n_items, size_t item_size,
         {
             break;
         }
+
         char *alt_child = child + item_size;    /* right child */
+
         if (alt_child < end && cmp(child, alt_child) > 0)
         {                              /* choose smallest child */
             child = alt_child;

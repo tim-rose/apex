@@ -1,5 +1,12 @@
 /*
  * HEAP.C --A simple heap array, with caller provided item storage.
+ *
+ * Contents:
+ * heap_alloc() --Allocate some space for a heap structure.
+ * heap_init()  --Initialise a heap structure.
+ * heap_push()  --Insert an item into the heap.
+ * heap_pop()   --Remove an item from the top of the heap.
+ * heap_peek()  --Peek at the top item in the heap.
  */
 #include <memory.h>
 #include <heap.h>
@@ -28,7 +35,7 @@ HeapPtr heap_alloc()
  * item_size --the size of each item
  * base --the storage for the heap (n_items*item_size)
  *
- * Returns:
+ * Returns: (HeapPtr)
  * Success: The heap; Failure: NULL.
  *
  * Remarks:
@@ -49,11 +56,11 @@ HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
 }
 
 /*
- * heap_push() --Insert an item onto the heap.
+ * heap_push() --Insert an item into the heap.
  *
  * Parameters:
  * heap --the heap
- * item --address of the item to insert
+ * item --the item to insert
  *
  * Returns: (int)
  * Success: 1; Failure: 0.
@@ -73,11 +80,11 @@ int heap_push(HeapPtr heap, const void *item)
 }
 
 /*
- * heap_pop() --Remove an item from the heap.
+ * heap_pop() --Remove an item from the top of the heap.
  *
  * Parameters:
  * heap --the heap
- * item --returns the removed item
+ * item --returns a copy of the removed item
  *
  * Returns: (int)
  * Success: 1; Failure: 0.

@@ -2,24 +2,32 @@
  * POOL.C --A simple pool allocator, with caller provided item storage.
  *
  * Contents:
+ * Link{}        --free list record
  * pool_alloc()  --Allocate some space for a pool structure.
  * pool_init()   --Initialise a pool structure.
- * pool_new()    --Return a new item from the pool.
+ * pool_new()    --Get a new item from the pool.
  * pool_delete() --Return an item to the pool.
  *
  * Remarks:
  * These routines manage a chunk of storage as an array of fixed size
  * items.  Requested items are initially allocated from the provided
  * memory, but freed (um, deleted()) items are managed as a simple
- * linked list which is used to satisfy storage requests.
+ * linked list which is used to satisfy storage requests if possible.
  *
  * A pool allocator can be useful when a number of temporary objects
  * are needed; the aggregate can be discarded simply by freeing the
  * slab of memory controlled by the pool.
+ *
+ * Pool allocator also has well known (and good!) performance, because
+ * it avoids fragmentation and merging etc. that a general purpose
+ * allocator must do.
  */
 #include <memory.h>
 #include <pool.h>
 
+/*
+ * Link{} --free list record
+ */
 typedef struct Link_t
 {
     struct Link_t *next;
@@ -46,7 +54,7 @@ PoolPtr pool_alloc()
  * pool --specifies and returns the initialised pool
  * n_items --the number of pool items
  * item_size --the size of each item
- * base --the storage for the pool (n_items*item_size)
+ * base --the storage for the pool (size == n_items*item_size)
  *
  * Returns: (Poolptr)
  * The pool.
@@ -68,10 +76,10 @@ PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *base)
 }
 
 /*
- * pool_new() --Return a new item from the pool.
+ * pool_new() --Get a new item from the pool.
  *
  * Parameters:
- * pool --the pool
+ * pool --the pool to allocate from
  *
  * Returns: (void *)
  * Success: the newly allocated memory; Failure: NULL.
@@ -81,7 +89,7 @@ void *pool_new(PoolPtr pool)
     if (pool != NULL)
     {
         if (pool->free != NULL)
-        {
+        {                              /* try free-list first. */
             LinkPtr head = (LinkPtr) pool->free;
 
             pool->free = head->next;
@@ -101,6 +109,9 @@ void *pool_new(PoolPtr pool)
  * Parameters:
  * pool --the pool
  * item --the item to delete
+ *
+ * Remarks:
+ * REVIISIT: This routine could validate the address being returned.
  */
 void pool_delete(PoolPtr pool, void *item)
 {

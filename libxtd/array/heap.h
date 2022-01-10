@@ -14,8 +14,8 @@ extern "C"
     typedef struct Heap_t
     {
         ArrayContainer array;
-        size_t n_used;
-        CompareProc cmp;
+        size_t n_used;                 /* current size of heap */
+        CompareProc cmp;               /* heap item comparison function */
     } Heap, *HeapPtr;
 
     HeapPtr heap_alloc(void);
@@ -26,8 +26,12 @@ extern "C"
     int heap_pop(HeapPtr heap, void *item);
     void *heap_peek(HeapPtr heap, void *item);
 
+    /*
+     * Convenience functions for malloc and item-size aware initialisation.
+     */
 #define new_heap(cmp, items) init_heap(heap_alloc(), cmp, items)
 #define init_heap(heap, cmp, items) heap_init(heap, cmp, NEL(items), sizeof(items[0]), items)
+
     /*
      * low-level heap operations.
      */

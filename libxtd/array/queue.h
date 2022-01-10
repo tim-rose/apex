@@ -1,5 +1,11 @@
 /*
  * QUEUE.H --A simple atomic queue.
+ *
+ * Contents:
+ * AtomicQueue_t{} --The state of a queue and its working storage.
+ *
+ * Remarks:
+ * This queue is thread safe for single-producer, single-consumer.
  */
 #ifndef QUEUE_H
 #define QUEUE_H
@@ -12,6 +18,7 @@ extern "C"
     /*
      * AtomicQueue_t{} --The state of a queue and its working storage.
      *
+     * Remarks:
      * The queue counts the No. of reads and writes as simple
      * integers, allowing them to simply overflow.  This strategy
      * works if the size of the queue is a power of 2
@@ -37,6 +44,9 @@ extern "C"
     int queue_pop(AtomicQueuePtr queue, void *item);
     void *queue_peek(AtomicQueuePtr queue, void *item);
 
+    /*
+     * Convenience functions for malloc and item-size aware initialisation.
+     */
 #define new_queue(items) init_queue(queue_alloc(), items)
 #define init_queue(queue, items) queue_init(queue, NEL(items), sizeof(items[0]), items)
 

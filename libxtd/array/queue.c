@@ -1,5 +1,5 @@
 /*
- * QUEUE.C --A non-blocking queue of items.
+ * QUEUE.C --An atomic non-blocking queue of items.
  *
  * Contents:
  * queue_alloc() --Allocate some space for a queue structure.
@@ -35,6 +35,12 @@ AtomicQueuePtr queue_alloc()
  *
  * Returns:
  * Success: 1; Failure: 0..
+ *
+ * Remarks:
+ * This routine fails if the size is not a power of 2, using
+ * non-obvious(?) bit wrangling to test that.  The mask for a (power
+ * of 2) n is all bits set from that power's bit down, or (now
+ * shifting to further non-obvious arithmetic/bit wrangling, is n - 1.
  */
 int queue_mask(size_t n, size_t *mask)
 {
@@ -83,8 +89,8 @@ AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
 /*
  * queue_push() --Push an item onto the queue.
  *
- * queue --the queue to be initialised (owned by caller)
- * item --the queue item to insert (cast to void *)
+ * queue --the queue to receive the item
+ * item --the queue item to insert
  *
  * @return Success: 1; Failure: 0.
  *
@@ -147,17 +153,16 @@ void *queue_peek(AtomicQueuePtr queue, void *item)
 {
     void *queue_item = NULL;
 
-    if (queue == NULL)
+    if (queue != NULL)
     {
-        return NULL;                   /* failure: no queue */
-    }
-    if (queue->n_write != queue->n_read)
-    {
-        queue_item = queue->array.base
-            + queue->array.item_size * (queue->n_read & queue->mask);
-        if (item != NULL)
+        if (queue->n_write != queue->n_read)
         {
-            memcpy(item, queue_item, queue->array.item_size);
+            queue_item = queue->array.base
+                + queue->array.item_size * (queue->n_read & queue->mask);
+            if (item != NULL)
+            {
+                memcpy(item, queue_item, queue->array.item_size);
+            }
         }
     }
     return queue_item;                 /* success: item, failure: NULL */

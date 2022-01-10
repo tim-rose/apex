@@ -1,5 +1,5 @@
 #
-# Makefile --Build rules for "xtd/stack", a stack implementation.
+# Makefile --Build rules for "xtd/array", various slab/array ADTs.
 #
 language = c
 LIB_ROOT = ..
