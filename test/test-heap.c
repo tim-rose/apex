@@ -62,9 +62,9 @@ static void test_null(void)
     ok(heap_init(&heap, int_cmp, 10, 1, NULL) == NULL,
        "cannot initialise a heap with no storage");
     int_eq(heap_push(NULL, &item), 0, "%d",
-       "cannot push to a NULL heap");
+           "cannot push to a NULL heap");
     int_eq(heap_pop(NULL, &item), 0, "%d",
-       "cannot pop from a NULL heap");
+           "cannot pop from a NULL heap");
     ok(heap_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL heap");
 }
@@ -94,7 +94,7 @@ static void test_int(int n)
     int_eq(heap_pop(h, &item), 0, "%d",
            "heap_pop() underflow returns failure");
     ok(heap_peek(h, NULL) == NULL,
-           "heap_peek() underflow returns NULL");
+       "heap_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
     {                                   /* fully load up heap */

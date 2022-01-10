@@ -41,9 +41,9 @@ static void test_null(void)
     ok(queue_init(NULL, 1, 1, NULL) == NULL,
        "cannot initialise a NULL queue");
     int_eq(queue_push(NULL, &item), 0, "%d",
-       "cannot push to a NULL queue");
+           "cannot push to a NULL queue");
     int_eq(queue_pop(NULL, &item), 0, "%d",
-       "cannot pop from a NULL queue");
+           "cannot pop from a NULL queue");
     ok(queue_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL queue");
     ok(queue_init(&queue, 3, 1, &item) == NULL,
@@ -102,7 +102,7 @@ static void test_int(int n)
     int_eq(queue_pop(q, &item), 0, "%d",
            "queue_pop() underflow: returns failure");
     ok(queue_peek(q, NULL) == NULL,
-           "queue_peek() underflow: returns NULL");
+       "queue_peek() underflow: returns NULL");
 
     for (int i = 0; i < n; ++i)
     {                                   /* fully load up queue */

@@ -28,9 +28,9 @@ static void test_null(void)
     ok(stack_init(&stack, 10, 1, NULL) == NULL,
        "cannot initialise a stack with no storage");
     int_eq(stack_push(NULL, &item), 0, "%d",
-       "cannot push to a NULL stack");
+           "cannot push to a NULL stack");
     int_eq(stack_pop(NULL, &item), 0, "%d",
-       "cannot pop from a NULL stack");
+           "cannot pop from a NULL stack");
     ok(stack_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL stack");
 }
@@ -56,7 +56,7 @@ static void test_char(int n)
     int_eq(stack_pop(s, &item), 0, "%d",
            "stack_pop() underflow returns failure");
     ok(stack_peek(s, NULL) == NULL,
-           "stack_peek() underflow returns NULL");
+       "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
     {                                   /* fully load up stack */
@@ -124,7 +124,7 @@ static void test_int(int n)
     int_eq(stack_pop(s, &item), 0, "%d",
            "stack_pop() underflow returns failure");
     ok(stack_peek(s, NULL) == NULL,
-           "stack_peek() underflow returns NULL");
+       "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
     {                                   /* fully load up stack */
