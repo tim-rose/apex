@@ -13,6 +13,10 @@
 #include <date.h>
 #include <estring.h>
 
+#ifdef __WINNT__
+#define localtime_r(timep_, result_) localtime(timep_)
+#endif /* __WINNT__ */
+
 /*
  * adjust_ut() --Adjust a timestamp by a unit+delta.
  *

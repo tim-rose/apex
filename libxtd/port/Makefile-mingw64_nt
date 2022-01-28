@@ -1,0 +1,13 @@
+C_SRC = environ.c syslog.c
+#
+# Makefile --Build rules for "xtd/misc", miscellaneous stuff
+#
+language = c
+LIB_ROOT = ..
+
+H_SRC = syslog-standalone.h
+
+include makeshift.mk library.mk
+
+install: install-lib-include
+uninstall: uninstall-lib-include

@@ -20,6 +20,10 @@
 #include <estring.h>
 #include <strparse.h>
 
+#ifdef __WINNT__
+#define localtime_r(timep_, result_) localtime(timep_)
+#endif /* __WINNT__ */
+
 /*
  * fallback_colours[] --fallback values for tty colour styles.
  *

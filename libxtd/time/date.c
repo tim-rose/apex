@@ -25,6 +25,10 @@
 #include <date.h>
 #include <estring.h>
 
+#ifdef __WINNT__
+#define localtime_r(timep_, result_) localtime(timep_)
+#endif /* __WINNT__ */
+
 struct tm null_tm = {.tm_isdst = -1 };
 
 const char date_syslog_timestamp[] = "%b %e %H:%M:%S";

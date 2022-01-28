@@ -1,3 +1,4 @@
+build@misc: build@port
 build@array: build@misc
 build@array: build@string
 build@config: build@log
