@@ -12,7 +12,9 @@
 
 #include <stdint.h>
 #include <sys/types.h>
+#ifndef __WINNT__
 #include <sys/socket.h>
+#endif /* __WINNT__ */
 
 #ifdef __cplusplus
 extern "C"

@@ -6,7 +6,7 @@
 
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
 #include <stdarg.h>
-#include <syslog.h>
+#include SYSLOG
 #include <errno.h>
 
 #ifdef __cplusplus

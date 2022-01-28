@@ -4,11 +4,11 @@
 #ifndef SYSENUM_H
 #define SYSENUM_H
 
-#include <stdarg.h>
-#include <syslog.h>
-#include <errno.h>
-
 #include <xtd.h>
+
+#include <stdarg.h>
+#include SYSLOG
+#include <errno.h>
 
 #ifdef __cplusplus
 extern "C"

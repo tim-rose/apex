@@ -64,7 +64,7 @@ static time_t timegm_(struct tm *tm)
 {
     time_t t = 0;
 
-#ifdef xxx__Windows_NT__               /* Windows doesn't have gmtoff */
+#ifdef __WINNT__               /* Windows doesn't have gmtoff */
     {
         char *tz;
 
@@ -81,7 +81,7 @@ static time_t timegm_(struct tm *tm)
 #else
     t = mktime(tm);
     t += tm->tm_gmtoff;
-#endif /* Windows_NT */
+#endif /* WINNT */
     return t;
 }
 

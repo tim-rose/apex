@@ -1,17 +1,15 @@
 /*
  * LOG-PARSE.H --Routines for parsing syslog records.
- *
  */
 #ifndef LOG_PARSE_H
 #define LOG_PARSE_H
 
+#include <xtd.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <syslog.h>
+#include SYSLOG
 #include <time.h>
-
-#include <xtd.h>
 
 #ifdef __cplusplus
 extern "C"

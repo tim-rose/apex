@@ -20,6 +20,7 @@
  * http://video.google.com/videoplay?docid=2159021324062223592&ei=&hl=en
  *
  */
+#include <xtd.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -35,6 +36,11 @@
 
 #include <log.h>
 
+#ifdef __WINNT__
+#define MKDIR(path_, permissions_) mkdir(path_)
+#else
+#define MKDIR(path_, permissions_) mkdir(path_, permissions_)
+#endif /* __WINNT__ */
 /*
  * get_env_variable() --Return the value of an environment variable, or a default.
  *
@@ -193,7 +199,7 @@ int make_path(const char *path)
             return 0;                  /* error: can't make parent */
         }
     }
-    if (mkdir(path, (mode_t) 0755) < 0)
+    if (MKDIR(path, (mode_t) 0755) < 0)
     {
         return 0;                      /* failure: mkdir sets errno! */
     }

@@ -5,7 +5,7 @@ language = c
 LIB_ROOT = ..
 
 C_SRC = binsearch.c compare.c sysenum.c
-H_SRC = binsearch.h compare.h sysenum.h
+H_SRC = binsearch.h compare.h sysenum.h syslog-standalone.h
 
 include makeshift.mk library.mk
 

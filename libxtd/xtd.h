@@ -37,6 +37,9 @@
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#define SYSLOG <syslog-standalone.h>
+#else
+#define SYSLOG <syslog.h>
 #endif /* __WINNT__ */
 
 #define NULLPTR ((void *) NULL) /* pointer-sized NULL (for stdarg) */

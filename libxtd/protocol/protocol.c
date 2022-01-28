@@ -22,10 +22,11 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <limits.h>
+#ifndef __WINNT__
 #include <sys/un.h>
 #include <arpa/inet.h>
 #include <netdb.h>
-
+#endif /* __WINNT__ */
 #include <xtd.h>
 #include <protocol.h>
 
