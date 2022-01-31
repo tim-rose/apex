@@ -4,8 +4,8 @@
 language = c
 LIB_ROOT = ..
 
-C_SRC = pidfile.c systools.c
-H_SRC = systools.h
+C_SRC = pidfile.c sysenum.c systools.c
+H_SRC = sysenum.h systools.h
 
 include makeshift.mk library.mk
 

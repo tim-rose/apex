@@ -1,5 +1,3 @@
-build@misc: build@port
-build@array: build@misc
 build@array: build@string
 build@config: build@log
 build@config: build@parse
@@ -12,11 +10,10 @@ build@csv: build@string
 build@csv: build@symbol
 build@csv: build@vector
 build@hash: build@link
-build@link: build@misc
-build@log: build@misc
+build@link: build@array
 build@log: build@string
 build@parse: build@log
-build@parse: build@misc
+build@parse: build@array
 build@parse: build@string
 build@parse: build@symbol
 build@parse: build@time
@@ -40,4 +37,4 @@ build@time: build@log
 build@time: build@string
 build@vector: build@link
 build@vector: build@log
-build@vector: build@misc
+build@vector: build@array
