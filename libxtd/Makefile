@@ -7,11 +7,11 @@ language = c nroff
 SUBLIB_SRC = array/$(archdir)/lib.a config/$(archdir)/lib.a \
     csv/$(archdir)/lib.a hash/$(archdir)/lib.a \
     link/$(archdir)/lib.a log/$(archdir)/lib.a \
-    parse/$(archdir)/lib.a protocol/$(archdir)/lib.a \
-    string/$(archdir)/lib.a symbol/$(archdir)/lib.a \
-    sys/$(archdir)/lib.a tap/$(archdir)/lib.a \
-    tfile/$(archdir)/lib.a time/$(archdir)/lib.a \
-    vector/$(archdir)/lib.a
+    parse/$(archdir)/lib.a port/$(archdir)/lib.a \
+    protocol/$(archdir)/lib.a string/$(archdir)/lib.a \
+    symbol/$(archdir)/lib.a sys/$(archdir)/lib.a \
+    tap/$(archdir)/lib.a tfile/$(archdir)/lib.a \
+    time/$(archdir)/lib.a vector/$(archdir)/lib.a
 H_SRC = gnuattr.h xtd.h
 
 MK_SRC = target-depend.mk
