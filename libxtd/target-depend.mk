@@ -12,6 +12,7 @@ build@csv: build@vector
 build@hash: build@link
 build@link: build@array
 build@log: build@string
+build@log: build@sys
 build@parse: build@log
 build@parse: build@array
 build@parse: build@string
