@@ -80,6 +80,7 @@
  */
 #define MACRO_VALUE_STR(s) MACRO_ARG_STR(s)
 #define MACRO_ARG_STR(s) #s
+#define STRINGIFY(s) MACRO_VALUE_STR(s)
 
 /*
  * MAX() --Return the maximum of two numeric values.
@@ -124,4 +125,5 @@
     do { result_ = (expression_); } \
     while (result_ == -1 && (errno == EINTR || errno == EAGAIN))
 #endif /* TEMP_FAILURE_RETRY */
+extern const char *xtd_version;
 #endif /* XTD_H */
