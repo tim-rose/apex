@@ -21,9 +21,9 @@
  * are normalised).
  *
  */
+#include <errno.h>
 #include <stdio.h>
 #include <xtd.h>
-#include <log.h>
 #include <date.h>
 #include <timeval.h>
 

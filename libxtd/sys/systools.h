@@ -13,7 +13,7 @@ extern "C"
 {
 #endif                                 /* C++ */
     char *get_env_variable(const char *name, char *default_value);
-    void create_pidfile(const char *path);
+    int create_pidfile(const char *path);
     void unlink_pidfile(void);
     int wait_input(fd_set * input_set, fd_set * err_set, TimeValuePtr tv,
                    size_t n_fd, int fd[]);

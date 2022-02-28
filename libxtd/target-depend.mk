@@ -26,7 +26,6 @@ build@protocol: build@vector
 build@symbol: build@log
 build@symbol: build@string
 build@symbol: build@vector
-build@sys: build@log
 build@sys: build@string
 build@sys: build@time
 build@tap: build@string
@@ -34,7 +33,6 @@ build@tfile: build@log
 build@tfile: build@string
 build@tfile: build@sys
 build@tfile: build@time
-build@time: build@log
 build@time: build@string
 build@vector: build@link
 build@vector: build@log

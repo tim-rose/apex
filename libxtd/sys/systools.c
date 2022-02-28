@@ -20,7 +20,7 @@
  * http://video.google.com/videoplay?docid=2159021324062223592&ei=&hl=en
  *
  */
-#include <xtd.h>
+#include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -30,11 +30,10 @@
 #include <string.h>
 #include <libgen.h>
 
+#include <xtd.h>
 #include <systools.h>
 #include <estring.h>
 #include <xtd.h>
-
-#include <log.h>
 
 #ifdef __WINNT__
 #define MKDIR(path_, permissions_) mkdir(path_)
@@ -172,7 +171,6 @@ int make_path(const char *path)
     char parent[FILENAME_MAX + 1];
     char *end;
 
-    debug("make_path(%s)", path);
     if (stat(path, &path_info) >= 0)
     {
         if ((path_info.st_mode & S_IFDIR))
@@ -223,7 +221,6 @@ int link_path(const char *src, const char *dst)
     char path[FILENAME_MAX + 1];
     char *end = strrchr(dst, '/');
 
-    debug("link_path(%s, %s)", src, dst);
     if (end != NULL)
     {
         size_t n = (size_t) (end - dst);
@@ -346,8 +343,7 @@ int touch(const char *path)
 
     if ((fp = fopen(path, "a")) == NULL)
     {
-        log_sys(LOG_ERR, "cannot open \"%s\"", path);
-        return 0;
+        return 0;       /* failure: cannot open file */
     }
 
     fclose(fp);

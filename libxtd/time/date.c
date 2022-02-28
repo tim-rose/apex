@@ -21,7 +21,6 @@
  * (e.g. 2006-08-07 12:34:56-06:00)
  */
 #include <xtd.h>
-#include <log.h>
 #include <date.h>
 #include <estring.h>
 
@@ -122,8 +121,6 @@ const char *date_parse_fmt(const char *text, struct tm *base_tm,
             }
             *base_tm = t_tm;           /* remember the parsed values */
             base_tm->tm_isdst = -1;    /* force recalculation of dst */
-            debug("format \"%s\"[1:%ld] ~= \"%s\"",
-                  text, parse_end - text, fmt[i]);
             return (const char *) parse_end;    /* success */
         }
     }

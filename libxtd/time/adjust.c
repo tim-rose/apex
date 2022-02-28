@@ -9,7 +9,6 @@
  */
 
 #include <xtd.h>
-#include <log.h>
 #include <date.h>
 #include <estring.h>
 
