@@ -1,5 +1,5 @@
 /*
- * BINSEARCH.H --Definitions for binsearch(), an improved version of bsearch().
+ * BINSEARCH.H --binsearch(), an improved version of bsearch().
  *
  */
 #ifndef BINSEARCH_H

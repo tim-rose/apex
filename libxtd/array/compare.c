@@ -2,11 +2,12 @@
  * COMPARE.C --Miscellaneous comparison functions.
  *
  * Contents:
- * TBD
+ * These are compare routines suitable for arrays of the basic C types.
  */
 #include <string.h>
 #include <compare.h>
 
+/* LCOV_EXCL_START */
 int int_cmp(const void *v_1, const void *v_2)
 {
     int int_1 = * (int *) v_1;
@@ -47,3 +48,4 @@ int strp_cmp(const void *v_1, const void *v_2)
 
     return strcmp(str_1, str_2);
 }
+/* LCOV_EXCL_STOP */
