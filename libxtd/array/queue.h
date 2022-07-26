@@ -29,16 +29,16 @@ extern "C"
     {
         ArrayContainer array;          /* Queue contents. */
 
-        size_t n_read;                 /* No. of successful reads */
-        size_t n_write;                /* No. of successful writes  */
-        size_t n_fail;                 /* No. of failed writes  */
-        size_t mask;                   /* True size of working storage, as a mask. */
+        int n_read;                 /* No. of successful reads */
+        int n_write;                /* No. of successful writes  */
+        int n_fail;                 /* No. of failed writes  */
+        int mask;                   /* True size of working storage, as a mask. */
     } AtomicQueue, *AtomicQueuePtr;
 
-    int queue_mask(size_t n, size_t *mask);
+    int queue_mask(int n, int *mask);
     AtomicQueuePtr queue_alloc(void);
-    AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
-                              size_t item_size, void *items);
+    AtomicQueuePtr queue_init(AtomicQueuePtr queue, int n_items,
+                              int item_size, void *items);
 
     int queue_push(AtomicQueuePtr queue, const void *item);
     int queue_pop(AtomicQueuePtr queue, void *item);

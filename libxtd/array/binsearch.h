@@ -13,7 +13,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    size_t binsearch(void *key, void *base, size_t n_elements, size_t size,
+    int binsearch(void *key, void *base, int n_elements, int size,
                      CompareProc compare, bool *status);
 
 #ifdef __cplusplus

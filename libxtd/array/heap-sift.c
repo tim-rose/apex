@@ -35,17 +35,17 @@
  * *except* for this last leaf item. sift-up re-creates the heap
  * condition by "floating" the value up the heap towards root.
  */
-void heap_sift_up(void *heap, size_t n_items, size_t item_size,
+void heap_sift_up(void *heap, int n_items, int item_size,
                   CompareProc cmp)
 {
-    for (size_t i = n_items - 1; i > 0; i = (i - 1) / 2)
+    for (int i = n_items - 1; i > 0; i = (i - 1) / 2)
     {
         char *node = (char *) heap + i * item_size;
         char *parent = (char *) heap + (i - 1) / 2 * item_size;
 
         if (cmp(node, parent) < 0)
         {
-            memswap(parent, node, item_size);
+            memswap(parent, node, (size_t) item_size);
         }
     }
 }
@@ -65,10 +65,10 @@ void heap_sift_up(void *heap, size_t n_items, size_t item_size,
  * the heap by 1. The sift-down re-creates the heap condition by
  * pushing the root down to the child slots.
  */
-void heap_sift_down(void *heap, size_t n_items, size_t item_size,
+void heap_sift_down(void *heap, int n_items, int item_size,
                     CompareProc cmp)
 {
-    size_t level;
+    int level;
     char *node, *child, *end;
 
     end = (char *) heap + n_items * item_size;
@@ -90,7 +90,7 @@ void heap_sift_down(void *heap, size_t n_items, size_t item_size,
         {
             break;
         }
-        memswap(node, child, item_size);
+        memswap(node, child, (size_t) item_size);
     }
 }
 
@@ -106,11 +106,11 @@ void heap_sift_down(void *heap, size_t n_items, size_t item_size,
  * Remarks:
  * This function is used for unit testing.
  */
-int heap_ok(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
+int heap_ok(void *heap, int n_items, int item_size, CompareProc cmp)
 {
     char *node, *parent;
 
-    for (size_t i = n_items - 1; i > 0; --i)
+    for (int i = n_items - 1; i > 0; --i)
     {
         node = (char *) heap + i * item_size;
         parent = (char *) heap + (i - 1) / 2 * item_size;

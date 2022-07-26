@@ -17,7 +17,7 @@
  * compare   --a function to comapare elements
  * status   --returns the status of the final comparison.
  *
- * Returns: (size_t)
+ * Returns: (int)
  * the offset in the table where the key value is, or should be inserted.
  *
  * Remarks:
@@ -30,10 +30,10 @@
  * in particular, it may match to a random duplicate, or match to
  * past the end of the array.  You have been warned.
  */
-size_t binsearch(void *key, void *base, size_t n_elements, size_t size,
+int binsearch(void *key, void *base, int n_elements, int size,
                  CompareProc compare, bool *status)
 {
-    size_t mid;
+    int mid;
     int low, high, cmp;
 
     *status = false;                   /* status == not found */
@@ -42,7 +42,7 @@ size_t binsearch(void *key, void *base, size_t n_elements, size_t size,
     cmp = mid = 0;
     while (low <= high)
     {                                  /* get midpoint */
-        mid = (size_t) (low + high) / 2;
+        mid = (int) (low + high) / 2;
         cmp = (*compare) (key, (char *) base + mid * size);
         if (cmp < 0)                   /* select lower partition */
         {

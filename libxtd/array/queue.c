@@ -42,7 +42,7 @@ AtomicQueuePtr queue_alloc()
  * of 2) n is all bits set from that power's bit down, or (now
  * shifting to further non-obvious arithmetic/bit wrangling, is n - 1.
  */
-int queue_mask(size_t n, size_t *mask)
+int queue_mask(int n, int *mask)
 {
     if ((n & (n - 1)) != 0)
     {
@@ -70,8 +70,8 @@ int queue_mask(size_t n, size_t *mask)
  * implementation requires that the size of the queue is a simple
  * power of 2.
  */
-AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
-                          size_t item_size, void *base)
+AtomicQueuePtr queue_init(AtomicQueuePtr queue, int n_items,
+                          int item_size, void *base)
 {
     if (queue == NULL || base == NULL || n_items == 0)
     {

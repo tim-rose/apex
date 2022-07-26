@@ -42,8 +42,8 @@ HeapPtr heap_alloc()
  * The heap storage is not allocated by this module, it must be provided
  * by the caller.
  */
-HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
-                  size_t item_size, void *base)
+HeapPtr heap_init(HeapPtr heap, CompareProc cmp, int n_items,
+                  int item_size, void *base)
 {
     if (heap != NULL && base != NULL)
     {
@@ -69,7 +69,7 @@ int heap_push(HeapPtr heap, const void *item)
 {
     if (heap != NULL && heap->n_used < heap->array.n_items)
     {
-        memcpy(array_item(&heap->array, (ssize_t) heap->n_used),
+        memcpy(array_item(&heap->array, (int) heap->n_used),
                item, heap->array.item_size);
         ++heap->n_used;
         heap_sift_up(heap->array.base,
@@ -95,7 +95,7 @@ int heap_pop(HeapPtr heap, void *item)
     {
         --heap->n_used;
         memcpy(heap->array.base,
-               array_item(&heap->array, (ssize_t) heap->n_used),
+               array_item(&heap->array, (int) heap->n_used),
                heap->array.item_size);
         heap_sift_down(heap->array.base, heap->n_used, heap->array.item_size,
                        heap->cmp);
