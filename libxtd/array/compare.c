@@ -5,7 +5,7 @@
  * These are compare routines suitable for arrays of the basic C types.
  */
 #include <string.h>
-#include <compare.h>
+#include <xtd/compare.h>
 
 /* LCOV_EXCL_START */
 int int_cmp(const void *v_1, const void *v_2)

@@ -8,9 +8,9 @@
  */
 #include <string.h>
 
-#include <test.h>
+#include <xtd/test.h>
 #include <xtd.h>
-#include <url.h>
+#include <xtd/url.h>
 
 static void test_str_url(void);
 static void test_encode(void);

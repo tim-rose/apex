@@ -13,7 +13,7 @@
 #ifndef LOG_DOMAIN_H
 #define LOG_DOMAIN_H
 
-#include <log.h>
+#include <xtd/log.h>
 #ifdef __cplusplus
 extern "C"
 {

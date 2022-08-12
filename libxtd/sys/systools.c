@@ -31,9 +31,8 @@
 #include <libgen.h>
 
 #include <xtd.h>
-#include <systools.h>
-#include <estring.h>
-#include <xtd.h>
+#include <xtd/systools.h>
+#include <xtd/estring.h>
 
 #ifdef __WINNT__
 #define MKDIR(path_, permissions_) mkdir(path_)

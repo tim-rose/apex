@@ -18,11 +18,11 @@
 
 #include <stdio.h>
 
-#include <http.h>
-#include <estring.h>
-#include <protocol.h>
-#include <vector.h>
-#include <log.h>
+#include <xtd/http.h>
+#include <xtd/estring.h>
+#include <xtd/protocol.h>
+#include <xtd/vector.h>
+#include <xtd/log.h>
 
 
 static const char *rfc_eol = "\r\n";

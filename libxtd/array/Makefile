@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = binsearch.c compare.c heap-sift.c heap.c pool.c queue.c \
     stack.c

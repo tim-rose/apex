@@ -11,8 +11,8 @@
 #include <string.h>
 #include <stdint.h>
 
-#include <tap.h>
-#include <protocol.h>
+#include <xtd/tap.h>
+#include <xtd/protocol.h>
 
 static int big_endian(void);
 static void test_pack(void);

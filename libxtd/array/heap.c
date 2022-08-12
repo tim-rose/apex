@@ -9,7 +9,7 @@
  * heap_peek()  --Peek at the top item in the heap.
  */
 #include <memory.h>
-#include <heap.h>
+#include <xtd/heap.h>
 
 /*
  * heap_alloc() --Allocate some space for a heap structure.

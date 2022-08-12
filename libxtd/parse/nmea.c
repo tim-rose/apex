@@ -17,9 +17,9 @@
 #include <string.h>
 #include <stdio.h>
 
-#include <log.h>
-#include <estring.h>
-#include <nmea.h>
+#include <xtd/log.h>
+#include <xtd/estring.h>
+#include <xtd/nmea.h>
 
 /*
  * nmea_checksum() --Return the nmea_checksum for some text.

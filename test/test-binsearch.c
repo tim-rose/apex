@@ -5,8 +5,8 @@
  */
 #include <string.h>
 
-#include <tap.h>
-#include <binsearch.h>
+#include <xtd/tap.h>
+#include <xtd/binsearch.h>
 
 int vector[] = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 

@@ -9,7 +9,7 @@
  * stack_peek()  --Peek at the top item in the stack.
  */
 #include <memory.h>
-#include <stack.h>
+#include <xtd/stack.h>
 
 /*
  * stack_alloc() --Allocate some space for a stack structure.

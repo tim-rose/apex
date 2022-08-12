@@ -6,7 +6,7 @@
  * new_str_list()  --Return a list of strings by splitting a string.
  * free_str_list() --Free the resources for a string list.
  */
-#include <estring.h>
+#include <xtd/estring.h>
 
 /*
  * strsplit() --Split a string into components based on a delimiter.

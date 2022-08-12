@@ -28,7 +28,7 @@
 #include <netdb.h>
 #endif /* __WINNT__ */
 #include <xtd.h>
-#include <protocol.h>
+#include <xtd/protocol.h>
 
 static size_t _setup_address(const char *address, int domain,
                              int type, struct sockaddr_storage *addr);

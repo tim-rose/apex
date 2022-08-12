@@ -11,7 +11,7 @@
  */
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
 #include <string.h>
-#include <log.h>
+#include <xtd/log.h>
 
 typedef struct LogAlias_t
 {

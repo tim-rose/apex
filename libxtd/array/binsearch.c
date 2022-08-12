@@ -5,7 +5,7 @@
  * binsearch() --Search a sorted table using binary chop.
  *
  */
-#include <binsearch.h>
+#include <xtd/binsearch.h>
 
 /*
  * binsearch() --Search a sorted table using binary chop.

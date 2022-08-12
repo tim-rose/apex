@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = estring.c memswap.c stredit.c strlist.c strparse.c
 H_SRC = estring.h strparse.h

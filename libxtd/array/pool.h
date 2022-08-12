@@ -4,7 +4,7 @@
 #ifndef POOL_H
 #define POOL_H
 
-#include <array.h>
+#include <xtd/array.h>
 
 #ifdef __cplusplus
 extern "C"

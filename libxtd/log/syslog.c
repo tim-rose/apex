@@ -8,7 +8,7 @@
  * The handler opens and initialises the syslog connection the first
  * time it is called, but never closes it.
  */
-#include <log.h>
+#include <xtd/log.h>
 
 static int initialised;
 

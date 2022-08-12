@@ -20,7 +20,7 @@
  *
  */
 #include <stdlib.h>
-#include <hash.h>
+#include <xtd/hash.h>
 
 /*
  * hash_new() --Create a new hash table.

@@ -1,8 +1,8 @@
 /*
  * ESTRING.C --Unit tests for the estring module.
  */
-#include <test.h>
-#include <estring.h>
+#include <xtd/test.h>
+#include <xtd/estring.h>
 
 int main(void)
 {

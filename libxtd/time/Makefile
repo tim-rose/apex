@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = adjust.c date.c timeval.c
 H_SRC = date.h timeval.h

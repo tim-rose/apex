@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <tap.h>
-#include <estring.h>
-#include <nmea.h>
+#include <xtd/tap.h>
+#include <xtd/estring.h>
+#include <xtd/nmea.h>
 
 int main(void)
 {

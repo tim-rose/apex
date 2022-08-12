@@ -3,6 +3,7 @@
 #
 language = c nroff markdown
 LIB_ROOT = ..
+subdir = xtd
 
 MMD_SRC = liblog.mmd
 MAN3_SRC = log.3

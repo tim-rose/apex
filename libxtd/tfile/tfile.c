@@ -39,11 +39,11 @@
 #include <stdarg.h>
 #include <libgen.h>
 
-#include <tfile.h>
-#include <estring.h>
-#include <systools.h>
-#include <date.h>
-#include <log.h>
+#include <xtd/tfile.h>
+#include <xtd/estring.h>
+#include <xtd/systools.h>
+#include <xtd/date.h>
+#include <xtd/log.h>
 
 
 enum TfileConsts

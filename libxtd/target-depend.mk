@@ -13,8 +13,8 @@ build@hash: build@link
 build@link: build@array
 build@log: build@string
 build@log: build@sys
-build@parse: build@log
 build@parse: build@array
+build@parse: build@log
 build@parse: build@string
 build@parse: build@symbol
 build@parse: build@time
@@ -34,6 +34,22 @@ build@tfile: build@string
 build@tfile: build@sys
 build@tfile: build@time
 build@time: build@string
+build@vector: build@array
 build@vector: build@link
 build@vector: build@log
-build@vector: build@array
+
+build@array: build@xtd
+build@config: build@xtd
+build@csv: build@xtd
+build@hash: build@xtd
+build@link: build@xtd
+build@log: build@xtd
+build@parse: build@xtd
+build@protocol: build@xtd
+build@string: build@xtd
+build@symbol: build@xtd
+build@sys: build@xtd
+build@tap: build@xtd
+build@tfile: build@xtd
+build@time: build@xtd
+build@vector: build@xtd

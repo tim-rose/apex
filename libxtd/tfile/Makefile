@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = tfile.c
 H_SRC = tfile.h

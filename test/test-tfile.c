@@ -12,9 +12,9 @@
 #include <sys/stat.h>
 #include <time.h>
 
-#include <tap.h>
-#include <systools.h>
-#include <tfile.h>
+#include <xtd/tap.h>
+#include <xtd/systools.h>
+#include <xtd/tfile.h>
 
 int main(void)
 {

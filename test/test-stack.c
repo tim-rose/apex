@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <tap.h>
-#include <test.h>
-#include <stack.h>
+#include <xtd/tap.h>
+#include <xtd/test.h>
+#include <xtd/stack.h>
 
 /*
  * test_null() --Test that NULL stacks are handled well.

@@ -1,4 +1,4 @@
-#include <hash.h>
+#include <xtd/hash.h>
 
 /*
  * hash_key_elf() --UNIX ELF's hashing algorithm.

@@ -2,7 +2,7 @@
  * key-pjw.c --An implementation of P.J. Weinberger's hashing algorithm
  */
 #include <limits.h>
-#include <hash.h>
+#include <xtd/hash.h>
 
 #define BITS_PER_INT    (sizeof(int)*CHAR_BIT)
 #define THREE_QUARTERS  ((int) (BITS_PER_INT*3)/4)

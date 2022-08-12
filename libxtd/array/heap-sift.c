@@ -17,8 +17,8 @@
  */
 
 #include <string.h>
-#include <heap.h>
-#include <estring.h>                   /* for memswap() */
+#include <xtd/heap.h>
+#include <xtd/estring.h>                   /* for memswap() */
 
 /*
  * heap_sift_up() --Sift a value from the bottom of the heap to the top.

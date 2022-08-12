@@ -6,9 +6,9 @@
  * opt_log_level()   --Set the system logging level via opts.
  */
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
-#include <config.h>
-#include <log.h>
-#include <estring.h>
+#include <xtd/config.h>
+#include <xtd/log.h>
+#include <xtd/estring.h>
 
 /*
  * opt_log_inherit[] --special value string for opt_log_level.

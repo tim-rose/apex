@@ -4,8 +4,8 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-#include <array.h>
-#include <binsearch.h>
+#include <xtd/array.h>
+#include <xtd/binsearch.h>
 
 #ifdef __cplusplus
 extern "C"

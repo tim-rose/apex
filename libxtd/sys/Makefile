@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = pidfile.c sysenum.c systools.c
 H_SRC = sysenum.h systools.h

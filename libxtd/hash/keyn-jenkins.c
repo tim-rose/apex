@@ -1,4 +1,4 @@
-#include <hash.h>
+#include <xtd/hash.h>
 
 /*
  * hash_keyn_jenkins() --Bob Jenkins' hash.

@@ -19,12 +19,12 @@
 #include <stdlib.h>
 
 #include <xtd.h>
-#include <getopts.h>
-#include <strparse.h>
-#include <config.h>
-#include <option.h>
-#include <symbol.h>
-#include <log.h>
+#include <xtd/getopts.h>
+#include <xtd/strparse.h>
+#include <xtd/config.h>
+#include <xtd/option.h>
+#include <xtd/symbol.h>
+#include <xtd/log.h>
 
 #ifdef VERSION
 static char USED vcs_id[] = "wakeup version " VERSION;

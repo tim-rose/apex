@@ -9,10 +9,10 @@
  * main()         --Run some date unit tests.
  */
 #include <string.h>
-#include <test.h>
+#include <xtd/test.h>
 #include <xtd.h>
-#include <date.h>
-#include <timeval.h>
+#include <xtd/date.h>
+#include <xtd/timeval.h>
 
 #ifdef __WINNT__
 #define localtime_r(timep_, result_) localtime(timep_)

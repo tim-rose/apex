@@ -40,7 +40,7 @@
 
 #include <stdio.h>
 #include <xtd.h>
-#include <clink.h>
+#include <xtd/clink.h>
 
 /*
  * clink_len() --Calculate the length of a linked list.

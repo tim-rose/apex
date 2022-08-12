@@ -20,7 +20,7 @@
  */
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
 #include <ctype.h>
-#include <estring.h>
+#include <xtd/estring.h>
 
 /*
  * strtrunc() --Truncate a string.

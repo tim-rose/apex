@@ -11,8 +11,8 @@
 
 #include <stddef.h>
 #include <stdio.h>
-#include <ini.h>
-#include <symbol.h>
+#include <xtd/ini.h>
+#include <xtd/symbol.h>
 
 #ifdef __cplusplus
 extern "C"

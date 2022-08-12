@@ -20,8 +20,8 @@
  * The default configuration is to log everything, but this can be
  * explicitly overridden by initialising with an explicit list.
  */
-#include <log-domain.h>
-#include <estring.h>
+#include <xtd/log-domain.h>
+#include <xtd/estring.h>
 
 static char all_domains[] = "*";
 static char *default_domains[] = { all_domains, NULL };

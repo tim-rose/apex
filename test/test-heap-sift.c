@@ -8,9 +8,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <tap.h>
-#include <heap.h>
-#include <compare.h>
+#include <xtd/tap.h>
+#include <xtd/heap.h>
+#include <xtd/compare.h>
 
 static void test_heap_ok(void);
 static void test_sift_up(void);

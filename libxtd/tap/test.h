@@ -8,9 +8,9 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>                       /* for FEQUAL */
-#include <estring.h>                   /* for strequiv */
+#include <xtd/estring.h>                   /* for strequiv */
 
 #define ptr_eq(_have, _expected, ...)          \
     (ok(((char *) _have)-(((char *) _expected)) == 0, __VA_ARGS__) ? 1 : \

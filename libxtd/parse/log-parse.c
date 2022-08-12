@@ -17,12 +17,12 @@
 #include <string.h>
 
 #include <xtd.h>
-#include <strparse.h>
-#include <symbol.h>
-#include <date.h>
-#include <log.h>
-#include <sysenum.h>
-#include <log-parse.h>
+#include <xtd/strparse.h>
+#include <xtd/symbol.h>
+#include <xtd/date.h>
+#include <xtd/log.h>
+#include <xtd/sysenum.h>
+#include <xtd/log-parse.h>
 
 static LogRecordPtr decode_syslog_(LogRecordPtr log_record,
                                    struct tm *tm_base);

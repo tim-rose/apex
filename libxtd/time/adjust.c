@@ -9,8 +9,8 @@
  */
 
 #include <xtd.h>
-#include <date.h>
-#include <estring.h>
+#include <xtd/date.h>
+#include <xtd/estring.h>
 
 #ifdef __WINNT__
 #define localtime_r(timep_, result_) localtime(timep_)

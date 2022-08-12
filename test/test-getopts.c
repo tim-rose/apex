@@ -15,11 +15,11 @@
  */
 #include <string.h>
 
-#include <test.h>
+#include <xtd/test.h>
 #include <xtd.h>
-#include <estring.h>
-#include <strparse.h>
-#include <getopts.h>
+#include <xtd/estring.h>
+#include <xtd/strparse.h>
+#include <xtd/getopts.h>
 
 typedef struct Opt
 {

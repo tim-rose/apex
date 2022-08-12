@@ -5,7 +5,7 @@
 #ifndef LINK_H
 #define LINK_H
 
-#include <binsearch.h>                 /* for CompareProc */
+#include <xtd/binsearch.h>                 /* for CompareProc */
 
 #ifdef __cplusplus
 extern "C"

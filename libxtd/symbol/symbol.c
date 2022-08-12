@@ -27,11 +27,11 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#include <estring.h>
-#include <strparse.h>
-#include <vector.h>
-#include <log.h>
-#include <symbol.h>
+#include <xtd/estring.h>
+#include <xtd/strparse.h>
+#include <xtd/vector.h>
+#include <xtd/log.h>
+#include <xtd/symbol.h>
 
 Atom null_atom = NULL_ATOM;
 Enum null_enum = NULL_ENUM;

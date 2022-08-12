@@ -10,14 +10,14 @@
  */
 
 #include <xtd.h>
-#include <systools.h>
-#include <estring.h>
-#include <getopts.h>
-#include <date.h>
-#include <ini.h>
-#include <log.h>
-#include <config.h>
-#include <option.h>
+#include <xtd/systools.h>
+#include <xtd/estring.h>
+#include <xtd/getopts.h>
+#include <xtd/date.h>
+#include <xtd/ini.h>
+#include <xtd/log.h>
+#include <xtd/config.h>
+#include <xtd/option.h>
 
 #ifndef CONFIG_PATH                    /* fallback config path */
 #define CONFIG_PATH "/usr/local/etc", "/etc"

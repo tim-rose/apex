@@ -16,10 +16,10 @@
  *
  */
 #include <stdio.h>
-#include <symbol.h>
-#include <strparse.h>
-#include <estring.h>
-#include <url.h>
+#include <xtd/symbol.h>
+#include <xtd/strparse.h>
+#include <xtd/estring.h>
+#include <xtd/url.h>
 
 URL null_url = NULL_URL;
 

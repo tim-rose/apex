@@ -14,7 +14,7 @@ extern "C"
 {
 #endif                                 /* C++ */
 #include <stddef.h>
-#include <array.h>
+#include <xtd/array.h>
     /*
      * AtomicQueue_t{} --The state of a queue and its working storage.
      *

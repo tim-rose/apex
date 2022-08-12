@@ -19,9 +19,9 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
-#include <log.h>
-#include <sysenum.h>
-#include <estring.h>
+#include <xtd/log.h>
+#include <xtd/sysenum.h>
+#include <xtd/estring.h>
 
 /*
  * log_init() --Initialise the logging system.

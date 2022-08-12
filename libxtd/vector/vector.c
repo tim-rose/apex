@@ -30,9 +30,9 @@
 #include <stddef.h>
 #include <string.h>
 
-#include <log.h>
-#include <binsearch.h>
-#include <vector.h>
+#include <xtd/log.h>
+#include <xtd/binsearch.h>
+#include <xtd/vector.h>
 
 #define VECTOR_ALIGN	8              /* alignment in bytes */
 

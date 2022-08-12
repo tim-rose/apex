@@ -4,9 +4,9 @@
  */
 #include <string.h>
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>
-#include <convert.h>
+#include <xtd/convert.h>
 
 int main(void)
 {

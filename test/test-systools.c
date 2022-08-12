@@ -19,10 +19,10 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>
-#include <systools.h>
-#include <log.h>
+#include <xtd/systools.h>
+#include <xtd/log.h>
 
 /*
  * test_make_path() --Unit tests for make_path().

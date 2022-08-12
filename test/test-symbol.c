@@ -11,10 +11,10 @@
 #include <stdint.h>
 #include <float.h>
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>
-#include <vector.h>
-#include <symbol.h>
+#include <xtd/vector.h>
+#include <xtd/symbol.h>
 
 /*
  * The dom is equivalent to the interned JSON for:

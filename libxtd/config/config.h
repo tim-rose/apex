@@ -12,7 +12,7 @@
 #define CONFIG_H
 
 #include <xtd.h>
-#include <option.h>
+#include <xtd/option.h>
 #ifdef __cplusplus
 extern "C"
 {

@@ -37,9 +37,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <ini.h>
-#include <vector.h>
-#include <log.h>
+#include <xtd/ini.h>
+#include <xtd/vector.h>
+#include <xtd/log.h>
 
 /*
  * ini_pragma_() --Process any #pragma/#line definitions.

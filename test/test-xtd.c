@@ -10,9 +10,9 @@
  */
 #include <string.h>
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>
-#include <getopts.h>
+#include <xtd/getopts.h>
 
 typedef struct Opt
 {

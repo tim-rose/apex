@@ -11,7 +11,7 @@
  */
 #include <errno.h>
 #include <string.h>
-#include <queue.h>
+#include <xtd/queue.h>
 
 /*
  * queue_alloc() --Allocate some space for a queue structure.

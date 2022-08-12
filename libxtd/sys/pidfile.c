@@ -14,8 +14,8 @@
 #include <errno.h>
 
 #include <xtd.h>
-#include <systools.h>
-#include <estring.h>
+#include <xtd/systools.h>
+#include <xtd/estring.h>
 
 static char pidfile_path[NAME_MAX];
 

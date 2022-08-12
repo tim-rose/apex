@@ -23,8 +23,8 @@
 #include <limits.h>
 #include <errno.h>
 
-#include <strparse.h>
-#include <estring.h>
+#include <xtd/strparse.h>
+#include <xtd/estring.h>
 
 /*
  * str_inet4_address() --Parse a "host[/bits]" inet4 address.

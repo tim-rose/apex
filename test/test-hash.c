@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <xtd.h>
-#include <tap.h>
-#include <log.h>
-#include <hash.h>
+#include <xtd/tap.h>
+#include <xtd/log.h>
+#include <xtd/hash.h>
 
 static char text[100];
 

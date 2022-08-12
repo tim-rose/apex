@@ -11,7 +11,7 @@
  */
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
 
-#include <estring.h>
+#include <xtd/estring.h>
 #define INT_SWAP_THRESHOLD 4*sizeof(int)
 
 /*

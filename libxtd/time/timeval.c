@@ -24,8 +24,8 @@
 #include <errno.h>
 #include <stdio.h>
 #include <xtd.h>
-#include <date.h>
-#include <timeval.h>
+#include <xtd/date.h>
+#include <xtd/timeval.h>
 
 
 TimeValue tv_min = { TIME_T_MIN, 0 };

@@ -12,8 +12,8 @@
 #include <stdlib.h>
 
 #include <xtd.h>
-#include <getopts.h>
-#include <log-domain.h>
+#include <xtd/getopts.h>
+#include <xtd/log-domain.h>
 
 LogDomain lg = { "demo", 0 };
 

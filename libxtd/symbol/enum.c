@@ -14,8 +14,8 @@
  */
 #include <xtd.h>                       /* Windows_NT requires this before system headers */
 
-#include <estring.h>
-#include <symbol.h>
+#include <xtd/estring.h>
+#include <xtd/symbol.h>
 
 /*
  * enum_cmp() --Compare two Enums for sorting.

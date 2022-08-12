@@ -23,9 +23,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <ini.h>
-#include <vector.h>
-#include <log.h>
+#include <xtd/ini.h>
+#include <xtd/vector.h>
+#include <xtd/log.h>
 
 /*
  * load_() --Callback proc for loading a INI file into a symbol table.

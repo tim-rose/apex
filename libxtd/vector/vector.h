@@ -5,7 +5,7 @@
 #define VECTOR_H
 
 #include <xtd.h>
-#include <slink.h>                      /* VisitProc */
+#include <xtd/slink.h>                      /* VisitProc */
 
 #ifdef __cplusplus
 extern "C"

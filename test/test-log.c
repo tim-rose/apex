@@ -12,8 +12,8 @@
 #include <string.h>
 #include <time.h>
 
-#include <test.h>
-#include <log.h>
+#include <xtd/test.h>
+#include <xtd/log.h>
 
 #define LOG_TEXT_MAX 60
 static int mock_log_output(LogConfigPtr UNUSED(config), LogContextPtr caller,

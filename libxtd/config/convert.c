@@ -23,8 +23,8 @@
 #include <stdlib.h>
 #include <errno.h>
 
-#include <convert.h>
-#include <estring.h>
+#include <xtd/convert.h>
+#include <xtd/estring.h>
 
 static double kph_factor = 1 / 3.6;
 static double mph_factor = 1.609344 / 3.6;

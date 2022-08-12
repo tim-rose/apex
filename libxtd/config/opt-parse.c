@@ -18,13 +18,13 @@
  * These routines are useful as OptionProcs for config processing.
  */
 #include <xtd.h>
-#include <log.h>
-#include <symbol.h>
-#include <estring.h>
-#include <strparse.h>
-#include <convert.h>
-#include <date.h>
-#include <config.h>
+#include <xtd/log.h>
+#include <xtd/symbol.h>
+#include <xtd/estring.h>
+#include <xtd/strparse.h>
+#include <xtd/convert.h>
+#include <xtd/date.h>
+#include <xtd/config.h>
 
 /*
  * opt_string() --Parse a string option.

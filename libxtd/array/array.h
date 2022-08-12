@@ -34,7 +34,9 @@ extern "C"
      * item_size --the size of each contained item
      * base --the base address of the array storage
      */
-    inline void array_init(ArrayContainerPtr array,
+    static inline void array_init(ArrayContainerPtr array,
+                           int n_items, int item_size, void *base);
+    static inline void array_init(ArrayContainerPtr array,
                            int n_items, int item_size, void *base)
     {
         array->n_items = n_items;
@@ -52,7 +54,8 @@ extern "C"
      * Returns: (void *)
      * The address of item[offset].
      */
-    inline void *array_item(ArrayContainerPtr array, int offset)
+    static inline void *array_item(ArrayContainerPtr array, int offset);
+    static inline void *array_item(ArrayContainerPtr array, int offset)
     {
         return array->base + offset * (long) array->item_size;
     }

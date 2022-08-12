@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = hash.c key-elf.c key-jenkins.c key-pjw.c keyn-elf.c \
     keyn-jenkins.c keyn-pjw.c

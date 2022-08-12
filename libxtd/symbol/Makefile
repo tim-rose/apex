@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 LOCAL.C_WARN_FLAGS = -Wno-switch-enum
 
 C_SRC = enum.c symbol.c

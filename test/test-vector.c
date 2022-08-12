@@ -12,9 +12,9 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include <tap.h>
+#include <xtd/tap.h>
 #include <xtd.h>
-#include <vector.h>
+#include <xtd/vector.h>
 
 static int compare_long(const void *v1, const void *v2);
 static int visit_long(const void *v1, const void *v2);

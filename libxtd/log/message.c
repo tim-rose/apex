@@ -13,7 +13,7 @@
  */
 #include <stdlib.h>
 #include <stdio.h>
-#include <log.h>
+#include <xtd/log.h>
 
 /*
  * VA_LOG() --Boilerplate var-args processing and logging behaviour.

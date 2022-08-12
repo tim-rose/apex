@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <tap.h>
-#include <test.h>
-#include <queue.h>
+#include <xtd/tap.h>
+#include <xtd/test.h>
+#include <xtd/queue.h>
 
 static void test_null(void);
 static void test_mask(void);
@@ -59,7 +59,7 @@ static void test_null(void)
 static void test_mask(void)
 {
     int status;
-    size_t mask;
+    int mask;
 
     status = queue_mask(1, &mask);
     int_eq(status, 1, "%d", "size 1 is valid");

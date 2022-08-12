@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 #include <xtd.h>
-#include <clink.h>
+#include <xtd/clink.h>
 
 
 #define LINK_BLOCK	((4096-24)/sizeof(Link))

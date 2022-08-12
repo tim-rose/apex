@@ -15,10 +15,10 @@
 #include <time.h>
 #include <unistd.h>                    /* isatty */
 
-#include <log.h>
-#include <sysenum.h>
-#include <estring.h>
-#include <strparse.h>
+#include <xtd/log.h>
+#include <xtd/sysenum.h>
+#include <xtd/estring.h>
+#include <xtd/strparse.h>
 
 #ifdef __WINNT__
 #define localtime_r(timep_, result_) localtime(timep_)

@@ -8,8 +8,8 @@
 #ifndef HTTP_H
 #define HTTP_H
 
-#include <symbol.h>
-#include <url.h>
+#include <xtd/symbol.h>
+#include <xtd/url.h>
 
 #ifdef __cplusplus
 extern "C"

@@ -30,7 +30,7 @@
 #endif
 
 #include <stdlib.h>
-#include <gnuattr.h>
+#include <xtd/gnuattr.h>
 
 #ifdef __WINNT__
 #define WIN32_LEAN_AND_MEAN

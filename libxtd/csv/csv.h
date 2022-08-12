@@ -13,8 +13,8 @@
 
 #include <stdio.h>
 #include <xtd.h>
-#include <symbol.h>
-#include <vector.h>                    /* csv_parse_fields() returns vector */
+#include <xtd/symbol.h>
+#include <xtd/vector.h>                    /* csv_parse_fields() returns vector */
 
 #ifdef __cplusplus
 extern "C"

@@ -12,8 +12,8 @@
 #include <limits.h>
 #include <errno.h>
 
-#include <getopts.h>
-#include <estring.h>
+#include <xtd/getopts.h>
+#include <xtd/estring.h>
 
 /*
  * OptionAddress --a union for holding the various option value addresses.

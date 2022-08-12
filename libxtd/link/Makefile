@@ -3,6 +3,7 @@
 #
 language = c
 LIB_ROOT = ..
+subdir = xtd
 
 C_SRC = clink.c linkalloc.c
 H_SRC = clink.h slink.h

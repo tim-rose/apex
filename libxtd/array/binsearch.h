@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <compare.h>
+#include <xtd/compare.h>
 
 #ifdef __cplusplus
 extern "C"
