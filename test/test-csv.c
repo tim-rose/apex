@@ -125,10 +125,10 @@ int main(void)
        "can't open non-existing file for reading");
     create_file(path1, input);
 
-    ok((int) (in = csv_open(path1, "r")), "open existing file for reading");
+    ok((in = csv_open(path1, "r")) != NULL, "open existing file for reading");
     ok(csv_read(in, in->n_field, value, NEL(bytes), bytes), "read from file");
     ok(!csv_write(in, in->n_field, value), "can't write to readonly file");
-    ok((int) (out = csv_open(path2, "w", in->n_field, in->field)),
+    ok((out = csv_open(path2, "w", in->n_field, in->field)) != NULL,
        "open file for writing");
     ok(!csv_read(out, out->n_field, value, NEL(bytes), bytes),
        "can't read from writeonly file");
