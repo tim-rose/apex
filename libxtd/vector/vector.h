@@ -28,7 +28,7 @@ extern "C"
     VectorInfoPtr vector_info(void *vector, VectorInfoPtr viptr);
     int vector_len(void *vp);
     void *visit_vector(void *vector, VisitProc visit, void *user_data);
-    size_t search_vector(void *vector, void *el, CompareProc el_cmp,
+    int search_vector(void *vector, void *el, CompareProc el_cmp,
                          bool *statusp);
     void *vector_add(void *vector, size_t n_el, void *new_el) WARN_UNUSED;
     void *vector_insert(void *vector, size_t offset, size_t n_el,

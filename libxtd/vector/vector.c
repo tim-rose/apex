@@ -162,7 +162,7 @@ int vector_len(void *vector)
  * Obviously, this will only work if the table is maintained in
  * sorted order.
  */
-size_t search_vector(void *vector, void *el, CompareProc elcmp, bool *statusp)
+int search_vector(void *vector, void *el, CompareProc elcmp, bool *statusp)
 {
     VectorPtr t = GET_VECTOR(vector);
 

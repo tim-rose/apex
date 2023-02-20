@@ -208,7 +208,6 @@ int config_load_ini(const char *file, const char *UNUSED(section),
 
         if ((dir = resolve_path(get_config_path(), config_file)) == NULL)
         {
-            debug("cannot find configuration \"%s\"", config_file);
             return 0;                  /* error: can't find file? */
         }
         vstrcat(config_path, dir, "/", config_file, (char *) NULL);
@@ -216,7 +215,7 @@ int config_load_ini(const char *file, const char *UNUSED(section),
     debug("loading configuration \"%s\"", config_path);
     if ((ini = ini_fopen(config_path)) != NULL)
     {
-        int status = ini_parse(ini, opt_ini_, opts);
+        status = ini_parse(ini, opt_ini_, opts);
 
         ini_close(ini);
     }

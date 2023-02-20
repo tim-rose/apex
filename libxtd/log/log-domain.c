@@ -246,5 +246,5 @@ void log_domain_sys_abort(LogDomainPtr domain, const char *fmt, ...)
 {
     VA_DOMAIN_VOID_LOG(domain, LOG_ERR, 1, fmt);
     abort();
-    exit(1);
+    exit(1);                            /* NOTREACHED */
 }

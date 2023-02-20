@@ -48,7 +48,8 @@ TBD
 
 ## Requirements
 
-* [makeshift](https://github.com/tim-rose/makeshift)
+[makeshift](https://github.com/tim-rose/makeshift)
+: A build system based on recursive make.
 
 ## Installation
 

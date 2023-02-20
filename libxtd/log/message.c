@@ -58,7 +58,7 @@ void log_sys_abort(const char *fmt, ...)
 {
     VA_LOG(LOG_ERR, errno, fmt);
     abort();                           /* dump core and terminate */
-    exit(1);                           /* shouldn't get here */
+    exit(1);                           /* NOTREACHED */
 }
 
 /*

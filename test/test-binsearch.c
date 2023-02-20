@@ -1,7 +1,5 @@
 /*
- * BINSEARCH.C --Unit tests for the binsearch function.
- *
- *
+ * TEST-BINSEARCH.C --Unit tests for the binsearch function.
  */
 #include <string.h>
 
@@ -12,7 +10,8 @@ int vector[] = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 
 int main(void)
 {
-    size_t i, n, key = 0, slot;
+    size_t i, n, key = 0;
+    int slot;
     bool status;
 
     plan_tests(17);

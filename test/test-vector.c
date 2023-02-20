@@ -234,12 +234,12 @@ static void test_search(void)
 {
     long *lv;
     long key;
-    size_t n = NEL(lbuf);
+    int n = NEL(lbuf);
     bool status;
 
     lv = new_vector(sizeof(*lv), n, lbuf);
 
-    for (size_t i = 0; i < n; ++i)
+    for (int i = 0; i < n; ++i)
     {
         key = (long) i *2;
         ok(search_vector(lv, &key, compare_long, &status) == i &&
