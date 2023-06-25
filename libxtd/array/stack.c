@@ -18,7 +18,7 @@
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-StackPtr stack_alloc()
+StackPtr stack_alloc(void)
 {
     return malloc(sizeof(Stack));
 }

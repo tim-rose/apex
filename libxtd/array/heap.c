@@ -18,7 +18,7 @@
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-HeapPtr heap_alloc()
+HeapPtr heap_alloc(void)
 {
     return malloc(sizeof(Heap));
 }

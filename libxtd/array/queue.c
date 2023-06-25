@@ -20,7 +20,7 @@
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-AtomicQueuePtr queue_alloc()
+AtomicQueuePtr queue_alloc(void)
 {
     return malloc(sizeof(AtomicQueue));
 }

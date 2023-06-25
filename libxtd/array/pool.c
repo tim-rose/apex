@@ -40,7 +40,7 @@ typedef struct Link_t
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-PoolPtr pool_alloc()
+PoolPtr pool_alloc(void)
 {
     return malloc(sizeof(Pool));
 }
