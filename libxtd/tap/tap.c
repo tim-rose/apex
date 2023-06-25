@@ -31,6 +31,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <errno.h>
 
 #include <xtd/tap.h>
 
@@ -277,13 +278,17 @@ int tap_result(int result, const char *func,
 
     if (fmt != NULL)
     {                                  /* build/test/clean the user text */
+        char *endp;
+
         va_start(arglist, fmt);
         vsnprintf(user_text, sizeof(user_text), fmt, arglist);
         va_end(arglist);
-        if (strtol(user_text, NULL, 0) != 0)
+
+        errno = 0;
+        if (strtol(user_text, &endp, 0) == 0 && *endp == '\0')
         {
             diag("    You named your test '%s'.  "
-                 "You shouldn't use numbers for your test names.", text);
+                 "You shouldn't use numbers for your test names.", user_text);
             diag("    Very confusing.");
         }
         tap_escape_(user_text, sizeof(user_text), '#', "\\#");

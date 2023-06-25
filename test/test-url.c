@@ -44,7 +44,7 @@ static void test_str_url(void)
         str_field_eq(url, user, NULL, "str_url(%s) unset", description);
         str_field_eq(url, password, NULL, "str_url(%s) unset", description);
         str_field_eq(url, domain, "domain", "str_url(%s)", description);
-        int_field_eq(url, port, 80, "str_url(%s) default", description);
+        int_field_eq(url, port, 80, "%d", "default port(%s)", description);
         str_field_eq(url, path, "path", "str_url(%s)", description);
         str_field_eq(url, query, NULL, "str_url(%s) unset", description);
         str_field_eq(url, anchor, NULL, "str_url(%s) unset", description);
@@ -66,7 +66,7 @@ static void test_str_url(void)
         str_field_eq(url, user, "user", "str_url(%s)", description);
         str_field_eq(url, password, "pass", "str_url(%s)", description);
         str_field_eq(url, domain, "domain", "str_url(%s)", description);
-        int_field_eq(url, port, 80, "str_url(%s)", description);
+        int_field_eq(url, port, 80, "%d", "str_url(%s)", description);
         str_field_eq(url, path, "path", "str_url(%s)", description);
         str_field_eq(url, query, "query", "str_url(%s)", description);
         str_field_eq(url, anchor, "anchor", "str_url(%s)", description);
@@ -87,7 +87,7 @@ static void test_str_url(void)
         str_field_eq(url, scheme, "mailto", "str_url(%s)", description);
         str_field_eq(url, user, "user", "str_url(%s)", description);
         str_field_eq(url, domain, "domain", "str_url(%s)", description);
-        int_field_eq(url, port, 25, "str_url(%s)", description);
+        int_field_eq(url, port, 25, "%d", "(%s)", description);
 
         snprint_url(buf, NEL(buf), &url);
         string_eq(buf, "mailto:user@domain:25", "snprint_url(%s)",
@@ -103,7 +103,7 @@ static void test_str_url(void)
         ok(str_url(str, &url), "str_url(%s)", description);
 
         str_field_eq(url, domain, "domain", "str_url(%s)", description);
-        int_field_eq(url, port, 80, "str_url(%s)", description);
+        int_field_eq(url, port, 80, "%d", "str_url(%s)", description);
 
         snprint_url(buf, NEL(buf), &url);
         string_eq(buf, "domain:80", "snprint_url(%s)", description);

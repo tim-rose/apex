@@ -12,45 +12,46 @@
 #include <xtd.h>                       /* for FEQUAL */
 #include <xtd/estring.h>                   /* for strequiv */
 
-#define ptr_eq(_have, _expected, ...)          \
-    (ok(((char *) _have)-(((char *) _expected)) == 0, __VA_ARGS__) ? 1 : \
-        (diag("%10s: 0x%p", "got", (_have)), \
-        diag("%10s: 0x%p", "expected", (_expected)), 0))
+#define ptr_eq(have_, expected_, ...)          \
+    (ok(((char *) have_)-(((char *) expected_)) == 0, __VA_ARGS__) ? 1 : \
+        (diag("%10s: 0x%p", "got", (have_)), \
+        diag("%10s: 0x%p", "expected", (expected_)), 0))
 
-#define int_eq(_have, _expected, _format, ...)          \
-    (ok((_have)-(_expected) == 0, __VA_ARGS__) ? 1 :      \
-        (diag("%10s: " _format, "got", (_have)), \
-         diag("%10s: " _format, "expected", (_expected)), 0))
+#define int_eq(have_, expected_, int_fmt_, ...)          \
+    (ok((have_) == (expected_), __VA_ARGS__) ? 1 :      \
+        (diag("%10s: " int_fmt_, "got", (have_)), \
+         diag("%10s: " int_fmt_, "expected", (expected_)), 0))
 
-#define float_eq(_have, _expected, _format, _tolerance, ...)             \
-    (ok(FEQUAL((_have), (_expected), (_tolerance)) == 0, __VA_ARGS__) ? 1 : \
-        (diag("%10s: " _format, "got", (_have)), \
-         diag("%10s: " _format, "expected", (_expected)), 0))
+#define float_eq(have_, expected_, float_fmt_, _tolerance, ...)             \
+    (ok(FEQUAL((have_), (expected_), (_tolerance)) == 0, __VA_ARGS__) ? 1 : \
+        (diag("%10s: " float_fmt_, "got", (have_)), \
+         diag("%10s: " float_fmt_, "expected", (expected_)), 0))
 
-#define string_eq(_have, _expected, ...) \
-    (ok(strequiv((_have), (_expected)) == 0, __VA_ARGS__) ? 1 :   \
-        (diag("%10s: \"%s\"", "got", STR_OR_NULL(_have)), \
-         diag("%10s: \"%s\"", "expected", STR_OR_NULL(_expected)), 0))
+#define ok_number(have_, cmp_, expected_, int_fmt_, ...)    \
+    (ok((have_) cmp_ (expected_), __VA_ARGS__) ? 1 :      \
+        (diag("%10s: " int_fmt_, "got", (have_)), \
+         diag("%10s: a value %s " int_fmt_, "expected", #cmp_, (expected_)), 0))
 
-#define object_eq(_have, _expected, _compare, _sprint, ...)        \
-    (ok(_compare((_have), (_expected)) == 0, __VA_ARGS__) ? 1 : \
-        (diag("%10s: %s", "got", _sprint(_have)), \
-         diag("%10s: %s", "expected", _sprint(_expected)), 0))
+#define string_eq(have_, expected_, ...)                          \
+    (ok(strequiv((have_), (expected_)) == 0, __VA_ARGS__) ? 1 :   \
+        (diag("%10s: \"%s\"", "got", STR_OR_NULL(have_)), \
+         diag("%10s: \"%s\"", "expected", STR_OR_NULL(expected_)), 0))
 
-#define str_field_eq(_struct, _field, _value, _msg, ...)        \
-    string_eq(_struct._field, _value, _msg ": %s.%s value",\
-              __VA_ARGS__, #_struct, #_field)
+#define object_eq(have_, expected_, _compare, _sprint, ...)        \
+    (ok(_compare((have_), (expected_)) == 0, __VA_ARGS__) ? 1 : \
+        (diag("%10s: %s", "got", _sprint(have_)), \
+         diag("%10s: %s", "expected", _sprint(expected_)), 0))
 
-#define int_field_eq(_struct, _field, _value, _msg, ...)        \
-    int_eq(_struct._field, _value, "%d", _msg ": %s.%s value", \
-           __VA_ARGS__, #_struct, #_field)
+#define str_field_eq(struct_, field_, expected_, ...)        \
+    string_eq(struct_.field_, expected_, \
+        #struct_ "." #field_ ": " __VA_ARGS__)
 
-#ifdef __cplusplus
-extern "C"
-{
-#endif                                 /* C++ */
+#define int_field_eq(struct_, field_, expected_, int_fmt_, ...)  \
+    int_eq(struct_.field_, expected_, int_fmt_, \
+        #struct_ "." #field_ ": "__VA_ARGS__)
 
-#ifdef __cplusplus
-}
-#endif                                 /* C++ */
+#define ok_number_field(struct_, field_, cmp_, expected_, int_fmt_, ...)    \
+    ok_number(struct_.field_, cmp_, expected_, int_fmt_,                    \
+        #struct_ "." #field_ ": "__VA_ARGS__)
+
 #endif                                 /* TEST_H */
