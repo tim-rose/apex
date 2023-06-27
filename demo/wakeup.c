@@ -26,10 +26,6 @@
 #include <xtd/symbol.h>
 #include <xtd/log.h>
 
-#ifdef VERSION
-static char USED vcs_id[] = "wakeup version " VERSION;
-#endif /* VERSION */
-
 static Enum signals[] = {
     {"HUP", SIGHUP},
     {"SIGHUP", SIGHUP},
@@ -43,6 +39,7 @@ static Enum signals[] = {
 
 static const char *sig_name;
 static const char *run_dir;
+static int print_version;
 
 static char prologue[] = "wakeup [-s signal] pid...";
 static Option opts[] = {
@@ -56,6 +53,10 @@ static Option opts[] = {
      .value = "/var/run",
      .doc = "search for process PID files in the specified directory",
      .proc = opt_string,.data = (void *) &run_dir},
+    {
+     .opt = 'V',.name = "version",
+     .doc = "print program version and exit",
+     .proc = opt_bool,.data = (void *) &print_version},
     OPTION_LOG,
     {.opt = 0}
 };
@@ -107,6 +108,10 @@ int main(int argc, char *argv[])
     {
         opt_usage(prologue, opts, epilogue);
         exit(2);
+    }
+    if (print_version)
+    {
+        printf("wakeup version %s\n", xtd_version);
     }
 
     if (!str_enum(sig_name, NEL(signals), signals, &sig_id))
