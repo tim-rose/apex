@@ -37,8 +37,8 @@ static Enum signals[] = {
     {"SIGUSR2", SIGUSR2}
 };
 
-static const char *sig_name;
-static const char *run_dir;
+static char *sig_name;
+static char *run_dir;
 static int print_version;
 
 static char prologue[] = "wakeup [-s signal] pid...";
