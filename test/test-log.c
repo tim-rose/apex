@@ -5,7 +5,6 @@
  * default_log_state[] --Fixture for logging state at start of test.
  * test_log_state[]    --Captures the current state of the logger.
  * mock_log_output()   --A mocked log output routine, for testing.
- * log_config()        --Custom log_config() for testing.
  * main()              --Run some unit tests.
  *
  */

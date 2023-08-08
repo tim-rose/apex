@@ -40,9 +40,9 @@ static void test_null(void)
     diag("%s()", __func__);
     ok(queue_init(NULL, 1, 1, NULL) == NULL,
        "cannot initialise a NULL queue");
-    int_eq(queue_push(NULL, &item), 0, "%d",
+    number_eq(queue_push(NULL, &item), 0, "%d",
            "cannot push to a NULL queue");
-    int_eq(queue_pop(NULL, &item), 0, "%d",
+    number_eq(queue_pop(NULL, &item), 0, "%d",
            "cannot pop from a NULL queue");
     ok(queue_peek(NULL, NULL) == NULL,
        "cannot peek at a NULL queue");
@@ -62,22 +62,22 @@ static void test_mask(void)
     int mask;
 
     status = queue_mask(1, &mask);
-    int_eq(status, 1, "%d", "size 1 is valid");
-    int_eq(mask, 0x00, "%d", "calculated mask is correct?");
+    number_eq(status, 1, "%d", "size 1 is valid");
+    number_eq(mask, 0x00, "%d", "calculated mask is correct?");
 
     status = queue_mask(2, &mask);
-    int_eq(status, 1, "%d", "size 2 is valid");
-    int_eq(mask, 0x01, "%d", "calculated mask is correct");
+    number_eq(status, 1, "%d", "size 2 is valid");
+    number_eq(mask, 0x01, "%d", "calculated mask is correct");
 
     status = queue_mask(3, &mask);
-    int_eq(status, 0, "%d", "size 3 is not valid");
+    number_eq(status, 0, "%d", "size 3 is not valid");
 
     status = queue_mask(5, &mask);
-    int_eq(status, 0, "%d", "size 5 is not valid");
+    number_eq(status, 0, "%d", "size 5 is not valid");
 
     status = queue_mask(4, &mask);
-    int_eq(status, 1, "%d", "size 4 is valid");
-    int_eq(mask, 0x03, "%d", "calculated mask is correct");
+    number_eq(status, 1, "%d", "size 4 is valid");
+    number_eq(mask, 0x03, "%d", "calculated mask is correct");
 }
 
 
@@ -99,7 +99,7 @@ static void test_int(int n)
     AtomicQueuePtr q = init_queue(&queue, storage);
 
     ok(q == &queue, "init_queue() returns first argument");
-    int_eq(queue_pop(q, &item), 0, "%d",
+    number_eq(queue_pop(q, &item), 0, "%d",
            "queue_pop() underflow: returns failure");
     ok(queue_peek(q, NULL) == NULL,
        "queue_peek() underflow: returns NULL");
@@ -126,7 +126,7 @@ static void test_int(int n)
            "queue_peek() underflow returns NULL");
     }
 
-    int_eq(queue_push(q, &item), 0, "%d",
+    number_eq(queue_push(q, &item), 0, "%d",
            "queue_push() overflow returns failure");
 
     status = 1;
