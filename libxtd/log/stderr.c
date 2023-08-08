@@ -71,7 +71,7 @@ static char **init(void)
 
     for (char *item = *items++; item != NULL; item = *items++)
     {
-        SysEnumPtr priority;
+        SysEnum *priority;
         char name[10 + 1];             /* hardcoded to match sscanf() fmt */
         char priority_spec[20 + 1];
 
@@ -100,7 +100,7 @@ static char **init(void)
  * doesn't care so much about the colour codes. which are in separate
  * calls to fputs().
  */
-int log_stderr(LogConfigPtr config, LogContextPtr caller,
+int log_stderr(const LogConfig *config, const LogContext *caller,
                int sys_errno, size_t priority, const char *fmt, va_list args)
 {
     char eol[] = "\n";
@@ -157,8 +157,10 @@ int log_stderr(LogConfigPtr config, LogContextPtr caller,
     }
     if (status < 0)
     {                                  /* stderr failed: fallback to syslog! */
-        config->output = log_syslog;
-        log_config(config);
+        LogConfig syslog_config = *config;
+
+        syslog_config.output = log_syslog;
+        config = log_config(&syslog_config);
         return log_syslog(config, caller, sys_errno, priority, fmt, args);
     }
     fflush(stderr);

@@ -4,8 +4,6 @@
 language = c nroff markdown
 LIB_ROOT = ..
 subdir = xtd
-
-MMD_SRC = liblog.mmd
 MAN3_SRC = log.3
 C_SRC = config.c handler.c log-domain.c log.c message.c stderr.c \
     syslog.c

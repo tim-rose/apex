@@ -66,8 +66,8 @@ extern "C"
 #define trace_debug(fmt, ...) \
     trace_msg(__func__, __FILE__, __LINE__, LOG_DEBUG, fmt, ##__VA_ARGS__)
 
-    typedef struct LogConfig_t LogConfig, *LogConfigPtr;
-    typedef struct LogContext_t LogContext, *LogContextPtr;
+    typedef struct LogConfig_t LogConfig;
+    typedef struct LogContext_t LogContext;
 
     /*
      * LogOutputProc() --Signature for a function that emits a log message.
@@ -88,23 +88,26 @@ extern "C"
      *
      *  Custom handlers can be defined by log_config(), log_handler().
      */
-    typedef int (*LogOutputProc)(LogConfigPtr config, LogContextPtr caller,
+    typedef int (*LogOutputProc)(const LogConfig *config,
+                                 const LogContext *caller,
                                  int sys_errno, size_t priority,
                                  const char *fmt, va_list args);
     /*
      * Built-in log handlers...
      */
-    int log_stderr(LogConfigPtr config, LogContextPtr caller, int sys_errno,
+    int log_stderr(const LogConfig *config, const LogContext *caller,
+                   int sys_errno,
                    size_t priority, const char *fmt, va_list args)
         PRINTF_ATTRIBUTE(5, 0);
-    int log_syslog(LogConfigPtr config, LogContextPtr caller, int sys_errno,
+    int log_syslog(const LogConfig *config, const LogContext *caller,
+                   int sys_errno,
                    size_t priority, const char *fmt, va_list args)
         PRINTF_ATTRIBUTE(5, 0);
 
-    LogConfigPtr log_init(const char *identity);
+    const LogConfig *log_init(const char *identity);
     LogOutputProc log_handler(const char *name);
-    LogConfigPtr log_config(LogConfigPtr new_config);
-    int log_vsprintf(LogContextPtr caller,
+    const LogConfig *log_config(const LogConfig *new_config);
+    int log_vsprintf(const LogContext *caller,
                      char *str, size_t len,
                      int sys_errno, size_t priority,
                      const char *fmt, va_list args);

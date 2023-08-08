@@ -25,7 +25,7 @@
 #define VA_LOG(_log_priority, _log_errno, _log_fmt)      \
     va_list args; \
     int status = 0; \
-    LogConfigPtr config = log_config(NULL); \
+    const LogConfig *config = log_config(NULL); \
     if (_log_priority <= config->threshold_priority) { \
         va_start(args, _log_fmt); \
         status = config->output(config, NULL, \
@@ -87,7 +87,7 @@ int trace_msg(const char *func, const char *file, int line, size_t priority,
 {
     va_list args;
     int status = 0;
-    LogConfigPtr config = log_config(NULL);
+    const LogConfig *config = log_config(NULL);
     LogContext caller_context = {
         .function = func,.file = file,.line = line
     };

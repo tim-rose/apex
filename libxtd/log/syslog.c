@@ -15,7 +15,7 @@ static int initialised;
 /*
  * log_syslog() --Output handler that logs a message to syslog.
  */
-int log_syslog(LogConfigPtr config, LogContextPtr caller,
+int log_syslog(const LogConfig *config, const LogContext *caller,
                int sys_errno, size_t priority, const char *fmt, va_list args)
 {
     int n;

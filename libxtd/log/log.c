@@ -29,7 +29,7 @@
  * Parameters:
  * identity --the syslog identity of this logging application.
  */
-LogConfigPtr log_init(const char *identity)
+const LogConfig *log_init(const char *identity)
 {
     LogConfig log = *log_config(NULL);
 
@@ -64,7 +64,7 @@ LogConfigPtr log_init(const char *identity)
  * the buffer used to store it (i.e. the return value can be greater
  * than len).
  */
-int log_vsprintf(LogContextPtr caller,
+int log_vsprintf(const LogContext *caller,
                  char *str, size_t len,
                  int sys_errno, size_t priority,
                  const char *fmt, va_list args)
