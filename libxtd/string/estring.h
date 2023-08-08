@@ -21,7 +21,7 @@ extern "C"
     extern const char empty_str[];
 
 #define STR_OR_NULL(_str) (((_str) == NULL) ? "(null)" : (_str))
-#define STREMPTY(str) ( *(str) == '\0')
+#define STREMPTY(str) ( str == NULL || *(str) == '\0')
 
     int strempty(const char *str);
     int strequiv(const char *s1, const char *s2);

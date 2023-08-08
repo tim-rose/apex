@@ -50,10 +50,7 @@ char *strtrunc(char *str, size_t len, char *text_buffer)
     if (text_buffer == NULL)
     {                                  /* text_buffer not supplied... */
         text_buffer = private_buffer;  /* ...use one we prepared earlier! */
-        if (len >= sizeof(private_buffer) - 1)
-        {                              /* clamp len to known size */
-            len = sizeof(private_buffer) - 2;
-        }
+        len = MIN(len, sizeof(private_buffer) - 1);
     }
     bp = text_buffer;
 
