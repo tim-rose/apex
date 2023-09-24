@@ -14,7 +14,7 @@ extern "C"
 {
 #endif                                 /* C++ */
     int binsearch(void *key, void *base, int n_elements, int size,
-                     CompareProc compare, bool *status);
+                  CompareProc compare, bool *status);
 
 #ifdef __cplusplus
 }

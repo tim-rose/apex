@@ -30,7 +30,7 @@ int main(void)
  * test_null() --Test that NULL queues are handled well.
  *
  * Parameters:
- * n	--the size of the queue to test.
+ * n    --the size of the queue to test.
  */
 static void test_null(void)
 {
@@ -41,11 +41,10 @@ static void test_null(void)
     ok(queue_init(NULL, 1, 1, NULL) == NULL,
        "cannot initialise a NULL queue");
     number_eq(queue_push(NULL, &item), 0, "%d",
-           "cannot push to a NULL queue");
+              "cannot push to a NULL queue");
     number_eq(queue_pop(NULL, &item), 0, "%d",
-           "cannot pop from a NULL queue");
-    ok(queue_peek(NULL, NULL) == NULL,
-       "cannot peek at a NULL queue");
+              "cannot pop from a NULL queue");
+    ok(queue_peek(NULL, NULL) == NULL, "cannot peek at a NULL queue");
     ok(queue_init(&queue, 3, 1, &item) == NULL,
        "cannot initialise a queue with invalid size");
     ok(queue_init(&queue, 1, 1, NULL) == NULL,
@@ -86,7 +85,7 @@ static void test_mask(void)
  * test_int() --Test a queue of n integer-sized items.
  *
  * Parameters:
- * n	--the size of the queue to test.
+ * n    --the size of the queue to test.
  */
 static void test_int(int n)
 {
@@ -94,18 +93,17 @@ static void test_int(int n)
 
     int status = 1;
     int storage[n];
-    int item = n+1;
+    int item = n + 1;
     AtomicQueue queue;
     AtomicQueuePtr q = init_queue(&queue, storage);
 
     ok(q == &queue, "init_queue() returns first argument");
     number_eq(queue_pop(q, &item), 0, "%d",
-           "queue_pop() underflow: returns failure");
-    ok(queue_peek(q, NULL) == NULL,
-       "queue_peek() underflow: returns NULL");
+              "queue_pop() underflow: returns failure");
+    ok(queue_peek(q, NULL) == NULL, "queue_peek() underflow: returns NULL");
 
     for (int i = 0; i < n; ++i)
-    {                                   /* fully load up queue */
+    {                                  /* fully load up queue */
         int push_ok = queue_push(q, &i);
 
         if (!push_ok)
@@ -117,7 +115,7 @@ static void test_int(int n)
     if (n > 0)
     {
         void *address = queue_peek(q, NULL);
-        ok(address >= (void *) storage && address < (void*) (storage+n),
+        ok(address >= (void *) storage && address < (void *) (storage + n),
            "queue_peek() returns address from storage");
     }
     else
@@ -127,11 +125,11 @@ static void test_int(int n)
     }
 
     number_eq(queue_push(q, &item), 0, "%d",
-           "queue_push() overflow returns failure");
+              "queue_push() overflow returns failure");
 
     status = 1;
     for (int i = 0; i < n; ++i)
-    {                                   /* fully drain queue */
+    {                                  /* fully drain queue */
         int pop_ok = queue_pop(q, &item);
 
         if (!pop_ok)
@@ -141,8 +139,7 @@ static void test_int(int n)
         }
         if (item != i)
         {
-            diag("queue_pop[%d] bad value. Got %d, expected %d.",
-                 i, item, i);
+            diag("queue_pop[%d] bad value. Got %d, expected %d.", i, item, i);
             status = 0;
         }
     }

@@ -29,7 +29,7 @@ int main(void)
  * test_null() --Test that NULL pools are handled well.
  *
  * Parameters:
- * n	--the size of the pool to test.
+ * n    --the size of the pool to test.
  */
 static void test_null(void)
 {
@@ -48,7 +48,8 @@ static void test_null(void)
     pool_ptr = pool_init(&pool, 0, sizeof(ok_items[0]), ok_items);
     ok(pool_ptr == NULL, "cannot initialise a pool with no items?");
 
-    pool_ptr = pool_init(&pool, NEL(bad_items), sizeof(bad_items[0]), bad_items);
+    pool_ptr =
+        pool_init(&pool, NEL(bad_items), sizeof(bad_items[0]), bad_items);
     ok(pool_ptr == NULL, "cannot initialise a pool with bad item size");
 
     item = pool_new(NULL);
@@ -63,7 +64,7 @@ static void test_null(void)
  * test_pool() --Test a pool of n items.
  *
  * Parameters:
- * n	--the size of the pool to test.
+ * n    --the size of the pool to test.
  */
 static void test_pool(int n, int prealloc)
 {
@@ -76,11 +77,11 @@ static void test_pool(int n, int prealloc)
     diag("preallocating %d items", prealloc);
     for (int i = 0; i < prealloc; ++i)
     {
-        item = pool_new(p);             /* discard */
+        item = pool_new(p);            /* discard */
     }
 
     ok(p == &pool, "init_pool() returns first argument");
-    for (int i = 0; i < n*2; ++i)
+    for (int i = 0; i < n * 2; ++i)
     {
         item = pool_new(p);
         if (item == NULL)
@@ -94,8 +95,8 @@ static void test_pool(int n, int prealloc)
 
     status = 1;
     for (int i = prealloc; i < n; ++i)
-    {                                   /* drain pool */
-        item = pool_new(p);             /* discard */
+    {                                  /* drain pool */
+        item = pool_new(p);            /* discard */
         if (item == NULL)
         {
             diag("pool_new(%d) failed", i);

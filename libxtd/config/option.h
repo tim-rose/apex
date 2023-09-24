@@ -86,7 +86,9 @@ extern "C"
      */
 #define OPTION_LOG \
     /* opt, name, value, doc, proc, data... */ \
-    { 0, "log-level", "syslog-level", opt_log_inherit, "set the logging level to the specified syslog priority", opt_log_level, NULL, 0 }, \
+    { 0, "log-level", "syslog-level", \
+      opt_log_inherit, "set the logging level to the specified syslog priority", \
+      opt_log_level, NULL, 0 }, \
     { 'q', "quiet", NULL, 0, "set the logging level to \"notice\"",  opt_log_level, NULL, 0 }, \
     { 'v', "verbose", NULL, 0, "set the logging level to \"info\"", opt_log_level, NULL, 0 }, \
     { '_', "debug", NULL, 0, "set the logging level to \"debug\"", opt_log_level, NULL, 0 }

@@ -9,7 +9,7 @@
 #define TEST_H
 
 #include <xtd.h>                       /* for FEQUAL */
-#include <xtd/estring.h>                   /* for strequiv */
+#include <xtd/estring.h>               /* for strequiv */
 #include <xtd/tap.h>
 
 #define ptr_eq(have_, expected_, ...)          \
@@ -54,4 +54,4 @@
     ok_number(struct_.field_, cmp_, expected_, number_fmt_,                    \
         #struct_ "." #field_ ": "__VA_ARGS__)
 
-#endif                                 /* TEST_H */
+#endif /* TEST_H */

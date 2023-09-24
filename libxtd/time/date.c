@@ -67,7 +67,7 @@ static time_t timegm_(struct tm *tm)
 {
     time_t t = 0;
 
-#ifdef __WINNT__               /* Windows doesn't have gmtoff */
+#ifdef __WINNT__                       /* Windows doesn't have gmtoff */
     {
         char *tz;
 

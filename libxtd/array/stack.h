@@ -13,7 +13,7 @@ extern "C"
     typedef struct Stack_t
     {
         ArrayContainer array;
-        int top;                    /* current top of stack */
+        int top;                       /* current top of stack */
     } Stack, *StackPtr;
 
     StackPtr stack_alloc(void);

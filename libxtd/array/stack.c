@@ -41,8 +41,7 @@ StackPtr stack_alloc(void)
  * The stack storage is not allocated by this module, it is provided
  * by the caller.
  */
-StackPtr stack_init(StackPtr stack, int n_items, int item_size,
-                    void *base)
+StackPtr stack_init(StackPtr stack, int n_items, int item_size, void *base)
 {
     if (stack != NULL && base != NULL)
     {

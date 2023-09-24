@@ -50,20 +50,20 @@ int create_pidfile(const char *path)
 
     if (STREMPTY(path))
     {
-        return 0;       /* failure: empty path!? */
+        return 0;                      /* failure: empty path!? */
     }
     strncpy(pidfile_path, path, sizeof(pidfile_path));
     pidfile_path[sizeof(pidfile_path) - 1] = '\0';
 
     if ((pid_fd = open(pidfile_path, (O_RDWR | O_CREAT | O_TRUNC), 0644)) < 0)
     {
-        return 0;       /* failure: cannot open pidfile */
+        return 0;                      /* failure: cannot open pidfile */
     }
     sprintf(pid, "10%d\n", getpid());  /* HBP UUCP lock file format */
     SYS_RETRY(status, write(pid_fd, pid, strlen(pid)));
     if (status < 0)
     {
-        return 0;       /* failure: cannot write to pidfile */
+        return 0;                      /* failure: cannot write to pidfile */
     }
 
     close(pid_fd);

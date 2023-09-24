@@ -56,7 +56,8 @@ void sym_free_value(Type type, Value value)
         free(value.string);
         break;
     case STRUCT_TYPE:
-        for (SymbolPtr symbol = value.field; symbol->type != VOID_TYPE; ++symbol)
+        for (SymbolPtr symbol = value.field; symbol->type != VOID_TYPE;
+             ++symbol)
         {
             free(symbol->name);
             sym_free_value(symbol->type, symbol->value);
@@ -429,10 +430,10 @@ static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
         case LIST_TYPE:
             return list_get_(element->value.list, path + 1, vptr);
         default:
-            return VOID_TYPE;               /* error: at a leaf! */
+            return VOID_TYPE;          /* error: at a leaf! */
         }
     }
-    return VOID_TYPE;                       /* error: path isn't an index */
+    return VOID_TYPE;                  /* error: path isn't an index */
 }
 
 /*
@@ -454,7 +455,7 @@ Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
 {
     if (path->type != STRING_TYPE)
     {
-        return VOID_TYPE;                   /* error: path isn't a name */
+        return VOID_TYPE;              /* error: path isn't a name */
     }
     for (size_t i = 0; symtab[i].type != VOID_TYPE; ++i)
     {
@@ -474,11 +475,11 @@ Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
             case LIST_TYPE:
                 return list_get_(sym->value.list, path + 1, vptr);
             default:
-                return VOID_TYPE;           /* error: at a leaf */
+                return VOID_TYPE;      /* error: at a leaf */
             }
         }
     }
-    return VOID_TYPE;                       /* UNREACHED */
+    return VOID_TYPE;                  /* UNREACHED */
 }
 
 /*

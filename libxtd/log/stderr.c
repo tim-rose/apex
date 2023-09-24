@@ -100,7 +100,7 @@ static char **init(void)
  * doesn't care so much about the colour codes. which are in separate
  * calls to fputs().
  */
-int log_stderr(const LogConfig *config, const LogContext *caller,
+int log_stderr(const LogConfig * config, const LogContext * caller,
                int sys_errno, size_t priority, const char *fmt, va_list args)
 {
     char eol[] = "\n";

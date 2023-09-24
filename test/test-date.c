@@ -78,7 +78,8 @@ static void tv_tests(void)
 
         tv_normalise(&t1);
         number_eq(t1.tv_sec, 0, "%d", "tv_normalise: adjust down (sec)");
-        number_eq(t1.tv_usec, 500000, "%d", "tv_normalise: adjust down (usec)");
+        number_eq(t1.tv_usec, 500000, "%d",
+                  "tv_normalise: adjust down (usec)");
     } while (0);
 
     do

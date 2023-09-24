@@ -5,6 +5,6 @@
 
 #ifndef VERSION
 #define VERSION "latest"
-#endif  /* VERSION */
+#endif /* VERSION */
 
 const char *xtd_version = VERSION;

@@ -18,7 +18,7 @@
 
 #include <string.h>
 #include <xtd/heap.h>
-#include <xtd/estring.h>                   /* for memswap() */
+#include <xtd/estring.h>               /* for memswap() */
 
 /*
  * heap_sift_up() --Sift a value from the bottom of the heap to the top.
@@ -35,8 +35,7 @@
  * *except* for this last leaf item. sift-up re-creates the heap
  * condition by "floating" the value up the heap towards root.
  */
-void heap_sift_up(void *heap, int n_items, int item_size,
-                  CompareProc cmp)
+void heap_sift_up(void *heap, int n_items, int item_size, CompareProc cmp)
 {
     for (int i = n_items - 1; i > 0; i = (i - 1) / 2)
     {
@@ -65,8 +64,7 @@ void heap_sift_up(void *heap, int n_items, int item_size,
  * the heap by 1. The sift-down re-creates the heap condition by
  * pushing the root down to the child slots.
  */
-void heap_sift_down(void *heap, int n_items, int item_size,
-                    CompareProc cmp)
+void heap_sift_down(void *heap, int n_items, int item_size, CompareProc cmp)
 {
     int level;
     char *node, *child, *end;

@@ -91,8 +91,8 @@ const char *enum_name(int value, EnumPtr item)
     {
         if (item[i].value == value)
         {
-            return item[i].name;        /* success: found (first) value */
+            return item[i].name;       /* success: found (first) value */
         }
     }
-    return NULL;                        /* bonus failure: not reached! */
+    return NULL;                       /* bonus failure: not reached! */
 }

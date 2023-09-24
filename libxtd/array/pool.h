@@ -13,13 +13,12 @@ extern "C"
     typedef struct Pool_t
     {
         ArrayContainer array;
-        int n_used;                 /* maximum number of used items */
+        int n_used;                    /* maximum number of used items */
         void *free;                    /* current list of freed items. */
     } Pool, *PoolPtr;
 
     PoolPtr pool_alloc(void);
-    PoolPtr pool_init(PoolPtr pool, int n_items,
-                      int item_size, void *items);
+    PoolPtr pool_init(PoolPtr pool, int n_items, int item_size, void *items);
 
     void *pool_new(PoolPtr pool);
     void pool_delete(PoolPtr pool, void *item);

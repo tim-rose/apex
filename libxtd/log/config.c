@@ -42,7 +42,7 @@ static LogConfig log_state = {
     .facility = LOG_USER,
 };
 
-static const LogConfig *config = NULL;     /* Yow! are we initialised yet!!? */
+static const LogConfig *config = NULL; /* Yow! are we initialised yet!!? */
 
 /*
  * log_getenv_() --Load the logging parameters from the environment.
@@ -52,7 +52,7 @@ static const LogConfig *config = NULL;     /* Yow! are we initialised yet!!? */
  * and that it's OK to use/store them (rather than strdup() the string).
  * It's all fun and games until someone's eye gets poked out with a putenv().
  */
-static LogConfig *log_getenv_(LogConfig *conf)
+static LogConfig *log_getenv_(LogConfig * conf)
 {
     const char *value;
     SysEnumPtr e;
@@ -96,7 +96,7 @@ static LogConfig *log_getenv_(LogConfig *conf)
  * Returns: (LogConfigPtr)
  * The old parameters.
  */
-const LogConfig *log_config(const LogConfig *new_config)
+const LogConfig *log_config(const LogConfig * new_config)
 {
     if (new_config != NULL)
     {
@@ -108,7 +108,7 @@ const LogConfig *log_config(const LogConfig *new_config)
         return &old_config;
     }
     if (config == NULL)
-    {                              /* first time: load from environment */
+    {                                  /* first time: load from environment */
         config = log_config(log_getenv_(&log_state));
     }
     return config;

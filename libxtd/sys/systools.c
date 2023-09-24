@@ -342,7 +342,7 @@ int touch(const char *path)
 
     if ((fp = fopen(path, "a")) == NULL)
     {
-        return 0;       /* failure: cannot open file */
+        return 0;                      /* failure: cannot open file */
     }
 
     fclose(fp);

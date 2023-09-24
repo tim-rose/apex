@@ -88,26 +88,26 @@ extern "C"
      *
      *  Custom handlers can be defined by log_config(), log_handler().
      */
-    typedef int (*LogOutputProc)(const LogConfig *config,
-                                 const LogContext *caller,
+    typedef int (*LogOutputProc)(const LogConfig * config,
+                                 const LogContext * caller,
                                  int sys_errno, size_t priority,
                                  const char *fmt, va_list args);
     /*
      * Built-in log handlers...
      */
-    int log_stderr(const LogConfig *config, const LogContext *caller,
+    int log_stderr(const LogConfig * config, const LogContext * caller,
                    int sys_errno,
                    size_t priority, const char *fmt, va_list args)
         PRINTF_ATTRIBUTE(5, 0);
-    int log_syslog(const LogConfig *config, const LogContext *caller,
+    int log_syslog(const LogConfig * config, const LogContext * caller,
                    int sys_errno,
                    size_t priority, const char *fmt, va_list args)
         PRINTF_ATTRIBUTE(5, 0);
 
     const LogConfig *log_init(const char *identity);
     LogOutputProc log_handler(const char *name);
-    const LogConfig *log_config(const LogConfig *new_config);
-    int log_vsprintf(const LogContext *caller,
+    const LogConfig *log_config(const LogConfig * new_config);
+    int log_vsprintf(const LogContext * caller,
                      char *str, size_t len,
                      int sys_errno, size_t priority,
                      const char *fmt, va_list args);

@@ -59,7 +59,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
 
         switch (node_type = sym_get(*sym_ptr, path, &section_vptr))
         {
-        case VOID_TYPE:                    /* new section: insert it */
+        case VOID_TYPE:               /* new section: insert it */
             do
             {
                 size_t slot = (size_t) vector_len(*sym_ptr) - 1;
@@ -95,7 +95,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
     path[0].value.string = (char *) name;
     switch (node_type = sym_get(*sym_ptr, path, &node_vptr))
     {
-    case VOID_TYPE:                        /* new value */
+    case VOID_TYPE:                   /* new value */
         do
         {
             size_t slot = (size_t) vector_len(*sym_ptr) - 1;
@@ -113,7 +113,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
         }
         while (0);
         break;
-    case STRING_TYPE:                      /* replace existing */
+    case STRING_TYPE:                 /* replace existing */
         free(node_vptr->string);
         node_vptr->string = strdup(value);
         break;

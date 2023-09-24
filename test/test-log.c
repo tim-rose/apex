@@ -15,8 +15,8 @@
 #include <xtd/log.h>
 
 #define LOG_TEXT_MAX 60
-static int mock_log_output(const LogConfig *UNUSED(config),
-                           const LogContext *caller,
+static int mock_log_output(const LogConfig * UNUSED(config),
+                           const LogContext * caller,
                            int sys_errno, size_t priority,
                            const char *fmt, va_list args);
 
@@ -55,8 +55,8 @@ static LogConfig test_log_state = {
  * This routine just stashes the formatted message and the rest of the
  * arg.s so that a test can inspect it later.
  */
-static int mock_log_output(const LogConfig *UNUSED(config),
-                           const LogContext *caller,
+static int mock_log_output(const LogConfig * UNUSED(config),
+                           const LogContext * caller,
                            int sys_errno, size_t priority,
                            const char *fmt, va_list args)
 {
@@ -82,9 +82,9 @@ int main(void)
     string_eq(log_state.text, "notice: test message",
               "simple message is prefixed with priority");
     number_eq(log_state.priority, LOG_NOTICE, "%d",
-           "message is logged at eponymous priority");
+              "message is logged at eponymous priority");
     number_eq(log_state.sys_errno, 0, "%d",
-           "system error is not printed by default");
+              "system error is not printed by default");
 
     log_state = default_log_state;
     debug("test message");
@@ -109,7 +109,7 @@ int main(void)
     log_state = default_log_state;
     log_sys(LOG_NOTICE, "test message");
     number_eq(log_state.priority, LOG_NOTICE, "%d",
-           "log_sys() uses provided priority");
+              "log_sys() uses provided priority");
     string_eq(log_state.text,
               "notice: test message: Operation not permitted",
               "log_sys() applies a priority prefix, and appends the system error");

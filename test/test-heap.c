@@ -33,10 +33,8 @@ static void print_heap(HeapPtr heap)
     char *str = text;
 
     diag("heap: n_items=%lu, item_size=%lu, n_used=%lu",
-         heap->array.n_items,
-         heap->array.item_size,
-         heap->n_used);
-    for (size_t i=0; i<heap->n_used; ++i)
+         heap->array.n_items, heap->array.item_size, heap->n_used);
+    for (size_t i = 0; i < heap->n_used; ++i)
     {
         int item;
 
@@ -61,19 +59,16 @@ static void test_null(void)
        "cannot initialise a NULL heap");
     ok(heap_init(&heap, int_cmp, 10, 1, NULL) == NULL,
        "cannot initialise a heap with no storage");
-    number_eq(heap_push(NULL, &item), 0, "%d",
-           "cannot push to a NULL heap");
-    number_eq(heap_pop(NULL, &item), 0, "%d",
-           "cannot pop from a NULL heap");
-    ok(heap_peek(NULL, NULL) == NULL,
-       "cannot peek at a NULL heap");
+    number_eq(heap_push(NULL, &item), 0, "%d", "cannot push to a NULL heap");
+    number_eq(heap_pop(NULL, &item), 0, "%d", "cannot pop from a NULL heap");
+    ok(heap_peek(NULL, NULL) == NULL, "cannot peek at a NULL heap");
 }
 
 /*
  * test_int() --Test a heap of n int-sized items.
  *
  * Parameters:
- * n	--the size of the heap to test.
+ * n    --the size of the heap to test.
  *
  * Remarks:
  * This tests some boundary conditions, and then inserts
@@ -86,18 +81,17 @@ static void test_int(int n)
 
     int storage[n];
     int item;
-    Heap heap = {0};
+    Heap heap = { 0 };
     HeapPtr h = init_heap(&heap, int_cmp, storage);
     int status = 1;
 
     ok(h == &heap, "init_heap() returns first argument");
     number_eq(heap_pop(h, &item), 0, "%d",
-           "heap_pop() underflow returns failure");
-    ok(heap_peek(h, NULL) == NULL,
-       "heap_peek() underflow returns NULL");
+              "heap_pop() underflow returns failure");
+    ok(heap_peek(h, NULL) == NULL, "heap_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
-    {                                   /* fully load up heap */
+    {                                  /* fully load up heap */
         item = n - i;
         int push_ok = heap_push(h, &item);
 
@@ -114,16 +108,15 @@ static void test_int(int n)
     }
     else
     {
-        ok(heap_peek(h, NULL) == NULL,
-           "heap_peek() underflow returns NULL");
+        ok(heap_peek(h, NULL) == NULL, "heap_peek() underflow returns NULL");
     }
 
     number_eq(heap_push(h, &item), 0, "%d",
-           "heap_push() overflow returns failure");
+              "heap_push() overflow returns failure");
 
     status = 1;
     for (int i = 0; i < n; ++i)
-    {                                   /* fully drain heap */
+    {                                  /* fully drain heap */
         int pop_ok = heap_pop(h, &item);
 
         if (!pop_ok)
@@ -131,10 +124,10 @@ static void test_int(int n)
             diag("heap_pop[%d] fails", i);
             status = 0;
         }
-        if (item != i+1)
+        if (item != i + 1)
         {
             diag("heap_pop[%d] bad value. Got %d, expected %d.",
-                 i, item, i+1);
+                 i, item, i + 1);
             status = 0;
         }
     }

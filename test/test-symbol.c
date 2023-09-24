@@ -40,14 +40,16 @@ Atom a_list[] = {
 Symbol a_struct[] = {
     {.name = (char *) "a",.type = INTEGER_TYPE,.value.integer = 1},
     {.name = (char *) "b",.type = REAL_TYPE,.value.real = 2.0},
-    {.name = (char *) "c",.type = STRING_TYPE,.value.string = (char *) "foobar"},
+    {.name = (char *) "c",.type = STRING_TYPE,.value.string =
+     (char *) "foobar"},
     NULL_SYMBOL
 };
 
 Symbol test_dom[] = {
     {.name = (char *) "a",.type = INTEGER_TYPE,.value.integer = 1},
     {.name = (char *) "b",.type = REAL_TYPE,.value.real = 2.0},
-    {.name = (char *) "c",.type = STRING_TYPE,.value.string = (char *) "foobar"},
+    {.name = (char *) "c",.type = STRING_TYPE,.value.string =
+     (char *) "foobar"},
     {.name = (char *) "a_list",.type = LIST_TYPE,.value.list = a_list},
     {.name = (char *) "a_struct",.type = STRUCT_TYPE,.value.field = a_struct},
     NULL_SYMBOL
@@ -177,21 +179,24 @@ int main(void)
     } while (0);
 
     v.integer = 1;
-    sym_test((SymbolPtr) & test_dom, "a", INTEGER_TYPE, v, "simple path to int");
+    sym_test((SymbolPtr) & test_dom, "a", INTEGER_TYPE, v,
+             "simple path to int");
     sym_test((SymbolPtr) & test_dom, "a_list[0]", INTEGER_TYPE, v,
              "array syntax to int");
     sym_test((SymbolPtr) & test_dom, "a_struct.a", INTEGER_TYPE, v,
              "struct syntax to int");
 
     v.real = 2.0;
-    sym_test((SymbolPtr) & test_dom, "b", REAL_TYPE, v, "simple path to real");
+    sym_test((SymbolPtr) & test_dom, "b", REAL_TYPE, v,
+             "simple path to real");
     sym_test((SymbolPtr) & test_dom, "a_list[1]", REAL_TYPE, v,
              "array syntax to real");
     sym_test((SymbolPtr) & test_dom, "a_struct.b", REAL_TYPE, v,
              "struct syntax to real");
 
     v.string = (char *) "foobar";
-    sym_test((SymbolPtr) & test_dom, "c", STRING_TYPE, v, "simple path to string");
+    sym_test((SymbolPtr) & test_dom, "c", STRING_TYPE, v,
+             "simple path to string");
     v.string = (char *) "foobar";
     sym_test((SymbolPtr) & test_dom, "a_list[2]", STRING_TYPE, v,
              "array syntax to string");

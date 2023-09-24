@@ -14,7 +14,7 @@ extern "C"
     typedef struct Heap_t
     {
         ArrayContainer array;
-        int n_used;                 /* current size of heap */
+        int n_used;                    /* current size of heap */
         CompareProc cmp;               /* heap item comparison function */
     } Heap, *HeapPtr;
 
@@ -35,8 +35,7 @@ extern "C"
     /*
      * low-level heap operations.
      */
-    int heap_ok(void *heap, int n_items, int item_size,
-                CompareProc cmp);
+    int heap_ok(void *heap, int n_items, int item_size, CompareProc cmp);
     void heap_sift_up(void *heap, int n_items, int item_size,
                       CompareProc cmp);
     void heap_sift_down(void *heap, int n_items, int item_size,

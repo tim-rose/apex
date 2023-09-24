@@ -28,32 +28,32 @@ int main(void)
     return exit_status();
 }
 
-#if 0                                   /* debugging... */
+#if 0                                  /* debugging... */
 static void print_heap(int heap[], size_t n)
 {
     char text[100];
     char *str = text;
 
-    for (size_t i=0; i < n; ++i)
+    for (size_t i = 0; i < n; ++i)
     {
         str += sprintf(str, " %d", heap[i]);
     }
     diag("heap:%s", text);
 }
-#endif  /* 0 */
+#endif /* 0 */
 
 static void test_heap_ok(void)
 {
     const char func[] = "heap_ok";
-    int trivial_heap[] = {1};
-    int ok_heap_2[] = {1, 2};
-    int bad_heap_2[] = {2, 1};
-    int ok_heap_3a[] = {1, 2, 3};
-    int ok_heap_3b[] = {1, 3, 2};
-    int bad_heap_3a[] = {2, 1, 3};
-    int bad_heap_3b[] = {2, 3, 1};
-    int bad_heap_3c[] = {3, 1, 2};
-    int bad_heap_3d[] = {3, 2, 1};
+    int trivial_heap[] = { 1 };
+    int ok_heap_2[] = { 1, 2 };
+    int bad_heap_2[] = { 2, 1 };
+    int ok_heap_3a[] = { 1, 2, 3 };
+    int ok_heap_3b[] = { 1, 3, 2 };
+    int bad_heap_3a[] = { 2, 1, 3 };
+    int bad_heap_3b[] = { 2, 3, 1 };
+    int bad_heap_3c[] = { 3, 1, 2 };
+    int bad_heap_3d[] = { 3, 2, 1 };
 
 #define HEAP_OK_CHECK(h) \
     ok(heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
@@ -77,10 +77,10 @@ static void test_heap_ok(void)
 static void test_sift_up(void)
 {
     const char func[] = "heap_sift_up";
-    int heap_2[] = {2, 1};
-    int heap_3a[] = {2, 3, 1};
-    int heap_3b[] = {3, 2, 1};
-    int heap_3c[] = {1, 2, 3};
+    int heap_2[] = { 2, 1 };
+    int heap_3a[] = { 2, 3, 1 };
+    int heap_3b[] = { 3, 2, 1 };
+    int heap_3c[] = { 1, 2, 3 };
 
 #define HEAP_SIFT_UP_CHECK(h) \
     heap_sift_up(h, NEL(h), sizeof(h[0]), int_cmp);     \
@@ -96,11 +96,11 @@ static void test_sift_up(void)
 static void test_sift_down(void)
 {
     const char func[] = "heap_sift_down";
-    int heap_1[] = {1};
-    int heap_2[] = {2, 1};
-    int heap_3a[] = {2, 3, 1};
-    int heap_3b[] = {1, 3, 2};
-    int heap_3c[] = {1, 2, 3};
+    int heap_1[] = { 1 };
+    int heap_2[] = { 2, 1 };
+    int heap_3a[] = { 2, 3, 1 };
+    int heap_3b[] = { 1, 3, 2 };
+    int heap_3c[] = { 1, 2, 3 };
 
 #define HEAP_SIFT_DOWN_CHECK(h) \
     heap_sift_down(h, NEL(h), sizeof(h[0]), int_cmp);     \

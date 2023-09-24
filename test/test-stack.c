@@ -15,7 +15,7 @@
  * test_null() --Test that NULL stacks are handled well.
  *
  * Parameters:
- * n	--the size of the stack to test.
+ * n    --the size of the stack to test.
  */
 static void test_null(void)
 {
@@ -28,11 +28,10 @@ static void test_null(void)
     ok(stack_init(&stack, 10, 1, NULL) == NULL,
        "cannot initialise a stack with no storage");
     number_eq(stack_push(NULL, &item), 0, "%d",
-           "cannot push to a NULL stack");
+              "cannot push to a NULL stack");
     number_eq(stack_pop(NULL, &item), 0, "%d",
-           "cannot pop from a NULL stack");
-    ok(stack_peek(NULL, NULL) == NULL,
-       "cannot peek at a NULL stack");
+              "cannot pop from a NULL stack");
+    ok(stack_peek(NULL, NULL) == NULL, "cannot peek at a NULL stack");
 }
 
 
@@ -40,26 +39,25 @@ static void test_null(void)
  * test_char() --Test a stack of n character-sized items.
  *
  * Parameters:
- * n	--the size of the stack to test.
+ * n    --the size of the stack to test.
  */
 static void test_char(int n)
 {
     diag("%s(%d)", __func__, n);
 
     char storage[n];
-    char item = n+1;
+    char item = n + 1;
     Stack stack;
     StackPtr s = init_stack(&stack, storage);
     int status = 1;
 
     ok(s == &stack, "init_stack() returns first argument");
     number_eq(stack_pop(s, &item), 0, "%d",
-           "stack_pop() underflow returns failure");
-    ok(stack_peek(s, NULL) == NULL,
-       "stack_peek() underflow returns NULL");
+              "stack_pop() underflow returns failure");
+    ok(stack_peek(s, NULL) == NULL, "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
-    {                                   /* fully load up stack */
+    {                                  /* fully load up stack */
         char x = i + 1;
         int push_ok = stack_push(s, &x);
 
@@ -71,7 +69,7 @@ static void test_char(int n)
     ok(status, "stack_push() all items");
     if (n > 0)
     {
-        ok(stack_peek(s, NULL) == &storage[n-1],
+        ok(stack_peek(s, NULL) == &storage[n - 1],
            "stack_peek() returns address in storage");
     }
     else
@@ -81,11 +79,11 @@ static void test_char(int n)
     }
 
     number_eq(stack_push(s, &item), 0, "%d",
-           "stack_push() overflow returns failure");
+              "stack_push() overflow returns failure");
 
     status = 1;
     for (int i = 0; i < n; ++i)
-    {                                   /* fully drain stack */
+    {                                  /* fully drain stack */
         char x = i;
         int pop_ok = stack_pop(s, &x);
 
@@ -108,26 +106,25 @@ static void test_char(int n)
  * test_int() --Test a stack of n integer-sized items.
  *
  * Parameters:
- * n	--the size of the stack to test.
+ * n    --the size of the stack to test.
  */
 static void test_int(int n)
 {
     diag("%s(%d)", __func__, n);
 
     int storage[n];
-    int item = n+1;
+    int item = n + 1;
     Stack stack;
     StackPtr s = init_stack(&stack, storage);
     int status = 1;
 
     ok(s == &stack, "init_stack() returns first argument");
     number_eq(stack_pop(s, &item), 0, "%d",
-           "stack_pop() underflow returns failure");
-    ok(stack_peek(s, NULL) == NULL,
-       "stack_peek() underflow returns NULL");
+              "stack_pop() underflow returns failure");
+    ok(stack_peek(s, NULL) == NULL, "stack_peek() underflow returns NULL");
 
     for (int i = 0; i < n; ++i)
-    {                                   /* fully load up stack */
+    {                                  /* fully load up stack */
         int x = i + 1;
         int push_ok = stack_push(s, &x);
 
@@ -139,7 +136,7 @@ static void test_int(int n)
     ok(status, "stack_push() all items");
     if (n > 0)
     {
-        ok(stack_peek(s, NULL) == &storage[n-1],
+        ok(stack_peek(s, NULL) == &storage[n - 1],
            "stack_peek() returns address in storage");
     }
     else
@@ -149,11 +146,11 @@ static void test_int(int n)
     }
 
     number_eq(stack_push(s, &item), 0, "%d",
-           "stack_push() overflow returns failure");
+              "stack_push() overflow returns failure");
 
     status = 1;
     for (int i = 0; i < n; ++i)
-    {                                   /* fully drain stack */
+    {                                  /* fully drain stack */
         int x = i;
         int pop_ok = stack_pop(s, &x);
 

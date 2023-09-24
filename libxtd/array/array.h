@@ -35,9 +35,9 @@ extern "C"
      * base --the base address of the array storage
      */
     static inline void array_init(ArrayContainerPtr array,
-                           int n_items, int item_size, void *base);
+                                  int n_items, int item_size, void *base);
     static inline void array_init(ArrayContainerPtr array,
-                           int n_items, int item_size, void *base)
+                                  int n_items, int item_size, void *base)
     {
         array->n_items = n_items;
         array->item_size = item_size;

@@ -42,7 +42,7 @@
 #define SYSLOG <syslog.h>
 #endif /* __WINNT__ */
 
-#define NULLPTR ((void *) NULL) /* pointer-sized NULL (for stdarg) */
+#define NULLPTR ((void *) NULL)        /* pointer-sized NULL (for stdarg) */
 
 #ifndef NAME_MAX
 #define NAME_MAX 256

@@ -138,7 +138,7 @@ void log_domain_init(const char *domain_spec)
  * list of domains created by log_domain_init(), and updates the domain's
  * status.
  */
-static LogDomainStatus log_domain_status(LogDomain *domain)
+static LogDomainStatus log_domain_status(LogDomain * domain)
 {
     if (domain->status == LOG_DOMAIN_UNDEFINED)
     {
@@ -167,84 +167,83 @@ static LogDomainStatus log_domain_status(LogDomain *domain)
  *  Returns: (int)
  *  No. of characters written.?
  */
-int log_domain_msg(LogDomain *domain, size_t priority, const char *fmt, ...)
+int log_domain_msg(LogDomain * domain, size_t priority, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, priority, 0, fmt);
     return status;                     /* declared in macro! */
 }
 
-int log_domain_emerg(LogDomain *domain, const char *fmt, ...)
+int log_domain_emerg(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_EMERG, 0, fmt);
     return status;
 }
 
-int log_domain_alert(LogDomain *domain, const char *fmt, ...)
+int log_domain_alert(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_ALERT, 0, fmt);
     return status;
 }
 
-int log_domain_crit(LogDomain *domain, const char *fmt, ...)
+int log_domain_crit(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_CRIT, 0, fmt);
     return status;
 }
 
-int log_domain_err(LogDomain *domain, const char *fmt, ...)
+int log_domain_err(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_ERR, 0, fmt);
     return status;
 }
 
-int log_domain_warning(LogDomain *domain, const char *fmt, ...)
+int log_domain_warning(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_WARNING, 0, fmt);
     return status;
 }
 
-int log_domain_notice(LogDomain *domain, const char *fmt, ...)
+int log_domain_notice(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_NOTICE, 0, fmt);
     return status;
 }
 
-int log_domain_info(LogDomain *domain, const char *fmt, ...)
+int log_domain_info(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_INFO, 0, fmt);
     return status;
 }
 
-int log_domain_debug(LogDomain *domain, const char *fmt, ...)
+int log_domain_debug(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_DEBUG, 0, fmt);
     return status;
 }
 
 
-int log_domain_quit(LogDomain *domain, int exit_status, const char *fmt,
-                    ...)
+int log_domain_quit(LogDomain * domain, int exit_status, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_ERR, 0, fmt);
     exit(exit_status);
 }
 
-int log_domain_sys(LogDomain *domain, const char *fmt, ...)
+int log_domain_sys(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_LOG(domain, LOG_ERR, 1, fmt);
     return status;
 }
 
-void log_domain_sys_quit(LogDomain *domain, int exit_status,
+void log_domain_sys_quit(LogDomain * domain, int exit_status,
                          const char *fmt, ...)
 {
     VA_DOMAIN_VOID_LOG(domain, LOG_ERR, 1, fmt);
     exit(exit_status);
 }
 
-void log_domain_sys_abort(LogDomain *domain, const char *fmt, ...)
+void log_domain_sys_abort(LogDomain * domain, const char *fmt, ...)
 {
     VA_DOMAIN_VOID_LOG(domain, LOG_ERR, 1, fmt);
     abort();
-    exit(1);                            /* NOTREACHED */
+    exit(1);                           /* NOTREACHED */
 }

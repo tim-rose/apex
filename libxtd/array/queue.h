@@ -29,10 +29,10 @@ extern "C"
     {
         ArrayContainer array;          /* Queue contents. */
 
-        int n_read;                 /* No. of successful reads */
-        int n_write;                /* No. of successful writes  */
-        int n_fail;                 /* No. of failed writes  */
-        int mask;                   /* True size of working storage, as a mask. */
+        int n_read;                    /* No. of successful reads */
+        int n_write;                   /* No. of successful writes  */
+        int n_fail;                    /* No. of failed writes  */
+        int mask;                      /* True size of working storage, as a mask. */
     } AtomicQueue, *AtomicQueuePtr;
 
     int queue_mask(int n, int *mask);

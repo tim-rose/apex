@@ -36,8 +36,7 @@ static void test_strtrunc(void)
     char text[120];
     char text_result[120];
     char text100[] =
-        DIGITS DIGITS DIGITS DIGITS DIGITS
-        DIGITS DIGITS DIGITS DIGITS DIGITS;
+        DIGITS DIGITS DIGITS DIGITS DIGITS DIGITS DIGITS DIGITS DIGITS DIGITS;
     char *trunc_str;
 
     (void) estrcpy(text, "hello world");
@@ -59,7 +58,7 @@ static void test_strtrunc(void)
     (void) estrcpy(text, text100);
     string_eq((trunc_str = strtrunc(text, sizeof(text100), text_result)),
               DIGITS DIGITS DIGITS DIGITS DIGITS
-               DIGITS DIGITS DIGITS DIGITS DIGITS,
+              DIGITS DIGITS DIGITS DIGITS DIGITS,
               "strtrunc() handles explicit buffer");
     ptr_eq(trunc_str, text_result, "strtrunc() returns explicit buffer");
 }
@@ -102,7 +101,8 @@ static void test_strtolower(void)
 
     (void) estrcpy(text, "HELLO WORLD ***");
     end = estrtolower(text);
-    string_eq(text, "hello world ***", "strtolower() translates to lowercase");
+    string_eq(text, "hello world ***",
+              "strtolower() translates to lowercase");
     number_eq(end, text + strlen(text), "%d",
               "estrtolower() returns end of string");
 }
@@ -117,7 +117,8 @@ static void test_strtoupper(void)
 
     (void) estrcpy(text, "hello world ***");
     end = estrtoupper(text);
-    string_eq(text, "HELLO WORLD ***", "estrtoupper() translates to UPPERCASE");
+    string_eq(text, "HELLO WORLD ***",
+              "estrtoupper() translates to UPPERCASE");
     number_eq(end, text + strlen(text), "%d",
               "estrtolower() returns end of stri");
 }
@@ -132,8 +133,10 @@ static void test_strsub(void)
 
     (void) estrcpy(text, "hello world ***");
     end = estrsub(text, 'l', 'x', false);
-    string_eq(text, "hexlo world ***", "estrsub() subtitutes single character first time");
-    number_eq(end, text + strlen(text), "%d", "estrsub() returns end of string");
+    string_eq(text, "hexlo world ***",
+              "estrsub() subtitutes single character first time");
+    number_eq(end, text + strlen(text), "%d",
+              "estrsub() returns end of string");
 
     end = estrsub(text, 'l', 'x', true);
     string_eq(text, "hexxo worxd ***", "estrsub() substitutes second time");
@@ -151,7 +154,8 @@ static void test_strtr(void)
     end = estrtr(text, "abcdefghijkl", "ABCDEFGHIJKL");
     string_eq(text, "HELLo worLD ***",
               "estrtr() translates all matching characters");
-    number_eq(end, text + strlen(text), "%d", "estrtr() returns end of string");
+    number_eq(end, text + strlen(text), "%d",
+              "estrtr() returns end of string");
 }
 
 /*
