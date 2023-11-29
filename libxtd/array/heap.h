@@ -25,6 +25,7 @@ extern "C"
     int heap_push(HeapPtr heap, const void *item);
     int heap_pop(HeapPtr heap, void *item);
     void *heap_peek(HeapPtr heap, void *item);
+    void heap_delete(HeapPtr heap, int slot);
 
     /*
      * Convenience functions for malloc and item-size aware initialisation.
@@ -38,7 +39,7 @@ extern "C"
     int heap_ok(void *heap, int n_items, int item_size, CompareProc cmp);
     void heap_sift_up(void *heap, int n_items, int item_size,
                       CompareProc cmp);
-    void heap_sift_down(void *heap, int n_items, int item_size,
+    void heap_sift_down(void *heap, int slot, int n_items, int item_size,
                         CompareProc cmp);
 #ifdef __cplusplus
 }

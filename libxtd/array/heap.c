@@ -2,11 +2,12 @@
  * HEAP.C --A simple heap array, with caller provided item storage.
  *
  * Contents:
- * heap_alloc() --Allocate some space for a heap structure.
- * heap_init()  --Initialise a heap structure.
- * heap_push()  --Insert an item into the heap.
- * heap_pop()   --Remove an item from the top of the heap.
- * heap_peek()  --Peek at the top item in the heap.
+ * heap_alloc()  --Allocate some space for a heap structure.
+ * heap_init()   --Initialise a heap structure.
+ * heap_push()   --Insert an item into the heap.
+ * heap_pop()    --Remove an item from the top of the heap.
+ * heap_peek()   --Peek at the top item in the heap.
+ * heap_delete() --Delete an item from the heap.
  */
 #include <memory.h>
 #include <xtd/heap.h>
@@ -97,7 +98,7 @@ int heap_pop(HeapPtr heap, void *item)
         memcpy(heap->array.base,
                array_item(&heap->array, (int) heap->n_used),
                heap->array.item_size);
-        heap_sift_down(heap->array.base, heap->n_used, heap->array.item_size,
+        heap_sift_down(heap->array.base, 0, heap->n_used, heap->array.item_size,
                        heap->cmp);
         return 1;                      /* success */
     }
@@ -125,4 +126,25 @@ void *heap_peek(HeapPtr heap, void *item)
         return heap->array.base;       /* success */
     }
     return NULL;                       /* failure: no heap, or empty */
+}
+
+
+
+/*
+ * heap_delete() --Delete an item from the heap.
+ *
+ * Parameters:
+ * heap --the heap
+ * slot --the slot number in the heap array
+ */
+void heap_delete(HeapPtr heap, int slot)
+{
+    void *item = array_item(&heap->array, slot);
+    void *last_item = array_item(&heap->array, heap->n_used - 1);
+
+    memcpy(item, last_item, heap->array.item_size);
+    heap->n_used -= 1;
+
+    heap_sift_down(heap->array.base, slot,
+                   heap->n_used, heap->array.item_size, heap->cmp);
 }

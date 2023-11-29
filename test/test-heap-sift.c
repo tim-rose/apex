@@ -1,5 +1,5 @@
 /*
- * HEAP.C --Tests for heap fundamental operations.
+ * TEST-HEAP-SIFT.C --Tests for heap fundamental operations.
  *
  * Remarks:
  * I'm not sure how rigorous these tests are, but thry attempt
@@ -103,7 +103,7 @@ static void test_sift_down(void)
     int heap_3c[] = { 1, 2, 3 };
 
 #define HEAP_SIFT_DOWN_CHECK(h) \
-    heap_sift_down(h, NEL(h), sizeof(h[0]), int_cmp);     \
+    heap_sift_down(h, 0, NEL(h), sizeof(h[0]), int_cmp); \
     ok(heap_ok(h, NEL(h), sizeof(h[0]), int_cmp), \
        "%s %s %s", func, "sifts down", #h)
 
