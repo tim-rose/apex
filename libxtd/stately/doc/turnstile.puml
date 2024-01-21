@@ -1,0 +1,7 @@
+@startuml
+!include style.puml
+[*] --> locked
+locked --> unlocked: coin
+unlocked --> locked: turn
+unlocked --> locked: refund
+@enduml

@@ -23,6 +23,7 @@ build@protocol: build@log
 build@protocol: build@string
 build@protocol: build@symbol
 build@protocol: build@vector
+build@stately: build@log
 build@symbol: build@log
 build@symbol: build@string
 build@symbol: build@vector

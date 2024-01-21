@@ -1,0 +1,9 @@
+' 
+' Plantuml style settings.
+'
+skinparam State {
+}
+skinparam Default {
+  FontName Courier New
+  FontSize 10
+}
