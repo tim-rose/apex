@@ -3,8 +3,8 @@
  */
 #include <string.h>
 
-#include <xtd/tap.h>
-#include <xtd/binsearch.h>
+#include <apex/tap.h>
+#include <apex/binsearch.h>
 
 int vector[] = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 

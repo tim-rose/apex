@@ -18,13 +18,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <xtd.h>
-#include <xtd/getopts.h>
-#include <xtd/strparse.h>
-#include <xtd/config.h>
-#include <xtd/option.h>
-#include <xtd/symbol.h>
-#include <xtd/log.h>
+#include <apex.h>
+#include <apex/getopts.h>
+#include <apex/strparse.h>
+#include <apex/config.h>
+#include <apex/option.h>
+#include <apex/symbol.h>
+#include <apex/log.h>
 
 static Enum signals[] = {
     {"HUP", SIGHUP},
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
     }
     if (print_version)
     {
-        printf("wakeup version %s\n", xtd_version);
+        printf("wakeup version %s\n", apex_version);
     }
 
     if (!str_enum(sig_name, NEL(signals), signals, &sig_id))

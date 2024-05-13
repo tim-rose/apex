@@ -15,11 +15,11 @@
  */
 #include <string.h>
 
-#include <xtd/test.h>
-#include <xtd.h>
-#include <xtd/estring.h>
-#include <xtd/strparse.h>
-#include <xtd/getopts.h>
+#include <apex/test.h>
+#include <apex.h>
+#include <apex/estring.h>
+#include <apex/strparse.h>
+#include <apex/getopts.h>
 
 typedef struct Opt
 {

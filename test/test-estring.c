@@ -13,8 +13,8 @@
  * test_vstrmatch()  --vstrmatch tests.
  * main()            --Tests entrypoint.
  */
-#include <xtd/test.h>
-#include <xtd/estring.h>
+#include <apex/test.h>
+#include <apex/estring.h>
 
 #define DIGITS "0123456789"
 

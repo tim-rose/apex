@@ -12,9 +12,9 @@
 #include <sys/stat.h>
 #include <time.h>
 
-#include <xtd/tap.h>
-#include <xtd/systools.h>
-#include <xtd/tfile.h>
+#include <apex/tap.h>
+#include <apex/systools.h>
+#include <apex/tfile.h>
 
 int main(void)
 {

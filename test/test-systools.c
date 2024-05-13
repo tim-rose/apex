@@ -19,10 +19,10 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-#include <xtd/tap.h>
-#include <xtd.h>
-#include <xtd/systools.h>
-#include <xtd/log.h>
+#include <apex/tap.h>
+#include <apex.h>
+#include <apex/systools.h>
+#include <apex/log.h>
 
 /*
  * test_make_path() --Unit tests for make_path().

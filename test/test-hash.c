@@ -9,10 +9,10 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include <xtd.h>
-#include <xtd/tap.h>
-#include <xtd/log.h>
-#include <xtd/hash.h>
+#include <apex.h>
+#include <apex/tap.h>
+#include <apex/log.h>
+#include <apex/hash.h>
 
 static char text[100];
 

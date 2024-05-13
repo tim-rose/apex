@@ -9,10 +9,10 @@
  * main()         --Run some date unit tests.
  */
 #include <string.h>
-#include <xtd/test.h>
-#include <xtd.h>
-#include <xtd/date.h>
-#include <xtd/timeval.h>
+#include <apex/test.h>
+#include <apex.h>
+#include <apex/date.h>
+#include <apex/timeval.h>
 
 #ifdef __WINNT__
 #define localtime_r(timep_, result_) localtime(timep_)

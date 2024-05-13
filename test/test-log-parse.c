@@ -11,9 +11,9 @@
 #include <string.h>
 #include <time.h>
 
-#include <xtd.h>
-#include <xtd/test.h>
-#include <xtd/log-parse.h>
+#include <apex.h>
+#include <apex/test.h>
+#include <apex/log-parse.h>
 
 #define logrec_eq(_l, _l_ref, ...) \
     object_eq(_l, _l_ref, logrec_cmp_, logrec_sprint_, __VA_ARGS__)

@@ -8,11 +8,11 @@
  * statechart.
  */
 /* LCOV_EXCL_START */
-#include <xtd.h>
-#include <xtd/log.h>
-#include <xtd/tap.h>
-#include <xtd/stately.h>
-#include <xtd/test.h>
+#include <apex.h>
+#include <apex/log.h>
+#include <apex/tap.h>
+#include <apex/stately.h>
+#include <apex/test.h>
 
 static char actions[100];
 

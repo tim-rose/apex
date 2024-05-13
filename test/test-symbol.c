@@ -11,10 +11,10 @@
 #include <stdint.h>
 #include <float.h>
 
-#include <xtd/tap.h>
-#include <xtd.h>
-#include <xtd/vector.h>
-#include <xtd/symbol.h>
+#include <apex/tap.h>
+#include <apex.h>
+#include <apex/vector.h>
+#include <apex/symbol.h>
 
 /*
  * The dom is equivalent to the interned JSON for:

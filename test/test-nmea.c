@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <xtd/tap.h>
-#include <xtd/estring.h>
-#include <xtd/nmea.h>
+#include <apex/tap.h>
+#include <apex/estring.h>
+#include <apex/nmea.h>
 
 int main(void)
 {

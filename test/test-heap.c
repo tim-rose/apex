@@ -7,10 +7,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <xtd/tap.h>
-#include <xtd/test.h>
-#include <xtd/heap.h>
-#include <xtd/compare.h>
+#include <apex/tap.h>
+#include <apex/test.h>
+#include <apex/heap.h>
+#include <apex/compare.h>
 
 static void print_heap(HeapPtr heap);
 static void test_null(void);

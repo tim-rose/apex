@@ -4,9 +4,9 @@
  */
 #include <string.h>
 
-#include <xtd/tap.h>
-#include <xtd.h>
-#include <xtd/convert.h>
+#include <apex/tap.h>
+#include <apex.h>
+#include <apex/convert.h>
 
 int main(void)
 {

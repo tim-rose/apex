@@ -1,11 +1,11 @@
-# XTD -- A Library of Extensions for C
+# APEX -- A Library of Extensions for C
 
 This project contains C code that implements
 some variations, wrappers and additions to the C standard library,
 that I've found useful enough to write, collect and document.
 
 In some ways, it's similar in spirit but not scope to Rusty Russell's
-[CCAN](http://ccodearchive.net) project, although xtd is more
+[CCAN](http://ccodearchive.net) project, although apex is more
 a personal statement about how I write software than an attempt
 to acquire and distribute as much re-usable code as possible.
 

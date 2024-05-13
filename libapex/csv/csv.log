@@ -1,0 +1,25 @@
+#
+#
+OCLint Report
+#
+Summary: TotalFiles=1 FilesWithViolations=1 P1=0 P2=3 P3=14
+#
+/Users/timmo/Projects/apex/lib/csv/csv.c:203:1: high cyclomatic complexity P2 Cyclomatic Complexity Number 11 exceeds limit of 10
+/Users/timmo/Projects/apex/lib/csv/csv.c:229:9: inverted logic P3
+/Users/timmo/Projects/apex/lib/csv/csv.c:203:1: long method P3 Method with 61 lines exceeds limit of 50
+/Users/timmo/Projects/apex/lib/csv/csv.c:432:1: long method P3 Method with 65 lines exceeds limit of 50
+/Users/timmo/Projects/apex/lib/csv/csv.c:203:1: high ncss method P2 Method of 35 non-commenting source statements exceeds limit of 30
+/Users/timmo/Projects/apex/lib/csv/csv.c:432:1: high ncss method P2 Method of 39 non-commenting source statements exceeds limit of 30
+/Users/timmo/Projects/apex/lib/csv/csv.c:336:5: parameter reassignment P3
+/Users/timmo/Projects/apex/lib/csv/csv.c:384:5: parameter reassignment P3
+/Users/timmo/Projects/apex/lib/csv/csv.c:47:45: short variable name P3 Variable name with 1 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:47:52: short variable name P3 Variable name with 1 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:89:5: short variable name P3 Variable name with 1 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:90:5: short variable name P3 Variable name with 1 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:205:5: short variable name P3 Variable name with 2 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:320:5: short variable name P3 Variable name with 2 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:435:5: short variable name P3 Variable name with 1 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:440:9: short variable name P3 Variable name with 2 characters is shorter than the threshold of 3
+/Users/timmo/Projects/apex/lib/csv/csv.c:440:9: short variable name P3 Variable name with 2 characters is shorter than the threshold of 3
+#
+[OCLint (http://oclint.org) v0.8.1]

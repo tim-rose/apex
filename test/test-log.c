@@ -11,8 +11,8 @@
 #include <string.h>
 #include <time.h>
 
-#include <xtd/test.h>
-#include <xtd/log.h>
+#include <apex/test.h>
+#include <apex/log.h>
 
 #define LOG_TEXT_MAX 60
 static int mock_log_output(const LogConfig * UNUSED(config),

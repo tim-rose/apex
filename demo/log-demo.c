@@ -11,9 +11,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <xtd.h>
-#include <xtd/getopts.h>
-#include <xtd/log-domain.h>
+#include <apex.h>
+#include <apex/getopts.h>
+#include <apex/log-domain.h>
 
 LogDomain lg = { "demo", 0 };
 

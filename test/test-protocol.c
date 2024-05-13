@@ -11,8 +11,8 @@
 #include <string.h>
 #include <stdint.h>
 
-#include <xtd/tap.h>
-#include <xtd/protocol.h>
+#include <apex/tap.h>
+#include <apex/protocol.h>
 
 static int big_endian(void);
 static void test_pack(void);

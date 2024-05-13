@@ -8,9 +8,9 @@
  */
 #include <string.h>
 
-#include <xtd/test.h>
-#include <xtd.h>
-#include <xtd/url.h>
+#include <apex/test.h>
+#include <apex.h>
+#include <apex/url.h>
 
 static void test_str_url(void);
 static void test_encode(void);
