@@ -19,7 +19,6 @@
 #include <string.h>
 #include <apex/heap.h>
 #include <apex/estring.h>               /* for memswap() */
-#include <apex/log.h>
 
 /*
  * heap_sift_up() --Sift a value from the bottom of the heap to the top.
