@@ -30,8 +30,8 @@ void memswap(void *m1, void *m2, size_t n)
 
     if (n > INT_SWAP_THRESHOLD         /* big enough to bother */
         && n % sizeof(int) == 0        /* size is alignment compatible */
-        && (unsigned long int) c1 % sizeof(int) == 0    /* addresses are aligned */
-        && (unsigned long int) c2 % sizeof(int) == 0)
+        && (uintptr_t) c1 % sizeof(int) == 0    /* addresses are aligned */
+        && (uintptr_t) c2 % sizeof(int) == 0)
     {
         memswap_int(m1, m2, n / sizeof(int));
         return;

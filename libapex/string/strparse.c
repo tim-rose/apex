@@ -37,8 +37,14 @@
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-#ifndef NO_INET
+#ifdef __WINNT__
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <arpa/inet.h>
+#endif /* __WINNT__ */
 int str_inet4_address(const char *text, uint32_t * address,
                       uint32_t * netmask)
 {
@@ -56,7 +62,7 @@ int str_inet4_address(const char *text, uint32_t * address,
     {
         text = host;
     }
-    if (inet_aton(text, &addr))
+    if (inet_pton(AF_INET, text, &addr))
     {
         *address = ntohl(addr.s_addr);
     }
@@ -73,7 +79,7 @@ int str_inet4_address(const char *text, uint32_t * address,
         }
         else
         {
-            if (inet_aton(mask, &addr))
+            if (inet_pton(AF_INET, mask, &addr))
             {
                 *netmask = ntohl(addr.s_addr);
             }
@@ -81,7 +87,6 @@ int str_inet4_address(const char *text, uint32_t * address,
     }
     return 1;
 }
-#endif /* NO_INET */
 
 /*
  * str_int() --Parse a number, as a natural int value.

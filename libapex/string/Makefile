@@ -10,5 +10,10 @@ H_SRC = estring.h strparse.h
 
 include makeshift.mk library.mk
 
+# override warnings for winnt inet_pton... 
+ifeq ($(OS),mingw64_nt)
+$(archdir)/strparse.o: TARGET.CFLAGS = -Wno-discarded-qualifiers 
+endif
+
 install: install-lib-include
 uninstall: uninstall-lib-include
