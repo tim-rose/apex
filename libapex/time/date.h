@@ -5,15 +5,17 @@
 #ifndef DATE_H
 #define DATE_H
 
-#define __TM_GMTOFF tm_gmtoff          /* enable tm_gmtoff on cygwin */
+#define __TM_GMTOFF tm_gmtoff          /* REVISIT: enable tm_gmtoff on cygwin */
 #include <time.h>
-
 #include <apex.h>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif                                 /* C++ */
+#ifdef __WINNT__
+    extern char* strptime(const char *buf, const char *fmt, struct tm *tm);
+#endif /* __WINNT__ */
     enum date_consts
     {
         TIME_T_MIN = 0,                /* REVIST: wrong minimum! -1 */

@@ -72,13 +72,13 @@ static time_t timegm_(struct tm *tm)
         char *tz;
 
         tz = getenv("TZ");             /* save current TZ, set to UTC */
-        setenv("TZ", "", 1);
+        _putenv_s("TZ", "");
         tzset();
         t = mktime(tm);
         if (tz != NULL)                /* revert original TZ state */
-            setenv("TZ", tz, 1);
+            _putenv_s("TZ", tz);
         else
-            unsetenv("TZ");
+            _putenv_s("TZ", "");
         tzset();
     }
 #else
