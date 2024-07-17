@@ -130,7 +130,7 @@ int log_stderr(const LogConfig * config, const LogContext * caller,
 
     if (config->identity != NULL)
     {
-        str += snprintf(str, MAX(end - str, 0), "%s ", config->identity);
+        str += snprintf(str, (size_t) MAX(end - str, 0), "%s ", config->identity);
     }
 
     if ((n = log_vsprintf(caller, str, (size_t) MAX(end - str + 1, 0),

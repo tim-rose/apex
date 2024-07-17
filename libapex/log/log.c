@@ -78,20 +78,20 @@ int log_vsprintf(const LogContext * caller,
     {
         if (caller->function != NULL)
         {
-            str += snprintf(str, MAX(end - str, 0), "%s:", caller->function);
+            str += snprintf(str, (size_t) MAX(end - str, 0), "%s:", caller->function);
         }
-        str += snprintf(str, MAX(end - str, 0),
+        str += snprintf(str, (size_t) MAX(end - str, 0),
                         "%s:%d: ", STR_OR_NULL(caller->file), caller->line);
     }
 
     if ((sys_priority =
          sysenum_find_number(syslog_priority, priority)) != NULL)
     {                                  /* prefix with priority name */
-        str += snprintf(str, MAX(end - str, 0), "%s: ", sys_priority->name);
+        str += snprintf(str, (size_t) MAX(end - str, 0), "%s: ", sys_priority->name);
     }
     /* format the caller-supplied message */
 
-    if ((n = vsnprintf(str, MAX(end - str, 0), fmt, args)) >= 0)
+    if ((n = vsnprintf(str, (size_t) MAX(end - str, 0), fmt, args)) >= 0)
     {
         str += n;
     }
@@ -102,7 +102,7 @@ int log_vsprintf(const LogContext * caller,
 
     if (sys_errno)
     {                                  /* append errno-related message */
-        str += snprintf(str, MAX(end - str, 0), ": %s", strerror(sys_errno));
+        str += snprintf(str, (size_t) MAX(end - str, 0), ": %s", strerror(sys_errno));
     }
     return str - start;
 }
