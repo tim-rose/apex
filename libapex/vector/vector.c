@@ -30,7 +30,6 @@
 #include <stddef.h>
 #include <string.h>
 
-#include <apex/log.h>
 #include <apex/binsearch.h>
 #include <apex/vector.h>
 
@@ -255,7 +254,6 @@ void *vector_insert(void *vector, size_t offset, size_t n_el, void *new_el)
             n = v->info.n_used + n_el;
         }
         n += 16 - n % 16;              /* increment in modulo 16 chunks */
-        debug("realloc(): was %zu, now %zu", v->info.n_el, n);
         if ((new_vector = realloc(v, sizeof(Vector) + n * v->info.el_size))
             == NULL)
         {
