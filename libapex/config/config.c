@@ -195,25 +195,25 @@ int config_load(int argc, char *argv[], const char *config_file,
 int config_load_ini(const char *file, const char *UNUSED(section),
                     Option opts[])
 {
-    char config_file[FILENAME_MAX];
-    char config_path[FILENAME_MAX];
+    char conf_file[FILENAME_MAX];
+    char conf_path[FILENAME_MAX];
     IniPtr ini = NULL;
     int status = 1;                    /* OK so far... */
 
-    vstrcat(config_file, file, ".conf", (char *) NULL);
+    vstrcat(conf_file, file, ".conf", (char *) NULL);
 
     if (*file != '.' && *file != '/')
     {                                  /*  relative path: simply open it */
         const char *dir;
 
-        if ((dir = resolve_path(get_config_path(), config_file)) == NULL)
+        if ((dir = resolve_path(get_config_path(), conf_file)) == NULL)
         {
             return 0;                  /* error: can't find file? */
         }
-        vstrcat(config_path, dir, "/", config_file, (char *) NULL);
+        vstrcat(conf_path, dir, "/", conf_file, (char *) NULL);
     }
-    debug("loading configuration \"%s\"", config_path);
-    if ((ini = ini_fopen(config_path)) != NULL)
+    debug("loading configuration \"%s\"", conf_path);
+    if ((ini = ini_fopen(conf_path)) != NULL)
     {
         status = ini_parse(ini, opt_ini_, opts);
 
@@ -221,7 +221,7 @@ int config_load_ini(const char *file, const char *UNUSED(section),
     }
     else
     {
-        debug("cannot load configuration \"%s\"", config_file);
+        debug("cannot load configuration \"%s\"", conf_file);
         status = 0;
     }
     return status;
