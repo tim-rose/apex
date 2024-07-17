@@ -22,7 +22,7 @@
  */
 unsigned long hash_keyn_pjw(char *data, size_t n_bytes)
 {
-    unsigned long hash = 0, high_bits;
+    unsigned int hash = 0, high_bits;
 
     for (; n_bytes > 0; ++data, --n_bytes)
     {

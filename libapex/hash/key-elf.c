@@ -18,7 +18,7 @@ unsigned long hash_key_elf(char *data)
 
     for (hash = 0; *data; ++data)
     {
-        hash = (hash << 4) + (unsigned int) *data;
+        hash = (hash << 4) + (unsigned long) *data;
         if ((i = hash & 0xF0000000) != 0)
             hash ^= i >> 24;
         hash &= ~i;

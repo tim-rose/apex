@@ -14,7 +14,7 @@
  */
 unsigned long hash_keyn_elf(char *data, size_t n)
 {
-    unsigned long hash = 0, i;
+    unsigned int hash = 0, i;
 
     for (; n > 0; --n, ++data)
     {

@@ -20,7 +20,7 @@
  */
 unsigned long hash_key_pjw(char *data)
 {
-    unsigned long hash = 0, i;
+    unsigned int hash = 0, i;
 
     for (; *data; ++data)
     {

@@ -7,7 +7,7 @@
  */
 unsigned long hash_key_jenkins(char *data)
 {
-    unsigned long hash;
+    unsigned int hash;
 
     for (hash = 0; *data; ++data)
     {

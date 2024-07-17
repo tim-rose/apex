@@ -8,7 +8,7 @@
  */
 unsigned long hash_keyn_jenkins(char *data, size_t n)
 {
-    unsigned long hash = 0;
+    unsigned int hash = 0;
 
     for (; n > 0; --n, ++data)
     {
