@@ -26,7 +26,7 @@ int main(void)
     char record[] = "test-record";
     time_t t;
 
-    plan_tests(13);
+    plan_tests(14);
     time(&t);
 
     if (root == NULL)
