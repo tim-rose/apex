@@ -14,8 +14,8 @@
 
 #define ptr_eq(have_, expected_, ...)          \
     (ok(((void *) have_) == (((void *) expected_)), __VA_ARGS__) ? 1 : \
-        (diag("%10s: 0x%p", "got", STR_OR_NULL(have_)), \
-        diag("%10s: 0x%p", "expected", STR_OR_NULL(expected_)), 0))
+        (diag("%10s: 0x%p", "got", STR_OR_NULL((const char *) have_)), \
+        diag("%10s: 0x%p", "expected", STR_OR_NULL((const char *) expected_)), 0))
 
 #define number_eq(have_, expected_, number_fmt_, ...)          \
     (ok((have_) == (expected_), __VA_ARGS__) ? 1 :      \
