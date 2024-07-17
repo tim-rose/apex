@@ -15,6 +15,10 @@
 #include <apex/test.h>
 #include <apex/log-parse.h>
 
+#ifdef __WINNT__
+#define localtime_r(timep_, result_) localtime(timep_)
+#endif /* __WINNT__ */
+
 #define logrec_eq(_l, _l_ref, ...) \
     object_eq(_l, _l_ref, logrec_cmp_, logrec_sprint_, __VA_ARGS__)
 

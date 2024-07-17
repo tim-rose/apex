@@ -234,12 +234,12 @@ static void test_search(void)
 {
     long *lv;
     long key;
-    int n = NEL(lbuf);
+    size_t n = NEL(lbuf);
     bool status;
 
     lv = new_vector(sizeof(*lv), n, lbuf);
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < (int) n; ++i)
     {
         key = (long) i *2;
         ok(search_vector(lv, &key, compare_long, &status) == i &&
@@ -250,7 +250,7 @@ static void test_search(void)
     ok(search_vector(lv, &key, compare_long, &status) == 0 &&
        status == false, "Unsuccesssful search_vector(1)");
     key = 10;                          /* insert after end */
-    ok(search_vector(lv, &key, compare_long, &status) == n &&
+    ok(search_vector(lv, &key, compare_long, &status) == (int) n &&
        status == false, "Unsuccesssful search_vector(2)");
     key = 5;                           /* insert in middle */
     ok(search_vector(lv, &key, compare_long, &status) == 3 &&
@@ -285,6 +285,6 @@ static void test_visit(void)
 
     key = -1;
     result = visit_vector(lv, (VisitProc) visit_long, (void *) &key);
-    ok(result == NULL, "Unsuccessful visit_vector(%d)", i);
+    ok(result == NULL, "Unsuccessful visit_vector(%z)", i);
     free_vector(lv);
 }

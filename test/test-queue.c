@@ -58,7 +58,7 @@ static void test_null(void)
 static void test_mask(void)
 {
     int status;
-    int mask;
+    size_t mask;
 
     status = queue_mask(1, &mask);
     number_eq(status, 1, "%d", "size 1 is valid");

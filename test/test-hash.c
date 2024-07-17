@@ -11,6 +11,7 @@
 #include <string.h>
 #include <apex.h>
 #include <apex/tap.h>
+#include <apex/test.h>
 #include <apex/log.h>
 #include <apex/hash.h>
 
@@ -31,7 +32,7 @@ static void *print_item(void *data, void *UNUSED(usrdata))
 {
     char databuf[20];
 
-    sprintf(databuf, "%d ", (int) data);
+    sprintf(databuf, "%ld ", (long int) data);
     strcat(text, databuf);
     return 0;
 }
@@ -44,7 +45,7 @@ static void *print_item(void *data, void *UNUSED(usrdata))
  */
 static int compare_item(const void *data, const void *key)
 {
-    return ((int) data - (int) key);
+    return ((const char *) data - (const char *) key);
 }
 
 /*
@@ -57,47 +58,47 @@ int main(void)
 
     plan_tests(10);
 
-    ok((int) hash_new(hash, 0) == 0, "hash_new() bad nslots");
+    ptr_eq(hash_new(hash, 0), NULL, "hash_new() bad nslots");
 
     h = hash_new(hash, 2);
-    ok((int) h != 0, "hash_new() two nslots");
+    ok_number(h, !=,  NULL, "0x%p", "hash_new() two nslots");
 
     hash_insert(h, (void *) 1);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "1 ") == 0, "hash_visit() one item");
+    string_eq(text, "1 ", "hash_visit() one item");
 
     text[0] = '\0';
     hash_insert(h, (void *) 2);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "2 1 ") == 0, "hash_visit() two items");
+    string_eq(text, "2 1 ", "hash_visit() two items");
 
     text[0] = '\0';
     hash_insert(h, (void *) 3);
     hash_insert(h, (void *) 4);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "4 2 3 1 ") == 0, "hash_visit() four items");
+    string_eq(text, "4 2 3 1 ", "hash_visit() four items");
 
     text[0] = '\0';
     hash_remove(h, compare_item, (void *) 3);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "4 2 1 ") == 0, "hash_remove() three items");
+    string_eq(text, "4 2 1 ", "hash_remove() three items");
 
     text[0] = '\0';
     hash_remove(h, compare_item, (void *) 1);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "4 2 ") == 0, "hash_remove() two items");
+    string_eq(text, "4 2 ", "hash_remove() two items");
 
     text[0] = '\0';
     hash_remove(h, compare_item, (void *) 2);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "4 ") == 0, "hash_remove() one items");
+    string_eq(text, "4 ", "hash_remove() one items");
 
     text[0] = '\0';
     hash_remove(h, compare_item, (void *) 4);
     hash_visit(h, print_item, 0);
-    ok(strcmp(text, "") == 0, "hash_remove() zero items");
+    string_eq(text, "", "hash_remove() zero items");
 
-    ok(hash_remove(h, compare_item, (void *) 0) == 0,
+    ptr_eq(hash_remove(h, compare_item, (void *) 0), NULL,
        "hash_remove() non-existent item");
 
     return exit_status();

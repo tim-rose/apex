@@ -118,11 +118,13 @@ static void test_unpack(void)
     uint8_t buf[100];
     unsigned char c = 0xa5;
     size_t n;
-    uint16_t uint16_src = 0xbeef, uint16_nbo, uint16_dst;
-    uint32_t uint32_src = 0xdeadc0de, uint32_nbo, uint32_dst;
+    uint16_t uint16_src = 0xbeef, uint16_dst;
+    uint32_t uint32_src = 0xdeadc0de, uint32_dst;
 
-    uint16_nbo = (uint16_t) big_endian()? 0xbeef : 0xefbe;
-    uint32_nbo = (uint32_t) big_endian()? 0xdeadc0de : 0xdec0adde;
+#ifdef TODO
+    uint16_t uint16_nbo = (uint16_t) big_endian()? 0xbeef : 0xefbe;
+    uint32_t uint32_nbo = (uint32_t) big_endian()? 0xdeadc0de : 0xdec0adde;
+#endif /* TODO: add netework byte order tests */
 
     /*
      * character tests

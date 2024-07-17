@@ -38,7 +38,7 @@ static void print_heap(HeapPtr heap)
     {
         int item;
 
-        memcpy(&item, array_item(&heap->array, (ssize_t) i),
+        memcpy(&item, array_item(&heap->array, i),
                heap->array.item_size);
         str += sprintf(str, " %d", item);
     }

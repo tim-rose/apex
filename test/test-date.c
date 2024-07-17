@@ -19,23 +19,6 @@
 #endif /* __WINNT__ */
 
 /*
- *  timestamp_eq() --Test/report that timestamps are equal.
- */
-#define timestamp_eq(_l, _l_ref, ...) \
-    object_eq(_l, _l_ref, difftime, sprint_ut_, __VA_ARGS__)
-
-/*
- *  sprint_ut() --Format a time_t value to a string.
- */
-static char *sprint_ut_(time_t t)
-{
-    static char str_buf[LINE_MAX];
-
-    fmt_time(str_buf, sizeof(str_buf), date_ISO8601_timestamp, t);
-    return str_buf;
-}
-
-/*
  * parse_test() --Run a single date-parsing test.
  *
  * Parameters:
@@ -53,9 +36,9 @@ static void parse_test(const char *text, time_t * ref_t,
     time_t t;
     struct tm t_tm = {.tm_year = 110,.tm_hour = 12,.tm_isdst = -1 };
 
-    ok(date_parse_timestamp(text, &t_tm, &t) == text + strlen(text),
+    ptr_eq(date_parse_timestamp(text, &t_tm, &t), (text + strlen(text)),
        "%s: parse", description);
-    timestamp_eq(t, *ref_t, "%s: values", description);
+    number_eq(t, *ref_t, "%ld", "%s: values", description);
 }
 
 /*
