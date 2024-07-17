@@ -14,18 +14,18 @@ extern "C"
     typedef struct Heap_t
     {
         ArrayContainer array;
-        int n_used;                    /* current size of heap */
+        size_t n_used;                    /* current size of heap */
         CompareProc cmp;               /* heap item comparison function */
     } Heap, *HeapPtr;
 
     HeapPtr heap_alloc(void);
-    HeapPtr heap_init(HeapPtr heap, CompareProc cmp, int n_items,
-                      int item_size, void *items);
+    HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
+                      size_t item_size, void *items);
 
     int heap_push(HeapPtr heap, const void *item);
     int heap_pop(HeapPtr heap, void *item);
     void *heap_peek(HeapPtr heap, void *item);
-    void heap_delete(HeapPtr heap, int slot);
+    void heap_delete(HeapPtr heap, size_t slot);
 
     /*
      * Convenience functions for malloc and item-size aware initialisation.
@@ -36,10 +36,10 @@ extern "C"
     /*
      * low-level heap operations.
      */
-    int heap_ok(void *heap, int n_items, int item_size, CompareProc cmp);
-    void heap_sift_up(void *heap, int n_items, int item_size,
+    int heap_ok(void *heap, size_t n_items, size_t item_size, CompareProc cmp);
+    void heap_sift_up(void *heap, size_t n_items, size_t item_size,
                       CompareProc cmp);
-    void heap_sift_down(void *heap, int slot, int n_items, int item_size,
+    void heap_sift_down(void *heap, size_t slot, size_t n_items, size_t item_size,
                         CompareProc cmp);
 #ifdef __cplusplus
 }

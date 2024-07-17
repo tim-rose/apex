@@ -30,19 +30,20 @@
  * in particular, it may match to a random duplicate, or match to
  * past the end of the array.  You have been warned.
  */
-int binsearch(void *key, void *base, int n_elements, int size,
+int binsearch(void *key, void *base, size_t n_elements, size_t size,
               CompareProc compare, bool *status)
 {
-    int mid;
-    int low, high, cmp;
+    size_t low = 0, mid = 0, high = n_elements - 1; 
+    int cmp = 0;
 
-    *status = false;                   /* status == not found */
-    low = 0;
-    high = n_elements - 1;
-    cmp = mid = 0;
+    *status = false;                   /* initial status == not found */
+    if (n_elements == 0)
+    {
+        return 0;                       /* failure: no elements! */
+    }
     while (low <= high)
     {                                  /* get midpoint */
-        mid = (int) (low + high) / 2;
+        mid = low + (high - low) / 2;
         cmp = (*compare) (key, (char *) base + mid * size);
         if (cmp < 0)                   /* select lower partition */
         {

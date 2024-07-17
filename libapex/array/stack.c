@@ -41,7 +41,7 @@ StackPtr stack_alloc(void)
  * The stack storage is not allocated by this module, it is provided
  * by the caller.
  */
-StackPtr stack_init(StackPtr stack, int n_items, int item_size, void *base)
+StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size, void *base)
 {
     if (stack != NULL && base != NULL)
     {
@@ -68,7 +68,7 @@ int stack_push(StackPtr stack, const void *item)
     {
         if (stack->top < stack->array.n_items)
         {
-            memcpy(array_item(&stack->array, (int) stack->top),
+            memcpy(array_item(&stack->array, stack->top),
                    item, stack->array.item_size);
             ++stack->top;
             return 1;                  /* success */
@@ -117,7 +117,7 @@ void *stack_peek(StackPtr stack, void *item)
 
     if (stack != NULL && stack->top > 0)
     {
-        stack_item = array_item(&stack->array, (int) stack->top - 1);
+        stack_item = array_item(&stack->array, stack->top - 1);
 
         if (item != NULL)
         {

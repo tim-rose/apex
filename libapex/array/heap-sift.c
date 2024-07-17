@@ -35,9 +35,9 @@
  * *except* for this last leaf item. sift-up re-creates the heap
  * condition by "floating" the value up the heap towards root.
  */
-void heap_sift_up(void *heap, int n_items, int item_size, CompareProc cmp)
+void heap_sift_up(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
 {
-    for (int i = n_items - 1; i > 0; i = (i - 1) / 2)
+    for (size_t i = n_items - 1; i > 0; i = (i - 1) / 2)
     {
         char *node = (char *) heap + i * item_size;
         char *parent = (char *) heap + (i - 1) / 2 * item_size;
@@ -64,12 +64,12 @@ void heap_sift_up(void *heap, int n_items, int item_size, CompareProc cmp)
  * the heap by 1. The sift-down re-creates the heap condition by
  * pushing the root down to the child slots.
  */
-void heap_sift_down(void *heap, int slot, int n_items, int item_size, CompareProc cmp)
+void heap_sift_down(void *heap, size_t slot, size_t n_items, size_t item_size, CompareProc cmp)
 {
-    int level = 1;
+    size_t level = 1;
     char *node, *child, *end;
 
-    for (int id = slot; id > 0; id /= 2)
+    for (size_t id = slot; id > 0; id /= 2)
     {                                   /* find tree level of the item */
         level *= 2;
     }
@@ -110,11 +110,11 @@ void heap_sift_down(void *heap, int slot, int n_items, int item_size, ComparePro
  * Remarks:
  * This function is used for unit testing.
  */
-int heap_ok(void *heap, int n_items, int item_size, CompareProc cmp)
+int heap_ok(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
 {
     char *node, *parent;
 
-    for (int i = n_items - 1; i > 0; --i)
+    for (size_t i = n_items - 1; i > 0; --i)
     {
         node = (char *) heap + i * item_size;
         parent = (char *) heap + (i - 1) / 2 * item_size;

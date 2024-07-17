@@ -63,10 +63,10 @@ PoolPtr pool_alloc(void)
  * The pool storage is not allocated by this module, it is provided
  * by the caller.
  */
-PoolPtr pool_init(PoolPtr pool, int n_items, int item_size, void *base)
+PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *base)
 {
     if (pool != NULL && base != NULL
-        && n_items > 0 && item_size >= (int) sizeof(LinkPtr))
+        && n_items > 0 && item_size >= sizeof(LinkPtr))
     {
         memset(pool, 0, sizeof(*pool));
         array_init(&pool->array, n_items, item_size, base);

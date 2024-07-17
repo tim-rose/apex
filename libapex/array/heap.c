@@ -43,8 +43,8 @@ HeapPtr heap_alloc(void)
  * The heap storage is not allocated by this module, it must be provided
  * by the caller.
  */
-HeapPtr heap_init(HeapPtr heap, CompareProc cmp, int n_items,
-                  int item_size, void *base)
+HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
+                  size_t item_size, void *base)
 {
     if (heap != NULL && base != NULL)
     {
@@ -70,7 +70,7 @@ int heap_push(HeapPtr heap, const void *item)
 {
     if (heap != NULL && heap->n_used < heap->array.n_items)
     {
-        memcpy(array_item(&heap->array, (int) heap->n_used),
+        memcpy(array_item(&heap->array, heap->n_used),
                item, heap->array.item_size);
         ++heap->n_used;
         heap_sift_up(heap->array.base,
@@ -96,7 +96,7 @@ int heap_pop(HeapPtr heap, void *item)
     {
         --heap->n_used;
         memcpy(heap->array.base,
-               array_item(&heap->array, (int) heap->n_used),
+               array_item(&heap->array, heap->n_used),
                heap->array.item_size);
         heap_sift_down(heap->array.base, 0, heap->n_used, heap->array.item_size,
                        heap->cmp);
@@ -137,7 +137,7 @@ void *heap_peek(HeapPtr heap, void *item)
  * heap --the heap
  * slot --the slot number in the heap array
  */
-void heap_delete(HeapPtr heap, int slot)
+void heap_delete(HeapPtr heap, size_t slot)
 {
     void *item = array_item(&heap->array, slot);
     void *last_item = array_item(&heap->array, heap->n_used - 1);

@@ -20,8 +20,8 @@ extern "C"
 #endif                                 /* C++ */
     typedef struct ArrayContainer_t
     {
-        int n_items;
-        int item_size;
+        size_t n_items;
+        size_t item_size;
         char *base;                    /* size == n_items*item_size */
     } ArrayContainer, *ArrayContainerPtr;
 
@@ -35,9 +35,9 @@ extern "C"
      * base --the base address of the array storage
      */
     static inline void array_init(ArrayContainerPtr array,
-                                  int n_items, int item_size, void *base);
+                                  size_t n_items, size_t item_size, void *base);
     static inline void array_init(ArrayContainerPtr array,
-                                  int n_items, int item_size, void *base)
+                                  size_t n_items, size_t item_size, void *base)
     {
         array->n_items = n_items;
         array->item_size = item_size;
@@ -54,10 +54,10 @@ extern "C"
      * Returns: (void *)
      * The address of item[offset].
      */
-    static inline void *array_item(ArrayContainerPtr array, int offset);
-    static inline void *array_item(ArrayContainerPtr array, int offset)
+    static inline void *array_item(ArrayContainerPtr array, size_t offset);
+    static inline void *array_item(ArrayContainerPtr array, size_t offset)
     {
-        return array->base + offset * (long) array->item_size;
+        return array->base + offset * array->item_size;
     }
 #ifdef __cplusplus
 }
