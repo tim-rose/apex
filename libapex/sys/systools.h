@@ -7,6 +7,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <apex/timeval.h>
+#ifdef __WINNT__
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#endif /* __WINNT__ */
 
 #ifdef __cplusplus
 extern "C"

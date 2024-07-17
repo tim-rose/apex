@@ -78,7 +78,7 @@ char *get_env_variable(const char *name, char *default_value)
 int wait_input(fd_set * input_set, fd_set * err_set, TimeValuePtr tv,
                size_t n_fd, int fd[])
 {
-    int max_fd = -1;
+    int max_fd = 0;
     TimeValue timeout = *tv;           /* copy, because select() mutates */
 
     if (tv->tv_sec < 0)
@@ -325,6 +325,10 @@ FILE *open_env_path(const char *env, const char *base, const char *mode)
     return fp;
 }
 
+#ifdef __WINNT__
+#include <sys/utime.h>
+#endif /* __WINNT */
+
 /*
  * touch() --touch the specified file.
  *
@@ -337,7 +341,6 @@ FILE *open_env_path(const char *env, const char *base, const char *mode)
 int touch(const char *path)
 {
     FILE *fp;
-    struct timeval times[2] = { {.tv_sec = 0} };
     time_t now;
 
     if ((fp = fopen(path, "a")) == NULL)
@@ -347,7 +350,15 @@ int touch(const char *path)
 
     fclose(fp);
     time(&now);
+#ifdef __WINNT__
+    struct _utimbuf times = { now, now };
+
+    _utime(path, &times);
+#else
+    struct timeval times[2] = { {.tv_sec = 0} };
+
     times[0].tv_sec = times[1].tv_sec = now;
     utimes(path, times);
+#endif /* __WINNT */
     return 1;
 }
