@@ -291,7 +291,7 @@ static FILE *reopen_tfile_(TFILE * tfp, time_t t)
                     log_sys(LOG_ERR, "cannot open file \"%s\"", tfp->path);
                     /* REVISIT: return? */
                 }
-                setlinebuf(tfp->fp);
+                setvbuf(tfp->fp, NULL, _IOLBF, 0);
                 if (ftell(tfp->fp) == 0)
                 {                      /* at start of file... */
                     write_template(tfp->prologue, tfp->fp, t);

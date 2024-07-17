@@ -5,6 +5,8 @@ language = c
 LIB_ROOT = ..
 subdir = apex
 
+LOCAL.CFLAGS = -Wno-format-nonliteral
+
 C_SRC = tfile.c
 H_SRC = tfile.h
 
