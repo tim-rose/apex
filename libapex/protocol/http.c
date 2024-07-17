@@ -13,6 +13,14 @@
  * enough to get me going for now...
  *
  */
+#ifdef __WINNT__
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
+#include <arpa/inet.h>
+#endif /* __WINNT__ */
 
 #include <apex.h>                       /* Windows_NT requires this before system headers */
 

@@ -22,7 +22,12 @@
 #include <sys/types.h>
 #include <stdlib.h>
 #include <limits.h>
-#ifndef __WINNT__
+#ifdef __WINNT__
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#else
 #include <sys/un.h>
 #include <arpa/inet.h>
 #include <netdb.h>

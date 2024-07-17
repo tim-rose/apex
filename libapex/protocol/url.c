@@ -258,7 +258,7 @@ int snprint_url(char *str, size_t n, URLPtr url)
  */
 size_t url_encode(const char *text, size_t n, char *buf)
 {
-    int n_used = 0;
+    size_t n_used = 0;
     int c;
 
     while ((c = *text++) != '\0')
