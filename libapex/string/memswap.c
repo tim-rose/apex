@@ -11,6 +11,7 @@
  */
 #include <apex.h>                       /* Windows_NT requires this before system headers */
 
+#include <stdint.h>
 #include <apex/estring.h>
 #define INT_SWAP_THRESHOLD 4*sizeof(int)
 
