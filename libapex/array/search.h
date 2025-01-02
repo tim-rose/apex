@@ -1,9 +1,9 @@
 /*
- * BINSEARCH.H --binsearch(), an improved version of bsearch().
+ * SEARCH.H --Array searching routines.
  *
  */
-#ifndef BINSEARCH_H
-#define BINSEARCH_H
+#ifndef SEARCH_H
+#define SEARCH_H
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -16,7 +16,9 @@ extern "C"
     int binsearch(void *key, void *base, size_t n_elements, size_t size,
                   CompareProc compare, bool *status);
 
+    int lsearch(void *key, void *base, size_t n_elements, size_t size, 
+                  CompareProc compare, bool *status);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* BINSEARCH_H */
+#endif                                 /* SEARCH_H */

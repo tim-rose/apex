@@ -5,7 +5,7 @@
  * binsearch() --Search a sorted table using binary chop.
  *
  */
-#include <apex/binsearch.h>
+#include <apex/search.h>
 
 /*
  * binsearch() --Search a sorted table using binary chop.

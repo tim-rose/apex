@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include <apex/tap.h>
-#include <apex/binsearch.h>
+#include <apex/search.h>
 
 int vector[] = { 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 
@@ -37,5 +37,6 @@ int main(void)
                "find slot for key %d in vector[%d]", key, n);
         }
     }
+    /* TODO: test for search failures (head, mid, tail) */
     return exit_status();
 }
