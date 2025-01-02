@@ -2,8 +2,8 @@
  * HASH.H --Definitions for a hash functions and a simple hash-table.
  *
  */
-#ifndef HASH_H
-#define HASH_H
+#ifndef APEX_HASH_H
+#define APEX_HASH_H
 
 #include <stdbool.h>
 
@@ -54,4 +54,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* HASH_H */
+#endif                                 /* APEX_HASH_H */

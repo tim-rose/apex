@@ -1,8 +1,8 @@
 /*
  * SYSENUM.H --Definitions for some syslog variables.
  */
-#ifndef SYSENUM_H
-#define SYSENUM_H
+#ifndef APEX_SYSENUM_H
+#define APEX_SYSENUM_H
 
 #include <apex.h>
 
@@ -28,4 +28,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* SYSENUM_H */
+#endif                                 /* APEX_SYSENUM_H */

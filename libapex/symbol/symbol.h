@@ -16,8 +16,8 @@
  * data structures.
  *
  */
-#ifndef SYMBOL_H
-#define SYMBOL_H
+#ifndef APEX_SYMBOL_H
+#define APEX_SYMBOL_H
 #include <limits.h>
 #include <stdio.h>
 
@@ -143,4 +143,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* SYMBOL_H */
+#endif                                 /* APEX_SYMBOL_H */

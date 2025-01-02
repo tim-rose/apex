@@ -6,8 +6,8 @@
  * example anywhere.
  *
  */
-#ifndef URL_H
-#define URL_H
+#ifndef APEX_URL_H
+#define APEX_URL_H
 
 #include <stdlib.h>
 
@@ -38,4 +38,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* URL_H */
+#endif                                 /* APEX_URL_H */

@@ -9,8 +9,8 @@
  * a config file.
  *
  */
-#ifndef OPTION_H
-#define OPTION_H
+#ifndef APEX_OPTION_H
+#define APEX_OPTION_H
 
 #include <apex.h>
 #ifdef __cplusplus
@@ -95,4 +95,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* OPTION_H */
+#endif                                 /* APEX_OPTION_H */

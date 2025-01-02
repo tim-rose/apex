@@ -10,8 +10,8 @@
  * The configuration controlling which domains are printed is changeable
  * by the user via log_domain_init().  By default all domains are printed.
  */
-#ifndef LOG_DOMAIN_H
-#define LOG_DOMAIN_H
+#ifndef APEX_LOG_DOMAIN_H
+#define APEX_LOG_DOMAIN_H
 
 #include <apex/log.h>
 #ifdef __cplusplus
@@ -100,4 +100,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* LOG_DOMAIN_H */
+#endif                                 /* APEX_LOG_DOMAIN_H */

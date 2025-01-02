@@ -6,8 +6,8 @@
  * StatelyState{}      --The stately machine state.
  * Stately{}           --The stately state machine object.
  */
-#ifndef STATELY_H
-#define STATELY_H
+#ifndef APEX_STATELY_H
+#define APEX_STATELY_H
 
 #ifdef __cplusplus
 extern "C"
@@ -55,4 +55,4 @@ void     stately_reset(Stately* stc);
 #ifdef __cplusplus
 }
 #endif /* C++ */
-#endif /* STATELY_H */
+#endif /* APEX_STATELY_H */

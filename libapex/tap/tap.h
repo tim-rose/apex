@@ -4,8 +4,8 @@
  * Remarks:
  * This is a re-implementation inspired by Nik Clayton's version.
  */
-#ifndef TAP_H
-#define TAP_H
+#ifndef APEX_TAP_H
+#define APEX_TAP_H
 
 #include <stdio.h>
 
@@ -56,4 +56,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* TAP_H */
+#endif                                 /* APEX_TAP_H */

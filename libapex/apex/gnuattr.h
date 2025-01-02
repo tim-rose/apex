@@ -19,8 +19,8 @@
  * http://www.ohse.de/uwe/articles/gcc-attributes.html
  *
  */
-#ifndef GNUATTR_H
-#define GNUATTR_H
+#ifndef APEX_GNUATTR_H
+#define APEX_GNUATTR_H
 
 /*
  * Setup GNU-ish version information
@@ -145,4 +145,4 @@
 #ifndef USED
 #define USED __attribute__((used))
 #endif /* USED */
-#endif /* GNUATTR_H */
+#endif /* APEX_GNUATTR_H */

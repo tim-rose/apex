@@ -1,8 +1,8 @@
 /*
  * POOL.H --A simple pool allocator, with caller provided item storage.
  */
-#ifndef POOL_H
-#define POOL_H
+#ifndef APEX_POOL_H
+#define APEX_POOL_H
 
 #include <apex/array.h>
 
@@ -32,4 +32,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* POOL_H */
+#endif                                 /* APEX_POOL_H */

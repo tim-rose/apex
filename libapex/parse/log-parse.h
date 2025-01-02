@@ -1,8 +1,8 @@
 /*
  * LOG-PARSE.H --Routines for parsing syslog records.
  */
-#ifndef LOG_PARSE_H
-#define LOG_PARSE_H
+#ifndef APEX_LOG_PARSE_H
+#define APEX_LOG_PARSE_H
 
 #include <apex.h>
 #include <sys/types.h>
@@ -43,4 +43,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* LOG_PARSE_H */
+#endif                                 /* APEX_LOG_PARSE_H */

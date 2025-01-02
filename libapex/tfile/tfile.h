@@ -2,8 +2,8 @@
  * TFILE.H --An API for writing timestamped data into timestamp-named files.
  *
  */
-#ifndef TFILE_H
-#define TFILE_H
+#ifndef APEX_TFILE_H
+#define APEX_TFILE_H
 
 #include <stdio.h>
 #include <time.h>
@@ -38,4 +38,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* TFILE_H */
+#endif                                 /* APEX_TFILE_H */

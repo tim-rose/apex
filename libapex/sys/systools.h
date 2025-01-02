@@ -1,8 +1,8 @@
 /*
  * SYSTOOLS.H --Various convenient extensions/adaptions of POSIX functions.
  */
-#ifndef SYSTOOLS_H
-#define SYSTOOLS_H
+#ifndef APEX_SYSTOOLS_H
+#define APEX_SYSTOOLS_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -33,4 +33,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* SYSTOOLS_H */
+#endif                                 /* APEX_SYSTOOLS_H */

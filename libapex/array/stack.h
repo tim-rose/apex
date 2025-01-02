@@ -1,8 +1,8 @@
 /*
  * STACK.H --A simple stack array, with caller provided item storage.
  */
-#ifndef STACK_H
-#define STACK_H
+#ifndef APEX_STACK_H
+#define APEX_STACK_H
 
 #include <apex/array.h>
 
@@ -33,4 +33,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* STACK_H */
+#endif                                 /* APEX_STACK_H */

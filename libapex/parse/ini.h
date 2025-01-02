@@ -6,8 +6,8 @@
  * This module implements a simple call-back style parser for
  * ye olde ".ini" format files.
  */
-#ifndef INI_H
-#define INI_H
+#ifndef APEX_INI_H
+#define APEX_INI_H
 
 #include <stddef.h>
 #include <stdio.h>
@@ -60,4 +60,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* INI_H */
+#endif                                 /* APEX_INI_H */

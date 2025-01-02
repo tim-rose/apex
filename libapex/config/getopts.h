@@ -2,8 +2,8 @@
  * GETOPTS.H --a vararg-style getopt() variant.
  *
  */
-#ifndef GETOPTS_H
-#define GETOPTS_H
+#ifndef APEX_GETOPTS_H
+#define APEX_GETOPTS_H
 
 #include <unistd.h>
 #include <stdint.h>
@@ -17,4 +17,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* GETOPTS_H */
+#endif                                 /* APEX_GETOPTS_H */

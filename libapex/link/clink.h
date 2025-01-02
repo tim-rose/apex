@@ -2,8 +2,8 @@
  * LINK.H --Definitions for singly-linked lists.
  *
  */
-#ifndef CLINK_H
-#define CLINK_H
+#ifndef APEX_CLINK_H
+#define APEX_CLINK_H
 
 #include <apex/slink.h>                 /* for Link, CompareProc, VisitProc */
 
@@ -39,4 +39,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* CLINK_H */
+#endif                                 /* APEX_CLINK_H */

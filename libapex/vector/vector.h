@@ -1,8 +1,8 @@
 /*
  * VECTOR.H --Declarations for handling simple dynamic arrays.
  */
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef APEX_VECTOR_H
+#define APEX_VECTOR_H
 
 #include <apex.h>
 #include <apex/slink.h>                 /* VisitProc */
@@ -37,4 +37,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* VECTOR_H */
+#endif                                 /* APEX_VECTOR_H */

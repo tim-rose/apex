@@ -2,8 +2,8 @@
  * ESTRING.H --Definitions for some extended C-string functions.
  *
  */
-#ifndef ESTRING_H
-#define ESTRING_H
+#ifndef APEX_ESTRING_H
+#define APEX_ESTRING_H
 #include <string.h>
 #include <stdarg.h>
 #include <stdlib.h>
@@ -53,4 +53,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* ESTRING_H */
+#endif                                 /* APEX_ESTRING_H */

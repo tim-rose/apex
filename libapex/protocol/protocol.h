@@ -7,8 +7,8 @@
  * inspired by their Perl namesakes.
  *
  */
-#ifndef PROTOCOL_H
-#define PROTOCOL_H
+#ifndef APEX_PROTOCOL_H
+#define APEX_PROTOCOL_H
 
 #include <stdint.h>
 #include <sys/types.h>
@@ -30,4 +30,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* PROTOCOL_H */
+#endif                                 /* APEX_PROTOCOL_H */

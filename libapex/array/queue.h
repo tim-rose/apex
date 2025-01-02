@@ -7,8 +7,8 @@
  * Remarks:
  * This queue is thread safe for single-producer, single-consumer.
  */
-#ifndef QUEUE_H
-#define QUEUE_H
+#ifndef APEX_QUEUE_H
+#define APEX_QUEUE_H
 #ifdef __cplusplus
 extern "C"
 {
@@ -53,4 +53,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* QUEUE_H */
+#endif                                 /* APEX_QUEUE_H */

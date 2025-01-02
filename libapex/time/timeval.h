@@ -2,8 +2,8 @@
  * TIMEVAL.H --Definitions for timeval functions.
  *
  */
-#ifndef TIMEVAL_H
-#define TIMEVAL_H
+#ifndef APEX_TIMEVAL_H
+#define APEX_TIMEVAL_H
 
 #include <sys/time.h>
 
@@ -37,4 +37,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* TIMEVAL_H */
+#endif                                 /* APEX_TIMEVAL_H */

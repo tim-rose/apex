@@ -5,8 +5,8 @@
  * These macros extend the basic TAP routines with some facilities
  * inspired from perl's Test::More package.
  */
-#ifndef TEST_H
-#define TEST_H
+#ifndef APEX_TEST_H
+#define APEX_TEST_H
 
 #include <apex.h>                       /* for FEQUAL */
 #include <apex/estring.h>               /* for strequiv */
@@ -54,4 +54,4 @@
     ok_number(struct_.field_, cmp_, expected_, number_fmt_,                    \
         #struct_ "." #field_ ": "__VA_ARGS__)
 
-#endif /* TEST_H */
+#endif /* APEX_TEST_H */

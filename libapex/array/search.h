@@ -2,8 +2,8 @@
  * SEARCH.H --Array searching routines.
  *
  */
-#ifndef SEARCH_H
-#define SEARCH_H
+#ifndef APEX_SEARCH_H
+#define APEX_SEARCH_H
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -21,4 +21,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* SEARCH_H */
+#endif                                 /* APEX_SEARCH_H */

@@ -8,8 +8,8 @@
  * the usual way.  It will also search for and load the values from
  * a config file.
  */
-#ifndef CONFIG_H
-#define CONFIG_H
+#ifndef APEX_CONFIG_H
+#define APEX_CONFIG_H
 
 #include <apex.h>
 #include <apex/option.h>
@@ -25,4 +25,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* CONFIG_H */
+#endif                                 /* APEX_CONFIG_H */

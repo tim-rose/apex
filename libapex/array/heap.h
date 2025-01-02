@@ -1,8 +1,8 @@
 /*
  * HEAP.H --An implicit (array) heap.
  */
-#ifndef HEAP_H
-#define HEAP_H
+#ifndef APEX_HEAP_H
+#define APEX_HEAP_H
 
 #include <apex/array.h>
 #include <apex/search.h>
@@ -44,4 +44,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* HEAP_H */
+#endif                                 /* APEX_HEAP_H */

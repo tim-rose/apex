@@ -17,8 +17,8 @@
  * http://unixwiz.net/techtips/gnu-c-attributes.html
  * http://www.ohse.de/uwe/articles/gcc-attributes.html
  */
-#ifndef APEX_H
-#define APEX_H
+#ifndef APEX_APEX_H
+#define APEX_APEX_H
 /*
  * On cygwin, gcc --std=c99 automatically defines __STRICT_ANSI__ but that
  * removes various prototypes such as strptime, strdup, popen etc etc.
@@ -122,4 +122,4 @@
     while (result_ == -1 && (errno == EINTR || errno == EAGAIN))
 #endif /* TEMP_FAILURE_RETRY */
 extern const char *apex_version;
-#endif /* APEX_H */
+#endif /* APEX_APEX_H */

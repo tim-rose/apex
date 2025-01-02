@@ -2,8 +2,8 @@
  * DATE.H --Definitions for date/timestamp functions.
  *
  */
-#ifndef DATE_H
-#define DATE_H
+#ifndef APEX_DATE_H
+#define APEX_DATE_H
 
 #define __TM_GMTOFF tm_gmtoff          /* REVISIT: enable tm_gmtoff on cygwin */
 #include <time.h>
@@ -44,4 +44,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* DATE_H */
+#endif                                 /* APEX_DATE_H */

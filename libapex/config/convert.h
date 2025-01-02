@@ -1,8 +1,8 @@
 /*
  * CONVERT.H --Conversion routines, and a means of applying them.
  */
-#ifndef CONVERT_H
-#define CONVERT_H
+#ifndef APEX_CONVERT_H
+#define APEX_CONVERT_H
 
 #include <unistd.h>
 #include <stdint.h>
@@ -41,4 +41,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* CONVERT_H */
+#endif                                 /* APEX_CONVERT_H */

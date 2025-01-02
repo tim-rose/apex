@@ -1,8 +1,8 @@
 /*
  * LOG.H --Logging facilities.
  */
-#ifndef LOG_H
-#define LOG_H
+#ifndef APEX_LOG_H
+#define APEX_LOG_H
 
 #include <apex.h>                       /* Windows_NT requires this before system headers */
 #include <stdarg.h>
@@ -154,4 +154,4 @@ extern "C"
     (void)((test) || (trace_crit("failed assertion: %s", #test), abort(), 1));
 #endif                                 /* NDEBUG */
 
-#endif                                 /* LOG_H */
+#endif                                 /* APEX_LOG_H */

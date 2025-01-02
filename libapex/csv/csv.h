@@ -8,8 +8,8 @@
  * See Also:
  * https://tools.ietf.org/html/rfc4180
  */
-#ifndef CSV_H
-#define CSV_H
+#ifndef APEX_CSV_H
+#define APEX_CSV_H
 
 #include <stdio.h>
 #include <apex.h>
@@ -49,4 +49,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* CSV_H */
+#endif                                 /* APEX_CSV_H */

@@ -5,8 +5,8 @@
  * Why aren't I using curl?
  *
  */
-#ifndef HTTP_H
-#define HTTP_H
+#ifndef APEX_HTTP_H
+#define APEX_HTTP_H
 
 #include <apex/symbol.h>
 #include <apex/url.h>
@@ -22,7 +22,7 @@ extern "C"
 #define HTTP_CONNECT	"CONNECT"      /* methods */
 #define HTTP_DELETE	"DELETE"
 #define HTTP_GET	"GET"
-#define HTTP_HEAD	"HEAD"
+#define APEX_HTTP_HEAD	"HEAD"
 #define HTTP_OPTIONS	"OPTIONS"
 #define HTTP_PATCH	"PATCH"
 #define HTTP_POST	"POST"
@@ -55,4 +55,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* HTTP_H */
+#endif                                 /* APEX_HTTP_H */

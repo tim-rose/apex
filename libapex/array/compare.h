@@ -4,8 +4,8 @@
  * Remarks:
  * These are used for qsort, bsearch, etc.
  */
-#ifndef COMPARE_H
-#define COMPARE_H
+#ifndef APEX_COMPARE_H
+#define APEX_COMPARE_H
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -28,4 +28,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* COMPARE_H */
+#endif                                 /* APEX_COMPARE_H */

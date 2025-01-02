@@ -2,8 +2,8 @@
  * SLINK.H --Definitions for singly-linked lists.
  *
  */
-#ifndef LINK_H
-#define LINK_H
+#ifndef APEX_LINK_H
+#define APEX_LINK_H
 
 #include <apex/search.h>             /* for CompareProc */
 
@@ -44,4 +44,4 @@ extern "C"
 }
 #endif                                 /* C++ */
 
-#endif                                 /* LINK_H */
+#endif                                 /* APEX_LINK_H */

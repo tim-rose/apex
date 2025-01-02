@@ -2,8 +2,8 @@
  * STRPARSE.H -- Routines for parsing stuff from strings.
  *
  */
-#ifndef STRPARSE_H
-#define STRPARSE_H
+#ifndef APEX_STRPARSE_H
+#define APEX_STRPARSE_H
 
 #include <unistd.h>
 #include <stdint.h>
@@ -28,4 +28,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* STRPARSE_H */
+#endif                                 /* APEX_STRPARSE_H */

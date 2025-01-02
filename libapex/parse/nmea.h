@@ -21,8 +21,8 @@
  *
  */
 #include <stdio.h>
-#ifndef NMEA_H
-#define NMEA_H
+#ifndef APEX_NMEA_H
+#define APEX_NMEA_H
 #ifdef __cplusplus
 extern "C"
 {
@@ -53,4 +53,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */
-#endif                                 /* NMEA_H */
+#endif                                 /* APEX_NMEA_H */

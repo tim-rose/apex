@@ -5,8 +5,8 @@
  * syslog(3) system common to Unix (POSIX?) systems.  It is provided
  * for reference, and possible use in constructing a shim.
  */
-#ifndef SYSLOG_STANDALONE_H
-#define SYSLOG_STANDALONE_H
+#ifndef APEX_SYSLOG_STANDALONE_H
+#define APEX_SYSLOG_STANDALONE_H
 #include <stdio.h>
 /**
  * @brief Syslog priorities.
@@ -135,4 +135,4 @@ CODE facilitynames[] = {
     {NULL, -1,}
 };
 #endif /* SYSLOG_NAMES */
-#endif /* SYSLOG_STANDALONE_H */
+#endif /* APEX_SYSLOG_STANDALONE_H */

@@ -9,8 +9,8 @@
  * This is used as a base structure/class for other slab/array data
  * structures (stack, heap, queue etc.).
  */
-#ifndef ARRAY_H
-#define ARRAY_H
+#ifndef APEX_ARRAY_H
+#define APEX_ARRAY_H
 
 #include <apex.h>
 
@@ -62,4 +62,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif /* C++ */
-#endif /* ARRAY_H */
+#endif /* APEX_ARRAY_H */
