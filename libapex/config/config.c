@@ -61,12 +61,12 @@ static const char **get_config_path(void)
  * opts   --specifies the list of opts definitions
  * name     --specifies the name
  *
- * Returns: (OptionPtr)
+ * Returns: (Option *)
  * Success: the opts definition; Failure: NULL.
  */
-static OptionPtr opt_find_name_(Option opts[], const char *name)
+static Option *opt_find_name_(Option opts[], const char *name)
 {
-    for (OptionPtr opt = opts; opt != NULL && opt->name != NULL; ++opt)
+    for (Option *opt = opts; opt != NULL && opt->name != NULL; ++opt)
     {
         if (strcmp(name, opt->name) == 0)
         {
@@ -96,11 +96,11 @@ static OptionPtr opt_find_name_(Option opts[], const char *name)
  * bar=1
  * ==> will be matched as "foo_bar=1".
  */
-static int opt_ini_(IniPtr ini, const char *section,
+static int opt_ini_(Ini *ini, const char *section,
                     const char *name, const char *value, void *data)
 {
-    OptionPtr opts = (OptionPtr) data;
-    OptionPtr opt;
+    Option *opts = (Option *) data;
+    Option *opt;
     char full_name[LINE_MAX];
 
     if (section != NULL)
@@ -197,7 +197,7 @@ int config_load_ini(const char *file, const char *UNUSED(section),
 {
     char conf_file[FILENAME_MAX];
     char conf_path[FILENAME_MAX];
-    IniPtr ini = NULL;
+    Ini *ini = NULL;
     int status = 1;                    /* OK so far... */
 
     vstrcat(conf_file, file, ".conf", (char *) NULL);

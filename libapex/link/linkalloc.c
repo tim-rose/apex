@@ -16,21 +16,21 @@
 
 #define LINK_BLOCK	((4096-24)/sizeof(Link))
 
-static LinkPtr free_list;              /* tail of the (circular) free list */
+static Link *free_list;              /* tail of the (circular) free list */
 
 /*
  * link_block_new() --Allocate a block of links.
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * Success: the tail of a circular list of links; Failure: NULL.
  *
  * Remarks:
  * This routine is used to allocate new links in bulk so as to avoid
  * a per-link malloc overhead.
  */
-static LinkPtr _link_block_new(void)
+static Link *_link_block_new(void)
 {
-    LinkPtr l = (LinkPtr) malloc(LINK_BLOCK * sizeof(Link));
+    Link *l = (Link *) malloc(LINK_BLOCK * sizeof(Link));
 
     if (l)
     {
@@ -49,15 +49,15 @@ static LinkPtr _link_block_new(void)
  * next --ptr to the next link in the chain.
  * value    --the thing being linked.
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * Success: an initialised Link record; Failure: NULL (malloc failure).
  *
  * Remarks:
  * This calls _link_block_new() as necessary to renew the free-list.
  */
-LinkPtr link_new(LinkPtr next, void *value)
+Link *link_new(Link *next, void *value)
 {
-    LinkPtr new;
+    Link *new;
 
     if (free_list == NULL && (free_list = _link_block_new()) == NULL)
     {
@@ -66,7 +66,7 @@ LinkPtr link_new(LinkPtr next, void *value)
     new = free_list->next;
     if (new == free_list)
     {                                  /* that was the last link! */
-        free_list = (LinkPtr) NULL;
+        free_list = (Link *) NULL;
     }
     else
     {
@@ -83,7 +83,7 @@ LinkPtr link_new(LinkPtr next, void *value)
  * Parameters:
  * l    --the link to be freed.
  */
-void link_free(LinkPtr l)
+void link_free(Link *l)
 {
     if (l == NULL)
     {
@@ -107,7 +107,7 @@ void link_free(LinkPtr l)
  * Parameter:
  * tail --the tail of the list to be freed.
  */
-void link_free_links(LinkPtr head, LinkPtr tail)
+void link_free_links(Link *head, Link *tail)
 {
     if (head == NULL || tail == NULL)
     {

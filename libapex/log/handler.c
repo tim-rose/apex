@@ -17,7 +17,7 @@ typedef struct LogAlias
 {
     const char *name;
     LogOutputProc proc;
-} LogAlias, *LogAliasPtr;
+} LogAlias;
 
 LogAlias log_alias[] = {
     {"syslog", log_syslog},
@@ -41,7 +41,7 @@ LogOutputProc log_handler(const char *name)
 {
     if (name != NULL)
     {
-        for (LogAliasPtr alias = log_alias; alias->name != NULL; ++alias)
+        for (LogAlias *alias = log_alias; alias->name != NULL; ++alias)
         {
             if (strcmp(name, alias->name) == 0)
             {

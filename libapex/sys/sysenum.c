@@ -22,16 +22,16 @@
  * in (usually) /usr/include/sys/syslog.h, but I'm aliasing them into
  * a "SysEnum" type (which they happen to naturally match in structure).
  */
-SysEnumPtr syslog_facility = (SysEnumPtr) facilitynames;
-SysEnumPtr syslog_priority = (SysEnumPtr) prioritynames;
+SysEnum *syslog_facility = (SysEnum *) facilitynames;
+SysEnum *syslog_priority = (SysEnum *) prioritynames;
 /*
  * sysenum_find_name() --Find a value by name in an SysEnum list.
  *
  * REVISIT: adapted/duplicated from symbol.c.
  */
-SysEnumPtr sysenum_find_name(SysEnumPtr list, const char *name)
+SysEnum *sysenum_find_name(SysEnum *list, const char *name)
 {
-    for (SysEnumPtr item = list; item->name != NULL; ++item)
+    for (SysEnum *item = list; item->name != NULL; ++item)
     {
         if (strcmp(item->name, name) == 0)
         {
@@ -46,9 +46,9 @@ SysEnumPtr sysenum_find_name(SysEnumPtr list, const char *name)
  *
  * REVISIT: adapted/duplicated from symbol.c.
  */
-SysEnumPtr sysenum_find_number(SysEnumPtr list, int number)
+SysEnum *sysenum_find_number(SysEnum *list, int number)
 {
-    for (SysEnumPtr item = list; item->name != NULL; ++item)
+    for (SysEnum *item = list; item->name != NULL; ++item)
     {
         if (item->value == number)
         {

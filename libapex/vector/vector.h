@@ -21,11 +21,11 @@ extern "C"
         size_t n_el;                   /* No. allocated elements in the vector */
         size_t n_used;                 /* No. elements actually being used */
         size_t el_size;                /* size of each element */
-    } VectorInfo, *VectorInfoPtr;
+    } VectorInfo;
 
     void *new_vector(size_t elsize, size_t n_el, void *new_el) WARN_UNUSED;
     void free_vector(void *vp);
-    VectorInfoPtr vector_info(void *vector, VectorInfoPtr viptr);
+    VectorInfo *vector_info(void *vector, VectorInfo *viptr);
     int vector_len(void *vp);
     void *visit_vector(void *vector, VisitProc visit, void *user_data);
     int search_vector(void *vector, void *el, CompareProc el_cmp,

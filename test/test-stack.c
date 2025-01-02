@@ -48,7 +48,7 @@ static void test_char(int n)
     char storage[n];
     char item = n + 1;
     Stack stack;
-    StackPtr s = init_stack(&stack, storage);
+    Stack *s = init_stack(&stack, storage);
     int status = 1;
 
     ok(s == &stack, "init_stack() returns first argument");
@@ -115,7 +115,7 @@ static void test_int(int n)
     int storage[n];
     int item = n + 1;
     Stack stack;
-    StackPtr s = init_stack(&stack, storage);
+    Stack *s = init_stack(&stack, storage);
     int status = 1;
 
     ok(s == &stack, "init_stack() returns first argument");

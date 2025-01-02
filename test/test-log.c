@@ -25,7 +25,7 @@ typedef struct LogState
     int sys_errno;
     int priority;
     char text[LOG_TEXT_MAX + 1];
-} LogState, *LogStatePtr;
+} LogState;
 
 /*
  * default_log_state[] --Fixture for logging state at start of test.

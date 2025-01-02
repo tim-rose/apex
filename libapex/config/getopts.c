@@ -22,7 +22,7 @@ typedef union OptionAddress
 {
     char **str_addr;                   /* address of a string */
     int *int_addr;                     /* address of an (int) flag */
-} OptionAddress, *OptionAddressPtr;
+} OptionAddress;
 
 /*
  * getopts() --A stdarg variant of getopt().

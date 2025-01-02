@@ -57,7 +57,7 @@ extern "C"
         STRING_TYPE = 3,
         LIST_TYPE = 4,
         STRUCT_TYPE = 5
-    } Type, *TypePtr;
+    } Type;
 
     /*
      * Value --A union of the allowed values for symbols.
@@ -67,9 +67,9 @@ extern "C"
         double real;
         SYMBOL_INT integer;
         char *string;
-        struct Atom_t *list;           /* vector of values */
-        struct Symbol_t *field;        /* vector of fields */
-    } Value, *ValuePtr;
+        struct Atom *list;           /* vector of values */
+        struct Symbol *field;        /* vector of fields */
+    } Value;
 
     /*
      * Atom --A value with type information (for representing vectors).
@@ -83,7 +83,7 @@ extern "C"
     {
         Type type;
         Value value;
-    } Atom, *AtomPtr;
+    } Atom;
 
     /*
      * Enum --Named integer values.
@@ -98,7 +98,7 @@ extern "C"
     {
         const char *name;
         int value;
-    } Enum, *EnumPtr;
+    } Enum;
 
     /*
      * Symbol --A complete symbol: name, type, value.
@@ -108,7 +108,7 @@ extern "C"
         char *name;
         Type type;
         Value value;
-    } Symbol, *SymbolPtr;
+    } Symbol;
 
     extern Atom null_atom;
     extern Enum null_enum;
@@ -118,27 +118,27 @@ extern "C"
 
     void sym_free_value(Type type, Value value);
 
-    AtomPtr new_sym_path(const char *path);
-    void free_sym_path(AtomPtr path);
-    int sym_path_equal(AtomPtr s1, AtomPtr s2);
-    int sym_path_match(AtomPtr ref_path, size_t ref_path_len,
-                       AtomPtr test_path, size_t test_path_len);
+    Atom *new_sym_path(const char *path);
+    void free_sym_path(Atom *path);
+    int sym_path_equal(Atom *s1, Atom *s2);
+    int sym_path_match(Atom *ref_path, size_t ref_path_len,
+                       Atom *test_path, size_t test_path_len);
 
-    int sprint_sym_path(char *str, AtomPtr path);
-    int fprint_sym_path(FILE * fp, AtomPtr path);
-    int print_sym_path(AtomPtr path);
+    int sprint_sym_path(char *str, Atom *path);
+    int fprint_sym_path(FILE * fp, Atom *path);
+    int print_sym_path(Atom *path);
 
-    Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * value_ptr);
-    Type sym_get_value(SymbolPtr symtab, AtomPtr path, ValuePtr value);
-    int sym_get_int(SymbolPtr symtab, AtomPtr path, SYMBOL_INT * value);
-    int sym_get_real(SymbolPtr symtab, AtomPtr path, double *value);
-    int sym_get_str(SymbolPtr symtab, AtomPtr path, char **value);
-    int sym_get_enum(SymbolPtr symtab, size_t n_enum, EnumPtr enums, AtomPtr path, int **value);    /* not implemented yet! */
+    Type sym_get(Symbol *symtab, Atom *path, Value ** value_ptr);
+    Type sym_get_value(Symbol *symtab, Atom *path, Value *value);
+    int sym_get_int(Symbol *symtab, Atom *path, SYMBOL_INT * value);
+    int sym_get_real(Symbol *symtab, Atom *path, double *value);
+    int sym_get_str(Symbol *symtab, Atom *path, char **value);
+    int sym_get_enum(Symbol *symtab, size_t n_enum, Enum *enums, Atom *path, int **value);    /* not implemented yet! */
 
     int enum_cmp(const Enum * a, const Enum * b);
-    int str_enum(const char *name, size_t n_items, Enum item[], int *valp);
-    int enum_value(const char *name, const EnumPtr item);
-    const char *enum_name(int value, const EnumPtr item);
+    int str_enum(const char *name, size_t n_items, const Enum item[], int *valp);
+    int enum_value(const char *name, const Enum *item);
+    const char *enum_name(int value, const Enum *item);
 
 #ifdef __cplusplus
 }

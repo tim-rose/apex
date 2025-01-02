@@ -29,23 +29,23 @@ extern "C"
         Symbol item;
         const char *scan_fmt;          /* used by csv_read() */
         const char *print_fmt;         /* used by csv_write() */
-    } CSVField, *CSVFieldPtr;
+    } CSVField;
 
     typedef struct CSVFile
     {
         FILE *fp;
         char mode;                     /* "r", "w", "a" */
         size_t n_field;
-        CSVFieldPtr field;             /* vector of fields */
-    } CSVFile, *CSVFilePtr;
+        CSVField *field;             /* vector of fields */
+    } CSVFile;
 
-    CSVFilePtr csv_open(const char *path, const char *mode, ...);
-    void csv_close(CSVFilePtr csv_fp);
-    int csv_read(CSVFilePtr csv_fp, size_t n_values, Atom values[],
+    CSVFile *csv_open(const char *path, const char *mode, ...);
+    void csv_close(CSVFile *csv_fp);
+    int csv_read(CSVFile *csv_fp, size_t n_values, Atom values[],
                  size_t n_bytes, char bytes[]);
-    int csv_write(CSVFilePtr csv_fp, size_t n_values, Atom values[]);
-    CSVFieldPtr csv_field(CSVFilePtr csv_fp, const char *name);
-    CSVFieldPtr *csv_parse_fields(CSVFilePtr csv_fp, char *fields);
+    int csv_write(CSVFile *csv_fp, size_t n_values, Atom values[]);
+    CSVField *csv_field(CSVFile *csv_fp, const char *name);
+    CSVField **csv_parse_fields(CSVFile *csv_fp, char *fields);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

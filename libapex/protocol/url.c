@@ -63,7 +63,7 @@ static char encode_tab[127] = {
 /*
  * parse_url_path_() --Parse the "path" part of a URL.
  */
-static inline void parse_url_path_(char *opt, URLPtr url)
+static inline void parse_url_path_(char *opt, URL *url)
 {
     url->path = opt;
     if ((url->query = strchr(url->path, '?')) != NULL)
@@ -79,9 +79,9 @@ static inline void parse_url_path_(char *opt, URLPtr url)
 /*
  * adjust_port_() --Adjust the port based on well-known schemes.
  */
-static inline void adjust_port_(URLPtr url)
+static inline void adjust_port_(URL *url)
 {
-    EnumPtr s = service;
+    Enum *s = service;
 
     if (url->port != 0 || url->scheme == NULL)
     {
@@ -130,7 +130,7 @@ static inline void adjust_port_(URLPtr url)
  * This may not suit applications that wish to distinguish
  * between absolute and relative URLs.
  */
-int str_url(char *opt, URLPtr url)
+int str_url(char *opt, URL *url)
 {
     char *match = strstr(opt, "://");
 
@@ -190,7 +190,7 @@ int str_url(char *opt, URLPtr url)
  * Return: (int)
  * The number of characters printed, or required.
  */
-int snprint_url(char *str, size_t n, URLPtr url)
+int snprint_url(char *str, size_t n, URL *url)
 {
     char *start = str;
 

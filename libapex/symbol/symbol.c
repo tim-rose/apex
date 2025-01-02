@@ -56,7 +56,7 @@ void sym_free_value(Type type, Value value)
         free(value.string);
         break;
     case STRUCT_TYPE:
-        for (SymbolPtr symbol = value.field; symbol->type != VOID_TYPE;
+        for (Symbol *symbol = value.field; symbol->type != VOID_TYPE;
              ++symbol)
         {
             free(symbol->name);
@@ -65,7 +65,7 @@ void sym_free_value(Type type, Value value)
         free_vector(value.field);
         break;
     case LIST_TYPE:
-        for (AtomPtr atom = value.list; atom->type != VOID_TYPE; ++atom)
+        for (Atom *atom = value.list; atom->type != VOID_TYPE; ++atom)
         {
             sym_free_value(atom->type, atom->value);
         }
@@ -83,13 +83,13 @@ void sym_free_value(Type type, Value value)
  * name --specifies the element name to append
  * path --specifies the full path (in progress of) being parsed
  *
- * Returns: (AtomPtr)
+ * Returns: (Atom *)
  * Success: the updated symbol path; Failure: NULL.
  *
  * Remarks:
  * This routine frees the sym variable on error.
  */
-static AtomPtr sym_add_node_(AtomPtr sym_path, AtomPtr node,
+static Atom *sym_add_node_(Atom *sym_path, Atom *node,
                              char *name, const char *path)
 {
     int idx;
@@ -149,7 +149,7 @@ static AtomPtr sym_add_node_(AtomPtr sym_path, AtomPtr node,
  * Parameter:
  * pathname --the path to compile
  *
- * Returns: (SymbolPtr)
+ * Returns: (Symbol *)
  * Success: the compiled symbol path; Failure: NULL.
  *
  * Remarks:
@@ -162,11 +162,11 @@ static AtomPtr sym_add_node_(AtomPtr sym_path, AtomPtr node,
  *  * [1][15].foo.bar
  *  * etc.
  */
-AtomPtr new_sym_path(const char *path)
+Atom *new_sym_path(const char *path)
 {
     const char *str = path;
     char name_buf[NAME_MAX + 1] = { 0 }, *name = name_buf;
-    AtomPtr sym;
+    Atom *sym;
     Atom node = {.type = STRING_TYPE, {.integer = 0} };
     Atom sentinel = {.type = VOID_TYPE, {.integer = 0} };
     int c;
@@ -227,7 +227,7 @@ AtomPtr new_sym_path(const char *path)
  * The string components of the path are all strdup'd, and must be freed
  * individually.
  */
-void free_sym_path(AtomPtr path)
+void free_sym_path(Atom *path)
 {
     size_t n = (size_t) vector_len(path);
 
@@ -255,7 +255,7 @@ void free_sym_path(AtomPtr path)
  * Equal: 1; Error, or not equal: 0.
  * REVISIT: change this to return an ordered compare result!
  */
-int sym_path_equal(AtomPtr ref_path, AtomPtr test_path)
+int sym_path_equal(Atom *ref_path, Atom *test_path)
 {
     while (1)
     {
@@ -299,10 +299,10 @@ int sym_path_equal(AtomPtr ref_path, AtomPtr test_path)
  * It also handles a wildcard match.
  * REVISIT: change this to return an ordered compare result?
  */
-int sym_path_match(AtomPtr ref_path, size_t ref_path_len,
-                   AtomPtr test_path, size_t test_path_len)
+int sym_path_match(Atom *ref_path, size_t ref_path_len,
+                   Atom *test_path, size_t test_path_len)
 {
-    AtomPtr r, t;
+    Atom *r, *t;
     int n = test_path_len - ref_path_len;
 
     if (n != 0)
@@ -351,7 +351,7 @@ int sym_path_match(AtomPtr ref_path, size_t ref_path_len,
 /*
  * sprint_sym_path() --Format a path to a string.
  */
-int sprint_sym_path(char *str, AtomPtr path)
+int sprint_sym_path(char *str, Atom *path)
 {
     char *start = str;
 
@@ -374,7 +374,7 @@ int sprint_sym_path(char *str, AtomPtr path)
 /*
  * fprint_sym_path() --Print a path to file.
  */
-int fprint_sym_path(FILE * fp, AtomPtr path)
+int fprint_sym_path(FILE * fp, Atom *path)
 {
     int n = 0;
 
@@ -396,7 +396,7 @@ int fprint_sym_path(FILE * fp, AtomPtr path)
 /*
  * print_sym_path() --Print a path to stdout.
  */
-int print_sym_path(AtomPtr path)
+int print_sym_path(Atom *path)
 {
     return fprint_sym_path(stdout, path);
 }
@@ -412,11 +412,11 @@ int print_sym_path(AtomPtr path)
  * Returns: (Type)
  * Success: the type of symbol; Failure: VOID_TYPE.
  */
-static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
+static Type list_get_(Atom *list, Atom *path, Value ** vptr)
 {
     if (path->type == INTEGER_TYPE)
     {
-        AtomPtr element = &list[path->value.integer];
+        Atom *element = &list[path->value.integer];
 
         if (path[1].type == VOID_TYPE)
         {                              /* plugh! return the slot's value */
@@ -451,7 +451,7 @@ static Type list_get_(AtomPtr list, AtomPtr path, ValuePtr * vptr)
  * Note that this routine returns a pointer to the symbol table's
  * actual value item.
  */
-Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
+Type sym_get(Symbol *symtab, Atom *path, Value ** vptr)
 {
     if (path->type != STRING_TYPE)
     {
@@ -459,7 +459,7 @@ Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
     }
     for (size_t i = 0; symtab[i].type != VOID_TYPE; ++i)
     {
-        SymbolPtr sym = &symtab[i];
+        Symbol *sym = &symtab[i];
 
         if (strcmp(sym->name, path->value.string) == 0)
         {
@@ -493,9 +493,9 @@ Type sym_get(SymbolPtr symtab, AtomPtr path, ValuePtr * vptr)
  * Returns: (Type)
  * Success: the type of symbol; Failure: VOID_TYPE.
  */
-Type sym_get_value(SymbolPtr symtab, AtomPtr path, ValuePtr value)
+Type sym_get_value(Symbol *symtab, Atom *path, Value *value)
 {
-    ValuePtr vptr;
+    Value *vptr;
     Type type = sym_get(symtab, path, &vptr);
 
     if (type != VOID_TYPE)
@@ -515,7 +515,7 @@ Type sym_get_value(SymbolPtr symtab, AtomPtr path, ValuePtr value)
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int sym_get_int(SymbolPtr symtab, AtomPtr path, SYMBOL_INT * value)
+int sym_get_int(Symbol *symtab, Atom *path, SYMBOL_INT * value)
 {
     Value v;
 
@@ -555,7 +555,7 @@ int sym_get_int(SymbolPtr symtab, AtomPtr path, SYMBOL_INT * value)
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int sym_get_real(SymbolPtr symtab, AtomPtr path, double *value)
+int sym_get_real(Symbol *symtab, Atom *path, double *value)
 {
     Value v;
 
@@ -596,7 +596,7 @@ int sym_get_real(SymbolPtr symtab, AtomPtr path, double *value)
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int sym_get_str(SymbolPtr symtab, AtomPtr path, char **value)
+int sym_get_str(Symbol *symtab, Atom *path, char **value)
 {
     Value v;
 

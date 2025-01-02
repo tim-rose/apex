@@ -45,8 +45,8 @@ static int create_file(const char *path, const char *content)
  */
 static int csv_copy_file(const char *path1, const char *path2)
 {
-    CSVFilePtr in;
-    CSVFilePtr out;
+    CSVFile *in;
+    CSVFile *out;
     Atom value[100];                   /* REVISIT: magic numbers */
     char bytes[4096];
 
@@ -111,7 +111,7 @@ int main(void)
 {
     char path1[CSV_PATH_MAX];
     char path2[CSV_PATH_MAX];
-    CSVFilePtr in, out;
+    CSVFile *in, *out;
     Atom value[10];
     char bytes[4096];
 

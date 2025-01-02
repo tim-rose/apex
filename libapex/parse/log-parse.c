@@ -24,10 +24,10 @@
 #include <apex/sysenum.h>
 #include <apex/log-parse.h>
 
-static LogRecordPtr decode_syslog_(LogRecordPtr log_record,
+static LogRecord *decode_syslog_(LogRecord *log_record,
                                    struct tm *tm_base);
-static char *decode_timestamp_(LogRecordPtr log_record, struct tm *tm_base);
-static int decode_ident_(LogRecordPtr log_record, char *end);
+static char *decode_timestamp_(LogRecord *log_record, struct tm *tm_base);
+static int decode_ident_(LogRecord *log_record, char *end);
 
 static const char *ts_fmt[] = {        /* list of allowed timestamp formats */
     date_syslog_timestamp,
@@ -42,10 +42,10 @@ static const char *ts_fmt[] = {        /* list of allowed timestamp formats */
  * str      --the string to parse as a syslog record
  * tm_base  --the base timestamp for decoding syslog's ambiguous format
  *
- * Returns: (LogRecordPtr)
+ * Returns: (LogRecord *)
  * Success: log_rec; Failure: NULL.
  */
-LogRecordPtr log_parse_r(LogRecordPtr log_record, const char *str,
+LogRecord *log_parse_r(LogRecord *log_record, const char *str,
                          struct tm *tm_base)
 {
     strncpy(log_record->text, str, sizeof(log_record->text));
@@ -61,10 +61,10 @@ LogRecordPtr log_parse_r(LogRecordPtr log_record, const char *str,
  * str      --the string to parse as a syslog record
  * tm_base  --the base timestamp for decoding syslog's ambiguous format
  *
- * Returns: (LogRecordPtr)
+ * Returns: (LogRecord *)
  * Success: an initialised log record; Failure: NULL.
  */
-LogRecordPtr log_parse(const char *str, struct tm *tm_base)
+LogRecord *log_parse(const char *str, struct tm *tm_base)
 {
     static LogRecord log_record;
 
@@ -79,13 +79,13 @@ LogRecordPtr log_parse(const char *str, struct tm *tm_base)
  * fp       --a file pointer open for reading
  * tm_base  --the base timestamp for decoding syslog's ambiguous format
  *
- * Returns: (LogRecordPtr)
+ * Returns: (LogRecord *)
  * Success: an initialised log record; Failure: NULL.
  *
  * Remarks:
  * This function conflates the error cases for fgets() and decode_syslog_().
  */
-LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp, struct tm *tm_base)
+LogRecord *log_fgets(LogRecord *log_record, FILE * fp, struct tm *tm_base)
 {
     if (fgets(log_record->text, sizeof(log_record->text), fp) != NULL)
     {
@@ -111,7 +111,7 @@ LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp, struct tm *tm_base)
  * log_record   --specifies and returns the syslog record
  * tm_base  --the base timestamp for decoding syslog's ambiguous format
  *
- * Returns: (LogRecordPtr)
+ * Returns: (LogRecord *)
  * Success: an initialised log record; Failure: NULL.
  *
  * Remarks:
@@ -119,7 +119,7 @@ LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp, struct tm *tm_base)
  * On successful return, the other fields will be initialised with
  * fragments of the raw text.
  */
-static LogRecordPtr decode_syslog_(LogRecordPtr log_record,
+static LogRecord *decode_syslog_(LogRecord *log_record,
                                    struct tm *tm_base)
 {
     char *str;
@@ -165,7 +165,7 @@ static LogRecordPtr decode_syslog_(LogRecordPtr log_record,
     {                                  /* possibly "priority: xxx..." */
         *end++ = '\0';
         if (str_enum
-            (pri_text, 100, (EnumPtr) syslog_priority, &log_record->priority))
+            (pri_text, 100, (Enum *) syslog_priority, &log_record->priority))
         {
             log_record->message += (end - pri_text);
             while (*log_record->message == ' ')
@@ -180,7 +180,7 @@ static LogRecordPtr decode_syslog_(LogRecordPtr log_record,
 /*
  * decode_timestamp_() --decode the timestamp part of a syslog message.
  */
-static char *decode_timestamp_(LogRecordPtr log_record, struct tm *tm_base)
+static char *decode_timestamp_(LogRecord *log_record, struct tm *tm_base)
 {
     struct tm tm_syslog = *tm_base;
     char *str;
@@ -207,7 +207,7 @@ static char *decode_timestamp_(LogRecordPtr log_record, struct tm *tm_base)
  * On entry, log_record->host contains the host (and possibly) the identity
  * component.
  */
-static int decode_ident_(LogRecordPtr log_record, char *end)
+static int decode_ident_(LogRecord *log_record, char *end)
 {
     char *str;
     log_record->tag = end--;

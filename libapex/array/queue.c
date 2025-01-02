@@ -16,11 +16,11 @@
 /*
  * queue_alloc() --Allocate some space for a queue structure.
  *
- * Returns: (QueuePtr)
+ * Returns: (Queue *)
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-AtomicQueuePtr queue_alloc(void)
+AtomicQueue *queue_alloc(void)
 {
     return malloc(sizeof(AtomicQueue));
 }
@@ -70,7 +70,7 @@ int queue_mask(size_t n, size_t *mask)
  * implementation requires that the size of the queue is a simple
  * power of 2.
  */
-AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
+AtomicQueue *queue_init(AtomicQueue *queue, size_t n_items,
                           size_t item_size, void *base)
 {
     if (queue == NULL || base == NULL || n_items == 0)
@@ -97,7 +97,7 @@ AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
  * If the queue is full, this function will fail (and update the
  * failure count).
  */
-int queue_push(AtomicQueuePtr queue, const void *item)
+int queue_push(AtomicQueue *queue, const void *item)
 {
     if (queue == NULL || item == NULL)
     {
@@ -127,7 +127,7 @@ int queue_push(AtomicQueuePtr queue, const void *item)
  *
  * This function fails if the queue is empty.
  */
-int queue_pop(AtomicQueuePtr queue, void *item)
+int queue_pop(AtomicQueue *queue, void *item)
 {
     if (queue_peek(queue, item))
     {
@@ -149,7 +149,7 @@ int queue_pop(AtomicQueuePtr queue, void *item)
  *
  * This function fails if the queue is empty.
  */
-void *queue_peek(AtomicQueuePtr queue, void *item)
+void *queue_peek(AtomicQueue *queue, void *item)
 {
     void *queue_item = NULL;
 

@@ -62,11 +62,11 @@ Symbol test_dom[] = {
  * The dom is equivalent to the interned JSON for:
  * "a=1 b=2.0 a_list { 1 2.0 "foobar" } a_struct { a=1 b=2.0 }"
  */
-static void sym_test(SymbolPtr dom, const char *pathname,
+static void sym_test(Symbol *dom, const char *pathname,
                      Type t, Value v, const char *comment)
 {
     Value val;
-    AtomPtr path = new_sym_path(pathname);
+    Atom *path = new_sym_path(pathname);
     int cmp;
 
 
@@ -113,7 +113,7 @@ int main(void)
             {.type = STRING_TYPE,.value.string = (char *) "a"},
             NULL_ATOM
         };
-        AtomPtr path = new_sym_path("a");
+        Atom *path = new_sym_path("a");
 
         ok(path != NULL && sym_path_equal(path, ref_path),
            "parse simple identifier");
@@ -128,7 +128,7 @@ int main(void)
             {.type = STRING_TYPE,.value.string = (char *) "c"},
             NULL_ATOM
         };
-        AtomPtr path = new_sym_path("a.b.c");
+        Atom *path = new_sym_path("a.b.c");
 
         ok(path != NULL && sym_path_equal(path, ref_path),
            "parse struct path");
@@ -142,7 +142,7 @@ int main(void)
             ,
             NULL_ATOM
         };
-        AtomPtr path = new_sym_path("[1]");
+        Atom *path = new_sym_path("[1]");
 
         ok(path != NULL && sym_path_equal(path, ref_path),
            "parse simple array ref");
@@ -156,7 +156,7 @@ int main(void)
             {.type = INTEGER_TYPE,.value.integer = 100},
             NULL_ATOM
         };
-        AtomPtr path = new_sym_path("foo[100]");
+        Atom *path = new_sym_path("foo[100]");
 
         ok(path != NULL && sym_path_equal(path, ref_path),
            "parse struct+array ref");
@@ -171,7 +171,7 @@ int main(void)
             {.type = STRING_TYPE,.value.string = (char *) "bar"},
             NULL_ATOM
         };
-        AtomPtr path = new_sym_path("foo[100].bar");
+        Atom *path = new_sym_path("foo[100].bar");
 
         ok(path != NULL && sym_path_equal(path, ref_path),
            "parse struct+array+struct ref");
@@ -179,28 +179,28 @@ int main(void)
     } while (0);
 
     v.integer = 1;
-    sym_test((SymbolPtr) & test_dom, "a", INTEGER_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a", INTEGER_TYPE, v,
              "simple path to int");
-    sym_test((SymbolPtr) & test_dom, "a_list[0]", INTEGER_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_list[0]", INTEGER_TYPE, v,
              "array syntax to int");
-    sym_test((SymbolPtr) & test_dom, "a_struct.a", INTEGER_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_struct.a", INTEGER_TYPE, v,
              "struct syntax to int");
 
     v.real = 2.0;
-    sym_test((SymbolPtr) & test_dom, "b", REAL_TYPE, v,
+    sym_test((Symbol *) & test_dom, "b", REAL_TYPE, v,
              "simple path to real");
-    sym_test((SymbolPtr) & test_dom, "a_list[1]", REAL_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_list[1]", REAL_TYPE, v,
              "array syntax to real");
-    sym_test((SymbolPtr) & test_dom, "a_struct.b", REAL_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_struct.b", REAL_TYPE, v,
              "struct syntax to real");
 
     v.string = (char *) "foobar";
-    sym_test((SymbolPtr) & test_dom, "c", STRING_TYPE, v,
+    sym_test((Symbol *) & test_dom, "c", STRING_TYPE, v,
              "simple path to string");
     v.string = (char *) "foobar";
-    sym_test((SymbolPtr) & test_dom, "a_list[2]", STRING_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_list[2]", STRING_TYPE, v,
              "array syntax to string");
-    sym_test((SymbolPtr) & test_dom, "a_struct.c", STRING_TYPE, v,
+    sym_test((Symbol *) & test_dom, "a_struct.c", STRING_TYPE, v,
              "struct syntax to string");
     return exit_status();
 }

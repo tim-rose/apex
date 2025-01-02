@@ -20,7 +20,7 @@ extern "C"
         LINK_INSERT_FAIL = 0,
         LINK_INSERT_REPLACE,
         LINK_INSERT_DUPLICATE
-    } LinkInsertMode, *LinkInsertModePtr;
+    } LinkInsertMode;
 
     /*
      * VisitProc --Visitor function for LinkVisit().
@@ -32,14 +32,14 @@ extern "C"
      */
     typedef struct Link
     {
-        struct Link_t *next;           /* next item in list (CAR!) */
+        struct Link *next;           /* next item in list (CAR!) */
         void *data;                    /* user-data (CDR!) */
 
-    } Link, *LinkPtr;
+    } Link;
 
-    LinkPtr link_new(LinkPtr next, void *data); /* (CONS!) */
-    void link_free(LinkPtr link);
-    void link_free_links(LinkPtr head, LinkPtr tail);
+    Link *link_new(Link *next, void *data); /* (CONS!) */
+    void link_free(Link *link);
+    void link_free_links(Link *head, Link *tail);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

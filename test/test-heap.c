@@ -12,7 +12,7 @@
 #include <apex/heap.h>
 #include <apex/compare.h>
 
-static void print_heap(HeapPtr heap);
+static void print_heap(Heap *heap);
 static void test_null(void);
 static void test_int(int n);
 
@@ -27,7 +27,7 @@ int main(void)
     return exit_status();
 }
 
-static void print_heap(HeapPtr heap)
+static void print_heap(Heap *heap)
 {
     char text[100];
     char *str = text;
@@ -82,7 +82,7 @@ static void test_int(int n)
     int storage[n];
     int item;
     Heap heap = { 0 };
-    HeapPtr h = init_heap(&heap, int_cmp, storage);
+    Heap *h = init_heap(&heap, int_cmp, storage);
     int status = 1;
 
     ok(h == &heap, "init_heap() returns first argument");

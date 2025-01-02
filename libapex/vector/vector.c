@@ -38,7 +38,7 @@
 /*
  * GET_VECTOR() --Macro to get back to base of Vector struct.
  */
-#define GET_VECTOR(_v)	(VectorPtr) ((char*) _v - offsetof(Vector, vector))
+#define GET_VECTOR(_v)	(Vector *) ((char*) _v - offsetof(Vector, vector))
 
 /*
  * @type Vector The prefix block containing vector housekeeping data.
@@ -48,7 +48,7 @@ typedef struct Vector
     VectorInfo info;
     char padding[VECTOR_ALIGN - (sizeof(VectorInfo) % VECTOR_ALIGN)];
     char vector[];                     /* the actual array */
-} Vector, *VectorPtr;
+} Vector;
 
 /*
  * new_vector() --Allocate a new Vector structure.
@@ -67,7 +67,7 @@ typedef struct Vector
  */
 void *new_vector(size_t el_size, size_t n_el, void *new_el)
 {
-    VectorPtr vector;
+    Vector *vector;
     size_t n_allocated = n_el;         /* No. allocated elements */
 
     if (n_allocated < 8)
@@ -75,8 +75,8 @@ void *new_vector(size_t el_size, size_t n_el, void *new_el)
         n_allocated = 8;               /* require at least 8 elements */
     }
     if ((vector =
-         (VectorPtr) malloc(sizeof(Vector) + n_allocated * el_size)) ==
-        (VectorPtr) NULL)
+         (Vector *) malloc(sizeof(Vector) + n_allocated * el_size)) ==
+        (Vector *) NULL)
     {
         return NULL;
     }
@@ -111,11 +111,11 @@ void free_vector(void *vector)
  * vector   --pointer to the array part of a Vector
  * viptr  --address of a buffer to copy the information to
  *
- * Returns: (VectorInfoPtr) viptr.
+ * Returns: (VectorInfo *) viptr.
  */
-VectorInfoPtr vector_info(void *vector, VectorInfoPtr viptr)
+VectorInfo *vector_info(void *vector, VectorInfo *viptr)
 {
-    VectorPtr v = GET_VECTOR(vector);
+    Vector *v = GET_VECTOR(vector);
 
     return memcpy(viptr, &v->info, sizeof(v->info));
 }
@@ -136,7 +136,7 @@ VectorInfoPtr vector_info(void *vector, VectorInfoPtr viptr)
  */
 int vector_len(void *vector)
 {
-    VectorPtr v = GET_VECTOR(vector);
+    Vector *v = GET_VECTOR(vector);
 
     if (!vector)
     {
@@ -163,7 +163,7 @@ int vector_len(void *vector)
  */
 int search_vector(void *vector, void *el, CompareProc elcmp, bool *statusp)
 {
-    VectorPtr t = GET_VECTOR(vector);
+    Vector *t = GET_VECTOR(vector);
 
     return binsearch(el, t->vector, t->info.n_used, t->info.el_size,
                      elcmp, statusp);
@@ -187,7 +187,7 @@ int search_vector(void *vector, void *el, CompareProc elcmp, bool *statusp)
  */
 void *visit_vector(void *vector, VisitProc visit, void *usrdata)
 {
-    VectorPtr v = GET_VECTOR(vector);
+    Vector *v = GET_VECTOR(vector);
     size_t n = v->info.n_used;
 
     for (size_t i = 0; i < n; ++i)
@@ -239,7 +239,7 @@ void *vector_add(void *vector, size_t n_el, void *new_el)
  */
 void *vector_insert(void *vector, size_t offset, size_t n_el, void *new_el)
 {
-    VectorPtr v = GET_VECTOR(vector), new_vector;
+    Vector *v = GET_VECTOR(vector), *new_vector;
 
     if (vector == NULL)
     {
@@ -309,7 +309,7 @@ void *vector_insert(void *vector, size_t offset, size_t n_el, void *new_el)
  */
 void *vector_delete(void *vector, size_t offset, size_t n_el)
 {
-    VectorPtr v = GET_VECTOR(vector);
+    Vector *v = GET_VECTOR(vector);
 
     if (!vector)
     {
@@ -325,7 +325,7 @@ void *vector_delete(void *vector, size_t offset, size_t n_el)
     v->info.n_used -= n_el;
     if (v->info.n_used < v->info.n_el / 2)
     {                                  /* shrink allocation */
-        VectorPtr new_vector
+        Vector *new_vector
             = realloc(v, sizeof(Vector) + v->info.n_used * v->info.el_size);
         if (new_vector == NULL)
         {

@@ -31,16 +31,16 @@
 typedef struct Link
 {
     struct Link_t *next;
-} Link, *LinkPtr;
+} Link;
 
 /*
  * pool_alloc() --Allocate some space for a pool structure.
  *
- * Returns: (PoolPtr)
+ * Returns: (Pool *)
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-PoolPtr pool_alloc(void)
+Pool *pool_alloc(void)
 {
     return malloc(sizeof(Pool));
 }
@@ -63,10 +63,10 @@ PoolPtr pool_alloc(void)
  * The pool storage is not allocated by this module, it is provided
  * by the caller.
  */
-PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *base)
+Pool *pool_init(Pool *pool, size_t n_items, size_t item_size, void *base)
 {
     if (pool != NULL && base != NULL
-        && n_items > 0 && item_size >= sizeof(LinkPtr))
+        && n_items > 0 && item_size >= sizeof(Link *))
     {
         memset(pool, 0, sizeof(*pool));
         array_init(&pool->array, n_items, item_size, base);
@@ -84,13 +84,13 @@ PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *base)
  * Returns: (void *)
  * Success: the newly allocated memory; Failure: NULL.
  */
-void *pool_new(PoolPtr pool)
+void *pool_new(Pool *pool)
 {
     if (pool != NULL)
     {
         if (pool->free != NULL)
         {                              /* try free-list first. */
-            LinkPtr head = (LinkPtr) pool->free;
+            Link *head = (Link *) pool->free;
 
             pool->free = head->next;
             return (void *) head;      /* success: return from free list */
@@ -113,13 +113,13 @@ void *pool_new(PoolPtr pool)
  * Remarks:
  * REVIISIT: This routine could validate the address being returned.
  */
-void pool_delete(PoolPtr pool, void *item)
+void pool_delete(Pool *pool, void *item)
 {
     if (pool != NULL)
     {
-        LinkPtr link = (LinkPtr) item;
+        Link *link = (Link *) item;
 
-        link->next = (LinkPtr) pool->free;
+        link->next = (Link *) pool->free;
         pool->free = link;
     }
 }

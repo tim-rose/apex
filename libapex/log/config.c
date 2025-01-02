@@ -55,7 +55,7 @@ static const LogConfig *config = NULL; /* Yow! are we initialised yet!!? */
 static LogConfig *log_getenv_(LogConfig * conf)
 {
     const char *value;
-    SysEnumPtr e;
+    SysEnum *e;
 
     if ((value = getenv("LOG_IDENT")) != NULL)
     {
@@ -93,7 +93,7 @@ static LogConfig *log_getenv_(LogConfig * conf)
  * Parameters:
  * new_config  --the new parameters
  *
- * Returns: (LogConfigPtr)
+ * Returns: (LogConfig *)
  * The old parameters.
  */
 const LogConfig *log_config(const LogConfig * new_config)

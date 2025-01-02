@@ -54,7 +54,7 @@ static int compare_item(const void *data, const void *key)
  */
 int main(void)
 {
-    HashPtr h;
+    Hash *h;
 
     plan_tests(10);
 

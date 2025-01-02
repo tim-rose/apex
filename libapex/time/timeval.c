@@ -41,7 +41,7 @@ TimeValue tv_max = { TIME_T_MAX, 0 };
  * This routine can fail if t is very too large/negative for a time_t.
  * If it fails, it will set errno to EDOM.
  */
-int tv_set(TimeValuePtr tv, double t)
+int tv_set(TimeValue *tv, double t)
 {
     if (t > TIME_T_MAX || t < -1 * TIME_T_MAX)
     {
@@ -67,7 +67,7 @@ int tv_set(TimeValuePtr tv, double t)
  * Returns: (int)
  * Equal: 0; Not Equal: The difference as a signed value (-ve, +ve).
  */
-int tv_cmp(TimeValuePtr t1, TimeValuePtr t2)
+int tv_cmp(TimeValue *t1, TimeValue *t2)
 {
     int result = t1->tv_sec - t2->tv_sec;
 
@@ -88,7 +88,7 @@ int tv_cmp(TimeValuePtr t1, TimeValuePtr t2)
  * allowed range (i.e. 0..999999).  This routine modifies the struct
  * in-place, adjusting the fields  to restore the usec to its range.
  */
-TimeValuePtr tv_normalise(TimeValuePtr t)
+TimeValue *tv_normalise(TimeValue *t)
 {
     if (t->tv_usec < 0)
     {
@@ -110,7 +110,7 @@ TimeValuePtr tv_normalise(TimeValuePtr t)
 /*
  * tv_diff() --Calculate the difference between two timevals.
  */
-TimeValuePtr tv_diff(TimeValuePtr t1, TimeValuePtr t2)
+TimeValue *tv_diff(TimeValue *t1, TimeValue *t2)
 {
     static TimeValue result_buf;
     return tv_diff_r(t1, t2, &result_buf);
@@ -123,7 +123,7 @@ TimeValuePtr tv_diff(TimeValuePtr t1, TimeValuePtr t2)
  * The calculated result is "normalised" such that the tv_usec value
  * is always +ve.
  */
-TimeValuePtr tv_diff_r(TimeValuePtr t1, TimeValuePtr t2, TimeValuePtr result)
+TimeValue *tv_diff_r(TimeValue *t1, TimeValue *t2, TimeValue *result)
 {
     result->tv_sec = t1->tv_sec - t2->tv_sec;
     result->tv_usec = t1->tv_usec - t2->tv_usec;
@@ -134,7 +134,7 @@ TimeValuePtr tv_diff_r(TimeValuePtr t1, TimeValuePtr t2, TimeValuePtr result)
 /*
  * tv_sum() --Calculate the sum of two timevals.
  */
-TimeValuePtr tv_sum(TimeValuePtr t1, TimeValuePtr t2)
+TimeValue *tv_sum(TimeValue *t1, TimeValue *t2)
 {
     static TimeValue result_buf;
     return tv_sum_r(t1, t2, &result_buf);
@@ -147,7 +147,7 @@ TimeValuePtr tv_sum(TimeValuePtr t1, TimeValuePtr t2)
  * The calculated result is "normalised" such that the tv_usec value
  * is always within range. It's OK if t1 == result.
  */
-TimeValuePtr tv_sum_r(TimeValuePtr t1, TimeValuePtr t2, TimeValuePtr result)
+TimeValue *tv_sum_r(TimeValue *t1, TimeValue *t2, TimeValue *result)
 {
     result->tv_sec = t1->tv_sec + t2->tv_sec;
     result->tv_usec = t1->tv_usec + t2->tv_usec;
@@ -158,7 +158,7 @@ TimeValuePtr tv_sum_r(TimeValuePtr t1, TimeValuePtr t2, TimeValuePtr result)
 /*
  * tv_scale() --Multiply a tv duration by a scale factor.
  */
-TimeValuePtr tv_scale(TimeValuePtr t1, double scale)
+TimeValue *tv_scale(TimeValue *t1, double scale)
 {
     static TimeValue result_buf;
     return tv_scale_r(t1, scale, &result_buf);
@@ -167,7 +167,7 @@ TimeValuePtr tv_scale(TimeValuePtr t1, double scale)
 /*
  * tv_scale_r() --Multiply a tv duration by a scale factor (reentrant).
  */
-TimeValuePtr tv_scale_r(TimeValuePtr t1, double scale, TimeValuePtr result)
+TimeValue *tv_scale_r(TimeValue *t1, double scale, TimeValue *result)
 {
     result->tv_sec = (t1->tv_sec - 1) * scale;
     result->tv_usec = (t1->tv_usec + 1000000) * scale;
@@ -178,7 +178,7 @@ TimeValuePtr tv_scale_r(TimeValuePtr t1, double scale, TimeValuePtr result)
 /*
  * tv_strftime() --Format a TimeValue using a strftime spec.
  */
-char *tv_strftime(TimeValuePtr tv, const char *fmt)
+char *tv_strftime(TimeValue *tv, const char *fmt)
 {
     static char text[NAME_MAX];
 
@@ -188,7 +188,7 @@ char *tv_strftime(TimeValuePtr tv, const char *fmt)
 /*
  * tv_strftime_r() --Format a TimeValue using a strftime spec.
  */
-char *tv_strftime_r(TimeValuePtr tv, const char *fmt, char *text, size_t size)
+char *tv_strftime_r(TimeValue *tv, const char *fmt, char *text, size_t size)
 {
     sprintf(fmt_time(text, size, fmt, tv->tv_sec), ".%03d",
             (int) tv->tv_usec / 1000);

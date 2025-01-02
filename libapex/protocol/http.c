@@ -41,7 +41,7 @@ static const char *rfc_eol = "\r\n";
  * Returns: (FILE *)
  * Success: the open file pointer; Failure: NULL.
  */
-FILE *http_connect(URLPtr url)
+FILE *http_connect(URL *url)
 {
     int fd;
     char host[FILENAME_MAX];
@@ -63,7 +63,7 @@ FILE *http_connect(URLPtr url)
  * Success: No. of bytes written; Failure: 0.
  */
 size_t http_send_request(FILE * fp, const char *method,
-                         URLPtr url, const char *version)
+                         URL *url, const char *version)
 {
     char buf[FILENAME_MAX];
     char *end;
@@ -105,7 +105,7 @@ size_t http_send_request(FILE * fp, const char *method,
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-size_t http_send_header(FILE * fp, int n_header, SymbolPtr header)
+size_t http_send_header(FILE * fp, int n_header, Symbol *header)
 {
     for (int i = 0; i < n_header; ++i)
     {
@@ -127,22 +127,22 @@ size_t http_send_header(FILE * fp, int n_header, SymbolPtr header)
  * http_req --specifies the details of the HTTP request
  * version  --specifies the version of HTTP protocol to use
  *
- * Returns: (HTTPResponsePtr)
+ * Returns: (HTTPResponse *)
  * Success: a malloc'd HTTP response; Failure: NULL.
  *
  * Remarks:
  * Note that the HTTP may "successfully" respond with a HTTP error.
  * In such cases, the http_get() succeeds, and returns the error response.
  */
-HTTPResponsePtr http_request(const char *method,
-                             HTTPRequestPtr http_req, const char *version)
+HTTPResponse *http_request(const char *method,
+                             HTTPRequest *http_req, const char *version)
 {
     char buf[FILENAME_MAX];
     char *end;
     int n;
     FILE *fp;
-    HTTPResponsePtr r;
-    URLPtr url = &http_req->url;
+    HTTPResponse *r;
+    URL *url = &http_req->url;
 
     if ((fp = http_connect(url)) == NULL)
     {
@@ -246,7 +246,7 @@ HTTPResponsePtr http_request(const char *method,
  * field is a vector of Symbols, and that only the name field
  * needs to be freed.
  */
-void http_free_response(HTTPResponsePtr r)
+void http_free_response(HTTPResponse *r)
 {
     if (r->header != NULL)
     {

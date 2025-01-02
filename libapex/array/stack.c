@@ -14,11 +14,11 @@
 /*
  * stack_alloc() --Allocate some space for a stack structure.
  *
- * Returns: (StackPtr)
+ * Returns: (Stack *)
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-StackPtr stack_alloc(void)
+Stack *stack_alloc(void)
 {
     return malloc(sizeof(Stack));
 }
@@ -41,7 +41,7 @@ StackPtr stack_alloc(void)
  * The stack storage is not allocated by this module, it is provided
  * by the caller.
  */
-StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size, void *base)
+Stack *stack_init(Stack *stack, size_t n_items, size_t item_size, void *base)
 {
     if (stack != NULL && base != NULL)
     {
@@ -62,7 +62,7 @@ StackPtr stack_init(StackPtr stack, size_t n_items, size_t item_size, void *base
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int stack_push(StackPtr stack, const void *item)
+int stack_push(Stack *stack, const void *item)
 {
     if (stack != NULL)
     {
@@ -88,7 +88,7 @@ int stack_push(StackPtr stack, const void *item)
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int stack_pop(StackPtr stack, void *item)
+int stack_pop(Stack *stack, void *item)
 {
     if (stack_peek(stack, item))
     {
@@ -111,7 +111,7 @@ int stack_pop(StackPtr stack, void *item)
  * Remarks:
  * REVISIT: Consider allowing peek at lower stack items too?
  */
-void *stack_peek(StackPtr stack, void *item)
+void *stack_peek(Stack *stack, void *item)
 {
     char *stack_item = NULL;
 

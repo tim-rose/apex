@@ -33,16 +33,16 @@ extern "C"
         size_t n_write;                   /* No. of successful writes  */
         size_t n_fail;                    /* No. of failed writes  */
         size_t mask;                      /* True size of working storage, as a mask. */
-    } AtomicQueue, *AtomicQueuePtr;
+    } AtomicQueue;
 
     int queue_mask(size_t n, size_t *mask);
-    AtomicQueuePtr queue_alloc(void);
-    AtomicQueuePtr queue_init(AtomicQueuePtr queue, size_t n_items,
+    AtomicQueue *queue_alloc(void);
+    AtomicQueue *queue_init(AtomicQueue *queue, size_t n_items,
                               size_t item_size, void *items);
 
-    int queue_push(AtomicQueuePtr queue, const void *item);
-    int queue_pop(AtomicQueuePtr queue, void *item);
-    void *queue_peek(AtomicQueuePtr queue, void *item);
+    int queue_push(AtomicQueue *queue, const void *item);
+    int queue_pop(AtomicQueue *queue, void *item);
+    void *queue_peek(AtomicQueue *queue, void *item);
 
     /*
      * Convenience functions for malloc and item-size aware initialisation.

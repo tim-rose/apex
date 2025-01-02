@@ -15,11 +15,11 @@
 /*
  * heap_alloc() --Allocate some space for a heap structure.
  *
- * Returns: (HeapPtr)
+ * Returns: (Heap *)
  * Success: the allocated memory; Failure: NULL.
  */
 /* LCOV_EXCL_START */
-HeapPtr heap_alloc(void)
+Heap *heap_alloc(void)
 {
     return malloc(sizeof(Heap));
 }
@@ -36,14 +36,14 @@ HeapPtr heap_alloc(void)
  * item_size --the size of each item
  * base --the storage for the heap (n_items*item_size)
  *
- * Returns: (HeapPtr)
+ * Returns: (Heap *)
  * Success: The heap; Failure: NULL.
  *
  * Remarks:
  * The heap storage is not allocated by this module, it must be provided
  * by the caller.
  */
-HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
+Heap *heap_init(Heap *heap, CompareProc cmp, size_t n_items,
                   size_t item_size, void *base)
 {
     if (heap != NULL && base != NULL)
@@ -66,7 +66,7 @@ HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int heap_push(HeapPtr heap, const void *item)
+int heap_push(Heap *heap, const void *item)
 {
     if (heap != NULL && heap->n_used < heap->array.n_items)
     {
@@ -90,7 +90,7 @@ int heap_push(HeapPtr heap, const void *item)
  * Returns: (int)
  * Success: 1; Failure: 0.
  */
-int heap_pop(HeapPtr heap, void *item)
+int heap_pop(Heap *heap, void *item)
 {
     if (heap_peek(heap, item) != NULL)
     {
@@ -115,7 +115,7 @@ int heap_pop(HeapPtr heap, void *item)
  * Returns: (void *)
  * Success: a pointer to the top of heap; Failure: NULL.
  */
-void *heap_peek(HeapPtr heap, void *item)
+void *heap_peek(Heap *heap, void *item)
 {
     if (heap != NULL && heap->n_used > 0)
     {
@@ -137,7 +137,7 @@ void *heap_peek(HeapPtr heap, void *item)
  * heap --the heap
  * slot --the slot number in the heap array
  */
-void heap_delete(HeapPtr heap, size_t slot)
+void heap_delete(Heap *heap, size_t slot)
 {
     void *item = array_item(&heap->array, slot);
     void *last_item = array_item(&heap->array, heap->n_used - 1);

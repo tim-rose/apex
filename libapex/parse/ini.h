@@ -23,7 +23,7 @@ extern "C"
         char *name;                    /* file being parsed */
         int line;                      /* current line number in file */
         FILE *fp;
-    } Ini, *IniPtr;
+    } Ini;
 
     /*
      * IniProc() --Ini Parser action routine.
@@ -45,18 +45,18 @@ extern "C"
      * before a section stanza has been seen, the supplied section
      * argument will be NULL.
      */
-    typedef int (*IniProc)(IniPtr ini, const char *section, const char *name,
+    typedef int (*IniProc)(Ini *ini, const char *section, const char *name,
                            const char *value, void *data);
 
-    void ini_err(IniPtr c, const char *fmt, ...);
-    int ini_parse(IniPtr ini, IniProc proc, void *data);
-    IniPtr ini_fopen(const char *filename);
-    void ini_close(IniPtr ini);
+    void ini_err(Ini *c, const char *fmt, ...);
+    int ini_parse(Ini *ini, IniProc proc, void *data);
+    Ini *ini_fopen(const char *filename);
+    void ini_close(Ini *ini);
 
-    SymbolPtr ini_load(IniPtr ini, SymbolPtr symtab);
-    Type ini_sym_get(SymbolPtr sym, const char *section,
-                     const char *name, char *default_value, ValuePtr value);
-    void ini_sym_free(SymbolPtr sym);
+    Symbol *ini_load(Ini *ini, Symbol *symtab);
+    Type ini_sym_get(Symbol *sym, const char *section,
+                     const char *name, char *default_value, Value *value);
+    void ini_sym_free(Symbol *sym);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

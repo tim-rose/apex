@@ -18,13 +18,13 @@ extern "C"
     {
         const char *name;
         int value;
-    } SysEnum, *SysEnumPtr;
+    } SysEnum;
 
-    extern SysEnumPtr syslog_facility; /* list of syslog facilities */
-    extern SysEnumPtr syslog_priority; /* list of syslog priorities */
+    extern SysEnum *syslog_facility; /* list of syslog facilities */
+    extern SysEnum *syslog_priority; /* list of syslog priorities */
 
-    SysEnumPtr sysenum_find_number(SysEnumPtr list, int number);
-    SysEnumPtr sysenum_find_name(SysEnumPtr list, const char *name);
+    SysEnum *sysenum_find_number(SysEnum *list, int number);
+    SysEnum *sysenum_find_name(SysEnum *list, const char *name);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

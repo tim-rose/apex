@@ -20,7 +20,7 @@ extern "C"
     char *get_env_variable(const char *name, char *default_value);
     int create_pidfile(const char *path);
     void unlink_pidfile(void);
-    int wait_input(fd_set * input_set, fd_set * err_set, TimeValuePtr tv,
+    int wait_input(fd_set * input_set, fd_set * err_set, TimeValue *tv,
                    size_t n_fd, int fd[]);
     const char *path_basename(const char *path);
     const char *path_dirname(const char *path, size_t n, char dir_buf[]);

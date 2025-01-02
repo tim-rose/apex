@@ -69,7 +69,7 @@ int log_vsprintf(const LogContext * caller,
                  int sys_errno, size_t priority,
                  const char *fmt, va_list args)
 {
-    SysEnumPtr sys_priority;
+    SysEnum *sys_priority;
     char *start = str;
     char *end = str + len;
     int n;

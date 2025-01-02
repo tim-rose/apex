@@ -33,12 +33,12 @@ extern "C"
         int priority;                  /* parsed priority, or -1 */
         char *message;
         char text[SYSLOG_LINE_MAX];    /* original text, munged */
-    } LogRecord, *LogRecordPtr;
+    } LogRecord;
 
-    LogRecordPtr log_parse_r(LogRecordPtr log_record,
+    LogRecord *log_parse_r(LogRecord *log_record,
                              const char *str, struct tm *tm_base);
-    LogRecordPtr log_parse(const char *str, struct tm *tm_base);
-    LogRecordPtr log_fgets(LogRecordPtr log_record, FILE * fp,
+    LogRecord *log_parse(const char *str, struct tm *tm_base);
+    LogRecord *log_fgets(LogRecord *log_record, FILE * fp,
                            struct tm *tm_base);
 #ifdef __cplusplus
 }

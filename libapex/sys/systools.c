@@ -75,7 +75,7 @@ char *get_env_variable(const char *name, char *default_value)
  * This is a convenience function for the common case of using
  * select to wait for one or more inputs.
  */
-int wait_input(fd_set * input_set, fd_set * err_set, TimeValuePtr tv,
+int wait_input(fd_set * input_set, fd_set * err_set, TimeValue *tv,
                size_t n_fd, int fd[])
 {
     int max_fd = 0;

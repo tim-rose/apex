@@ -25,16 +25,16 @@ extern "C"
         char *path;
         char *query;
         char *anchor;
-    } URL, *URLPtr;
+    } URL;
 
 #define NULL_URL { .scheme = 0 }
 
     extern URL null_url;
 
-    int getopt_url(char *opt, URLPtr url);
-    int snprint_url(char *str, size_t n, URLPtr url);
+    int getopt_url(char *opt, URL *url);
+    int snprint_url(char *str, size_t n, URL *url);
     size_t url_encode(const char *text, size_t n, char *buf);
-    int str_url(char *opt, URLPtr url);
+    int str_url(char *opt, URL *url);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

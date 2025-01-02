@@ -29,7 +29,7 @@
  */
 static size_t opt_len_(Option opts[])
 {
-    OptionPtr opt = opts;
+    Option *opt = opts;
 
     while (opt->name != NULL)
     {
@@ -52,7 +52,7 @@ static char *compile_opts_(Option opts[], char *getopt_buf)
 {
     char *opt = getopt_buf;
 
-    for (OptionPtr c = opts; c != NULL && c->name != NULL; ++c)
+    for (Option *c = opts; c != NULL && c->name != NULL; ++c)
     {
         if (c->opt)
         {
@@ -84,7 +84,7 @@ static struct option *compile_longopts_(Option opts[])
     {
         struct option *l_opt = long_opts;
 
-        for (OptionPtr opt = opts; opt->name != NULL; ++opt, ++l_opt)
+        for (Option *opt = opts; opt->name != NULL; ++opt, ++l_opt)
         {
             l_opt->name = opt->name;
             l_opt->has_arg =
@@ -101,12 +101,12 @@ static struct option *compile_longopts_(Option opts[])
  * opts   --specifies the list of opts definitions
  * ch       --specifies the getopt() character
  *
- * Returns: (OptionPtr)
+ * Returns: (Option *)
  * Success: the opts definition; Failure: NULL.
  */
-static OptionPtr opt_find_getopt_(Option opts[], int ch)
+static Option *opt_find_getopt_(Option opts[], int ch)
 {
-    for (OptionPtr opt = opts; opt != NULL && opt->name != NULL; ++opt)
+    for (Option *opt = opts; opt != NULL && opt->name != NULL; ++opt)
     {
         if (opt->opt == ch)
         {
@@ -141,7 +141,7 @@ int opt_getopts(int argc, char *argv[], Option opts[])
     while ((ch = getopt(argc, (char **) argv, short_opts)) >= 0)
     {
         const char *value = NULL;
-        OptionPtr opt;
+        Option *opt;
 
         if (ch == '?')
         {
@@ -202,7 +202,7 @@ int opt_getopts_long(int argc, char *argv[], Option opts[])
     while ((ch = getopt_long(argc, (char **) argv,
                              short_opts, long_opts, &slot)) >= 0)
     {
-        OptionPtr opt;
+        Option *opt;
 
         if (ch == 0)
         {                              /* a long option was parsed */
@@ -264,7 +264,7 @@ int opt_getopts_long(int argc, char *argv[], Option opts[])
  */
 int opt_defaults(Option opts[])
 {
-    for (OptionPtr opt = opts; opt != NULL && opt->name != NULL; ++opt)
+    for (Option *opt = opts; opt != NULL && opt->name != NULL; ++opt)
     {
         if (opt->value != NULL && !opt->set)
         {
@@ -310,7 +310,7 @@ void opt_usage(const char *prologue, Option opts[], const char *epilogue)
 
     fprintf(stderr, "Usage:\n%s%s\n\nOptions:\n", indent, prologue);
 
-    for (OptionPtr opt = opts; opt != NULL && opt->name != NULL; ++opt)
+    for (Option *opt = opts; opt != NULL && opt->name != NULL; ++opt)
     {
         const char *value_name = opt->value_name ? opt->value_name : "value";
 

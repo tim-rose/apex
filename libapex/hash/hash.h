@@ -34,15 +34,15 @@ extern "C"
     {                                  /* (this should prob. be private */
         HashProc hash;
         size_t nslot;
-        LinkPtr slot[];                /* collision handled by linked list */
-    } Hash, *HashPtr;
+        Link *slot[];                /* collision handled by linked list */
+    } Hash;
 
-    HashPtr hash_new(HashProc hash, size_t nslot);
-    void hash_free(HashPtr h);
-    bool hash_insert(HashPtr h, void *data);
-    void *hash_remove(HashPtr h, CompareProc cmp, void *key);
-    void *hash_find(HashPtr h, CompareProc cmp, void *key);
-    void *hash_visit(HashPtr h, VisitProc visit, void *user_data);
+    Hash *hash_new(HashProc hash, size_t nslot);
+    void hash_free(Hash *h);
+    bool hash_insert(Hash *h, void *data);
+    void *hash_remove(Hash *h, CompareProc cmp, void *key);
+    void *hash_find(Hash *h, CompareProc cmp, void *key);
+    void *hash_visit(Hash *h, VisitProc visit, void *user_data);
 
     unsigned long hash_key_pjw(char *data);
     unsigned long hash_keyn_pjw(char *data, size_t n);

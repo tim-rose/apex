@@ -16,16 +16,16 @@ extern "C"
         ArrayContainer array;
         size_t n_used;                    /* current size of heap */
         CompareProc cmp;               /* heap item comparison function */
-    } Heap, *HeapPtr;
+    } Heap;
 
-    HeapPtr heap_alloc(void);
-    HeapPtr heap_init(HeapPtr heap, CompareProc cmp, size_t n_items,
+    Heap *heap_alloc(void);
+    Heap *heap_init(Heap *heap, CompareProc cmp, size_t n_items,
                       size_t item_size, void *items);
 
-    int heap_push(HeapPtr heap, const void *item);
-    int heap_pop(HeapPtr heap, void *item);
-    void *heap_peek(HeapPtr heap, void *item);
-    void heap_delete(HeapPtr heap, size_t slot);
+    int heap_push(Heap *heap, const void *item);
+    int heap_pop(Heap *heap, void *item);
+    void *heap_peek(Heap *heap, void *item);
+    void heap_delete(Heap *heap, size_t slot);
 
     /*
      * Convenience functions for malloc and item-size aware initialisation.

@@ -25,7 +25,7 @@
 /*
  * logrec_cmp_() --Compare two log records for equality.
  */
-static int logrec_cmp_(LogRecordPtr lr1, LogRecordPtr lr2)
+static int logrec_cmp_(LogRecord *lr1, LogRecord *lr2)
 {
     if (lr1->timestamp != lr2->timestamp
         || lr1->pid != lr2->pid
@@ -51,7 +51,7 @@ static int logrec_cmp_(LogRecordPtr lr1, LogRecordPtr lr2)
  * twice, and must get distinct strings to feed to a subsequent
  * diag().
  */
-static const char *logrec_sprint_(LogRecordPtr lr)
+static const char *logrec_sprint_(LogRecord *lr)
 {
     static int slot = 0;
     static char str_buf[2][LINE_MAX];
@@ -87,7 +87,7 @@ static const char *logrec_sprint_(LogRecordPtr lr)
  */
 int main(void)
 {
-    LogRecordPtr l;
+    LogRecord *l;
     struct tm base_tm = {.tm_isdst = -1 }, feb_tm = {
         .tm_isdst = -1
     };

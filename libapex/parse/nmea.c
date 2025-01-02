@@ -45,7 +45,7 @@ unsigned int nmea_checksum(const char *str, const char *end)
  * Returns: (int)
  * Success: NMEA_OK; Failure: NEMA_EOF, NMEA_ERR.
  */
-int nmea_parse(NmeaPtr nmea, const char *str)
+int nmea_parse(Nmea *nmea, const char *str)
 {
     char *ptr, *end;
     unsigned check;
@@ -105,7 +105,7 @@ int nmea_parse(NmeaPtr nmea, const char *str)
  * Returns: (int)
  * Success: NMEA_OK; Failure: NEMA_EOF, NMEA_ERR.
  */
-int nmea_fget(NmeaPtr nmea, FILE * fp)
+int nmea_fget(Nmea *nmea, FILE * fp)
 {
     char text[NMEA_LINE_MAX + 3];
 
@@ -133,7 +133,7 @@ int nmea_fget(NmeaPtr nmea, FILE * fp)
  * Remarks:
  * This routine does not check for buffer overflow!
  */
-char *nmea_fmt(NmeaPtr nmea, char *str)
+char *nmea_fmt(Nmea *nmea, char *str)
 {
     char *start = str;
     unsigned int checksum;
@@ -165,7 +165,7 @@ char *nmea_fmt(NmeaPtr nmea, char *str)
  * Returns: (int)
  * Propagated fputs() return value.
  */
-int nmea_fputs(NmeaPtr nmea, FILE * fp)
+int nmea_fputs(Nmea *nmea, FILE * fp)
 {
     char text[NMEA_LINE_MAX + 3];
 

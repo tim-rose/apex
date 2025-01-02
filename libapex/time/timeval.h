@@ -13,24 +13,24 @@ extern "C"
 #endif                                 /* C++ */
 #define PRI_TIMEVALUE	"{%ld, %d}"
 
-    typedef struct timeval TimeValue, *TimeValuePtr;
+    typedef struct timeval TimeValue;
 
-    int tv_set(TimeValuePtr tv, double t);
-    int tv_cmp(TimeValuePtr t1, TimeValuePtr t2);
-    TimeValuePtr tv_normalise(TimeValuePtr t);
-    TimeValuePtr tv_diff(TimeValuePtr t1, TimeValuePtr t2);
-    TimeValuePtr tv_diff_r(TimeValuePtr t1, TimeValuePtr t2,
-                           TimeValuePtr result);
-    TimeValuePtr tv_sum(TimeValuePtr t1, TimeValuePtr t2);
-    TimeValuePtr tv_sum_r(TimeValuePtr t1, TimeValuePtr t2,
-                          TimeValuePtr result);
-    TimeValuePtr tv_scale(TimeValuePtr t1, double scale);
-    TimeValuePtr tv_scale_r(TimeValuePtr t1, double scale,
-                            TimeValuePtr result);
+    int tv_set(TimeValue *tv, double t);
+    int tv_cmp(TimeValue *t1, TimeValue *t2);
+    TimeValue *tv_normalise(TimeValue *t);
+    TimeValue *tv_diff(TimeValue *t1, TimeValue *t2);
+    TimeValue *tv_diff_r(TimeValue *t1, TimeValue *t2,
+                           TimeValue *result);
+    TimeValue *tv_sum(TimeValue *t1, TimeValue *t2);
+    TimeValue *tv_sum_r(TimeValue *t1, TimeValue *t2,
+                          TimeValue *result);
+    TimeValue *tv_scale(TimeValue *t1, double scale);
+    TimeValue *tv_scale_r(TimeValue *t1, double scale,
+                            TimeValue *result);
 
 
-    char *tv_strftime(TimeValuePtr tv, const char *fmt);
-    char *tv_strftime_r(TimeValuePtr tv, const char *fmt,
+    char *tv_strftime(TimeValue *tv, const char *fmt);
+    char *tv_strftime_r(TimeValue *tv, const char *fmt,
                         char *text, size_t size);
 
     extern TimeValue tv_min, tv_max;

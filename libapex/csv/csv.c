@@ -12,7 +12,7 @@
  * csv_read()          --Read a record from the CSV file.
  * csv_write()         --Write a record to the CSV file.
  * csv_field()         --Find a CSV file's field by name.
- * parse_fields()      --Parse a list of names into a vector of CSVFieldPtrs.
+ * parse_fields()      --Parse a list of names into a vector of CSVField*.
  *
  * Remarks:
  * This module provides a simple open/close/read/write API for
@@ -46,7 +46,7 @@ static char csv_str_fmt[] = "%s";
 /*
  * debug_fields_() --Log field information at debug level.
  */
-static void debug_fields_(const char *proc, int n, const CSVFieldPtr f)
+static void debug_fields_(const char *proc, int n, const CSVField *f)
 {
     debug("%s: %d fields", proc, n);
     for (int i = 0; i < n; ++i)
@@ -86,11 +86,11 @@ static void csv_strip_eol_(char *str)
  * Returns: (size_t)
  * Success: the No. of fields in the header; Failure: 0.
  */
-static size_t csv_mk_header_(char *header, CSVFieldPtr * csv_fld)
+static size_t csv_mk_header_(char *header, CSVField ** csv_fld)
 {
     char *h;
     size_t n;
-    CSVFieldPtr field = NULL;
+    CSVField *field = NULL;
     static CSVField default_field = {
         {.type = STRING_TYPE},
         .scan_fmt = (char *) csv_str_fmt,
@@ -135,9 +135,9 @@ static size_t csv_mk_header_(char *header, CSVFieldPtr * csv_fld)
  * Remarks:
  * This routine only compares the names of the fields, not the types.
  */
-static int csv_cmp_header_(char *header, size_t n_fld, CSVFieldPtr csv_fld)
+static int csv_cmp_header_(char *header, size_t n_fld, CSVField *csv_fld)
 {
-    CSVFieldPtr field;
+    CSVField *field;
     size_t n_field;
     int diff_status = 0;
 
@@ -165,7 +165,7 @@ static int csv_cmp_header_(char *header, size_t n_fld, CSVFieldPtr csv_fld)
  * Parameters:
  * csv_fp    --the CSV file pointer
  */
-static void csv_write_header_(CSVFilePtr csv_fp)
+static void csv_write_header_(CSVFile *csv_fp)
 {
     fputs(csv_fp->field[0].item.name, csv_fp->fp);
 
@@ -185,7 +185,7 @@ static void csv_write_header_(CSVFilePtr csv_fp)
  * mode --specifies the file opening mode: one of "r", "w", "a"
  * ...  --other parameters, but only for "w", "a" modes
  *
- * Returns: (CSVFilePtr)
+ * Returns: (CSVFile *)
  * Success: the opened file; Failure: NULL.
  *
  * Remarks:
@@ -202,10 +202,10 @@ static void csv_write_header_(CSVFilePtr csv_fp)
  * the caller-provided header is used, and is assumed to be managed by
  * the caller (i.e. csv_close() will not free it).
  */
-CSVFilePtr csv_open(const char *path, const char *mode, ...)
+CSVFile *csv_open(const char *path, const char *mode, ...)
 {
     va_list ap;
-    CSVFilePtr csv_fp;
+    CSVFile *csv_fp;
     char header[CSV_TEXT_MAX + 1] = "";
 
     if (!(*mode == 'a' || *mode == 'r' || *mode == 'w'))
@@ -233,7 +233,7 @@ CSVFilePtr csv_open(const char *path, const char *mode, ...)
         va_start(ap, mode);
         csv_fp->n_field = (size_t) va_arg(ap, int);
 
-        csv_fp->field = va_arg(ap, CSVFieldPtr);
+        csv_fp->field = va_arg(ap, CSVField *);
         va_end(ap);
 
         trace_debug("%zu fields", csv_fp->n_field);
@@ -278,7 +278,7 @@ CSVFilePtr csv_open(const char *path, const char *mode, ...)
  * so we free it too.  Otherwise, we assume that the caller allocated
  * and is managing the memory.
  */
-void csv_close(CSVFilePtr csv_fp)
+void csv_close(CSVFile *csv_fp)
 {
     if (csv_fp->fp != NULL)
     {
@@ -316,13 +316,13 @@ void csv_close(CSVFilePtr csv_fp)
  * This breaks every rule in the book relating to data design and
  * modularity, but, uh, sometimes cheezy is useful, ya know?
  */
-int csv_read(CSVFilePtr csv_fp, size_t n_value, Atom value[],
+int csv_read(CSVFile *csv_fp, size_t n_value, Atom value[],
              size_t n_byte, char bytes[])
 {
     char *cp = bytes;
     size_t n_fields;
-    CSVFieldPtr fld = csv_fp->field;
-    AtomPtr val = value;
+    CSVField *fld = csv_fp->field;
+    Atom *val = value;
 
     if (csv_fp->mode != 'r')
     {
@@ -373,10 +373,10 @@ int csv_read(CSVFilePtr csv_fp, size_t n_value, Atom value[],
  * characters (e.g. "\n" etc.) and possibly quoting the whole field in
  * the way that excel does.
  */
-int csv_write(CSVFilePtr csv_fp, size_t n_value, Atom value[])
+int csv_write(CSVFile *csv_fp, size_t n_value, Atom value[])
 {
-    CSVFieldPtr fld = csv_fp->field;
-    AtomPtr val = value;
+    CSVField *fld = csv_fp->field;
+    Atom *val = value;
 
     if (csv_fp->mode == 'r')
     {
@@ -402,12 +402,12 @@ int csv_write(CSVFilePtr csv_fp, size_t n_value, Atom value[])
  * csv_fp    --the CSV file pointer
  * name     --the name of the field to search for
  *
- * Returns: (SymbolPtr)
+ * Returns: (Symbol *)
  * Success: a pointer to the field; Failure: NULL.
  */
-CSVFieldPtr csv_field(CSVFilePtr csv_fp, const char *name)
+CSVField *csv_field(CSVFile *csv_fp, const char *name)
 {
-    CSVFieldPtr fld = csv_fp->field;
+    CSVField *fld = csv_fp->field;
     int slot;
 
     if (str_int(name, &slot) && slot > 0
@@ -427,24 +427,24 @@ CSVFieldPtr csv_field(CSVFilePtr csv_fp, const char *name)
 }
 
 /*
- * parse_fields() --Parse a list of names into a vector of CSVFieldPtrs.
+ * parse_fields() --Parse a list of names into a vector of CSVField*.
  *
- * Returns: (CSVFieldPtr *)
- * Success: a vector of pointers to CSVFieldPtrs; Failure: NULL.
+ * Returns: (CSVField **)
+ * Success: a vector of pointers to CSVField; Failure: NULL.
  *
  * Remarks:
  * The returned vector is allocated on the heap; it is the caller's
  * responsibility to free it.
  */
-CSVFieldPtr *csv_parse_fields(CSVFilePtr csv_fp, char *fields)
+CSVField **csv_parse_fields(CSVFile *csv_fp, char *fields)
 {
-    CSVFieldPtr *field = new_vector(sizeof(*field), 0, NULL);
+    CSVField **field = new_vector(sizeof(*field), 0, NULL);
     int n = strsplit(fields, ',');
     const char *unk_field = "unknown field \"%s\"";
 
     while (n--)
     {
-        CSVFieldPtr f1, f2;
+        CSVField *f1, *f2;
         int len = strlen(fields);
         char *alt = strchr(fields, '-');
 
@@ -494,7 +494,7 @@ CSVFieldPtr *csv_parse_fields(CSVFilePtr csv_fp, char *fields)
             field = NULL;
             break;
         }
-        for (CSVFieldPtr f = f1; f <= f2; ++f)
+        for (CSVField *f = f1; f <= f2; ++f)
         {
             field = vector_add(field, 1, &f);
         }

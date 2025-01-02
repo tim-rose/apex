@@ -70,7 +70,7 @@ static void test_pool(int n, int prealloc)
 {
     char *storage[n];
     Pool pool;
-    PoolPtr p = init_pool(&pool, storage);
+    Pool *p = init_pool(&pool, storage);
     int status = 1;
     void *item = NULL;
 

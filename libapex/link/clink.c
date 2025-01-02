@@ -51,13 +51,13 @@
  * Returns: (int)
  * The length of the list.
  */
-int clink_len(LinkPtr tail)
+int clink_len(Link *tail)
 {
     int n = 0;
 
     if (tail != NULL)
     {
-        LinkPtr l = tail->next;
+        Link *l = tail->next;
 
         for (n = 1; l != tail; ++n)
         {
@@ -73,13 +73,13 @@ int clink_len(LinkPtr tail)
  * Parameters:
  * tail --specifies the tail of the (circular) list to reversed
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * the tail of the reversed list.
  */
-LinkPtr clink_reverse(LinkPtr tail)
+Link *clink_reverse(Link *tail)
 {
-    LinkPtr p, l, n;
-    LinkPtr head;
+    Link *p, *l, *n;
+    Link *head;
 
     if (tail == NULL || tail->next == tail)
     {
@@ -104,7 +104,7 @@ LinkPtr clink_reverse(LinkPtr tail)
  * tail --specifies the tail of the (circular) list to be rotated
  * n    --specifies the amount to rotate
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * The tail of the rotated list.
  *
  * Remarks:
@@ -115,7 +115,7 @@ LinkPtr clink_reverse(LinkPtr tail)
  * Another routine that permutes links is clink_reverse(), which
  * reverses the sequence of a list in-place.
  */
-LinkPtr clink_rotate(LinkPtr tail, int n)
+Link *clink_rotate(Link *tail, int n)
 {
     if (tail != NULL && n != 0)
     {
@@ -140,10 +140,10 @@ LinkPtr clink_rotate(LinkPtr tail, int n)
  * tail --the tail of the list to add this link
  * link --the link to add.
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * the tail of the modified list.
  */
-LinkPtr clink_add(LinkPtr tail, LinkPtr link)
+Link *clink_add(Link *tail, Link *link)
 {
     if (tail == NULL)
     {
@@ -164,7 +164,7 @@ LinkPtr clink_add(LinkPtr tail, LinkPtr link)
  * value    --the value to insert
  * mode --the insertion mode (fail, replace, duplicate)
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * Success: the tail of the modified list; Failure: NULL.
  *
  * Parameter <code>mode</code> is used to handle the situation where
@@ -172,13 +172,13 @@ LinkPtr clink_add(LinkPtr tail, LinkPtr link)
  *
  * See Also: LinkInsertMode
  */
-LinkPtr clink_insert(LinkPtr tail, CompareProc cmp, void *value,
+Link *clink_insert(Link *tail, CompareProc cmp, void *value,
                      LinkInsertMode mode)
 {
-    LinkPtr head = tail->next;
-    LinkPtr l = head;
-    LinkPtr prev = tail;
-    LinkPtr n;
+    Link *head = tail->next;
+    Link *l = head;
+    Link *prev = tail;
+    Link *n;
     int diff;
 
     do
@@ -237,20 +237,20 @@ LinkPtr clink_insert(LinkPtr tail, CompareProc cmp, void *value,
  * key  --the key value used to compare items
  * remlink  --returns the link that was removed (if any)
  *
- * Returns: (LinkPtr)
+ * Returns: (Link *)
  * the tail of the modified list; NULL if the list is empty.
  *
  * Remarks:
  * remlink will be set to NULL if the item is not found.
  */
-LinkPtr clink_remove(LinkPtr tail, CompareProc cmp, void *key,
-                     LinkPtr * remlink)
+Link *clink_remove(Link *tail, CompareProc cmp, void *key,
+                     Link ** remlink)
 {
     if (tail != NULL)
     {
-        LinkPtr head = tail->next;
-        LinkPtr l = head;
-        LinkPtr prev = tail;
+        Link *head = tail->next;
+        Link *l = head;
+        Link *prev = tail;
 
         do
         {
@@ -287,10 +287,10 @@ LinkPtr clink_remove(LinkPtr tail, CompareProc cmp, void *key,
  * Returns: (void *)
  * Success: the item; Failure: NULL.
  */
-void *clink_find(LinkPtr tail, CompareProc cmp, void *key)
+void *clink_find(Link *tail, CompareProc cmp, void *key)
 {
-    LinkPtr head;
-    LinkPtr l;
+    Link *head;
+    Link *l;
 
     if (tail != NULL)
     {
@@ -326,10 +326,10 @@ void *clink_find(LinkPtr tail, CompareProc cmp, void *key)
  *
  * See Also: clink_find, clink_insert
  */
-void *clink_visit(LinkPtr tail, VisitProc visit, void *usrdata)
+void *clink_visit(Link *tail, VisitProc visit, void *usrdata)
 {
-    LinkPtr head = tail->next;
-    LinkPtr l = head;
+    Link *head = tail->next;
+    Link *l = head;
 
     do
     {

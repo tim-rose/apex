@@ -66,7 +66,7 @@ typedef struct TapState
     int todo;                          /* "in TODO block" mode flag */
     int skip;                          /* "skipping all tests" mode flag */
     char todo_text[TAP_LINE_MAX];
-} TapState, *TapStatePtr;
+} TapState;
 
 static void tap_init_(void);
 static void tap_exit_(void);

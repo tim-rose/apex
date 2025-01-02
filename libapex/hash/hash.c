@@ -29,16 +29,16 @@
  * hash_proc --the hash function, used to allocate items to slots
  * nslot    -- the number of slots in the hashtable
  *
- * Returns: (HashPtr)
+ * Returns: (Hash *)
  * Success: the hash table; Failure: NULL.
  */
-HashPtr hash_new(HashProc hash_proc, size_t nslot)
+Hash *hash_new(HashProc hash_proc, size_t nslot)
 {
-    HashPtr hash = NULL;
+    Hash *hash = NULL;
 
     if (nslot > 0)
     {
-        hash = (HashPtr) malloc(sizeof(Hash) + nslot * sizeof(LinkPtr));
+        hash = (Hash *) malloc(sizeof(Hash) + nslot * sizeof(Link *));
         if (hash != NULL)
         {
             hash->hash = hash_proc;
@@ -72,7 +72,7 @@ HashPtr hash_new(HashProc hash_proc, size_t nslot)
  *     hash_visit(h, free_my_data, arg);
  *     hash_free(h);
  */
-void hash_free(HashPtr hash)
+void hash_free(Hash *hash)
 {
     size_t n_slot = hash->nslot;
 
@@ -96,11 +96,11 @@ void hash_free(HashPtr hash)
  * Returns: (int)
  * Success: true; Failure: false.
  */
-bool hash_insert(HashPtr hash, void *data)
+bool hash_insert(Hash *hash, void *data)
 {
     size_t i = hash->hash(data) % hash->nslot;
-    LinkPtr tail = hash->slot[i];
-    LinkPtr l;
+    Link *tail = hash->slot[i];
+    Link *l;
 
     if ((l = link_new(tail, data)) == NULL)
     {
@@ -121,14 +121,14 @@ bool hash_insert(HashPtr hash, void *data)
  * Returns: (void *)
  * Success: the removed item; Failure: NULL.
  */
-void *hash_remove(HashPtr hash, CompareProc cmp, void *key)
+void *hash_remove(Hash *hash, CompareProc cmp, void *key)
 {
     size_t key_slot = hash->hash(key) % hash->nslot;
-    LinkPtr tail = hash->slot[key_slot];
+    Link *tail = hash->slot[key_slot];
 
     if (tail != NULL)
     {
-        LinkPtr rlink;
+        Link *rlink;
 
         hash->slot[key_slot] = clink_remove(tail, cmp, key, &rlink);
         if (rlink != NULL)
@@ -153,10 +153,10 @@ void *hash_remove(HashPtr hash, CompareProc cmp, void *key)
  * Returns: (void *)
  * Success: the item; Failure: NULL.
  */
-void *hash_find(HashPtr hash, CompareProc cmp, void *key)
+void *hash_find(Hash *hash, CompareProc cmp, void *key)
 {
     size_t key_slot = hash->hash(key) % hash->nslot;
-    LinkPtr tail = hash->slot[key_slot];
+    Link *tail = hash->slot[key_slot];
 
     if (tail != NULL)
     {
@@ -183,14 +183,14 @@ void *hash_find(HashPtr hash, CompareProc cmp, void *key)
  *
  * See Also: hash_find
  */
-void *hash_visit(HashPtr hash, VisitProc visit, void *user_data)
+void *hash_visit(Hash *hash, VisitProc visit, void *user_data)
 {
     size_t nslot = hash->nslot;
 
     for (size_t i = 0; i < nslot; ++i)
     {                                  /* for each slot... */
         void *value;
-        LinkPtr tail = hash->slot[i];
+        Link *tail = hash->slot[i];
 
         if (tail != NULL &&
             (value = clink_visit(tail, visit, user_data)) != NULL)

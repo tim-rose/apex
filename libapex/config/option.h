@@ -39,7 +39,7 @@ extern "C"
         OptionProc proc;               /* convert/validate handler function */
         void *data;                    /* address to receive option value */
         int set;                       /* flag: has this option been set already? */
-    } Option, *OptionPtr, *Options;
+    } Option, *Options;
 
     int opt_defaults(Option opts[]);
     int opt_getopts(int argc, char *argv[], Option opts[]);

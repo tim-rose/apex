@@ -14,15 +14,15 @@ extern "C"
     {
         ArrayContainer array;
         size_t top;                       /* current top of stack */
-    } Stack, *StackPtr;
+    } Stack;
 
-    StackPtr stack_alloc(void);
-    StackPtr stack_init(StackPtr stack, size_t n_items,
+    Stack *stack_alloc(void);
+    Stack *stack_init(Stack *stack, size_t n_items,
                         size_t item_size, void *items);
 
-    int stack_push(StackPtr stack, const void *item);
-    int stack_pop(StackPtr stack, void *item);
-    void *stack_peek(StackPtr stack, void *item);
+    int stack_push(Stack *stack, const void *item);
+    int stack_pop(Stack *stack, void *item);
+    void *stack_peek(Stack *stack, void *item);
 
 
     /*

@@ -42,13 +42,13 @@ extern "C"
         size_t n_values;               /* No. used slots in value[] */
         char *value[NMEA_LINE_MAX];    /* CSV values */
         char text[NMEA_LINE_MAX + 3];
-    } Nmea, *NmeaPtr;
+    } Nmea;
 
     unsigned int nmea_checksum(const char *str, const char *end);
-    int nmea_parse(NmeaPtr nmea_buf, const char *str);
-    int nmea_fget(NmeaPtr nmea_buf, FILE * fp);
-    char *nmea_fmt(NmeaPtr nmea_buf, char *str);
-    int nmea_fputs(NmeaPtr nmea_buf, FILE * fp);
+    int nmea_parse(Nmea *nmea_buf, const char *str);
+    int nmea_fget(Nmea *nmea_buf, FILE * fp);
+    char *nmea_fmt(Nmea *nmea_buf, char *str);
+    int nmea_fputs(Nmea *nmea_buf, FILE * fp);
 
 #ifdef __cplusplus
 }

@@ -47,7 +47,7 @@
  * Remarks:
  * Actually, I'm only handling "#line" at the moment.
  */
-static void ini_pragma_(IniPtr ini, char *line)
+static void ini_pragma_(Ini *ini, char *line)
 {
     char filename[LINE_MAX] = "";
     int number;
@@ -72,7 +72,7 @@ static void ini_pragma_(IniPtr ini, char *line)
  * the search for comments (which are also stripped), and let the
  * caller use scanf to handled the rest.
  */
-static char *ini_skip_(IniPtr ini, char *line)
+static char *ini_skip_(Ini *ini, char *line)
 {
     char *end;
 
@@ -126,7 +126,7 @@ static char *ini_value_(char *value)
  * ini    --lexer context
  * fmt, ...  --printf varargs
  */
-void ini_err(IniPtr ini, const char *fmt, ...)
+void ini_err(Ini *ini, const char *fmt, ...)
 {
     va_list argptr;
 
@@ -153,7 +153,7 @@ void ini_err(IniPtr ini, const char *fmt, ...)
  * The caller-provided IniProc will be called for every definition
  * as it is parsed.
  */
-int ini_parse(IniPtr ini, IniProc proc, void *data)
+int ini_parse(Ini *ini, IniProc proc, void *data)
 {
     char line_buf[LINE_MAX];
     char section_buf[LINE_MAX];
@@ -199,17 +199,17 @@ int ini_parse(IniPtr ini, IniProc proc, void *data)
  * Parameters:
  * path --the name of the file to open
  *
- * Returns: (IniPtr)
+ * Returns: (Ini *)
  * Success: an Ini lexer context; Failure: NULL.
  *
  * Remarks:
  * We wrap a file with some lexer state so that ini_err() can report
  * errors correctly.  If this routine returns failure, errno will be set.
  */
-IniPtr ini_fopen(const char *filename)
+Ini *ini_fopen(const char *filename)
 {
     FILE *fp;
-    IniPtr ini = NULL;
+    Ini *ini = NULL;
 
     if ((fp = fopen(filename, "r")) == NULL)
     {
@@ -229,7 +229,7 @@ IniPtr ini_fopen(const char *filename)
 /*
  * ini_close() --Close an open Ini context, including its file.
  */
-void ini_close(IniPtr ini)
+void ini_close(Ini *ini)
 {
     if (ini->fp != NULL)
     {

@@ -134,7 +134,7 @@ int str_convert(const char *opt, double *value_ptr, Conversion conversions[])
 {
     double value;
     char *end;
-    ConversionPtr conversion;
+    Conversion *conversion;
 
     if (opt == NULL)
     {
@@ -177,8 +177,8 @@ int str_convertn(const char *opt, double *value_ptr, size_t n_conversion,
 {
     double value;
     char *end;
-    ConversionPtr conversion;
-    ConversionPtr conversion_end = conversions + n_conversion;
+    Conversion *conversion;
+    Conversion *conversion_end = conversions + n_conversion;
 
     if (opt == NULL)
     {
@@ -215,7 +215,7 @@ double scale(double val, double *multiplier)
 /*
  * linear() --Simple linear (y = mx + c) conversion function.
  */
-double linear(double val, LinearConvertArgPtr arg)
+double linear(double val, LinearConvertArg *arg)
 {
     return val * arg->m + arg->c;
 }

@@ -15,13 +15,13 @@ extern "C"
         ArrayContainer array;
         size_t n_used;                    /* maximum number of used items */
         void *free;                    /* current list of freed items. */
-    } Pool, *PoolPtr;
+    } Pool;
 
-    PoolPtr pool_alloc(void);
-    PoolPtr pool_init(PoolPtr pool, size_t n_items, size_t item_size, void *items);
+    Pool *pool_alloc(void);
+    Pool *pool_init(Pool *pool, size_t n_items, size_t item_size, void *items);
 
-    void *pool_new(PoolPtr pool);
-    void pool_delete(PoolPtr pool, void *item);
+    void *pool_new(Pool *pool);
+    void pool_delete(Pool *pool, void *item);
 
 
     /*

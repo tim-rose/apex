@@ -95,7 +95,7 @@ static void test_int(int n)
     int storage[n];
     int item = n + 1;
     AtomicQueue queue;
-    AtomicQueuePtr q = init_queue(&queue, storage);
+    AtomicQueue *q = init_queue(&queue, storage);
 
     ok(q == &queue, "init_queue() returns first argument");
     number_eq(queue_pop(q, &item), 0, "%d",

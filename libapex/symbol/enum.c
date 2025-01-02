@@ -42,7 +42,7 @@ int enum_cmp(const Enum * a, const Enum * b)
  * supply a "sufficiently large" value, as long as there's an empty
  * slot at the end.
  */
-int str_enum(const char *name, size_t n_items, Enum item[], int *valp)
+int str_enum(const char *name, size_t n_items, const Enum item[], int *valp)
 {
     for (size_t i = 0; i < n_items; ++i)
     {
@@ -62,7 +62,7 @@ int str_enum(const char *name, size_t n_items, Enum item[], int *valp)
 /*
  * enum_value() --Return the value for an Enum name.
  */
-int enum_value(const char *name, const EnumPtr item)
+int enum_value(const char *name, const Enum *item)
 {
     int value = -1;
 
@@ -85,7 +85,7 @@ int enum_value(const char *name, const EnumPtr item)
  * small.  binsearch() could work for larger tables.  I'm not assuming
  * the IDs are consecutive ints, so direct addressing is not used.
  */
-const char *enum_name(int value, EnumPtr item)
+const char *enum_name(int value, const Enum *item)
 {
     for (size_t i = 0; item[i].name != NULL; ++i)
     {

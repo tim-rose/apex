@@ -32,26 +32,26 @@ extern "C"
     typedef struct HTTPRequest
     {
         URL url;
-        SymbolPtr header;
-    } HTTPRequest, *HTTPRequestPtr;
+        Symbol *header;
+    } HTTPRequest;
 
     typedef struct HTTPResponse
     {
         URL url;
         int status;
-        SymbolPtr header;
+        Symbol *header;
         const char *content;
-    } HTTPResponse, *HTTPResponsePtr;
+    } HTTPResponse;
 
-    FILE *http_connect(URLPtr url);
+    FILE *http_connect(URL *url);
     size_t http_send_request(FILE * fp, const char *method,
-                             URLPtr url, const char *version);
-    size_t http_send_header(FILE * fp, int n_header, SymbolPtr header);
+                             URL *url, const char *version);
+    size_t http_send_header(FILE * fp, int n_header, Symbol *header);
 
-    HTTPResponsePtr http_request(const char *method,
-                                 HTTPRequestPtr http_req,
+    HTTPResponse *http_request(const char *method,
+                                 HTTPRequest *http_req,
                                  const char *version);
-    void http_free_response(HTTPResponsePtr r);
+    void http_free_response(HTTPResponse *r);
 #ifdef __cplusplus
 }
 #endif                                 /* C++ */

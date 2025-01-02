@@ -23,13 +23,13 @@ extern "C"
         LOG_DOMAIN_PRINT = 1,
         LOG_DOMAIN_UNDEFINED = 0,
         LOG_DOMAIN_SUPPRESS = -1
-    } LogDomainStatus, *LogDomainStatusPtr;
+    } LogDomainStatus;
 
     typedef struct LogDomain
     {
         const char *name;
         LogDomainStatus status;
-    } LogDomain, *LogDomainPtr;
+    } LogDomain;
 
     void log_domain_init(const char *domain_spec);
 
@@ -37,38 +37,38 @@ extern "C"
      * These routines are simply "domain-enhanced" versions of the
      * base logging routines.
      */
-    int log_domain_msg(LogDomainPtr domain, size_t priority, const char *fmt,
+    int log_domain_msg(LogDomain *domain, size_t priority, const char *fmt,
                        ...) PRINTF_ATTRIBUTE(3, 4);
 
-    int log_domain_emerg(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_emerg(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_alert(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_alert(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_crit(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_crit(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_err(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_err(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_warning(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_warning(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_notice(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_notice(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_info(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_info(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_debug(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_debug(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    int log_domain_quit(LogDomainPtr domain, int exit_status, const char *fmt, ...) PRINTF_ATTRIBUTE(3, 4); /* fatal proc */
+    int log_domain_quit(LogDomain *domain, int exit_status, const char *fmt, ...) PRINTF_ATTRIBUTE(3, 4); /* fatal proc */
 
-    int log_domain_sys(LogDomainPtr domain, const char *fmt, ...)
+    int log_domain_sys(LogDomain *domain, const char *fmt, ...)
         PRINTF_ATTRIBUTE(2, 3);
-    void log_domain_sys_quit(LogDomainPtr domain, int exit_status,
+    void log_domain_sys_quit(LogDomain *domain, int exit_status,
                              const char *fmt, ...) PRINTF_ATTRIBUTE(3, 4);
-    void log_domain_sys_abort(LogDomainPtr domain, const char *fmt,
+    void log_domain_sys_abort(LogDomain *domain, const char *fmt,
                               ...) PRINTF_ATTRIBUTE(2, 3);
 
     /*
      * These routines provide log caller information.
      */
-    int trace_domain_msg(LogDomainPtr domain, const char *func,
+    int trace_domain_msg(LogDomain *domain, const char *func,
                          const char *file, int line, size_t priority,
                          const char *fmt, ...) PRINTF_ATTRIBUTE(6, 7);
 

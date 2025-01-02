@@ -36,14 +36,14 @@
  * strings, but I plan to change this to apply a list of conversions,
  * probably passed as part of the callback data.
  */
-static int load_(IniPtr ini, const char *section, const char *name,
+static int load_(Ini *ini, const char *section, const char *name,
                  const char *value, void *data)
 {
-    SymbolPtr *sym_ptr = (SymbolPtr *) data;
+    Symbol **sym_ptr = (Symbol **) data;
     static Atom path[] = { {.type = STRING_TYPE}, {.value.integer = 0} };
     Type node_type;
-    ValuePtr node_vptr;
-    ValuePtr section_vptr;
+    Value *node_vptr;
+    Value *section_vptr;
     Symbol node = {.type = STRING_TYPE };
 
     if (*sym_ptr == NULL)
@@ -137,7 +137,7 @@ static int load_(IniPtr ini, const char *section, const char *name,
  * if an initialised symbol table is passed, the ini-proc will replace
  * existing values.
  */
-SymbolPtr ini_load(IniPtr ini, SymbolPtr sym)
+Symbol *ini_load(Ini *ini, Symbol *sym)
 {
     if (ini_parse(ini, load_, &sym))
     {
@@ -165,8 +165,8 @@ SymbolPtr ini_load(IniPtr ini, SymbolPtr sym)
  *  * it's two-level only (i.e. "section.name")
  *  * there may be a "default" section.
  */
-Type ini_sym_get(SymbolPtr sym, const char *section,
-                 const char *name, char *default_value, ValuePtr value)
+Type ini_sym_get(Symbol *sym, const char *section,
+                 const char *name, char *default_value, Value *value)
 {
     Type type;
     Atom path[3] = {
@@ -195,7 +195,7 @@ Type ini_sym_get(SymbolPtr sym, const char *section,
     return VOID_TYPE;
 }
 
-void ini_sym_free(SymbolPtr sym)
+void ini_sym_free(Symbol *sym)
 {
     Value value = {.field = sym };
 
