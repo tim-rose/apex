@@ -18,7 +18,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct ArrayContainer_t
+    typedef struct ArrayContainer
     {
         size_t n_items;
         size_t item_size;

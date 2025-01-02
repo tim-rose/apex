@@ -15,7 +15,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct URL_t
+    typedef struct URL
     {
         char *scheme;
         char *user;

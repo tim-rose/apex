@@ -23,7 +23,7 @@ extern "C"
     /*
      * LogRecord --A parsed syslog record
      */
-    typedef struct LogRecord_t
+    typedef struct LogRecord
     {
         time_t timestamp;
         char *host;

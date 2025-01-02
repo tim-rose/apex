@@ -26,7 +26,7 @@
 static char all_domains[] = "*";
 static char *default_domains[] = { all_domains, NULL };
 
-typedef struct LogDomainConfig_t
+typedef struct LogDomainConfig
 {
     char **domains;                    /* list of domain names */
     LogDomainStatus mode;              /* logging status of domains in list */

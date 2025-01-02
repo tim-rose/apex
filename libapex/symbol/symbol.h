@@ -49,7 +49,7 @@ extern "C"
     /*
      * Type --The various types understood by the SYMBOL ADT.
      */
-    typedef enum Type_t
+    typedef enum Type
     {
         VOID_TYPE = 0,
         REAL_TYPE = 1,
@@ -62,7 +62,7 @@ extern "C"
     /*
      * Value --A union of the allowed values for symbols.
      */
-    typedef union Value_t
+    typedef union Value
     {
         double real;
         SYMBOL_INT integer;
@@ -79,7 +79,7 @@ extern "C"
      * (FWIW: Lisp(s) typically hold the type information in unused
      * bits of the value.)
      */
-    typedef struct Atom_t
+    typedef struct Atom
     {
         Type type;
         Value value;
@@ -94,7 +94,7 @@ extern "C"
      * so that it can be re-used for some externally defined keywords
      * in syslog (i.e. facilitynames, prioritynames)
      */
-    typedef struct Enum_t
+    typedef struct Enum
     {
         const char *name;
         int value;
@@ -103,7 +103,7 @@ extern "C"
     /*
      * Symbol --A complete symbol: name, type, value.
      */
-    typedef struct Symbol_t
+    typedef struct Symbol
     {
         char *name;
         Type type;

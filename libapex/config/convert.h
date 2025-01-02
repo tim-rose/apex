@@ -13,14 +13,14 @@ extern "C"
 #endif                                 /* C++ */
     typedef double (*ConvertProc)(double data, void *caller_data);
 
-    typedef struct Conversion_t
+    typedef struct Conversion
     {
         const char *name;
         ConvertProc convert;
         void *caller_data;
     } Conversion, *ConversionPtr;
 
-    typedef struct LinearConvertArg_t
+    typedef struct LinearConvertArg
     {
         double m, c;
     } LinearConvertArg, *LinearConvertArgPtr;

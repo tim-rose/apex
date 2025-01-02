@@ -25,7 +25,7 @@ extern "C"
         LOG_DOMAIN_SUPPRESS = -1
     } LogDomainStatus, *LogDomainStatusPtr;
 
-    typedef struct LogDomain_t
+    typedef struct LogDomain
     {
         const char *name;
         LogDomainStatus status;

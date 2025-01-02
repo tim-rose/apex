@@ -56,7 +56,7 @@
  * * -1  --declared no plan (i.e. explicitly stated that there's no plan)
  * * +ve --the No. of planned tests.
  */
-typedef struct TapState_t
+typedef struct TapState
 {
     int n_plan;                        /* No. planned tests */
     int n_test;                        /* No. tests attempted so far */

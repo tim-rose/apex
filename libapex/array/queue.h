@@ -25,7 +25,7 @@ extern "C"
      * (guaranteed by `queue_init`), and it relies on "natural"
      * int arithmetic to be atomic for its thread safety.
      */
-    typedef struct AtomicQueue_t
+    typedef struct AtomicQueue
     {
         ArrayContainer array;          /* Queue contents. */
 

@@ -18,7 +18,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct Ini_t
+    typedef struct Ini
     {
         char *name;                    /* file being parsed */
         int line;                      /* current line number in file */

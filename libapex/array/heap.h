@@ -11,7 +11,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct Heap_t
+    typedef struct Heap
     {
         ArrayContainer array;
         size_t n_used;                    /* current size of heap */

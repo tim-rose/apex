@@ -28,7 +28,7 @@
 /*
  * Link{} --free list record
  */
-typedef struct Link_t
+typedef struct Link
 {
     struct Link_t *next;
 } Link, *LinkPtr;

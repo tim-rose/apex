@@ -18,7 +18,7 @@
 /*
  * OptionAddress --a union for holding the various option value addresses.
  */
-typedef union OptionAddress_t
+typedef union OptionAddress
 {
     char **str_addr;                   /* address of a string */
     int *int_addr;                     /* address of an (int) flag */

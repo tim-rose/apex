@@ -30,7 +30,7 @@ extern "C"
     /*
      * Link --Singly-linked list node structure.
      */
-    typedef struct Link_t
+    typedef struct Link
     {
         struct Link_t *next;           /* next item in list (CAR!) */
         void *data;                    /* user-data (CDR!) */

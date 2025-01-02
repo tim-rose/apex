@@ -13,7 +13,7 @@
 #include <string.h>
 #include <apex/log.h>
 
-typedef struct LogAlias_t
+typedef struct LogAlias
 {
     const char *name;
     LogOutputProc proc;

@@ -29,13 +29,13 @@ extern "C"
 #define HTTP_PUT	"PUT"
 #define HTTP_TRACE	"TRACE"
 
-    typedef struct HTTPRequest_t
+    typedef struct HTTPRequest
     {
         URL url;
         SymbolPtr header;
     } HTTPRequest, *HTTPRequestPtr;
 
-    typedef struct HTTPResponse_t
+    typedef struct HTTPResponse
     {
         URL url;
         int status;

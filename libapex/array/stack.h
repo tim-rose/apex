@@ -10,7 +10,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct Stack_t
+    typedef struct Stack
     {
         ArrayContainer array;
         size_t top;                       /* current top of stack */

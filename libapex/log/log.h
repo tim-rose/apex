@@ -66,8 +66,8 @@ extern "C"
 #define trace_debug(fmt, ...) \
     trace_msg(__func__, __FILE__, __LINE__, LOG_DEBUG, fmt, ##__VA_ARGS__)
 
-    typedef struct LogConfig_t LogConfig;
-    typedef struct LogContext_t LogContext;
+    typedef struct LogConfig LogConfig;
+    typedef struct LogContext LogContext;
 
     /*
      * LogOutputProc() --Signature for a function that emits a log message.
@@ -115,7 +115,7 @@ extern "C"
     /*
      * LogConfig --global state for the logging system.
      */
-    struct LogConfig_t
+    struct LogConfig
     {
         size_t threshold_priority;     /* active logging level */
         const char *identity;          /* syslog identity */
@@ -127,7 +127,7 @@ extern "C"
     /*
      * LogContext --Caller context for "trace" log messages.
      */
-    struct LogContext_t
+    struct LogContext
     {
         const char *function;          /* __func__ */
         const char *file;              /* __FILE__ */

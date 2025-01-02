@@ -13,7 +13,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct TFILE_t
+    typedef struct TFILE
     {
         FILE *fp;                      /* current open file pointer, if any */
         const char path[FILENAME_MAX]; /* current open file name */

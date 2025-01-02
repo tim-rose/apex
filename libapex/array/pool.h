@@ -10,7 +10,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct Pool_t
+    typedef struct Pool
     {
         ArrayContainer array;
         size_t n_used;                    /* maximum number of used items */

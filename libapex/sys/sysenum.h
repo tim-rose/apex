@@ -14,7 +14,7 @@
 extern "C"
 {
 #endif                                 /* C++ */
-    typedef struct SysEnum_t           /* an alias for syslog CODE */
+    typedef struct SysEnum           /* an alias for syslog CODE */
     {
         const char *name;
         int value;

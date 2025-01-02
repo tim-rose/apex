@@ -24,14 +24,14 @@ extern "C"
     {
         CSV_TEXT_MAX = 4096,           /* max 4K text per record */
     };
-    typedef struct CSVField_t
+    typedef struct CSVField
     {
         Symbol item;
         const char *scan_fmt;          /* used by csv_read() */
         const char *print_fmt;         /* used by csv_write() */
     } CSVField, *CSVFieldPtr;
 
-    typedef struct CSVFile_t
+    typedef struct CSVFile
     {
         FILE *fp;
         char mode;                     /* "r", "w", "a" */

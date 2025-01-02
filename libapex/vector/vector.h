@@ -16,7 +16,7 @@ extern "C"
     /*
      * VectorInfo   --Housekeeping data used to manage vectors.
      */
-    typedef struct VectorInfo_t
+    typedef struct VectorInfo
     {
         size_t n_el;                   /* No. allocated elements in the vector */
         size_t n_used;                 /* No. elements actually being used */

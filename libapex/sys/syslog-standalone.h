@@ -89,7 +89,7 @@ int setlogmask(int mask);
  * SYSLOG_NAMES: define textual names for Syslog's enums.
  */
 #ifdef SYSLOG_NAMES
-typedef struct _code_t
+typedef struct _code
 {
     const char *c_name;
     int c_val;

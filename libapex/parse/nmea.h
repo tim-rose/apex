@@ -35,7 +35,7 @@ extern "C"
         NMEA_ERR = -2,                 /* miscellaneous failure */
     };
 
-    typedef struct Nmea_t
+    typedef struct Nmea
     {
         char id[3];                    /* talker ID */
         char msg[4];                   /* message ID */

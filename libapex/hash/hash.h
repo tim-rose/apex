@@ -30,7 +30,7 @@ extern "C"
      * nslot --the number of slots in the hash table
      * slot --  an array of slots for holding user data
      */
-    typedef struct Hash_t              /* Hash table housekeeping data */
+    typedef struct Hash              /* Hash table housekeeping data */
     {                                  /* (this should prob. be private */
         HashProc hash;
         size_t nslot;

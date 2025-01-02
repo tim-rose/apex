@@ -43,7 +43,7 @@
 /*
  * @type Vector The prefix block containing vector housekeeping data.
  */
-typedef struct Vector_t
+typedef struct Vector
 {
     VectorInfo info;
     char padding[VECTOR_ALIGN - (sizeof(VectorInfo) % VECTOR_ALIGN)];

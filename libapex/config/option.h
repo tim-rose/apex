@@ -29,7 +29,7 @@ extern "C"
      */
     typedef int (*OptionProc)(const char *name, const char *text, void *data);
 
-    typedef struct Option_t
+    typedef struct Option
     {
         char opt;                      /* single-char option, if any */
         const char *name;              /* long-opt/configuration name */
