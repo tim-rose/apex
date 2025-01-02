@@ -47,6 +47,10 @@ int binsearch(void *key, void *base, size_t n_elements, size_t size,
         cmp = (*compare) (key, (char *) base + mid * size);
         if (cmp < 0)                   /* select lower partition */
         {
+            if (mid == 0)
+            {                           /* avoid underflow */
+                break;
+            }
             high = mid - 1;
         }
         else if (cmp > 0)              /* select higher partition */
