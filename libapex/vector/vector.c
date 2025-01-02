@@ -30,7 +30,7 @@
 #include <stddef.h>
 #include <string.h>
 
-#include <apex/binsearch.h>
+#include <apex/search.h>
 #include <apex/vector.h>
 
 #define VECTOR_ALIGN	8              /* alignment in bytes */

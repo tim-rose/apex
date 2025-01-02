@@ -5,7 +5,7 @@
 #ifndef LINK_H
 #define LINK_H
 
-#include <apex/binsearch.h>             /* for CompareProc */
+#include <apex/search.h>             /* for CompareProc */
 
 #ifdef __cplusplus
 extern "C"
@@ -25,7 +25,7 @@ extern "C"
     /*
      * VisitProc --Visitor function for LinkVisit().
      */
-    typedef void *(*VisitProc)(void *data, void *closure);
+    typedef int (*VisitProc)(void *data, void *closure);
 
     /*
      * Link --Singly-linked list node structure.

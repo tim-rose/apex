@@ -4,7 +4,6 @@
 language = c
 LIB_ROOT = ..
 subdir = apex
-LOCAL.C_WARN_FLAGS	= -Wno-cast-align
 
 C_SRC = vector.c
 H_SRC = vector.h

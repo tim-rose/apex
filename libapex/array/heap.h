@@ -5,7 +5,7 @@
 #define HEAP_H
 
 #include <apex/array.h>
-#include <apex/binsearch.h>
+#include <apex/search.h>
 
 #ifdef __cplusplus
 extern "C"
