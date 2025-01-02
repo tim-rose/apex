@@ -15,8 +15,8 @@
 #include <apex/tap.h>
 #include <apex.h>
 #include <apex/vector.h>
+#include <apex/compare.h>
 
-static int compare_long(const void *v1, const void *v2);
 static int visit_long(const void *v1, const void *v2);
 static void test_init(void);
 static void test_insert(void);
@@ -36,17 +36,6 @@ int main(void)
     test_search();
     test_visit();
     return exit_status();
-}
-
-/*
- * compare_long() --CompareProc for long data.
- */
-static int compare_long(const void *v1, const void *v2)
-{
-    long *l1 = (long *) v1;
-    long *l2 = (long *) v2;
-
-    return *l1 - *l2;
 }
 
 /*
@@ -242,18 +231,18 @@ static void test_search(void)
     for (int i = 0; i < (int) n; ++i)
     {
         key = (long) i *2;
-        ok(search_vector(lv, &key, compare_long, &status) == i &&
+        ok(search_vector(lv, &key, long_cmp, &status) == i &&
            status == true, "Successful search_vector(%d)", i);
     }
 
     key = -1;                          /* insert at beginning */
-    ok(search_vector(lv, &key, compare_long, &status) == 0 &&
+    ok(search_vector(lv, &key, long_cmp, &status) == 0 &&
        status == false, "Unsuccesssful search_vector(1)");
     key = 10;                          /* insert after end */
-    ok(search_vector(lv, &key, compare_long, &status) == (int) n &&
+    ok(search_vector(lv, &key, long_cmp, &status) == (int) n &&
        status == false, "Unsuccesssful search_vector(2)");
     key = 5;                           /* insert in middle */
-    ok(search_vector(lv, &key, compare_long, &status) == 3 &&
+    ok(search_vector(lv, &key, long_cmp, &status) == 3 &&
        status == false, "Unsuccesssful search_vector(3)");
     free_vector(lv);
 }
