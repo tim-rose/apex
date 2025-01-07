@@ -1,6 +1,9 @@
 /*
  * STATELY.H --A simple hierarchic state machine.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * StatelyActionProc() --The stately action procedure.
  * StatelyState{}      --The stately machine state.

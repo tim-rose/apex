@@ -1,6 +1,8 @@
 /*
  * INI.H --Definitions for an INI parser.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  *
  * Remarks:
  * This module implements a simple call-back style parser for

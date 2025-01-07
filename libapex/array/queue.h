@@ -1,6 +1,9 @@
 /*
  * QUEUE.H --A simple atomic queue.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * AtomicQueue_t{} --The state of a queue and its working storage.
  *

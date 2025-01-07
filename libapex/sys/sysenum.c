@@ -1,5 +1,8 @@
 /*
  * SYSENUM.C --Routines for handling syslog's priority+faciltiy enums.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 
 #include <stdlib.h>

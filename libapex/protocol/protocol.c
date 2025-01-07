@@ -1,6 +1,9 @@
 /*
  * PROTOCOL.C --Various utilities for implementing protocols.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * open_connect()   --Open a socket, and "connect" to it.
  * open_listen()    --Open a socket, bind and "listen" to it.

@@ -1,6 +1,9 @@
 /*
  * CLINK.C --Link circularly singly-linked lists.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * clink_len()     --Calculate the length of a linked list.
  * clink_reverse() --Reverse a linked-list.

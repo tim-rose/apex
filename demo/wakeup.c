@@ -1,6 +1,9 @@
 /*
  * WAKEUP.C --signal other process(es) with a sighup.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * load_pidfile() --Load a process ID from a pid file.
  * main()         --Signal some processes.

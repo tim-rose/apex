@@ -1,6 +1,9 @@
 /*
  * STATELY.C --A simple restricted Harel statechart.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * stately_init()     --Initialise a Stately statechart.
  * stately_reset()    --Reset a Stately statechart.

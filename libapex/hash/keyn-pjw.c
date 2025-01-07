@@ -1,5 +1,8 @@
 /*
  * keyn-pjw.c --An implementation of P.J. Weinberger's hashing algorithm
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #include <limits.h>
 #include <apex/hash.h>

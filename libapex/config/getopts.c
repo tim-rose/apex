@@ -1,6 +1,9 @@
 /*
  * GETOPTS.C --Option-parsing/processing utilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * getopts() --A stdarg variant of getopt().
  */

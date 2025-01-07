@@ -1,6 +1,9 @@
 /*
  * NMEA.C --Parsing/Processing routines for NMEA messages.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * nmea_checksum() --Return the nmea_checksum for some text.
  * nmea_parse()    --Parse an NMEA message specified as a string.

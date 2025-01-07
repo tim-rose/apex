@@ -1,6 +1,9 @@
 /*
  * GETOPTS.H --a vararg-style getopt() variant.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_GETOPTS_H
 #define APEX_GETOPTS_H

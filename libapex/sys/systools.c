@@ -1,6 +1,9 @@
 /*
  * SYSTOOLS.C --Various extensions/adaptions of POSIX functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * get_env_variable() --Return the value of an environment variable, or a default.
  * wait_input()       --Wait for input being available on some file descriptors

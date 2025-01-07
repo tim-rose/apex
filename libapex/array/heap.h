@@ -1,5 +1,8 @@
 /*
  * HEAP.H --An implicit (array) heap.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_HEAP_H
 #define APEX_HEAP_H

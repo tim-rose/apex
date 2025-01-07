@@ -1,6 +1,9 @@
 /*
  * STRPARSE.H -- Routines for parsing stuff from strings.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_STRPARSE_H
 #define APEX_STRPARSE_H

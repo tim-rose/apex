@@ -1,6 +1,9 @@
 /*
  * ESTRING.H --Definitions for some extended C-string functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_ESTRING_H
 #define APEX_ESTRING_H

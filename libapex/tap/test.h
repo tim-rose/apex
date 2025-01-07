@@ -1,6 +1,9 @@
 /*
  * TEST.H --Definitions and macros for unit testing.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * These macros extend the basic TAP routines with some facilities
  * inspired from perl's Test::More package.

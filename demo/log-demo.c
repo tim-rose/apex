@@ -1,6 +1,9 @@
 /*
  * LOG-DEMO.C --test the logging stuff
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * main() --Log some message
  *

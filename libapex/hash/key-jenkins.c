@@ -2,6 +2,9 @@
 /*
  * hash_key_jenkins() --Bob Jenkins' hash.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * See Also:
  * http://burtleburtle.net/bob/hash/doobs.html
  */

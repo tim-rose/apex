@@ -1,6 +1,9 @@
 /*
  * URL.H --Definitions for parsing/processing URLs.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * I'm sure someone's already done this, but I couldn't find a good
  * example anywhere.

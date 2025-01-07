@@ -1,6 +1,9 @@
 /*
  * STRPARSE.C --Simple string parsing utilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * str_inet4_address() --Parse a "host[/bits]" inet4 address.
  * str_int()           --Parse a number, as a natural int value.

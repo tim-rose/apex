@@ -1,6 +1,9 @@
 /*
  * TFILE.C --Routines for writing timestamp-named files.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * tfopen()         --Open a timestamp-named file.
  * tfwrite()        --Write some bytes to a timestamp file.

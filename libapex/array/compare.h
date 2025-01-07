@@ -1,6 +1,9 @@
 /*
  * COMPARE.H --Definitions for compare functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * These are used for qsort, bsearch, etc.
  */

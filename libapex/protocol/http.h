@@ -1,6 +1,9 @@
 /*
  * HTTP.H --Definitions for the HTTP protocol
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * Why aren't I using curl?
  *

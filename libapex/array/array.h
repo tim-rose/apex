@@ -1,6 +1,9 @@
 /*
  * ARRAY.H --Array metadata management.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * array_init() --Initialise an array container.
  * array_item() --Return the address of an array item.

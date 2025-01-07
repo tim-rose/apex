@@ -1,6 +1,9 @@
 /*
  * LINK.H --Definitions for singly-linked lists.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_CLINK_H
 #define APEX_CLINK_H

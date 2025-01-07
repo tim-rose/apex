@@ -1,6 +1,9 @@
 /*
  * LINKALLOC.C --Linked-list allocation routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * link_block_new()  --Allocate a block of links.
  * link_new()        --Get a new link record and initialise it for the caller.

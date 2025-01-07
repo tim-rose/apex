@@ -1,5 +1,8 @@
 /*
  * STACK.H --A simple stack array, with caller provided item storage.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_STACK_H
 #define APEX_STACK_H

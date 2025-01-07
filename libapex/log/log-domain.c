@@ -1,6 +1,9 @@
 /*
  * LOG-DOMAIN.C --Per-domain filtering for logging.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * domain_config[]      --the current domain logging state.
  * VA_DOMAIN_LOG()      --Boilerplate var-args processing and logging behaviour.

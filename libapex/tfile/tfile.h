@@ -1,6 +1,9 @@
 /*
  * TFILE.H --An API for writing timestamped data into timestamp-named files.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_TFILE_H
 #define APEX_TFILE_H

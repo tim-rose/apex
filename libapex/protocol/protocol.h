@@ -1,6 +1,9 @@
 /*
  * PROTOCOL.H --Various utilities for implementing protocols.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * This module contains some routines for handling sockets and
  * manipulating packets.  In particular, pack(), unpack() are

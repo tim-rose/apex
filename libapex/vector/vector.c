@@ -1,6 +1,9 @@
 /*
  * VECTOR.C --A C Implementation of dynamic arrays.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * GET_VECTOR()    --Macro to get back to base of Vector struct.
  * new_vector()    --Allocate a new Vector structure.

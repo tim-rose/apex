@@ -1,6 +1,9 @@
 /*
  * TAP.C --Routines for emitting test results using the TAP protocol.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * CHARS_REMAINING() --Calculate the number of remaining char.s in a buffer
  * tap_init_()       --Initialise the TAP library.

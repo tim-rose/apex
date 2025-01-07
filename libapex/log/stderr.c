@@ -1,6 +1,9 @@
 /*
  * STDERR.C --A log-handler that writes log messages to stderr.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * fallback_colours[] --fallback values for tty colour styles.
  * init()             --Initialise stderr logging state.

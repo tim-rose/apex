@@ -1,6 +1,9 @@
 /*
  * ESTRING.C --some extended C-string functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * strempty()      --Test if a string is empty.
  * strequiv()      --Compare two strings, allowing for NULL pointers.

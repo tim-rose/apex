@@ -1,6 +1,9 @@
 /*
  * STRLIST.C --Some routines for handling lists of strings.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * strsplit()      --Split a string into components based on a delimiter.
  * new_str_list()  --Return a list of strings by splitting a string.

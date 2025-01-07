@@ -1,6 +1,9 @@
 /*
  * HEAP-SIFT.C --Fundamental operations for implicit (array) heaps.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * heap_sift_up()   --Sift a value from the bottom of the heap to the top.
  * heap_sift_down() --Sift a value from the top to its "correct" position.

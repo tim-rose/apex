@@ -1,6 +1,9 @@
 /*
  * SEARCH.H --Array searching routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_SEARCH_H
 #define APEX_SEARCH_H

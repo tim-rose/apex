@@ -1,6 +1,9 @@
 /*
  * CONFIG.C --Program configuration processing facilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * get_config_path() --Return (and possibly initialise) the config search path.
  * opt_find_name_()  --Find an opts definition by its name.

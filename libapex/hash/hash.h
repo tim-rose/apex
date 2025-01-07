@@ -1,6 +1,9 @@
 /*
  * HASH.H --Definitions for a hash functions and a simple hash-table.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_HASH_H
 #define APEX_HASH_H

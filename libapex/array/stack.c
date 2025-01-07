@@ -1,6 +1,9 @@
 /*
  * STACK.C --A simple stack array, with caller provided item storage.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * stack_alloc() --Allocate some space for a stack structure.
  * stack_init()  --Initialise a stack structure.

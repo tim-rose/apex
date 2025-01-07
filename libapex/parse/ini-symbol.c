@@ -1,6 +1,9 @@
 /*
  * INI-SYMBOL.C --Routines for manipulating ini-definitions as symbols.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * load_()       --Callback proc for loading a INI file into a symbol table.
  * ini_load()    --Load an ini file into a symbol table.

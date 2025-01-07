@@ -1,6 +1,9 @@
 /*
  * LOG-PARSE.C --Syslog parsing routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * log_parse_r()       --Parse a syslog line, and return the parsed elements.
  * log_parse()         --Parse a syslog line, and return the parsed elements.

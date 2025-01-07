@@ -1,6 +1,9 @@
 /*
  * NMEA.H --Parsing/Processing routines for NMEA messages.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * NMEA is a simple protocol that is used by nautical devices, and has
  * come into common use via GPS units.  It is defined by a simple

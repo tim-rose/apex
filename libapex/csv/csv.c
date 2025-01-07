@@ -1,6 +1,9 @@
 /*
  * CSV.C --Routines for doing I/O on Comma-Separated Values.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * debug_fields_()     --Log field information at debug level.
  * csv_strip_eol_()    --Strip common newline characters from a string.

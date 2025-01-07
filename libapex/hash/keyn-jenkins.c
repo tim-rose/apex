@@ -1,3 +1,9 @@
+/*
+ * Bob Jenkins hash algorithm.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ */
 #include <apex/hash.h>
 
 /*

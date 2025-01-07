@@ -1,5 +1,8 @@
 /*
  * POOL.H --A simple pool allocator, with caller provided item storage.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_POOL_H
 #define APEX_POOL_H

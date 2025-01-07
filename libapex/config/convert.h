@@ -1,5 +1,8 @@
 /*
  * CONVERT.H --Conversion routines, and a means of applying them.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_CONVERT_H
 #define APEX_CONVERT_H

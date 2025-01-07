@@ -1,6 +1,9 @@
 /*
  * HEAP.C --A simple heap array, with caller provided item storage.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * heap_alloc()  --Allocate some space for a heap structure.
  * heap_init()   --Initialise a heap structure.

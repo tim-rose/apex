@@ -1,5 +1,8 @@
 /*
  * SYSENUM.H --Definitions for some syslog variables.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_SYSENUM_H
 #define APEX_SYSENUM_H

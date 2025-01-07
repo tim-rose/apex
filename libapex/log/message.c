@@ -1,6 +1,9 @@
 /*
  * MESSAGE.C --Various convenience functions for generating a log message.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * VA_LOG()        --Boilerplate var-args processing and logging behaviour.
  * log_sys()       --Nonfatal error related to system call.

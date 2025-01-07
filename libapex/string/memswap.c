@@ -1,6 +1,9 @@
 /*
  * MEMSWAP.C --Basic memory swapping routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * memswap()     --swap memory.
  * memswap_int() --swap integer-aligned memory.

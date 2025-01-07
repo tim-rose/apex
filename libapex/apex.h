@@ -1,6 +1,9 @@
 /*
  * APEX.H --Funadamental macros and utilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * MACRO_VALUE_STR() --Get the value of a macro as a text string.
  * MACRO_ARG_STR()   --Get the value of a macro argument as a text string.

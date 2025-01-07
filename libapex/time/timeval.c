@@ -1,6 +1,9 @@
 /*
  * timeval.c --timeval manipulation functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * tv_set()        --Initialise a timeval from an epoch expressed as a double.
  * tv_cmp()        --Compare two normalised timevals.

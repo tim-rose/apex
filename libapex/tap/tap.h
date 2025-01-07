@@ -1,6 +1,9 @@
 /*
  * TAP.H --Routines for emitting test results using the TAP protocol.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * This is a re-implementation inspired by Nik Clayton's version.
  */

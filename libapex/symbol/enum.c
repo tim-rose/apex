@@ -1,6 +1,9 @@
 /*
  * ENUM.C --Enum utilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * enum_cmp()   --Compare two Enums for sorting.
  * str_enum()   --Set an enum opts value.

@@ -1,6 +1,9 @@
 /*
  * CONVERT.C --Unit conversion framework.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * convert_velocity[]   --Convert velocity/speed to SI: m/s.
  * convert_length[]     --Convert length to SI: metres.

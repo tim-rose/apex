@@ -1,6 +1,9 @@
 /*
  * URL.C --URL manipulation routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * service[]         --A list of well-known services and their associated ports.
  * encode_tab[]      --A list of characters that must be encoded in URLs

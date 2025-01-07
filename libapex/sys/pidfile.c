@@ -1,6 +1,9 @@
 /*
  * PIDFILE.C --Daemon pidfile helper functions..
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * unlink_pidfile() --Remove the pidfile we created at startup, if any.
  * create_pidfile() --Create a file containing the current process ID.

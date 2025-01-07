@@ -1,5 +1,8 @@
 /**
  * VERSION.C --Version definition for libapex.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #include <apex.h>
 

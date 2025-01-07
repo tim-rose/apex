@@ -1,6 +1,9 @@
 /*
  * HASH.C --A simple hash table implementation, and some sample hashing functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * hash_new()    --Create a new hash table.
  * hash_free()   --Free a hash table, releasing all resources.

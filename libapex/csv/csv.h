@@ -1,6 +1,9 @@
 /*
  * CSV.H --Comma-Separated-Values File processing API.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * This module provides an interface to "CSV" files as defined by RFC4180,
  * and used for the "text/csv" MIME media type.

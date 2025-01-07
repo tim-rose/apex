@@ -1,6 +1,9 @@
 /*
  * OPTION.C --Option-parsing/processing callbacks for config/getopt.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * opt_len_()          --Count the number of items in a 0-terminated opts list.
  * compile_opts_()     --Construct a getopt() option string from an opts list.

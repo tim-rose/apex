@@ -1,6 +1,9 @@
 /*
  * LSEARCH.C --A simple linear search.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * lsearch() --Search a sorted table using .
  *

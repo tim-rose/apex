@@ -1,6 +1,9 @@
 /*
  * CONFIG.C --Configuration facilities for the logging facility.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * log_config[]  --Current log configuration state.
  * log_getenv_() --Load the logging parameters from the environment.

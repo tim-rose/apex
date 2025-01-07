@@ -1,6 +1,9 @@
 /*
  * HANDLER.C --Functions for choosing a log output function.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * log_handler() --Choose a log output function.
  *

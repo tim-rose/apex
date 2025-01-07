@@ -1,6 +1,9 @@
 /*
  * TIMEVAL.H --Definitions for timeval functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_TIMEVAL_H
 #define APEX_TIMEVAL_H

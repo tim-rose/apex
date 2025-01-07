@@ -1,6 +1,9 @@
 /*
  * OPTION.C --Option-parsing/processing callbacks for config/getopt.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * opt_string()      --Parse a string option.
  * opt_bool()        --Parse a boolean/flag option.

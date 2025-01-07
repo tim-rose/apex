@@ -1,6 +1,9 @@
 /*
  * LOG-GETOPT.C --Routines for setting log behaviour from command line options.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * opt_log_inherit[] --special value string for opt_log_level.
  * opt_log_level()   --Set the system logging level via opts.

@@ -1,6 +1,9 @@
 /*
  * ESTRING.C --some extended C-string functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * strtrunc()    --Truncate a string.
  * estrtolower() --Convert a string to lower-case, in-place.

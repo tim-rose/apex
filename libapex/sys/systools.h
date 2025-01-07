@@ -1,5 +1,8 @@
 /*
  * SYSTOOLS.H --Various convenient extensions/adaptions of POSIX functions.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_SYSTOOLS_H
 #define APEX_SYSTOOLS_H

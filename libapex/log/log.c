@@ -1,6 +1,9 @@
 /*
  * LOG.C --Logging facilities.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * log_init()     --Initialise the logging system.
  * log_vsprintf() --Format a log message into a text buffer.

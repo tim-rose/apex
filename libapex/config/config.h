@@ -1,6 +1,9 @@
 /*
  * CONFIG.H --Config and option processing.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * The Option structure specifies names for various values
  * that are of interest to the program.  The options are processed

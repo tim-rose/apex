@@ -1,6 +1,9 @@
 /*
  * LOG-DOMAIN.H --Logging facilities defined for functional domains.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * This domain extends basic logging to provide domain-specific control
  * over logging output. The idea is that the domain struct holds the name

@@ -1,6 +1,9 @@
 /*
  * DATE.C --Date and time manipulation and parsing functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * adjust_ut() --Adjust a timestamp by a unit+delta.
  *

@@ -1,6 +1,9 @@
 /*
  * SYMBOL.C --Symbol structure query routines.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * sym_free_value()  --Recursively release symbol resources.
  * sym_add_node_()   --Add a node to a path in progress.

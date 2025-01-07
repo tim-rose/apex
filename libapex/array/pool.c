@@ -1,6 +1,9 @@
 /*
  * POOL.C --A simple pool allocator, with caller provided item storage.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * Link{}        --free list record
  * pool_alloc()  --Allocate some space for a pool structure.

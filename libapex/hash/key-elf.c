@@ -1,7 +1,13 @@
+/*
+ * UNIX ELF hashing algorithm.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ */
 #include <apex/hash.h>
 
 /*
- * hash_key_elf() --UNIX ELF's hashing algorithm.
+ * hash_key_elf() --UNIX ELF hashing algorithm.
  *
  * Parameters:
  * data --the data to be hashed

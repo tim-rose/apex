@@ -1,6 +1,9 @@
 /*
  * QUEUE.C --An atomic non-blocking queue of items.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * queue_alloc() --Allocate some space for a queue structure.
  * queue_mask()  --Calculate/validate the mask for a specified size.

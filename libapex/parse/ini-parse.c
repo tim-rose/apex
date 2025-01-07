@@ -1,6 +1,9 @@
 /*
  * INI-PARSE.C --A simple parser for INI-style config files.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * ini_pragma_() --Process any #pragma/#line definitions.
  * ini_skip_()   --Skip newlines and comments.

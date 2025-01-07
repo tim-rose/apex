@@ -1,6 +1,9 @@
 /*
  * GNUATTR.H --Controlled redefinition of GNUC's function/paramater attributes.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * UNUSED()             --Annotate a parameter as unused, make it unusable.
  * PRINTF_ATTRIBUTE()   --Annotate a function so GNU C can check printf formats.

@@ -1,5 +1,8 @@
 /*
  * LOG.H --Logging facilities.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_LOG_H
 #define APEX_LOG_H

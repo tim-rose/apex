@@ -1,6 +1,9 @@
 /*
  * SYMBOL.H --Simple Run-Time Type Information for C data structures.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Remarks:
  * The key data structure of this module is a "Symbol" which describes
  * a triple: {name, type, value}.  The supported types correspond

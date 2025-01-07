@@ -1,5 +1,8 @@
 /*
  * LOG-PARSE.H --Routines for parsing syslog records.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_LOG_PARSE_H
 #define APEX_LOG_PARSE_H

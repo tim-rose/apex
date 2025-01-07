@@ -1,6 +1,9 @@
 /*
  * DATE.C --Date and time manipulation and parsing functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * timegm_()            --Process a tm struct as if it was a UTC time spec.
  * date_parse_fmt()     --Parse (part of) a timestamp using a list of formats.

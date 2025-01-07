@@ -1,6 +1,9 @@
 /*
  * SYSLOG.C --A log-handler that writes log messages to the syslog service.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * log_syslog() --Output handler that logs a message to syslog.
  *

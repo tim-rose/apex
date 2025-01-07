@@ -1,6 +1,9 @@
 /*
  * COMPARE.C --Miscellaneous comparison functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * These are compare routines suitable for arrays of the basic C types.
  */

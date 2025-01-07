@@ -1,6 +1,9 @@
 /*
  * BINSEARCH.C --An improved implementation of libc's bsearch().
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * binsearch() --Search a sorted table using binary chop.
  *

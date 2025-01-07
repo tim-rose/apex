@@ -1,6 +1,9 @@
 /*
  * HTTP.C --A simple API to the HTTP protocol.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  * Contents:
  * http_connect()       --Connect to a host specified by a URL.
  * http_send_request()  --Send a request line to an open HTTP session.

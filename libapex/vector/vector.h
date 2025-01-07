@@ -1,5 +1,8 @@
 /*
  * VECTOR.H --Declarations for handling simple dynamic arrays.
+ *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
  */
 #ifndef APEX_VECTOR_H
 #define APEX_VECTOR_H

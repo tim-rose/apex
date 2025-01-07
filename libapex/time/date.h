@@ -1,6 +1,9 @@
 /*
  * DATE.H --Definitions for date/timestamp functions.
  *
+ * SPDX-FileCopyrightText: 2025 Tim Rose
+ * SPDX-License-Identifier: MIT
+ *
  */
 #ifndef APEX_DATE_H
 #define APEX_DATE_H
