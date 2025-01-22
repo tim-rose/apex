@@ -57,8 +57,8 @@ extern "C"
      * Returns: (void *)
      * The address of item[offset].
      */
-    static inline void *array_item(ArrayContainer *array, size_t offset);
-    static inline void *array_item(ArrayContainer *array, size_t offset)
+    static inline void *array_item(const ArrayContainer *array, size_t offset);
+    static inline void *array_item(const ArrayContainer *array, size_t offset)
     {
         return array->base + offset * array->item_size;
     }

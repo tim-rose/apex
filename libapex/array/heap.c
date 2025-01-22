@@ -131,8 +131,6 @@ void *heap_peek(Heap *heap, void *item)
     return NULL;                       /* failure: no heap, or empty */
 }
 
-
-
 /*
  * heap_delete() --Delete an item from the heap.
  *
@@ -143,7 +141,7 @@ void *heap_peek(Heap *heap, void *item)
 void heap_delete(Heap *heap, size_t slot)
 {
     void *item = array_item(&heap->array, slot);
-    void *last_item = array_item(&heap->array, heap->n_used - 1);
+    const void *last_item = array_item(&heap->array, heap->n_used - 1);
 
     memcpy(item, last_item, heap->array.item_size);
     heap->n_used -= 1;

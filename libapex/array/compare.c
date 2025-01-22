@@ -89,8 +89,8 @@ int double_cmp(const void *const v_1, const void *const v_2)
 
 int strp_cmp(const void *const v_1, const void *const v_2)
 {
-    char *str_1 = *(char **) v_1;
-    char *str_2 = *(char **) v_2;
+    const char *str_1 = *(char **) v_1;
+    const char *str_2 = *(char **) v_2;
 
     return strcmp(str_1, str_2);
 }

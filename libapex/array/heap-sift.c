@@ -70,7 +70,8 @@ void heap_sift_up(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
 void heap_sift_down(void *heap, size_t slot, size_t n_items, size_t item_size, CompareProc cmp)
 {
     size_t level = 1;
-    char *node, *child, *end;
+    char *node, *child;
+    const char *end;
 
     for (size_t id = slot; id > 0; id /= 2)
     {                                   /* find tree level of the item */
@@ -115,10 +116,10 @@ void heap_sift_down(void *heap, size_t slot, size_t n_items, size_t item_size, C
  */
 int heap_ok(void *heap, size_t n_items, size_t item_size, CompareProc cmp)
 {
-    char *node, *parent;
-
     for (size_t i = n_items - 1; i > 0; --i)
     {
+        char *node, *parent;
+
         node = (char *) heap + i * item_size;
         parent = (char *) heap + (i - 1) / 2 * item_size;
         if (cmp(node, parent) < 0)
