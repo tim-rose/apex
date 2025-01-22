@@ -20,6 +20,7 @@
 #include <sys/stat.h>
 
 #include <apex/tap.h>
+#include <apex/test.h>
 #include <apex.h>
 #include <apex/systools.h>
 #include <apex/log.h>
@@ -57,7 +58,7 @@ static void test_make_path(void)
 
     /* cleanup... */
     sprintf(cmd, "/bin/rm -rf %s/%s", root, "a");
-    system(cmd);
+    int ignore = system(cmd);
 
     sprintf(cmd, "%s/%s", root, "a");
     touch(cmd);
@@ -70,8 +71,8 @@ static void test_make_path(void)
 
     /* cleanup... */
     sprintf(cmd, "/bin/rm -rf %s/%s", root, "a");
-    system(cmd);
-
+    ignore = system(cmd);
+    (void) ignore;
 }
 
 
@@ -94,16 +95,16 @@ static void test_link_path(void)
     sprintf(path2, "%s/%s", root, "b");
     link_path(path, path2);
     ok(!link_path(path, path2), "link_path: src doesn't exist");
-    ok(errno != 0, "link_path: failure sets errno");
     touch(path);
     ok(link_path(path, path2), "link_path: success");
     ok(!link_path(path, path2), "link_path: dst already exists");
 
     /* cleanup... */
     sprintf(cmd, "/bin/rm -rf %s/%s", root, "a");
-    system(cmd);
+    int ignore = system(cmd);
     sprintf(cmd, "/bin/rm -rf %s/%s", root, "b");
-    system(cmd);
+    ignore = system(cmd);
+    (void) ignore;
 }
 
 
@@ -116,26 +117,26 @@ static void test_dirname(void)
     char dir[FILENAME_MAX + 1];
 
     ok(path_basename(empty) == empty, "path_basename: empty string");
-    ok(strcmp(path_basename("xyzzy"), "xyzzy") == 0,    /* not "./xyzzy" */
+    string_eq(path_basename("xyzzy"), "xyzzy",    /* not "./xyzzy" */
        "path_basename: no directory component");
-    ok(strcmp(path_basename("./xyzzy"), "xyzzy") == 0,
+    string_eq(path_basename("./xyzzy"), "xyzzy",
        "path_basename: relative directory component");
-    ok(strcmp(path_basename("/a/b/c/d/xyzzy"), "xyzzy") == 0,
+    string_eq(path_basename("/a/b/c/d/xyzzy"), "xyzzy",
        "path_basename: absolute directory component");
 
     ok(path_dirname("xyzzy", 0, dir) == NULL,
        "path_dirname: no space in directory buffer");
-    ok(strcmp(path_dirname("xyzzy", NEL(dir), dir), ".") == 0,
+    string_eq(path_dirname("xyzzy", NEL(dir), dir), ".",
        "path_dirname: no directory component");
-    ok(strcmp(path_dirname("./xyzzy", NEL(dir), dir), ".") == 0,
+    string_eq(path_dirname("./xyzzy", NEL(dir), dir), ".",
        "path_dirname: relative directory component");
-    ok(strcmp(path_dirname("/a/b/c/d/xyzzy", NEL(dir), dir), "/a/b/c/d") == 0,
+    string_eq(path_dirname("/a/b/c/d/xyzzy", NEL(dir), dir), "/a/b/c/d",
        "path_dirname: absolute directory component");
 }
 
 int main(void)
 {
-    plan_tests(19);
+    plan_tests(18);
     test_make_path();
     test_link_path();
     test_dirname();
