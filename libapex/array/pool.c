@@ -33,7 +33,7 @@
  */
 typedef struct Link
 {
-    struct Link_t *next;
+    struct Link *next;
 } Link;
 
 /*
