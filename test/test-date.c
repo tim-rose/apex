@@ -147,8 +147,10 @@ int main(void)
 
     strptime("2010-07-01 12:00:00", "%Y-%m-%d %H:%M:%S", &jul_tm);
     jul_t = mktime(&jul_tm);
+    todo_start("Linux can't parse \"Z\" timezone");
     parse_test("2010-07-01 02:00:00Z", &jul_t, "Jul ISO8601(Z)");
     parse_test("2010-01-01 01:00:00Z", &jan_t, "Jan ISO8601(Z)");
+    todo_end();
 
     parse_test("2010-W26-4", &jul_t, "%Y-W%W-%w");
     parse_test("2010W264", &jul_t, "%YW%W%w");
