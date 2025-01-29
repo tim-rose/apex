@@ -2,13 +2,16 @@
  * GETOPTS.C --Unit tests for the "getopts" functions.
  *
  * Contents:
- * test_getopts()    --Test the behaviour of getopts().
- * test_str_inet4()  --Test the behaviour of str_inet4_address().
- * test_str_int()    --Test the behaviour of str_int().
- * test_str_int16()  --Test the behaviour of str_int16().
- * test_str_int16()  --Test the behaviour of str_int16().
- * test_str_list()   --Test integer list parsing.
- * test_str_list()   --Test integer list parsing.
+ * test_empty_args()    --Test ability to parse/process an empty argv[].
+ * test_all_options()   --Test ability to parse/process all options.
+ * test_partial_options() --Test ability to parse/process some options only.
+ * test_str_inet4()     --Test the behaviour of str_inet4_address().
+ * test_str_int()       --Test the behaviour of str_int().
+ * test_str_int16()     --Test the behaviour of str_int16().
+ * test_str_int16()     --Test the behaviour of str_int16().
+ * sprint_int_array()   --Print an array of integers.
+ * test_str_list()      --Test integer list parsing.
+ * test_str_list()      --Test integer list parsing.
  *
  */
 #include <string.h>

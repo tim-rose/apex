@@ -2,11 +2,9 @@
  * DATE.C --Unit tests for the date functions.
  *
  * Contents:
- * timestamp_eq() --Test/report that timestamps are equal.
- * sprint_ut()    --Format a time_t value to a string.
- * parse_test()   --Run a single date-parsing test.
- * tv_tests()     --Tests for timeval operations.
- * main()         --Run some date unit tests.
+ * parse_test() --Run a single date-parsing test.
+ * tv_tests()   --Tests for timeval operations.
+ * main()       --Run some date unit tests.
  */
 #include <string.h>
 #include <apex/test.h>

@@ -2,12 +2,11 @@
  * VECTOR.C --Unit tests for the vector module.
  *
  * Contents:
- * compare_long() --CompareProc for long data.
- * visit_long()   --VisitProc for long data.
- * test_init()    --Run tests relating to new_vector/free_vector().
- * test_insert()  --Run tests relating to Insert/Add/delete functions.
- * test_search()  --Run tests relating to Search functions.
- * test_visit()   --Run tests relating to Visit functions.
+ * visit_long()  --VisitProc for long data.
+ * test_init()   --Run tests relating to new_vector/free_vector().
+ * test_insert() --Run tests relating to Insert/Add/delete functions.
+ * test_search() --Run tests relating to Search functions.
+ * test_visit()  --Run tests relating to Visit functions.
  */
 #include <stdbool.h>
 #include <string.h>
