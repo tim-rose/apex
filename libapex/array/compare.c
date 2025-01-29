@@ -10,6 +10,35 @@
 #include <string.h>
 #include <apex/compare.h>
 
+int array_cmp(const void *v_1, const void *v_2, 
+    size_t n_items, size_t item_size, CompareProc cmp)
+{
+    char *c1 = (char *) v_1;
+    char *c2 = (char *) v_2;
+    char *end = c1 + n_items*item_size; 
+    int status = 0;
+
+    for (; c1 < end; c1 += item_size, c2 += item_size) 
+    {
+        status = cmp(c1, c2);
+        if (status != 0)
+        {
+            break;
+        }
+    }
+    return status;
+}
+
+int char_cmp(const void *const v_1, const void *const v_2)
+{
+    char char_1 = *(char *) v_1;
+    char char_2 = *(char *) v_2;
+
+    return char_1 - char_2;             /* no chance of overflow */
+}
+
+/* TODO: short_cmp() */
+
 int int_cmp(const void *const v_1, const void *const v_2)
 {
     int int_1 = *(int *) v_1;
