@@ -5,7 +5,7 @@ language = c
 LIB_ROOT = ..
 subdir = apex
 
-C_SRC = version.c
+C_SRC = apex_version.c
 H_SRC = gnuattr.h
 
 include makeshift.mk library.mk
