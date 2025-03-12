@@ -18,7 +18,7 @@
 #define ok_ptr(have_, op_, expected_, ...)          \
     (ok(((void *) have_) op_ ((void *) expected_), __VA_ARGS__) ? 1 :      \
         (diag("%10s: 0x%p", "got", (const char *) have_), \
-        diag("%10s: 0x%p", "expected", (const char *) expected_), 0))
+        diag("%10s: a value %s 0x%p", "expected", #op_, (const char *) expected_), 0))
 #define ptr_eq(have_, expected_, ...)  \
     ok_ptr(have_, ==, expected_, __VA_ARGS__)
 
