@@ -40,17 +40,17 @@ static void test_null(void)
 
     diag("%s()", __func__);
     pool_ptr = pool_init(NULL, NEL(ok_items), sizeof(ok_items[0]), ok_items);
-    ok(pool_ptr == NULL, "cannot initialise a NULL pool");
+    ptr_eq(pool_ptr, NULL, "cannot initialise a NULL pool");
 
     pool_ptr = pool_init(&pool, NEL(ok_items), sizeof(ok_items[0]), NULL);
-    ok(pool_ptr == NULL, "cannot initialise a pool with no storage");
+    ptr_eq(pool_ptr, NULL, "cannot initialise a pool with no storage");
 
     pool_ptr = pool_init(&pool, 0, sizeof(ok_items[0]), ok_items);
-    ok(pool_ptr == NULL, "cannot initialise a pool with no items?");
+    ptr_eq(pool_ptr, NULL, "cannot initialise a pool with no items?");
 
     pool_ptr =
         pool_init(&pool, NEL(bad_items), sizeof(bad_items[0]), bad_items);
-    ok(pool_ptr == NULL, "cannot initialise a pool with bad item size");
+    ptr_eq(pool_ptr, NULL, "cannot initialise a pool with bad item size");
 
     item = pool_new(NULL);
     ptr_eq(item, NULL, "pool_new() fails on a NULL pool");
@@ -80,7 +80,7 @@ static void test_pool(int n, int prealloc)
         item = pool_new(p);            /* discard */
     }
 
-    ok(p == &pool, "init_pool() returns first argument");
+    ptr_eq(p, &pool, "init_pool() returns first argument");
     for (int i = 0; i < n * 2; ++i)
     {
         item = pool_new(p);
