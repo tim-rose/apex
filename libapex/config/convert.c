@@ -10,6 +10,7 @@
  * convert_duration[]   --Convert time/duration to SI: seconds.
  * convert_temperature[] --Convert temperature to SI(ish): Celsius.
  * convert_mass[]       --Convert mass to SI: kg.
+ * convert_frequency[]  --Convert mass to SI: kg.
  * str_convert()        --Parse a string as a (double) and convert to SI units.
  * str_convertn()       --Parse a string and convert to some units.
  * scale()              --Simple scaling conversion function.
@@ -119,6 +120,16 @@ Conversion convert_mass[] = {
     {"kg", (ConvertProc) scale, (void *) &unity_factor},
     {"g", (ConvertProc) scale, (void *) &k_factor},
     /* TODO: add more alternative mass units */
+    {NULL, NULL, NULL}
+};
+
+/*
+ * convert_frequency[] --Convert frequency.
+ */
+Conversion convert_frequency[] = {
+    {"Hz", (ConvertProc) scale, (void *) &unity_factor},
+    {"fps", (ConvertProc) scale, (void *) &unity_factor},
+    {"kHz", (ConvertProc) scale, (void *) &k_factor},
     {NULL, NULL, NULL}
 };
 

@@ -33,6 +33,7 @@ extern "C"
     extern Conversion convert_velocity[];
     extern Conversion convert_temperature[];
     extern Conversion convert_mass[];
+    extern Conversion convert_frequency[];
 
     int str_convert(const char *opt, double *value_ptr,
                     Conversion conversions[]);
