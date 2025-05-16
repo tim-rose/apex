@@ -192,6 +192,7 @@ int ini_parse(Ini *ini, IniProc proc, void *data)
             continue;
         }
         ini_err(ini, "unrecognised line: \"%s\"", line);
+        status = 0;
     }
     return status;
 }
